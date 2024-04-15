@@ -1,3 +1,4 @@
+import os
 import re
 import subprocess
 from typing import List, Dict, Optional
@@ -26,11 +27,15 @@ class GitHubRepoSecurity:
         findings = []
         for root, dirs, files in os.walk(repo_path):
             for file in files:
+                if not file.endswith(('.py', '.txt', '.env', '.json', '.yml', '.yaml')):  # Focus on files that are more likely to contain sensitive data
+                    continue
                 file_path = os.path.join(root, file)
                 with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                     for line_number, line in enumerate(f, 1):
-                        if any(re.search(pattern, line) for pattern in sensitive_data_patterns):
-                            findings.append({'file': file_path, 'line': line_number})
+                        for pattern in sensitive_data_patterns:
+                            if re.search(pattern, line):
+                                findings.append({'file': file_path, 'line': line_number, 'pattern': pattern})
+                                break  # Avoid multiple detections of the same line
         return findings
 
     @staticmethod
@@ -45,9 +50,13 @@ class GitHubRepoSecurity:
         Returns:
         - bool: True if enforcement was successful, False otherwise.
         """
+        branch_protection_commands = [
+            ['git', '-C', repo_name, 'branch', '--set-upstream-to', f'origin/{branch_name}', branch_name],
+            ['git', '-C', repo_name, 'config', '--add', f'branch.{branch_name}.protection', 'true']
+        ]
         try:
-            subprocess.run(['git', '-C', repo_name, 'branch', '--set-upstream-to', f'origin/{branch_name}', branch_name], check=True)
-            subprocess.run(['git', '-C', repo_name, 'config', '--add', 'branch.' + branch_name + '.protection', 'true'], check=True)
+            for command in branch_protection_commands:
+                subprocess.run(command, check=True)
             return True
         except subprocess.CalledProcessError:
             return False
@@ -68,8 +77,5 @@ class GitHubRepoSecurity:
         access_info = get_repo_access_info(repo_name)
         access_audit = {}
         for user, role in access_info.items():
-            if role in access_audit:
-                access_audit[role].append(user)
-            else:
-                access_audit[role] = [user]
+            access_audit.setdefault(role, []).append(user)
         return access_audit

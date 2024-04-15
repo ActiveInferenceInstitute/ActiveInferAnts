@@ -14,13 +14,22 @@ class ColonyInitializer:
         return [self._initialize_nest(nest_id, agent_count_per_nest) for nest_id in range(nest_count)]
 
     def _initialize_nest(self, nest_id: int, agent_count: int) -> List[ActiveNestmate]:
-        positions = np.random.choice(self.env_config['NEST_POSITIONS'], size=agent_count, replace=False)
+        positions = self._select_positions(agent_count)
         return [self._initialize_single_nestmate(nest_id, nestmate_id, self._generate_developmental_parameters(), position) for nestmate_id, position in enumerate(positions)]
 
+    def _select_positions(self, agent_count: int) -> np.ndarray:
+        return np.random.choice(self.env_config['NEST_POSITIONS'], size=agent_count, replace=False)
+
     def _initialize_single_nestmate(self, nest_id: int, nestmate_id: int, developmental_parameters: Dict[str, Any], position: Tuple[int, int]) -> ActiveNestmate:
-        influence_factor = np.random.uniform(*self.ant_config['INFLUENCE_FACTOR_RANGE'])
-        agent_params = {**self.meta_config['ACTIVE_INFERENCE'], **developmental_parameters}
+        influence_factor = self._select_influence_factor()
+        agent_params = self._merge_parameters(developmental_parameters)
         return ActiveNestmate(position=position, influence_factor=influence_factor, **agent_params)
+
+    def _select_influence_factor(self) -> float:
+        return np.random.uniform(*self.ant_config['INFLUENCE_FACTOR_RANGE'])
+
+    def _merge_parameters(self, developmental_parameters: Dict[str, Any]) -> Dict[str, Any]:
+        return {**self.meta_config['ACTIVE_INFERENCE'], **developmental_parameters}
 
     def _generate_developmental_parameters(self) -> Dict[str, Any]:
         return {

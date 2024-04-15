@@ -3,22 +3,6 @@ import config
 from typing import Dict, Any
 from scipy.stats import entropy
 
-class MatrixInitializer:
-    """
-    A class to efficiently initialize matrices based on configuration or default to zeros.
-    """
-    @staticmethod
-    def initialize(config_key: str, agent_params: Dict[str, Any], *dims) -> np.ndarray:
-        """
-        Efficiently initializes a matrix based on a configuration key and agent parameters.
-
-        :param config_key: Configuration key for the matrix.
-        :param agent_params: Agent parameters containing configuration.
-        :param dims: Dimensions for the matrix.
-        :return: A numpy array representing the initialized matrix.
-        """
-        return agent_params.get(config_key, np.zeros(dims, dtype=np.float32))
-
 class ActiveInferenceAgent:
     def __init__(self, position: np.ndarray, influence_factor: float, **agent_params: Dict[str, Any]):
         """
@@ -31,10 +15,30 @@ class ActiveInferenceAgent:
         self.position = position
         self.influence_factor = influence_factor
         self.agent_params = agent_params
-        self.A_matrix = MatrixInitializer.initialize('A_matrix_config', agent_params, *agent_params.get('SENSORY_MODALITIES'), agent_params.get('OBSERVATION_DIM'))
-        self.B_matrix = MatrixInitializer.initialize('B_matrix_config', agent_params, *agent_params.get('ACTION_MODALITIES'), agent_params.get('STATE_DIM'), agent_params.get('STATE_DIM'))
-        self.C_matrix = MatrixInitializer.initialize('C_matrix_config', agent_params, agent_params.get('OBSERVATION_DIM'))
-        self.D_matrix = MatrixInitializer.initialize('D_matrix_config', agent_params, agent_params.get('STATE_DIM'))
+        self.initialize_matrices()
+
+    def initialize_matrices(self):
+        """
+        Initializes matrices based on agent parameters.
+        """
+        self.A_matrix = self._initialize_matrix('A_matrix_config', self.agent_params.get('SENSORY_MODALITIES', ()), self.agent_params.get('OBSERVATION_DIM', 0))
+        self.B_matrix = self._initialize_matrix('B_matrix_config', self.agent_params.get('ACTION_MODALITIES', ()), self.agent_params.get('STATE_DIM', 0), self.agent_params.get('STATE_DIM', 0))
+        self.C_matrix = self._initialize_matrix('C_matrix_config', self.agent_params.get('OBSERVATION_DIM', 0))
+        self.D_matrix = self._initialize_matrix('D_matrix_config', self.agent_params.get('STATE_DIM', 0))
+        self.pi_matrix = self._initialize_matrix('pi_matrix_config', self.agent_params.get('ACTION_MODALITIES', ()), self.agent_params.get('STATE_DIM', 0))
+
+    def _initialize_matrix(self, config_key: str, *dims) -> np.ndarray:
+        """
+        Helper method to initialize a matrix based on a configuration key and dimensions.
+
+        :param config_key: Configuration key for the matrix.
+        :param dims: Dimensions for the matrix.
+        :return: A numpy array representing the initialized matrix.
+        """
+        matrix_config = self.agent_params.get(config_key, np.zeros(dims, dtype=np.float32))
+        if callable(matrix_config):
+            return matrix_config(*dims)
+        return np.array(matrix_config, dtype=np.float32)
 
     def perceive(self, observations: np.ndarray):
         """
@@ -55,11 +59,11 @@ class ActiveInferenceAgent:
 
     def _update_beliefs(self, prediction_error: np.ndarray):
         """
-        Updates the agent's position based on the prediction error.
+        Updates the agent's beliefs based on the prediction error.
 
         :param prediction_error: Prediction error as a numpy array.
         """
-        self.position -= self.influence_factor * prediction_error
+        self.position = self.position - self.influence_factor * prediction_error
 
     def calculate_vfe(self, observation: np.ndarray) -> float:
         """
@@ -69,8 +73,8 @@ class ActiveInferenceAgent:
         :return: Variational Free Energy as a float.
         """
         qs = self._approximate_posterior(observation)
-        expected_log_likelihood = np.sum(qs * np.log(self.A_matrix[:, observation]))
-        kl_divergence = np.sum(qs * (np.log(qs) - np.log(self.position)))
+        expected_log_likelihood = np.sum(qs * np.log(np.clip(self.A_matrix[:, observation], a_min=1e-10, a_max=None)))
+        kl_divergence = np.sum(qs * (np.log(np.clip(qs, a_min=1e-10, a_max=None)) - np.log(np.clip(self.position, a_min=1e-10, a_max=None))))
         vfe = -(expected_log_likelihood - kl_divergence)
         return vfe
 
@@ -84,7 +88,7 @@ class ActiveInferenceAgent:
         :param uncertainty: Uncertainty as a float.
         :return: Expected Free Energy as a float.
         """
-        pragmatic_value = np.sum(future_states * (np.log(future_states) - np.log(preferences)))
+        pragmatic_value = np.sum(future_states * (np.log(np.clip(future_states, a_min=1e-10, a_max=None)) - np.log(np.clip(preferences, a_min=1e-10, a_max=None))))
         epistemic_value = entropy(future_states)
         efe = pragmatic_value + uncertainty * epistemic_value
         return efe
@@ -96,7 +100,7 @@ class ActiveInferenceAgent:
         :return: The chosen action as a numpy array.
         """
         possible_actions = self._generate_possible_actions()
-        efe_scores = np.array([self.calculate_efe(action, self._predict_future_states(action), self.agent_params.get('preferences'), self.agent_params.get('uncertainty', 0.1)) for action in possible_actions])
+        efe_scores = np.array([self.calculate_efe(action, self._predict_future_states(action), self.agent_params.get('preferences', np.zeros(self.position.shape)), self.agent_params.get('uncertainty', 0.1)) for action in possible_actions])
         return possible_actions[np.argmin(efe_scores)]
 
     def update_internal_states(self, action: np.ndarray, observation: np.ndarray):
@@ -161,5 +165,4 @@ class ActiveNestmate(ActiveInferenceAgent):
     def __init__(self, position: np.ndarray, influence_factor: float, **agent_params: Dict[str, Any]):
         super().__init__(position, influence_factor, **agent_params)
         self.nestmate_config = config.ANT_AND_COLONY_CONFIG['NESTMATE']
-
 

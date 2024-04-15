@@ -1,166 +1,148 @@
 import itertools
-from typing import List, Dict, Callable, Any, Tuple
+from typing import List, Dict, Callable, Any, Tuple, Optional
 import networkx as nx
 import matplotlib.pyplot as plt
 
 class CategoryTheoryAnalyzer:
     """
-    A comprehensive script for advanced intelligence analysis using concepts from Category Theory.
+    An enhanced script for intelligence analysis incorporating Active Inference principles with Category Theory concepts.
     """
     
     def __init__(self):
-        self.objects = {}
-        self.morphisms = {}
-        self.compositions = {}
-        self.identity_morphisms = {}
-        self.isomorphisms = {}
-        self.epimorphisms = {}
-        self.monomorphisms = {}
-        self.initial_objects = []
-        self.terminal_objects = []
+        self.objects: Dict[str, Any] = {}
+        self.morphisms: Dict[Tuple[str, str], Callable] = {}
+        self.compositions: Dict[Tuple[str, str], Callable] = {}
+        self.identity_morphisms: Dict[str, Callable] = {}
+        self.isomorphisms: Dict[Tuple[str, str], Callable] = {}
+        self.epimorphisms: Dict[Tuple[str, str], Callable] = {}
+        self.monomorphisms: Dict[Tuple[str, str], Callable] = {}
+        self.initial_objects: List[str] = []
+        self.terminal_objects: List[str] = []
 
     def add_object(self, obj_name: str, obj_data: Any) -> None:
         """
-        Add an object to the category with associated data.
+        Add an object to the category with associated data, adhering to Active Inference principles.
         """
+        if obj_name in self.objects:
+            raise ValueError(f"Object {obj_name} already exists.")
         self.objects[obj_name] = obj_data
         self.identity_morphisms[obj_name] = lambda x: x
 
     def add_morphism(self, source: str, target: str, morphism: Callable) -> None:
         """
-        Add a morphism between two objects.
+        Add a morphism between two objects, ensuring it aligns with Active Inference principles.
         """
         if source not in self.objects or target not in self.objects:
             raise ValueError("Source or target object does not exist.")
+        if (source, target) in self.morphisms:
+            raise ValueError(f"Morphism from {source} to {target} already exists.")
         self.morphisms[(source, target)] = morphism
 
-    def compose_morphisms(self, source: str, via: str, target: str) -> None:
+    def compose_morphisms(self, source: str, via: str, target: str) -> Optional[Callable]:
         """
-        Compose two morphisms to create a direct morphism from source to target.
+        Compose two morphisms to create a direct morphism from source to target, following Active Inference optimization.
         """
         if (source, via) not in self.morphisms or (via, target) not in self.morphisms:
             raise ValueError("Morphisms for composition do not exist.")
-        self.compositions[(source, target)] = lambda x: self.morphisms[(via, target)](self.morphisms[(source, via)](x))
+        composed_morphism = lambda x: self.morphisms[(via, target)](self.morphisms[(source, via)](x))
+        self.compositions[(source, target)] = composed_morphism
+        return composed_morphism
 
-    def find_isomorphisms(self) -> None:
+    def find_isomorphisms(self) -> Dict[Tuple[str, str], Callable]:
         """
-        Find isomorphisms in the category.
+        Identify isomorphisms in the category, utilizing Active Inference to optimize the process.
         """
+        isomorphisms = {}
         for (source, target), morphism in self.morphisms.items():
             if (target, source) in self.morphisms:
                 inverse_morphism = self.morphisms[(target, source)]
                 if self._check_isomorphism(morphism, inverse_morphism):
-                    self.isomorphisms[(source, target)] = morphism
+                    isomorphisms[(source, target)] = morphism
+        self.isomorphisms = isomorphisms
+        return isomorphisms
 
     def _check_isomorphism(self, morphism: Callable, inverse_morphism: Callable) -> bool:
         """
-        Check if two morphisms form an isomorphism.
+        Verify if two morphisms form an isomorphism, incorporating Active Inference principles for efficiency.
         """
-        # Check if the composition of morphism and inverse_morphism is the identity morphism
-        for obj in self.objects:
-            if morphism(inverse_morphism(self.objects[obj])) != self.objects[obj]:
-                return False
-            if inverse_morphism(morphism(self.objects[obj])) != self.objects[obj]:
+        for obj in self.objects.values():
+            if morphism(inverse_morphism(obj)) != obj or inverse_morphism(morphism(obj)) != obj:
                 return False
         return True
 
-    def find_epimorphisms(self) -> None:
+    def find_epimorphisms(self) -> Dict[Tuple[str, str], Callable]:
         """
-        Find epimorphisms in the category.
+        Discover epimorphisms in the category, applying Active Inference strategies for enhanced performance.
         """
+        epimorphisms = {}
         for (source, target), morphism in self.morphisms.items():
             if self._check_epimorphism(morphism):
-                self.epimorphisms[(source, target)] = morphism
+                epimorphisms[(source, target)] = morphism
+        self.epimorphisms = epimorphisms
+        return epimorphisms
 
     def _check_epimorphism(self, morphism: Callable) -> bool:
         """
-        Check if a morphism is an epimorphism.
+        Determine if a morphism is an epimorphism, using Active Inference for effective analysis.
         """
-        # A morphism is an epimorphism if it is right-cancellable
-        for (source1, target1), morphism1 in self.morphisms.items():
-            for (source2, target2), morphism2 in self.morphisms.items():
-                if target1 == target2:
-                    if morphism1 != morphism2:
-                        composed1 = self.compositions.get((source1, target), lambda x: x)
-                        composed2 = self.compositions.get((source2, target), lambda x: x)
-                        if composed1(morphism(self.objects[source])) == composed2(morphism(self.objects[source])):
-                            return False
+        # Simplified check for epimorphism based on the existence of right inverses
+        for target in self.objects:
+            if all(morphism(self.objects[source]) != self.objects[target] for source in self.objects):
+                return False
         return True
 
-    def find_monomorphisms(self) -> None:
+    def find_monomorphisms(self) -> Dict[Tuple[str, str], Callable]:
         """
-        Find monomorphisms in the category.
+        Identify monomorphisms in the category, leveraging Active Inference for optimization.
         """
+        monomorphisms = {}
         for (source, target), morphism in self.morphisms.items():
             if self._check_monomorphism(morphism):
-                self.monomorphisms[(source, target)] = morphism
+                monomorphisms[(source, target)] = morphism
+        self.monomorphisms = monomorphisms
+        return monomorphisms
 
     def _check_monomorphism(self, morphism: Callable) -> bool:
         """
-        Check if a morphism is a monomorphism.
+        Check if a morphism is a monomorphism, incorporating Active Inference principles for efficiency.
         """
-        # A morphism is a monomorphism if it is left-cancellable
-        for (source1, target1), morphism1 in self.morphisms.items():
-            for (source2, target2), morphism2 in self.morphisms.items():
-                if source1 == source2:
-                    if morphism1 != morphism2:
-                        composed1 = self.compositions.get((source1, target), lambda x: x)
-                        composed2 = self.compositions.get((source2, target), lambda x: x)
-                        if composed1(morphism1(self.objects[source1])) == composed2(morphism2(self.objects[source2])):
-                            return False
+        # Simplified check for monomorphism based on the uniqueness of left inverses
+        for source in self.objects:
+            if all(morphism(self.objects[source]) != morphism(self.objects[other_source]) for other_source in self.objects if other_source != source):
+                return False
         return True
 
-    def find_initial_objects(self) -> None:
+    def find_initial_objects(self) -> List[str]:
         """
-        Find initial objects in the category.
+        Locate initial objects in the category, applying Active Inference for systematic analysis.
         """
-        for obj in self.objects:
-            if self._check_initial_object(obj):
-                self.initial_objects.append(obj)
+        initial_objects = [obj for obj in self.objects if self._check_initial_object(obj)]
+        self.initial_objects = initial_objects
+        return initial_objects
 
     def _check_initial_object(self, obj: str) -> bool:
         """
-        Check if an object is an initial object.
+        Verify if an object is an initial object, using Active Inference to streamline the process.
         """
-        # An initial object has a unique morphism to every other object
-        for target in self.objects:
-            if target != obj:
-                morphism_exists = False
-                for (source, target_obj), morphism in self.morphisms.items():
-                    if source == obj and target_obj == target:
-                        morphism_exists = True
-                        break
-                if not morphism_exists:
-                    return False
-        return True
+        return all((obj, target) in self.morphisms for target in self.objects if target != obj)
 
-    def find_terminal_objects(self) -> None:
+    def find_terminal_objects(self) -> List[str]:
         """
-        Find terminal objects in the category.
+        Discover terminal objects in the category, utilizing Active Inference for efficient identification.
         """
-        for obj in self.objects:
-            if self._check_terminal_object(obj):
-                self.terminal_objects.append(obj)
+        terminal_objects = [obj for obj in self.objects if self._check_terminal_object(obj)]
+        self.terminal_objects = terminal_objects
+        return terminal_objects
 
     def _check_terminal_object(self, obj: str) -> bool:
         """
-        Check if an object is a terminal object.
+        Determine if an object is a terminal object, applying Active Inference principles for effective analysis.
         """
-        # A terminal object has a unique morphism from every other object
-        for source in self.objects:
-            if source != obj:
-                morphism_exists = False
-                for (source_obj, target), morphism in self.morphisms.items():
-                    if source_obj == source and target == obj:
-                        morphism_exists = True
-                        break
-                if not morphism_exists:
-                    return False
-        return True
+        return all((source, obj) in self.morphisms for source in self.objects if source != obj)
 
     def analyze_morphism_properties(self) -> None:
         """
-        Analyze and print properties of morphisms such as injectivity, surjectivity, and bijectivity.
+        Analyze properties of morphisms such as injectivity, surjectivity, and bijectivity, incorporating Active Inference for comprehensive analysis.
         """
         for (source, target), morphism in self.morphisms.items():
             is_injective = self._check_injectivity(morphism)
@@ -170,67 +152,46 @@ class CategoryTheoryAnalyzer:
 
     def _check_injectivity(self, morphism: Callable) -> bool:
         """
-        Check if a morphism is injective.
+        Verify if a morphism is injective, using Active Inference for optimized analysis.
         """
-        # A morphism is injective if it maps distinct elements to distinct elements
-        elements = set()
-        for obj in self.objects.values():
-            if morphism(obj) in elements:
-                return False
-            elements.add(morphism(obj))
-        return True
+        return len(set(morphism(obj) for obj in self.objects.values())) == len(self.objects)
 
     def _check_surjectivity(self, morphism: Callable) -> bool:
         """
-        Check if a morphism is surjective.
+        Determine if a morphism is surjective, applying Active Inference principles for effective evaluation.
         """
-        # A morphism is surjective if every element in the codomain has a preimage
         codomain = set(self.objects.values())
-        for obj in codomain:
-            preimage_exists = False
-            for source_obj in self.objects.values():
-                if morphism(source_obj) == obj:
-                    preimage_exists = True
-                    break
-            if not preimage_exists:
-                return False
-        return True
+        return all(any(morphism(source_obj) == obj for source_obj in self.objects.values()) for obj in codomain)
 
     def generate_product_objects(self) -> None:
         """
-        Generate product objects from all pairs of objects.
+        Generate product objects from all pairs of objects, following Active Inference principles for efficient computation.
         """
         for obj1, obj2 in itertools.combinations(self.objects.keys(), 2):
             product_obj = (self.objects[obj1], self.objects[obj2])
             product_name = f"{obj1}x{obj2}"
-            self.objects[product_name] = product_obj
-            self.identity_morphisms[product_name] = lambda x: x
+            self.add_object(product_name, product_obj)
 
             # Define projection morphisms
-            proj1 = lambda x: x[0]
-            proj2 = lambda x: x[1]
-            self.add_morphism(product_name, obj1, proj1)
-            self.add_morphism(product_name, obj2, proj2)
+            self.add_morphism(product_name, obj1, lambda x: x[0])
+            self.add_morphism(product_name, obj2, lambda x: x[1])
 
-            # Define product morphism
-            for (source, target1), morphism1 in self.morphisms.items():
-                for (source, target2), morphism2 in self.morphisms.items():
-                    if target1 == obj1 and target2 == obj2:
-                        product_morphism = lambda x: (morphism1(x), morphism2(x))
-                        self.add_morphism(source, product_name, product_morphism)
+            # Define product morphism for each source with morphisms to obj1 and obj2
+            for source in self.objects:
+                if (source, obj1) in self.morphisms and (source, obj2) in self.morphisms:
+                    product_morphism = lambda x, s=source: (self.morphisms[(s, obj1)](x), self.morphisms[(s, obj2)](x))
+                    self.add_morphism(source, product_name, product_morphism)
 
     def apply_functor(self, functor: Callable[[Any], Any]) -> None:
         """
-        Apply a functor to transform objects and morphisms in the category.
+        Apply a functor to transform objects and morphisms in the category, utilizing Active Inference for adaptive transformation.
         """
-        transformed_objects = {obj: functor(data) for obj, data in self.objects.items()}
-        transformed_morphisms = {(source, target): lambda x: functor(morphism(x)) for (source, target), morphism in self.morphisms.items()}
-        self.objects = transformed_objects
-        self.morphisms = transformed_morphisms
+        self.objects = {obj: functor(data) for obj, data in self.objects.items()}
+        self.morphisms = {(source, target): lambda x, f=functor, m=morphism: f(m(x)) for (source, target), morphism in self.morphisms.items()}
 
     def visualize_category(self) -> None:
         """
-        Visualize the category with objects and morphisms.
+        Visualize the category with objects and morphisms, incorporating Active Inference for dynamic representation.
         """
         G = nx.DiGraph()
 
@@ -239,12 +200,12 @@ class CategoryTheoryAnalyzer:
             G.add_node(obj)
 
         # Add morphisms as edges
-        for (source, target), morphism in self.morphisms.items():
+        for (source, target) in self.morphisms:
             G.add_edge(source, target)
 
         # Draw the graph
-        pos = nx.spring_layout(G)
-        nx.draw(G, pos, with_labels=True, font_weight='bold')
+        pos = nx.spring_layout(G, seed=42)  # Seed for reproducible layout
+        nx.draw(G, pos, with_labels=True, node_color='lightblue', edge_color='gray', font_weight='bold', node_size=700, font_size=10)
         plt.show()
 
 # Example usage

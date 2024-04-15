@@ -1,58 +1,62 @@
 import time
 import logging
 from render_Simulation import SimulationRenderer
-from situational_Antwareness import visualize_agent_internals
-from plan_Simulation import plan_simulation
+from situational_Awareness import AgentVisualizer
+from plan_Simulation import SimulationPlanner
 import numpy as np
-from MetaInformAnt_Simulation import MetaInformAntSimulation
+from ActiveInferenceSimulation import ActiveInferenceSimulation
 import config
 import metaconfig
 
 class SimulationExecutor:
-    def __init__(self, visualization_frequency=100, sleep_duration=0.1):
-        self.simulation = plan_simulation()
-        self.renderer = SimulationRenderer(*self.simulation.get_rendering_params())
-        self.visualization_frequency = visualization_frequency
-        self.sleep_duration = sleep_duration
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    def __init__(self, visualization_interval=100, pause_duration=0.1, log_level=logging.INFO):
+        self.simulation = SimulationPlanner().create_simulation()
+        self.renderer = SimulationRenderer(*self.simulation.get_visualization_parameters())
+        self.visualization_interval = visualization_interval
+        self.pause_duration = pause_duration
+        self.configure_logging(log_level)
     
-    def setup_environment(self):
-        self._attempt_operation(self.renderer.setup_environment, "Environment setup initiated.")
+    def configure_logging(self, log_level):
+        logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
     
-    def execute_steps(self):
-        logging.info(f"Executing simulation steps up to {self.simulation.simulation_environment.max_steps}.")
-        for step in range(self.simulation.simulation_environment.max_steps):
-            self._attempt_operation(lambda: self._simulation_step(step), f"Executing step {step}")
+    def initialize_environment(self):
+        self._safely_execute(self.renderer.initialize_environment, "Environment initialization.")
     
-    def _simulation_step(self, step):
-        self.simulation.update()
-        if step % self.visualization_frequency == 0:
-            self.optional_visualization(step)
-        self.renderer.update_visualization(step)
-        time.sleep(self.sleep_duration)
+    def perform_simulation(self):
+        max_steps = self.simulation.environment.max_steps
+        logging.info(f"Simulation commencing for {max_steps} steps.")
+        for step in range(max_steps):
+            self._safely_execute(lambda: self._execute_simulation_step(step), f"Step {step} execution")
     
-    def optional_visualization(self, step):
-        logging.info(f"Optional visualization at step {step}")
+    def _execute_simulation_step(self, step):
+        self.simulation.progress()
+        if step % self.visualization_interval == 0:
+            self._optional_visualization(step)
+        self.renderer.refresh_visualization(step)
+        time.sleep(self.pause_duration)
+    
+    def _optional_visualization(self, step):
+        logging.info(f"Optional data visualization at step {step}")
         for agent in self.simulation.agents:
-            visualize_agent_internals(agent)
+            AgentVisualizer.visualize(agent)
     
-    def post_simulation(self):
-        self._attempt_operation(lambda: self.renderer.render_post_simulation(self.simulation.collect_results()), "Finalizing simulation.")
+    def conclude_simulation(self):
+        self._safely_execute(lambda: self.renderer.visualize_post_simulation(self.simulation.aggregate_results()), "Simulation conclusion.")
     
     def run(self):
-        logging.info("Simulation execution sequence initiated.")
-        operations = [("Environment setup", self.setup_environment), 
-                      ("Simulation execution", self.execute_steps), 
-                      ("Simulation finalization", self.post_simulation)]
-        for description, operation in operations:
-            logging.info(f"{description} started.")
-            operation()
+        logging.info("Simulation sequence initiation.")
+        simulation_steps = [("Environment initialization", self.initialize_environment), 
+                            ("Simulation execution", self.perform_simulation), 
+                            ("Simulation conclusion", self.conclude_simulation)]
+        for description, step_function in simulation_steps:
+            logging.info(f"{description} in progress.")
+            step_function()
     
-    def _attempt_operation(self, operation, description):
+    def _safely_execute(self, operation, description):
         try:
             operation()
         except Exception as e:
-            logging.error(f"Failed during {description}: {e}", exc_info=True)
+            logging.error(f"{description} error: {e}", exc_info=True)
 
 if __name__ == "__main__":
     SimulationExecutor().run()

@@ -15,46 +15,48 @@ class FollowUpSpecification:
         """
         self.name = name
         self.follow_up_type = follow_up_type
-        self.update_areas = []
-        self.sessions = []
-        self.debrief_details = {}
-        self.plan_details = {}
+        self.update_areas: List[str] = []
+        self.sessions: List[Dict[str, str]] = []
+        self.debrief_details: Dict[str, str] = {}
+        self.plan_details: Dict[str, str] = {}
 
     def add_update_area(self, area: str) -> None:
         """
-        Adds an area to the list of areas that require updates.
+        Adds an area to the list of areas that require updates, ensuring no duplicates.
         
         Parameters:
         - area (str): The area to be updated.
         """
-        self.update_areas.append(area)
+        if area not in self.update_areas:
+            self.update_areas.append(area)
 
     def add_session(self, session: Dict[str, str]) -> None:
         """
-        Adds a session to the list of sessions to be conducted.
+        Adds a session to the list of sessions to be conducted, ensuring no duplicates based on session name.
         
         Parameters:
         - session (Dict[str, str]): The session details including name and objectives.
         """
-        self.sessions.append(session)
+        if not any(s['session'] == session['session'] for s in self.sessions):
+            self.sessions.append(session)
 
     def set_debrief_details(self, debrief_details: Dict[str, str]) -> None:
         """
-        Sets the details for the debrief session.
+        Sets or updates the details for the debrief session.
         
         Parameters:
         - debrief_details (Dict[str, str]): The debrief session details.
         """
-        self.debrief_details = debrief_details
+        self.debrief_details.update(debrief_details)
 
     def set_plan_details(self, plan_details: Dict[str, str]) -> None:
         """
-        Sets the details for the maintenance or action plan.
+        Sets or updates the details for the maintenance or action plan.
         
         Parameters:
         - plan_details (Dict[str, str]): The plan details.
         """
-        self.plan_details = plan_details
+        self.plan_details.update(plan_details)
 
     def generate_followup_specification(self) -> Dict[str, Any]:
         """
@@ -100,4 +102,3 @@ class FollowUpSpecification:
             "debrief": self.debrief_details,
             "plan": self.plan_details
         }
-

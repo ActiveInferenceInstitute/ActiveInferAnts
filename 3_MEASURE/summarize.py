@@ -1,66 +1,71 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import entropy
 
-class SimulationSummary:
+class EnhancedSimulationSummary:
     def __init__(self, simulation_results):
         self.simulation_results = simulation_results
-        self.total_agents = len(simulation_results['agents'])  # Store total agents count
+        self.agents = simulation_results.get('agents', [])
+        self.food_sources = simulation_results.get('food_sources', [])
+        self.nests = simulation_results.get('nests', [])
+        self.simulation_steps = simulation_results.get('simulation_steps', 0)
 
     def generate_summary(self):
-        summary_methods = [
-            self._total_agents,
-            self._total_food_sources,
-            self._total_nests,
-            self._average_agent_energy,
-            self._total_food_collected,
-            self._simulation_steps,
-            self._energy_statistics,
-            self._summary_by_agent_type
-        ]
-        summary = {method.__name__[1:]: method() for method in summary_methods}
+        summary = {
+            'total_agents': self._total_agents(),
+            'total_food_sources': self._total_food_sources(),
+            'total_nests': self._total_nests(),
+            'average_agent_energy': self._average_agent_energy(),
+            'total_food_collected': self._total_food_collected(),
+            'simulation_steps': self.simulation_steps,
+            'energy_statistics': self._energy_statistics(),
+            'summary_by_agent_type': self._summary_by_agent_type(),
+            'agents_entropy': self._agents_entropy()
+        }
         return summary
 
     def _total_agents(self):
-        return self.total_agents
+        return len(self.agents)
 
     def _total_food_sources(self):
-        return len(self.simulation_results['food_sources'])
+        return len(self.food_sources)
 
     def _total_nests(self):
-        return len(self.simulation_results['nests'])
+        return len(self.nests)
 
     def _average_agent_energy(self):
-        total_energy = sum(agent['energy'] for agent in self.simulation_results['agents'])
-        return total_energy / self.total_agents if self.total_agents > 0 else 0
+        total_energy = sum(agent.get('energy', 0) for agent in self.agents)
+        return total_energy / len(self.agents) if self.agents else 0
 
     def _total_food_collected(self):
-        return sum(nest['food_collected'] for nest in self.simulation_results['nests'])
-
-    def _simulation_steps(self):
-        return self.simulation_results['simulation_steps']
+        return sum(nest.get('food_collected', 0) for nest in self.nests)
 
     def _energy_statistics(self):
-        energies = [agent['energy'] for agent in self.simulation_results['agents']]
+        energies = [agent.get('energy', 0) for agent in self.agents]
         return {
-            "mean_energy": np.mean(energies),
-            "std_dev_energy": np.std(energies),
-            "median_energy": np.median(energies)
+            "mean_energy": np.mean(energies) if energies else 0,
+            "std_dev_energy": np.std(energies) if energies else 0,
+            "median_energy": np.median(energies) if energies else 0
         }
 
     def _summary_by_agent_type(self):
         summary = {}
-        for agent in self.simulation_results['agents']:
+        for agent in self.agents:
             agent_type = agent.get('type', 'default')
             summary.setdefault(agent_type, {'energy': [], 'count': 0})
-            summary[agent_type]['energy'].append(agent['energy'])
+            summary[agent_type]['energy'].append(agent.get('energy', 0))
             summary[agent_type]['count'] += 1
         for agent_type, stats in summary.items():
-            summary[agent_type]['average_energy'] = np.mean(stats['energy'])
+            stats['average_energy'] = np.mean(stats['energy']) if stats['energy'] else 0
         return summary
 
+    def _agents_entropy(self):
+        energies = [agent.get('energy', 0) for agent in self.agents]
+        return entropy(energies) if energies else 0
+
 def summarize_simulation(simulation_results):
-    summary = SimulationSummary(simulation_results)
+    summary = EnhancedSimulationSummary(simulation_results)
     return summary.generate_summary()
 
 def save_summary_to_file(summary, file_path):
@@ -69,10 +74,10 @@ def save_summary_to_file(summary, file_path):
             file.write(f"{key}: {value}\n")
 
 def save_summary_to_csv(summary, file_path):
-    pd.DataFrame.from_records([summary]).to_csv(file_path, index=False)
+    pd.DataFrame.from_dict(summary, orient='index').to_csv(file_path, header=False)
 
 def plot_agent_energy_distribution(agents, file_path):
-    energies = [agent['energy'] for agent in agents]
+    energies = [agent.get('energy', 0) for agent in agents]
     plt.hist(energies, bins=10, color='skyblue', edgecolor='black')
     plt.title('Agent Energy Distribution')
     plt.xlabel('Energy')
