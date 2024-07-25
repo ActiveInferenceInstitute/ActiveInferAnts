@@ -1,7 +1,8 @@
 import numpy as np
+from typing import Dict, List, Tuple, Union
 
 # General simulation parameters
-SIMULATION_SETTINGS = {
+SIMULATION_SETTINGS: Dict[str, Union[int, Dict]] = {
     'MAX_STEPS': 500,  # Maximum number of steps per simulation
     'AGENT_COUNT': 100,  # Total number of agents participating in the simulation
     'NEST_COUNT': 5,  # Total number of nests within the simulation environment
@@ -22,69 +23,74 @@ SIMULATION_SETTINGS = {
 }
 
 # Enhanced Active Inference configuration parameters for advanced pre-rendering and contextualization in shared intelligence ecosystems
-ACTIVE_INFERENCE_CONFIG = {
+ACTIVE_INFERENCE_CONFIG: Dict[str, Union[bool, List, Dict]] = {
     'ENABLED': True,  # Flag to enable/disable active inference mechanisms
     'INFERENCE_MODELS': ['variational', 'predictive_coding', 'bayesian_filtering', 'deep_active_inference', 'ensemble_methods'],
     'EXPECTATION_FREE_ENERGY': True,  # Enables calculation of expected free energy for decision making
-    'PLANNING_HORIZON': {'TYPE': 'adaptive', 'BASE_VALUE': 15, 'ADAPTATION_STRATEGY': 'contextual_complexity'},
-    'TIME_RESOLUTION': 'continuous',  # Updated to continuous for more granular temporal resolution
-    'PRECISION_WEIGHTING': {
-        'PERCEPTION': {'BASE': 0.8, 'ADAPTIVE': True},
-        'ACTION': {'BASE': 0.2, 'ADAPTIVE': True},
+    'PLANNING_HORIZON': {
+        'TYPE': 'adaptive',  # Type of planning horizon: 'fixed' or 'adaptive'
+        'BASE_VALUE': 15,  # Base value for planning horizon
+        'ADAPTATION_STRATEGY': 'contextual_complexity',  # Strategy for adapting planning horizon
     },
-    'GENERALIZATION_DEPTH': 5,  # Increased depth of abstraction layers for inference generalization
-    'ITERATION_LIMIT': 20,  # Increased cap on the number of iterations in the active inference cycle
+    'TIME_RESOLUTION': 'continuous',  # Temporal resolution: 'discrete' or 'continuous'
+    'PRECISION_WEIGHTING': {
+        'PERCEPTION': {'BASE': 0.8, 'ADAPTIVE': True},  # Precision weighting for perception
+        'ACTION': {'BASE': 0.2, 'ADAPTIVE': True},  # Precision weighting for action
+    },
+    'GENERALIZATION_DEPTH': 5,  # Depth of abstraction layers for inference generalization
+    'ITERATION_LIMIT': 20,  # Cap on the number of iterations in the active inference cycle
     'ADAPTIVE_LEARNING': {
-        'ENABLED': True,  # Maintains adaptive learning capabilities
-        'LEARNING_RATE': 0.1,  # Adjusted rate of adaptation based on feedback
-        'FEEDBACK_SENSITIVITY': 'adaptive',  # Updated to adaptive sensitivity to feedback
-        'MODEL_UPDATING': 'online',  # Specifies the model updating strategy: 'online' or 'batch'
+        'ENABLED': True,  # Flag to enable/disable adaptive learning
+        'LEARNING_RATE': 0.1,  # Rate of adaptation based on feedback
+        'FEEDBACK_SENSITIVITY': 'adaptive',  # Sensitivity to feedback: 'fixed' or 'adaptive'
+        'MODEL_UPDATING': 'online',  # Model updating strategy: 'online' or 'batch'
     },
     'CONTEXT_AWARENESS': {
-        'ENABLED': True,  # Maintains context awareness
+        'ENABLED': True,  # Flag to enable/disable context awareness
         'CONTEXT_TYPES': ['environmental', 'social', 'temporal', 'emotional', 'predictive'],
-        'DYNAMIC_ADJUSTMENT': True,
-        'PREDICTION': True,
+        'DYNAMIC_ADJUSTMENT': True,  # Flag to enable/disable dynamic context adjustment
+        'PREDICTION': True,  # Flag to enable/disable context prediction
     },
     'COGNITIVE_COMPLEXITY': {
-        'ENABLED': True,  # Maintains cognitive complexity in inference
-        'TYPES': ['simple', 'complex', 'hierarchical', 'emergent', 'adaptive'],  # Revised types of cognitive complexities
-        'STRATEGY_ADAPTATION': True,  # Maintains the adaptation of strategies based on cognitive complexity
-        'COMPLEXITY_MANAGEMENT': 'dynamic',  # Specifies the management strategy for cognitive complexity
+        'ENABLED': True,  # Flag to enable/disable cognitive complexity in inference
+        'TYPES': ['simple', 'complex', 'hierarchical', 'emergent', 'adaptive'],  # Types of cognitive complexities
+        'STRATEGY_ADAPTATION': True,  # Flag to enable/disable adaptation of strategies based on cognitive complexity
+        'COMPLEXITY_MANAGEMENT': 'dynamic',  # Management strategy for cognitive complexity: 'static' or 'dynamic'
     },
     'SURPRISE_MINIMIZATION': True,  # Flag to enable/disable surprise minimization mechanisms
     'GOAL_ORIENTED_BEHAVIOR': {
         'ENABLED': True,  # Flag to enable/disable goal-oriented behavior
-        'GOALS': ['survival', 'exploration', 'social_interaction'],  # Specifies the types of goals for agents
-        'GOAL_PRIORITIZATION': 'adaptive',  # Specifies the strategy for goal prioritization
+        'GOALS': ['survival', 'exploration', 'social_interaction'],  # Types of goals for agents
+        'GOAL_PRIORITIZATION': 'adaptive',  # Strategy for goal prioritization: 'fixed' or 'adaptive'
     },
-    'LEARNING_RATE': 0.1,  # Added for enhanced learning capabilities
+    'LEARNING_RATE': 0.1,  # Global learning rate for active inference processes
     'EFE_CALCULATION_PARAMS': {
-        'DEFAULT': 0.5,  # Placeholder for parameters involved in EFE calculation
+        'DEFAULT': 0.5,  # Default parameter for Expected Free Energy calculation
     },
     'META_LEARNING': {
-        'ENABLED': True,
-        'STRATEGIES': ['experience_replay', 'strategy_optimization'],
+        'ENABLED': True,  # Flag to enable/disable meta-learning capabilities
+        'STRATEGIES': ['experience_replay', 'strategy_optimization'],  # Meta-learning strategies
     },
     'MULTI_OBJECTIVE_DECISION_MAKING': {
-        'ENABLED': True,
-        'INTEGRATION_STRATEGY': 'weighted_sum',
+        'ENABLED': True,  # Flag to enable/disable multi-objective decision making
+        'INTEGRATION_STRATEGY': 'weighted_sum',  # Strategy for integrating multiple objectives
     },
     'UNCERTAINTY_MANAGEMENT': {
-        'ENABLED': True,
-        'STRATEGIES': ['risk_averse', 'risk_neutral', 'risk_seeking'],
+        'ENABLED': True,  # Flag to enable/disable uncertainty management
+        'STRATEGIES': ['risk_averse', 'risk_neutral', 'risk_seeking'],  # Uncertainty management strategies
     },
     'COMMUNICATION': {
-        'ENABLED': True,
-        'MODES': ['direct', 'indirect', 'environmental_signaling'],
+        'ENABLED': True,  # Flag to enable/disable communication capabilities
+        'MODES': ['direct', 'indirect', 'environmental_signaling'],  # Communication modes
     },
     'LEARNING_MECHANISMS': {
-        'ENABLED': True,
-        'TYPES': ['reinforcement_learning', 'supervised_learning', 'unsupervised_learning'],
+        'ENABLED': True,  # Flag to enable/disable various learning mechanisms
+        'TYPES': ['reinforcement_learning', 'supervised_learning', 'unsupervised_learning'],  # Types of learning mechanisms
     },
 }
+
 # Consolidated Ant and Colony Configuration Parameters
-ANT_AND_COLONY_CONFIG = {
+ANT_AND_COLONY_CONFIG: Dict[str, Dict] = {
     'NESTMATE': {
         'ACTIVE_INFERENCE': {
             'BLANKET_STATES': {
@@ -175,9 +181,10 @@ ANT_AND_COLONY_CONFIG = {
         'EXPANSION_STRATEGY': 'gradual',  # Colony expansion strategy
         'THREAT_RESPONSES': ['evacuation', 'defense', 'hide'],  # Threat responses
     },
+}
 
-# ENVIROPARAMETERS (NON-ANT)
-ENVIRONMENT_CONFIG = {
+# ENVIRONMENT PARAMETERS (NON-ANT)
+ENVIRONMENT_CONFIG: Dict[str, Union[Dict, List]] = {
     'GRID': {
         'WIDTH': 100,  # Grid width
         'HEIGHT': 100,  # Grid height
@@ -223,3 +230,29 @@ ENVIRONMENT_CONFIG = {
     },
 }
 
+# Additional configuration for advanced simulation features
+ADVANCED_SIMULATION_CONFIG: Dict[str, Union[bool, Dict]] = {
+    'DYNAMIC_ENVIRONMENT': {
+        'ENABLED': True,  # Flag to enable/disable dynamic environment changes
+        'WEATHER_EFFECTS': ['rain', 'wind', 'heat'],  # Weather effects that can influence the environment
+        'SEASONAL_CHANGES': True,  # Flag to enable/disable seasonal changes
+        'NATURAL_DISASTERS': ['flood', 'drought', 'fire'],  # Possible natural disasters
+    },
+    'INTER_COLONY_INTERACTIONS': {
+        'ENABLED': True,  # Flag to enable/disable interactions between different colonies
+        'TYPES': ['competition', 'cooperation', 'predation'],  # Types of inter-colony interactions
+        'TERRITORY_OVERLAP': 0.2,  # Degree of territory overlap between colonies
+    },
+    'GENETIC_ALGORITHMS': {
+        'ENABLED': True,  # Flag to enable/disable genetic algorithms for ant evolution
+        'MUTATION_RATE': 0.01,  # Rate of genetic mutations
+        'CROSSOVER_RATE': 0.7,  # Rate of genetic crossover
+        'SELECTION_METHOD': 'tournament',  # Method for selecting individuals for reproduction
+    },
+    'ADVANCED_PATHFINDING': {
+        'ALGORITHM': 'A*',  # Pathfinding algorithm used by ants
+        'HEURISTIC': 'manhattan',  # Heuristic used in pathfinding
+        'OBSTACLE_AVOIDANCE': True,  # Flag to enable/disable advanced obstacle avoidance
+    },
+    'MULTI_LAYER_PHEROMONE_SYSTEM': {
+        'ENABLED': True,  # Flag to enable/disable multi-layer pheromone system
