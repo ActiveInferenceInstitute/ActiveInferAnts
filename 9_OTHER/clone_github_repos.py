@@ -55,16 +55,18 @@ if __name__ == "__main__":
     repos_to_clone = {
         "ActiveInference": [
             "https://github.com/infer-actively/pymdp",
-        ]
+        ],
         
-        # Nostr
-        # "Nostr": [
-        #     "https://github.com/nostr-protocol/nostr",
-        #     "https://github.com/fiatjaf/nostr-tools",
-        #     "https://github.com/nbd-wtf/nostr-rs",
-        #     "https://github.com/aljazceru/awesome-nostr",
-        #     "https://github.com/nostr-connect/connect"
-        # ]
+        "Nostr": [
+            "https://github.com/nostr-protocol/nostr",
+            "https://github.com/fiatjaf/nostr-tools",
+            "https://github.com/limina1/indextr-client",
+            "https://github.com/fiatjaf/quill-asciidoc",
+            "https://github.com/fiatjaf/svelte-asciidoc",
+            "https://github.com/github-tijlxyz/wikinostr",
+            "https://github.com/aljazceru/awesome-nostr",
+            "https://github.com/nostr-connect/connect"
+        ]
         # ,
         # "Synergetics": [
         #     "https://github.com/4dsolutions/MartianMath",
