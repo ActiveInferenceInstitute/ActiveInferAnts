@@ -57,6 +57,14 @@ if __name__ == "__main__":
             "https://github.com/infer-actively/pymdp",
         ]
         
+        # Nostr
+        # "Nostr": [
+        #     "https://github.com/nostr-protocol/nostr",
+        #     "https://github.com/fiatjaf/nostr-tools",
+        #     "https://github.com/nbd-wtf/nostr-rs",
+        #     "https://github.com/aljazceru/awesome-nostr",
+        #     "https://github.com/nostr-connect/connect"
+        # ]
         # ,
         # "Synergetics": [
         #     "https://github.com/4dsolutions/MartianMath",
