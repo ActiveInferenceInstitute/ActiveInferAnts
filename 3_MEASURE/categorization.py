@@ -1,14 +1,17 @@
 import itertools
-from typing import List, Dict, Callable, Any, Tuple, Optional
+from typing import List, Dict, Callable, Any, Tuple, Optional, Set
 import networkx as nx
 import matplotlib.pyplot as plt
 from functools import reduce
 from collections import defaultdict
+import numpy as np
+from scipy.stats import entropy
 
 class CategoryTheoryAnalyzer:
     """
     An advanced script for intelligence analysis incorporating Active Inference principles with Category Theory concepts.
-    This class provides a comprehensive toolkit for analyzing and manipulating categorical structures.
+    This class provides a comprehensive toolkit for analyzing and manipulating categorical structures,
+    with enhanced functionality for complex data analysis and visualization.
     """
     
     def __init__(self):
@@ -23,6 +26,8 @@ class CategoryTheoryAnalyzer:
         self.terminal_objects: List[str] = []
         self.natural_transformations: Dict[Tuple[str, str], Callable] = {}
         self.functors: Dict[str, Callable] = {}
+        self.limits: Dict[str, Any] = {}
+        self.colimits: Dict[str, Any] = {}
 
     def add_object(self, obj_name: str, obj_data: Any) -> None:
         """
@@ -331,6 +336,27 @@ class CategoryTheoryAnalyzer:
         plt.tight_layout()
         plt.show()
 
+    def compute_limit(self, diagram: Dict[str, Any]) -> Any:
+        """
+        Compute the limit of a diagram in the category.
+        
+        Args:
+            diagram (Dict[str, Any]): A dictionary representing the diagram.
+        
+        Returns:
+            Any: The limit object.
+        """
+        # Implementation of limit computation
+        # This is a placeholder and should be implemented based on specific category theory principles
+        limit = reduce(lambda x, y: (x, y), diagram.values())
+        self.limits[str(diagram)] = limit
+        return limit
+
+    def compute_colimit(self, diagram: Dict[str, Any]) -> Any:
+        """
+        Compute the colimit of a diagram in the category.
+        
+        Args:
 # Example usage
 if __name__ == "__main__":
     analyzer = CategoryTheoryAnalyzer()

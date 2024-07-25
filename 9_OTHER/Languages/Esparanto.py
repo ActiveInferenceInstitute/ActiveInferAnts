@@ -8,6 +8,7 @@ import argparse
 import logging
 import concurrent.futures
 import time
+import json
 
 # Agordo de protokolado
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -179,11 +180,24 @@ def konjugacii_verbon(verbo: str, tempo: str) -> str:
         return radiko + tempo
     return verbo
 
+def konservi_rezultojn(rezultoj: Dict[str, Optional[str]], elira_dosiero: str):
+    """
+    Konservas la rezultojn de la tradukado en JSON-dosiero.
+    
+    Args:
+        rezultoj (Dict[str, Optional[str]]): Vortaro kun indikoj al originalaj dosieroj kaj respondaj tradukitaj dosieroj.
+        elira_dosiero (str): Dosierindiko por konservi la rezultojn.
+    """
+    with open(elira_dosiero, 'w', encoding='utf-8') as dosiero:
+        json.dump(rezultoj, dosiero, ensure_ascii=False, indent=2)
+    logger.info(f"Rezultoj konservitaj en: {elira_dosiero}")
+
 def main():
     parser = argparse.ArgumentParser(description="Tradukado de komentoj en Python-kodo al Esperanto.")
     parser.add_argument("radika_dosierujo", help="Radika dosierujo de la kodbazaro")
     parser.add_argument("--eliro", help="Dosierujo por konservi la tradukitajn dosierojn")
     parser.add_argument("--maksimumaj-laboristoj", type=int, default=5, help="Maksimuma nombro da paralelaj procezoj")
+    parser.add_argument("--rezultoj-dosiero", default="traduko_rezultoj.json", help="Dosiero por konservi la rezultojn de la tradukado")
     args = parser.parse_args()
 
     komenco_tempo = time.time()
@@ -194,6 +208,8 @@ def main():
     logger.info(f"Tradukado de la kodbazaro al Esperanto finiĝis.")
     logger.info(f"Sukcese tradukitaj dosieroj: {sukcesaj_tradukoj}/{len(rezultoj)}")
     logger.info(f"Plenumtempo: {fino_tempo - komenco_tempo:.2f} sekundoj")
+
+    konservi_rezultojn(rezultoj, args.rezultoj_dosiero)
 
 if __name__ == "__main__":
     main()

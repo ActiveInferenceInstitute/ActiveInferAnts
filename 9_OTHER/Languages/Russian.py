@@ -10,10 +10,22 @@ import concurrent.futures
 import time
 import json
 from pathlib import Path
+import pymorphy2
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from spellchecker import SpellChecker
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
+# Инициализация необходимых инструментов
+morph = pymorphy2.MorphAnalyzer()
+nltk.download('punkt')
+nltk.download('stopwords')
+russian_stopwords = set(stopwords.words('russian'))
+spell = SpellChecker(language='ru')
 
 def translate_to_russian(text: str, retries: int = 3, delay: float = 1.0) -> Optional[str]:
     """
@@ -167,7 +179,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Добавление методов, связанных с русской грамматикой
+# Методы, связанные с русской грамматикой
 
 def decline_noun(noun: str, case: str, number: str = 'singular') -> str:
     """
@@ -175,14 +187,16 @@ def decline_noun(noun: str, case: str, number: str = 'singular') -> str:
     
     Args:
         noun (str): Существительное в именительном падеже.
-        case (str): Падеж ('nominative', 'genitive', 'dative', 'accusative', 'instrumental', 'prepositional').
-        number (str): Число ('singular' или 'plural').
+        case (str): Падеж ('nomn', 'gent', 'datv', 'accs', 'ablt', 'loct').
+        number (str): Число ('sing' или 'plur').
     
     Returns:
         str: Склоненное существительное.
     """
-    # Здесь должна быть реализация склонения существительного
-    pass
+    parsed = morph.parse(noun)[0]
+    if 'NOUN' in parsed.tag:
+        return parsed.inflect({case, number}).word
+    return noun
 
 def conjugate_verb(verb: str, person: str, number: str, tense: str, aspect: str) -> str:
     """
@@ -190,16 +204,18 @@ def conjugate_verb(verb: str, person: str, number: str, tense: str, aspect: str)
     
     Args:
         verb (str): Глагол в инфинитиве.
-        person (str): Лицо ('1st', '2nd', '3rd').
-        number (str): Число ('singular' или 'plural').
-        tense (str): Время ('present', 'past', 'future').
-        aspect (str): Вид ('perfective' или 'imperfective').
+        person (str): Лицо ('1per', '2per', '3per').
+        number (str): Число ('sing' или 'plur').
+        tense (str): Время ('pres', 'past', 'futr').
+        aspect (str): Вид ('perf' или 'impf').
     
     Returns:
         str: Спряженный глагол.
     """
-    # Здесь должна быть реализация спряжения глагола
-    pass
+    parsed = morph.parse(verb)[0]
+    if 'INFN' in parsed.tag:
+        return parsed.inflect({person, number, tense, aspect}).word
+    return verb
 
 def decline_adjective(adjective: str, gender: str, case: str, number: str = 'singular') -> str:
     """
@@ -207,15 +223,17 @@ def decline_adjective(adjective: str, gender: str, case: str, number: str = 'sin
     
     Args:
         adjective (str): Прилагательное в именительном падеже мужского рода.
-        gender (str): Род ('masculine', 'feminine', 'neuter').
-        case (str): Падеж ('nominative', 'genitive', 'dative', 'accusative', 'instrumental', 'prepositional').
-        number (str): Число ('singular' или 'plural').
+        gender (str): Род ('masc', 'femn', 'neut').
+        case (str): Падеж ('nomn', 'gent', 'datv', 'accs', 'ablt', 'loct').
+        number (str): Число ('sing' или 'plur').
     
     Returns:
         str: Склоненное прилагательное.
     """
-    # Здесь должна быть реализация склонения прилагательного
-    pass
+    parsed = morph.parse(adjective)[0]
+    if 'ADJF' in parsed.tag:
+        return parsed.inflect({gender, case, number}).word
+    return adjective
 
 def decline_pronoun(pronoun: str, case: str) -> str:
     """
@@ -223,13 +241,15 @@ def decline_pronoun(pronoun: str, case: str) -> str:
     
     Args:
         pronoun (str): Местоимение в именительном падеже.
-        case (str): Падеж ('nominative', 'genitive', 'dative', 'accusative', 'instrumental', 'prepositional').
+        case (str): Падеж ('nomn', 'gent', 'datv', 'accs', 'ablt', 'loct').
     
     Returns:
         str: Склоненное местоимение.
     """
-    # Здесь должна быть реализация склонения местоимения
-    pass
+    parsed = morph.parse(pronoun)[0]
+    if 'NPRO' in parsed.tag:
+        return parsed.inflect({case}).word
+    return pronoun
 
 def form_comparative(adjective: str) -> str:
     """
@@ -241,8 +261,11 @@ def form_comparative(adjective: str) -> str:
     Returns:
         str: Прилагательное в сравнительной степени.
     """
-    # Здесь должна быть реализация образования сравнительной степени
-    pass
+    parsed = morph.parse(adjective)[0]
+    if 'ADJF' in parsed.tag:
+        comp_form = parsed.inflect({'COMP'})
+        return comp_form.word if comp_form else f"более {adjective}"
+    return adjective
 
 def form_superlative(adjective: str) -> str:
     """
@@ -254,8 +277,10 @@ def form_superlative(adjective: str) -> str:
     Returns:
         str: Прилагательное в превосходной степени.
     """
-    # Здесь должна быть реализация образования превосходной степени
-    pass
+    parsed = morph.parse(adjective)[0]
+    if 'ADJF' in parsed.tag:
+        return f"самый {adjective}"
+    return adjective
 
 def form_verbal_aspect(verb: str, aspect: str) -> str:
     """
@@ -263,13 +288,17 @@ def form_verbal_aspect(verb: str, aspect: str) -> str:
     
     Args:
         verb (str): Глагол в инфинитиве.
-        aspect (str): Текущий вид глагола ('perfective' или 'imperfective').
+        aspect (str): Текущий вид глагола ('perf' или 'impf').
     
     Returns:
         str: Глагол противоположного вида.
     """
-    # Здесь должна быть реализация образования противоположного вида глагола
-    pass
+    parsed = morph.parse(verb)[0]
+    if 'VERB' in parsed.tag:
+        opposite_aspect = 'impf' if aspect == 'perf' else 'perf'
+        aspect_pair = parsed.inflect({opposite_aspect})
+        return aspect_pair.word if aspect_pair else verb
+    return verb
 
 def form_participle(verb: str, tense: str, voice: str) -> str:
     """
@@ -277,14 +306,17 @@ def form_participle(verb: str, tense: str, voice: str) -> str:
     
     Args:
         verb (str): Глагол в инфинитиве.
-        tense (str): Время ('present' или 'past').
-        voice (str): Залог ('active' или 'passive').
+        tense (str): Время ('pres' или 'past').
+        voice (str): Залог ('actv' или 'pssv').
     
     Returns:
         str: Причастие.
     """
-    # Здесь должна быть реализация образования причастия
-    pass
+    parsed = morph.parse(verb)[0]
+    if 'VERB' in parsed.tag:
+        participle = parsed.inflect({tense, voice, 'PRTF'})
+        return participle.word if participle else verb
+    return verb
 
 def form_gerund(verb: str, aspect: str) -> str:
     """
@@ -292,13 +324,16 @@ def form_gerund(verb: str, aspect: str) -> str:
     
     Args:
         verb (str): Глагол в инфинитиве.
-        aspect (str): Вид глагола ('perfective' или 'imperfective').
+        aspect (str): Вид глагола ('perf' или 'impf').
     
     Returns:
         str: Деепричастие.
     """
-    # Здесь должна быть реализация образования деепричастия
-    pass
+    parsed = morph.parse(verb)[0]
+    if 'VERB' in parsed.tag:
+        gerund = parsed.inflect({aspect, 'GRND'})
+        return gerund.word if gerund else verb
+    return verb
 
 def check_stress(word: str) -> str:
     """
@@ -311,7 +346,8 @@ def check_stress(word: str) -> str:
         str: Слово с обозначенным ударением.
     """
     # Здесь должна быть реализация определения ударения
-    pass
+    # Например, использование словаря ударений или API для определения ударения
+    return word
 
 def check_spelling(text: str) -> List[str]:
     """

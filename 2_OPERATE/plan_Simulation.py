@@ -2,14 +2,19 @@ import numpy as np
 import logging
 import config
 import metaconfig
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from MetaInformAnt_Simulation import MetaInformAntSimulation
 from computational_resources import estimate_computational_resources
 from initialize_Nestmate_Colony import initialize_colony
 from environment import Environment
+from data_logging import DataLogger
+from visualization import SimulationVisualizer
+from performance_metrics import PerformanceTracker
+from exception_handling import SimulationExceptionHandler
 
 # Configure logging to provide detailed insights during the simulation process
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class SimulationSetup:
     def __init__(self):
@@ -20,21 +25,34 @@ class SimulationSetup:
         self.validate_parallel_execution_settings()
         self.colony = self.initialize_colony()
         self.computational_load = self.estimate_computational_load()
+        self.data_logger = DataLogger()
+        self.visualizer = SimulationVisualizer()
+        self.performance_tracker = PerformanceTracker()
+        self.exception_handler = SimulationExceptionHandler()
 
     def initialize_environment(self) -> Environment:
         """Initialize and return the simulation environment."""
         try:
-            return Environment(**config.ENVIRONMENT_CONFIG)
+            env_config = config.ENVIRONMENT_CONFIG
+            env_config['random_seed'] = np.random.randint(0, 1000000)  # Add randomness for each run
+            return Environment(**env_config)
         except Exception as e:
-            logging.error(f"Failed to initialize environment: {e}", exc_info=True)
+            logger.error(f"Failed to initialize environment: {e}", exc_info=True)
             raise
 
     def validate_parallel_execution_settings(self) -> None:
         """Validate parallel execution settings."""
-        if not isinstance(self.parallel_execution['ENABLED'], bool):
-            raise ValueError("Parallel execution 'ENABLED' setting must be a boolean.")
-        if not isinstance(self.parallel_execution['WORKER_COUNT'], int) or self.parallel_execution['WORKER_COUNT'] <= 0:
-            raise ValueError("Parallel execution 'WORKER_COUNT' must be a positive integer.")
+        try:
+            if not isinstance(self.parallel_execution['ENABLED'], bool):
+                raise ValueError("Parallel execution 'ENABLED' setting must be a boolean.")
+            if not isinstance(self.parallel_execution['WORKER_COUNT'], int) or self.parallel_execution['WORKER_COUNT'] <= 0:
+                raise ValueError("Parallel execution 'WORKER_COUNT' must be a positive integer.")
+            if self.parallel_execution['ENABLED'] and self.parallel_execution['WORKER_COUNT'] > config.SIMULATION_SETTINGS['AGENT_COUNT']:
+                logger.warning("Worker count exceeds agent count. Adjusting worker count.")
+                self.parallel_execution['WORKER_COUNT'] = config.SIMULATION_SETTINGS['AGENT_COUNT']
+        except Exception as e:
+            logger.error(f"Invalid parallel execution settings: {e}", exc_info=True)
+            raise
 
     def initialize_colony(self) -> Any:
         """Initialize the colony with the given configuration."""
@@ -47,7 +65,7 @@ class SimulationSetup:
                 meta_config=metaconfig.META_CONFIG
             )
         except Exception as e:
-            logging.error(f"Failed to initialize colony: {e}", exc_info=True)
+            logger.error(f"Failed to initialize colony: {e}", exc_info=True)
             raise
 
     def estimate_computational_load(self) -> Dict[str, Any]:
@@ -61,14 +79,14 @@ class SimulationSetup:
                 parallel_execution=self.parallel_execution
             )
         except Exception as e:
-            logging.error(f"Failed to estimate computational load: {e}", exc_info=True)
+            logger.error(f"Failed to estimate computational load: {e}", exc_info=True)
             raise
 
     def prepare_simulation(self) -> MetaInformAntSimulation:
         """Prepare the simulation environment and log the estimated computational load."""
-        logging.info("Preparing simulation with current configuration.")
+        logger.info("Preparing simulation with current configuration.")
         simulation = self.create_simulation_instance()
-        logging.info(f"Estimated computational load: {self.computational_load}")
+        logger.info(f"Estimated computational load: {self.computational_load}")
         return simulation
 
     def create_simulation_instance(self) -> MetaInformAntSimulation:
@@ -80,7 +98,10 @@ class SimulationSetup:
             num_nests=config.SIMULATION_SETTINGS['NEST_COUNT'],
             agent_params=self.agent_params,
             niche_params=self.niche_params,
-            colony=self.colony
+            colony=self.colony,
+            data_logger=self.data_logger,
+            visualizer=self.visualizer,
+            performance_tracker=self.performance_tracker
         )
 
     def run_simulation(self, max_steps: Optional[int] = None) -> Dict[str, Any]:
@@ -88,13 +109,39 @@ class SimulationSetup:
         simulation = self.prepare_simulation()
         max_steps = max_steps or config.SIMULATION_SETTINGS['MAX_STEPS']
         
-        logging.info(f"Starting simulation for {max_steps} steps.")
-        results = simulation.run(max_steps)
-        logging.info("Simulation completed.")
+        logger.info(f"Starting simulation for {max_steps} steps.")
+        try:
+            results = simulation.run(max_steps)
+            logger.info("Simulation completed successfully.")
+        except Exception as e:
+            logger.error(f"Simulation failed: {e}", exc_info=True)
+            results = self.exception_handler.handle_simulation_error(e)
         
+        self.post_simulation_analysis(results)
         return results
+
+    def post_simulation_analysis(self, results: Dict[str, Any]) -> None:
+        """Perform post-simulation analysis and visualization."""
+        self.data_logger.save_results(results)
+        self.visualizer.create_summary_plots(results)
+        performance_metrics = self.performance_tracker.calculate_metrics(results)
+        logger.info(f"Performance metrics: {performance_metrics}")
+
+    def run_multiple_simulations(self, num_simulations: int) -> List[Dict[str, Any]]:
+        """Run multiple simulations and return a list of results."""
+        all_results = []
+        for i in range(num_simulations):
+            logger.info(f"Starting simulation {i+1} of {num_simulations}")
+            results = self.run_simulation()
+            all_results.append(results)
+        return all_results
 
 if __name__ == "__main__":
     setup = SimulationSetup()
-    results = setup.run_simulation()
-    logging.info(f"Simulation results: {results}")
+    num_simulations = config.SIMULATION_SETTINGS.get('NUM_SIMULATIONS', 1)
+    if num_simulations > 1:
+        all_results = setup.run_multiple_simulations(num_simulations)
+        logger.info(f"Completed {num_simulations} simulations.")
+    else:
+        results = setup.run_simulation()
+        logger.info(f"Simulation results: {results}")
