@@ -2,10 +2,11 @@ import numpy as np
 import logging
 import config
 import metaconfig
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from MetaInformAnt_Simulation import MetaInformAntSimulation
 from computational_resources import estimate_computational_resources
 from initialize_Nestmate_Colony import initialize_colony
+from environment import Environment
 
 # Configure logging to provide detailed insights during the simulation process
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -20,19 +21,23 @@ class SimulationSetup:
         self.colony = self.initialize_colony()
         self.computational_load = self.estimate_computational_load()
 
-    def initialize_environment(self) -> Any:
-        # Environment initialization logic placeholder
-        return Environment()  # Assuming Environment class is defined elsewhere
+    def initialize_environment(self) -> Environment:
+        """Initialize and return the simulation environment."""
+        try:
+            return Environment(**config.ENVIRONMENT_CONFIG)
+        except Exception as e:
+            logging.error(f"Failed to initialize environment: {e}", exc_info=True)
+            raise
 
     def validate_parallel_execution_settings(self) -> None:
-        # Ensures parallel execution settings adhere to expected types and constraints
+        """Validate parallel execution settings."""
         if not isinstance(self.parallel_execution['ENABLED'], bool):
             raise ValueError("Parallel execution 'ENABLED' setting must be a boolean.")
         if not isinstance(self.parallel_execution['WORKER_COUNT'], int) or self.parallel_execution['WORKER_COUNT'] <= 0:
             raise ValueError("Parallel execution 'WORKER_COUNT' must be a positive integer.")
 
     def initialize_colony(self) -> Any:
-        # Initializes the colony with the given configuration, handling any exceptions gracefully
+        """Initialize the colony with the given configuration."""
         try:
             return initialize_colony(
                 nest_count=config.SIMULATION_SETTINGS['NEST_COUNT'],
@@ -46,7 +51,7 @@ class SimulationSetup:
             raise
 
     def estimate_computational_load(self) -> Dict[str, Any]:
-        # Estimates the computational resources required for the simulation
+        """Estimate the computational resources required for the simulation."""
         try:
             return estimate_computational_resources(
                 num_agents=config.SIMULATION_SETTINGS['AGENT_COUNT'],
@@ -60,24 +65,36 @@ class SimulationSetup:
             raise
 
     def prepare_simulation(self) -> MetaInformAntSimulation:
-        # Prepares the simulation environment and logs the estimated computational load
+        """Prepare the simulation environment and log the estimated computational load."""
         logging.info("Preparing simulation with current configuration.")
         simulation = self.create_simulation_instance()
         logging.info(f"Estimated computational load: {self.computational_load}")
         return simulation
 
     def create_simulation_instance(self) -> MetaInformAntSimulation:
-        # Creates an instance of the simulation with the configured parameters
+        """Create an instance of the simulation with the configured parameters."""
         return MetaInformAntSimulation(
             num_agents=config.SIMULATION_SETTINGS['AGENT_COUNT'],
             simulation_environment=self.simulation_environment,
             num_food_sources=config.SIMULATION_SETTINGS['FOOD_SOURCE_COUNT'],
             num_nests=config.SIMULATION_SETTINGS['NEST_COUNT'],
             agent_params=self.agent_params,
-            niche_params=self.niche_params
+            niche_params=self.niche_params,
+            colony=self.colony
         )
+
+    def run_simulation(self, max_steps: Optional[int] = None) -> Dict[str, Any]:
+        """Run the simulation and return the results."""
+        simulation = self.prepare_simulation()
+        max_steps = max_steps or config.SIMULATION_SETTINGS['MAX_STEPS']
+        
+        logging.info(f"Starting simulation for {max_steps} steps.")
+        results = simulation.run(max_steps)
+        logging.info("Simulation completed.")
+        
+        return results
 
 if __name__ == "__main__":
     setup = SimulationSetup()
-    simulation = setup.prepare_simulation()
-    logging.info("Simulation setup completed.")
+    results = setup.run_simulation()
+    logging.info(f"Simulation results: {results}")

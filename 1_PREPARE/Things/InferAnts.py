@@ -1,9 +1,10 @@
 import numpy as np
 import config
-from typing import Dict, Any
+from typing import Dict, Any, Tuple, Callable
 from scipy.stats import entropy
+from abc import ABC, abstractmethod
 
-class ActiveInferenceAgent:
+class ActiveInferenceAgent(ABC):
     def __init__(self, position: np.ndarray, influence_factor: float, **agent_params: Dict[str, Any]):
         """
         Initializes an active inference agent with specified parameters and matrices.
@@ -46,8 +47,18 @@ class ActiveInferenceAgent:
 
         :param observations: New sensory observations as a numpy array.
         """
-        prediction_error = self.agent_params.get('perception_strategy', lambda obs, agent: obs - agent._predict_sensory_outcomes())(observations, self)
+        prediction_error = self.agent_params.get('perception_strategy', self._default_perception_strategy)(observations, self)
         self._update_beliefs(prediction_error)
+
+    def _default_perception_strategy(self, observations: np.ndarray, agent: 'ActiveInferenceAgent') -> np.ndarray:
+        """
+        Default perception strategy.
+
+        :param observations: New sensory observations as a numpy array.
+        :param agent: The agent itself.
+        :return: Prediction error as a numpy array.
+        """
+        return observations - agent._predict_sensory_outcomes()
 
     def _predict_sensory_outcomes(self) -> np.ndarray:
         """
@@ -103,6 +114,35 @@ class ActiveInferenceAgent:
         efe_scores = np.array([self.calculate_efe(action, self._predict_future_states(action), self.agent_params.get('preferences', np.zeros(self.position.shape)), self.agent_params.get('uncertainty', 0.1)) for action in possible_actions])
         return possible_actions[np.argmin(efe_scores)]
 
+    @abstractmethod
+    def _generate_possible_actions(self) -> np.ndarray:
+        """
+        Generates possible actions for the agent.
+
+        :return: A numpy array of possible actions.
+        """
+        pass
+
+    @abstractmethod
+    def _predict_future_states(self, action: np.ndarray) -> np.ndarray:
+        """
+        Predicts future states based on a given action.
+
+        :param action: Action as a numpy array.
+        :return: Predicted future states as a numpy array.
+        """
+        pass
+
+    @abstractmethod
+    def _approximate_posterior(self, observation: np.ndarray) -> np.ndarray:
+        """
+        Approximates the posterior distribution given an observation.
+
+        :param observation: Observation as a numpy array.
+        :return: Approximated posterior as a numpy array.
+        """
+        pass
+
     def update_internal_states(self, action: np.ndarray, observation: np.ndarray):
         """
         Updates the agent's internal states based on action and observation.
@@ -138,6 +178,7 @@ class ActiveInferenceAgent:
         """
         self.position += direction
 
+    @abstractmethod
     def release_pheromone(self, type: str, rate: float):
         """
         Releases pheromone of a specified type at a specified rate.
@@ -147,6 +188,7 @@ class ActiveInferenceAgent:
         """
         pass
 
+    @abstractmethod
     def produce_sound(self, type: str, intensity: float):
         """
         Produces sound of a specified type with a specified intensity.
@@ -161,8 +203,47 @@ class ActiveColony(ActiveInferenceAgent):
         super().__init__(position, influence_factor, **agent_params)
         self.colony_config = config.ANT_AND_COLONY_CONFIG['COLONY']
 
+    def _generate_possible_actions(self) -> np.ndarray:
+        # Implement colony-specific action generation
+        pass
+
+    def _predict_future_states(self, action: np.ndarray) -> np.ndarray:
+        # Implement colony-specific future state prediction
+        pass
+
+    def _approximate_posterior(self, observation: np.ndarray) -> np.ndarray:
+        # Implement colony-specific posterior approximation
+        pass
+
+    def release_pheromone(self, type: str, rate: float):
+        # Implement colony-specific pheromone release
+        pass
+
+    def produce_sound(self, type: str, intensity: float):
+        # Implement colony-specific sound production
+        pass
+
 class ActiveNestmate(ActiveInferenceAgent):
     def __init__(self, position: np.ndarray, influence_factor: float, **agent_params: Dict[str, Any]):
         super().__init__(position, influence_factor, **agent_params)
         self.nestmate_config = config.ANT_AND_COLONY_CONFIG['NESTMATE']
 
+    def _generate_possible_actions(self) -> np.ndarray:
+        # Implement nestmate-specific action generation
+        pass
+
+    def _predict_future_states(self, action: np.ndarray) -> np.ndarray:
+        # Implement nestmate-specific future state prediction
+        pass
+
+    def _approximate_posterior(self, observation: np.ndarray) -> np.ndarray:
+        # Implement nestmate-specific posterior approximation
+        pass
+
+    def release_pheromone(self, type: str, rate: float):
+        # Implement nestmate-specific pheromone release
+        pass
+
+    def produce_sound(self, type: str, intensity: float):
+        # Implement nestmate-specific sound production
+        pass
