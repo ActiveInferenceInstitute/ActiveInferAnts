@@ -57,16 +57,27 @@ if __name__ == "__main__":
             "https://github.com/infer-actively/pymdp",
         ],
         
-        "Nostr": [
-            "https://github.com/nostr-protocol/nostr",
-            "https://github.com/fiatjaf/nostr-tools",
-            "https://github.com/limina1/indextr-client",
-            "https://github.com/fiatjaf/quill-asciidoc",
-            "https://github.com/fiatjaf/svelte-asciidoc",
-            "https://github.com/github-tijlxyz/wikinostr",
-            "https://github.com/aljazceru/awesome-nostr",
-            "https://github.com/nostr-connect/connect"
-        ]
+        "ActivityPub": [
+            "https://github.com/w3c/activitypub",
+            "https://github.com/BasixKOR/awesome-activitypub",
+            "https://github.com/superseriousbusiness/gotosocial",
+            "https://github.com/pterotype-project/activitypub-php",
+            "https://github.com/go-fed/activity",
+            "https://github.com/Automattic/wordpress-activitypub",
+            "https://github.com/LemmyNet/activitypub-federation-rust",
+            "https://github.com/immers-space/activitypub-express",
+        ],
+        
+        # "Nostr": [
+        #     "https://github.com/nostr-protocol/nostr",
+        #     "https://github.com/fiatjaf/nostr-tools",
+        #     "https://github.com/limina1/indextr-client",
+        #     "https://github.com/fiatjaf/quill-asciidoc",
+        #     "https://github.com/fiatjaf/svelte-asciidoc",
+        #     "https://github.com/github-tijlxyz/wikinostr",
+        #     "https://github.com/aljazceru/awesome-nostr",
+        #     "https://github.com/nostr-connect/connect"
+        # ]
         # ,
         # "Synergetics": [
         #     "https://github.com/4dsolutions/MartianMath",
