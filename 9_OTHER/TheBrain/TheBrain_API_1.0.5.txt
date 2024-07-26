@@ -1,0 +1,2212 @@
+TheBrain API 1.0.5
+OAS3
+/v1/docs.json
+https://api.bra.in/index.html
+
+Welcome to TheBrain API. You can try out the API right here on this page:
+
+1. Generate an API Key.
+2. Return to this page and click the Authorize button below these instructions, paste your key, click Authorize then Close.
+3. Click an endpoint to view its documentation.
+4. Click the Try it out button, fill out the required items and click the 'Execute' button.
+5. The resulting request and response are displayed.
+6. You can also see example projects for Blazor, Python, and Node on GitHub.
+
+Authorize
+
+Attachments
+
+GET /attachments/{brainId}/{attachmentId}/metadata
+Returns details about the attachment
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- attachmentId * (string, path): The ID of the attachment
+
+Responses
+- 200: Returns details about the attachment.
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "sourceType": 0,
+      "creationDateTime": "2024-07-26T14:50:55.462Z",
+      "modificationDateTime": "2024-07-26T14:50:55.462Z",
+      "name": "string",
+      "position": 0,
+      "fileModificationDateTime": "2024-07-26T14:50:55.462Z",
+      "type": 0,
+      "isNotes": true,
+      "dataLength": 0,
+      "location": "string"
+    }
+    ```
+- 401: If the API Key is missing or invalid
+
+GET /attachments/{brainId}/{attachmentId}/file-content
+Returns the binary data for the attachment
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- attachmentId * (string, path): The ID of the attachment
+
+Responses
+- 200: Returns the binary data for the attachment.
+- 401: If the API Key is missing or invalid
+
+DELETE /attachments/{brainId}/{attachmentId}
+Deletes an attachment
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- attachmentId * (string, path): The ID of the attachment
+
+Responses
+- 200: Success
+- 400: If the attachment could not be deleted
+- 401: If the API Key is missing or invalid
+
+POST /attachments/{brainId}/{thoughtId}/file
+Adds a new file attachment to a thought
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- thoughtId * (string, path): The ID of the thought to add the attachment to
+
+Request body
+- multipart/form-data
+  - file (string, binary)
+
+Responses
+- 200: Success
+- 400: If the attachment could not be added to the thought.
+- 401: If the API Key is missing or invalid
+
+POST /attachments/{brainId}/{thoughtId}/url
+Adds a new URL attachment to a thought
+
+Leave name empty to automatically set it from the page's title element
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- thoughtId * (string, path): The ID of the thought to add the attachment to
+- url * (string, query): The URL for the attachment
+- name (string, query): The desired name of the URL attachment
+
+Responses
+- 200: Success
+- 400: If the attachment could not be added to the thought.
+- 401: If the API Key is missing or invalid
+
+BrainAccess
+
+GET /brain-access/{brainId}
+Returns details about the brain accessors for the specified brain
+
+Brain Accessor properties and values:
+- Guid 'accessorId': The ID of the user
+- string 'name': The name of the user
+- bool 'isOrganizationUser': If the user is part of your TeamBrain organization
+- bool 'isPending': If the brain access invitation has been sent but has not yet been accepted
+- int 'accessType': The user's access level for the brain
+  - None = 0
+  - Reader = 1
+  - Writer = 2
+  - Admin = 3
+  - PublicReader = 4
+
+Parameters
+- brainId * (string, path): The ID of the brain
+
+Responses
+- 200: Returns details about the brain accessors.
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    [
+      {
+        "accessorId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "string",
+        "isOrganizationUser": true,
+        "isPending": true,
+        "accessType": 0
+      }
+    ]
+    ```
+- 400: If the brain accessors failed to be retrieved
+- 401: If the API Key is missing or invalid
+- 403: If the user does not have admin access
+
+POST /brain-access/{brainId}
+Sets the brain access level for the specified user
+
+Provide either an emailAddress or userId value, but not both.
+
+emailAddress can be used if the userId is unknown, or if adding someone who is not already a brain accessor
+
+Expected accessType values:
+- int 'accessType': The user's access level for the brain
+  - Reader = 1
+  - Writer = 2
+  - Admin = 3
+  - PublicReader = 4
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- emailAddress (string, query): The email address of the user
+- userId (string, uuid, query): The ID of the user
+- accessType * (integer, int32, query): The access level to give to the user
+
+Responses
+- 200: Success
+- 400: If the brain access level failed to be changed for the user
+- 401: If the API Key is missing or invalid
+- 403: If the user does not have admin access
+
+DELETE /brain-access/{brainId}
+Removes a user's access to the specified brain
+
+Provide either an emailAddress or userId value, but not both.
+
+emailAddress can be used if the userId is unknown.
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- emailAddress (string, query): The email address of the user
+- userId (string, uuid, query): The ID of the user
+
+Responses
+- 200: Success
+- 400: If the user's access failed to be removed
+- 401: If the API Key is missing or invalid
+- 403: If the user does not have admin access
+
+Brains
+
+GET /brains/{id}
+Returns details about one of the active user's brains
+
+Parameters
+- id * (string, uuid, path): The ID of the brain
+
+Responses
+- 200: Returns details about the brain.
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "name": "string",
+      "homeThoughtId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    }
+    ```
+- 401: If the API Key is missing or invalid
+
+DELETE /brains/{id}
+Deletes a brain
+
+Parameters
+- id * (string, uuid, path): The ID of the brain
+
+Responses
+- 200: Success
+- 400: If the brain failed to be deleted
+- 401: If the API Key is missing or invalid
+- 403: If the user does not have access to delete the brain
+
+GET /brains
+Returns a list of brains for the active user
+
+Parameters
+- No parameters
+
+Responses
+- 200: Returns a list of brains for the user. Includes brains the user explicitly has access to or has favorited.
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    [
+      {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "string",
+        "homeThoughtId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      }
+    ]
+    ```
+- 401: If the API Key is missing or invalid
+
+POST /brains
+Creates a brain
+
+Parameters
+- No parameters
+
+Request body
+- multipart/form-data
+  - brainName * (string)
+
+Responses
+- 200: Returns the details of the created Brain.
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    [
+      {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "string",
+        "homeThoughtId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      }
+    ]
+    ```
+- 400: If the brain failed to be created
+- 401: If the API Key is missing or invalid
+
+GET /brains/{brainId}/statistics
+Gets statistics about the specified brain
+
+internalFilesSize and iconsFilesSize values are in bytes.
+
+Parameters
+- brainId * (string, uuid, path): brainId
+
+Responses
+- 200: Success
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    {
+      "brainName": "string",
+      "dateGenerated": "2024-07-26T14:50:55.520Z",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "thoughts": 0,
+      "forgottenThoughts": 0,
+      "links": 0,
+      "linksPerThought": 0,
+      "thoughtTypes": 0,
+      "linkTypes": 0,
+      "tags": 0,
+      "notes": 0,
+      "internalFiles": 0,
+      "internalFolders": 0,
+      "externalFiles": 0,
+      "externalFolders": 0,
+      "webLinks": 0,
+      "assignedIcons": 0,
+      "internalFilesSize": 0,
+      "iconsFilesSize": 0
+    }
+    ```
+- 400: If the statistics failed to be generated
+- 401: If the API Key is missing or invalid
+
+GET /brains/{brainId}/modifications
+Gets a list of modification logs for the specified brain within a specified date and time range
+
+Omit startTime and endTime values to retrieve all modification logs for the specified brain.
+
+Provide startTime and endTime values to return modification logs only within a specific time range.
+
+Parameters startTime and endTime accept values formatted as either date or date-time strings, conforming to RFC 3339, section 5.6.
+
+Examples:
+- 2017-07-03 (Date only)
+- 2017-07-03T01:42:28Z (Date and Time in UTC)
+
+modType values and their corresponding actions:
+- Generic Actions:
+  - 101: Created
+  - 102: Deleted
+  - 103: Changed Name
+  - 104: Created By Paste
+  - 105: Modified By Paste
+- Thoughts and Links:
+  - 201: Changed Color
+  - 202: Changed Label
+  - 203: Set Type
+  - 204: Changed Color2
+  - 205: Created Icon
+  - 206: Deleted Icon
+  - 207: Changed Icon
+  - 208: Changed Field Instance
+  - 209: Created Field Instance
+  - 210: Deleted Field Instance
+- Thought Specific:
+  - 301: Forgot
+  - 302: Remembered
+  - 303: Changed Thought Access Type
+  - 304: Changed Kind
+- Link Specific:
+  - 401: Changed Thickness
+  - 402: Moved Link
+  - 403: Changed Direction
+  - 404: Changed Meaning
+  - 405: Changed Relation
+- Attachment Specific:
+  - 501: Changed Content
+  - 502: Changed Location
+  - 503: Changed Position
+- Brain and Brain Setting Specific:
+  - 601: Changed Setting
+  - 602: Reordered Pins
+- Brain Access Specific:
+  - 701: Changed Brain Access Entry
+- Note Specific:
+  - 801: Created Note
+  - 802: Deleted Note
+  - 803: Changed Note
+  - 804: Deleted Note Asset
+  - 805: Created Note Asset
+  - 806: Changed Note Asset
+  - 807: Deleted Markdown Image
+  - 808: Created Markdown Image
+  - 809: Changed Markdown Image
+  - 810: Deleted Dynamic Wallpaper Image
+  - 811: Created Dynamic Wallpaper Image
+  - 812: Changed Dynamic Wallpaper Image
+- Calendar Event Specific:
+  - 900: Created Calendar Event
+  - 901: Modified Calendar Event
+  - 902: Deleted Calendar Event
+  - 903: Deleted Calendar Event Recurring Instance
+- Field Definition Specific:
+  - 1001: Changed Field Definition
+  - 1002: Created Field Definition
+  - 1003: Deleted Field Definition
+
+entityType values (used by sourceType, extraAType and extraBType)
+- -1: Unknown
+- 1: Brain
+- 2: Thought
+- 3: Link
+- 4: Attachment
+- 5: Brain Setting
+- 6: Brain Access Entry
+- 7: Calendar Event
+- 8: Field Instance
+- 9: Field Definition
+
+Parameters
+- brainId * (string, uuid, path): The ID of the brain
+- maxLogs * (integer, int32, query): The maximum number of modifications to return in the list, beginning from the startTime (Default value: 100)
+- startTime (string, date-time, query): The start of the datetime range, inclusive. Only modification logs that occurred at or after this datetime will be returned.
+- endTime (string, date-time, query): The end of the datetime range, inclusive. Only modification logs that occurred at or before this datetime will be returned.
+
+Responses
+- 200: Success
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    [
+      {
+        "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "sourceType": 1,
+        "extraAId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "extraAType": 1,
+        "extraBId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "extraBType": 1,
+        "modType": 101,
+        "oldValue": "string",
+        "newValue": "string",
+        "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "creationDateTime": "2024-07-26T14:50:55.528Z",
+        "modificationDateTime": "2024-07-26T14:50:55.528Z",
+        "syncUpdateDateTime": "2024-07-26T14:50:55.528Z"
+      }
+    ]
+    ```
+- 400: If the modification logs failed to be retrieved
+- 401: If the API Key is missing or invalid
+
+Links
+
+GET /links/{brainId}/{linkId}
+Returns details about the link
+
+Link properties and values:
+- Guid 'id': The ID of the link
+- Guid 'brainId': The ID of the brain containing the link
+- Guid 'thoughtIdA': The ID of the thought to begin the link from
+- Guid 'thoughtIdB': The ID of the thought to terminate the link at
+- Guid 'typeId': The ID of the link type
+- DateTime 'creationDateTime': The DateTime that the link was created at
+- DateTime 'modificationDateTime': The DateTime that the link was last modified at
+- string 'name': The label for the link
+- string 'color': The RGB hexadecimal color of the link (Ex: '#ff7145')
+- int 'thickness': The thickness of the link
+- int 'kind': The kind of link
+  - Normal = 1
+  - Type = 2
+- int 'relation': The relationship of the link, relative from 'thoughtIdA' to 'thoughtIdB'
+  - Child = 1
+  - Parent = 2
+  - Jump = 3
+  - Sibling = 4
+- int 'direction': The direction of the link
+  - IsDirected = 1   // xxx1, 1 means Is-Directed; xxx0 means Not-Directed
+  - DirectionBA = 2  // xx1x, 0 means A -> B, 1 means B->A, isBackward
+  - OneWay = 4       // x1xx, 1 means One-Way Link;
+- int 'meaning': The meaning of the link
+  - Normal = 1
+  - InstanceOf = 2   // Type (A) to Normal Thought (B)
+  - TypeOf = 3       // Super Type (A) to Type (B)
+  - HasEvent = 4
+  - HasTag = 5       // Tag (A) to Normal or Type Thought (B)
+  - System = 6
+  - SubTagOf = 7     // Super Tag (A) to Tag (B)
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- linkId * (string, path): The ID of the link
+
+Responses
+- 200: Returns details about the link.
+  - Media type: text/plain
+  - Example Value:
+    ```json
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.534Z",
+      "modificationDateTime": "2024-07-26T14:50:55.534Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "kind": 0,
+      "color": "string",
+      "thickness": 0,
+      "thoughtIdA": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "thoughtIdB": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "relation": 0,
+      "direction": 0,
+      "meaning": 0
+    }
+    ```
+- 401: If the API Key is missing or invalid
+
+DELETE /links/{brainId}/{linkId}
+Deletes a link
+
+Parameters
+- brainId * (string, path): The ID of the brain
+- linkId * (string, path): The ID of the link
+
+linkId
+Responses
+Code	Description	Links
+200	
+Success
+
+No links
+400	
+If the link can't be deleted
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+PATCH
+/links/{brainId}/{linkId}
+Updates a link using JSON Patch
+
+Link properties and expected values:
+
+Link properties:
+- thoughtIdA (Guid): ID of start thought
+- thoughtIdB (Guid): ID of end thought
+- typeId (Guid, Optional): ID of link type
+- name (string, Optional): Link label
+- color (string, Optional): RGB hex color (e.g. '#ff7145')
+- thickness (int): Link thickness
+- kind (int): 1 = Normal, 2 = Type
+- relation (int): 1 = Child, 2 = Parent, 3 = Jump, 4 = Sibling
+- direction (int): 
+  - IsDirected (bit 0): 1 = Directed, 0 = Not Directed
+  - DirectionBA (bit 1): 0 = A -> B, 1 = B -> A
+  - OneWay (bit 2): 1 = One-Way Link
+
+Parameters:
+- brainId (string, uuid, path): Brain ID
+- linkId (string, uuid, path): Link ID to update
+
+Request body: application/json-patch+json
+JSON Patch document with changes to apply
+
+Example:
+[
+  {"op": "replace", "path": "/name", "value": "New Name"},
+  {"op": "replace", "path": "/thickness", "value": "8"},
+  {"op": "add", "path": "/color", "value": "#6fbf6f"},
+  {"op": "remove", "path": "/typeId"}
+]
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/links/{brainId}/{thoughtIdA}/{thoughtIdB}
+Gets the link between two thoughts
+
+Link properties and values:
+
+Guid 'id' - The ID of the link
+Guid 'brainId' - The ID of the brain containing the link
+Guid 'thoughtIdA' - The ID of the thought to begin the link from
+Guid 'thoughtIdB' - The ID of the thought to terminate the link at
+Guid 'typeId' - The ID of the link type
+        
+DateTime 'creationDateTime' - The DateTime that the link was created at
+DateTime 'modificationDateTime' - The DateTime that the link was last modified at
+
+string 'name' - The label for the link
+string 'color' - The RGB hexadecimal color of the link (Ex: '#ff7145')
+        
+int 'thickness' - The thickness of the link
+        
+int 'kind' - The kind of link
+     Normal = 1
+     Type = 2
+        
+int 'relation' - The relationship of the link, relative from 'thoughtIdA' to 'thoughtIdB'
+     Child = 1
+     Parent = 2
+     Jump = 3
+     Sibling = 4
+        
+int 'direction' - The direction of the link
+     IsDirected = 1   // xxx1, 1 means Is-Directed; xxx0 means Not-Directed
+     DirectionBA = 2  // xx1x, 0 means A -> B, 1 means B->A, isBackward
+     OneWay = 4       // x1xx, 1 means One-Way Link;
+
+int 'meaning' - The meaning of the link
+     Normal = 1
+     InstanceOf = 2   // Type (A) to Normal Thought (B)
+     TypeOf = 3       // Super Type (A) to Type (B)
+     HasEvent = 4
+     HasTag = 5       // Tag (A) to Normal or Type Thought (B)
+     System = 6
+     SubTagOf = 7     // Super Tag (A) to Tag (B)
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtIdA *
+string($uuid)
+(path)
+The ID of the Thought A
+
+thoughtIdA
+thoughtIdB *
+string($uuid)
+(path)
+The ID of the Thought B
+
+thoughtIdB
+Responses
+Code	Description	Links
+200	
+Returns details about the link.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "creationDateTime": "2024-07-26T14:50:55.556Z",
+  "modificationDateTime": "2024-07-26T14:50:55.556Z",
+  "name": "string",
+  "cleanedUpName": "string",
+  "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "kind": 0,
+  "color": "string",
+  "thickness": 0,
+  "thoughtIdA": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "thoughtIdB": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "relation": 0,
+  "direction": 0,
+  "meaning": 0
+}
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+404	
+If the link cannot be located
+
+No links
+
+GET
+/links/{brainId}/{linkId}/attachments
+Returns a list of attachments for the link
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+linkId *
+string($uuid)
+(path)
+The ID of the link
+
+linkId
+Responses
+Code	Description	Links
+200	
+Returns a list of attachments for the link.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "sourceType": 0,
+    "creationDateTime": "2024-07-26T14:50:55.562Z",
+    "modificationDateTime": "2024-07-26T14:50:55.562Z",
+    "name": "string",
+    "position": 0,
+    "fileModificationDateTime": "2024-07-26T14:50:55.562Z",
+    "type": 0,
+    "isNotes": true,
+    "dataLength": 0,
+    "location": "string"
+  }
+]
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+POST
+/links/{brainId}
+Creates a link
+
+Link properties and expected values:
+
+Guid 'thoughtIdA' - The ID of the thought to begin the link from
+Guid 'thoughtIdB' - The ID of the thought to terminate the link at
+        
+string 'name' (Optional) - The label for the link
+        
+int 'relation' - The relationship of the link, relative from 'thoughtIdA' to 'thoughtIdB'
+     Child = 1
+     Parent = 2
+     Jump = 3
+     Sibling = 4
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+Request body
+
+application/json-patch+json
+Details of the link to create
+
+Examples: 
+Link
+Example Value
+Schema
+{
+  "thoughtIdA": "09dd9a70-fd30-4f38-8922-ca592d3962e3",
+  "thoughtIdB": "7e11c3c3-e5b6-45f5-b638-c3a5f7239312",
+  "relation": 1,
+  "name": "New Link"
+}
+Responses
+Code	Description	Links
+200	
+Success - returns the newly created link ID
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string"
+}
+No links
+400	
+If the link can't be created
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+404	
+If the source or target thought isn't found
+
+No links
+Notes
+
+
+GET
+/notes/{brainId}/{thoughtId}
+Returns the contents of a thought's note as Markdown
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Responses
+Code	Description	Links
+200	
+Returns the contents of the thought's note as markdown including links to embedded images.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sourceType": 0,
+  "modificationDateTime": "2024-07-26T14:50:55.575Z",
+  "markdown": "string",
+  "html": "string",
+  "text": "string"
+}
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/notes/{brainId}/{thoughtId}/html
+Returns the contents of a thought's note as HTML
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Responses
+Code	Description	Links
+200	
+Returns the contents of the thought's note as html including links to embedded images.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sourceType": 0,
+  "modificationDateTime": "2024-07-26T14:50:55.579Z",
+  "markdown": "string",
+  "html": "string",
+  "text": "string"
+}
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/notes/{brainId}/{thoughtId}/text
+Returns the contents of a thought's note as raw text
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Responses
+Code	Description	Links
+200	
+Returns the contents of the thought's note as text.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sourceType": 0,
+  "modificationDateTime": "2024-07-26T14:50:55.585Z",
+  "markdown": "string",
+  "html": "string",
+  "text": "string"
+}
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+POST
+/notes/{brainId}/{thoughtId}/update
+Create or update a thought's note
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Request body
+
+application/json-patch+json
+The new Markdown text to update the note with
+
+Example Value
+Schema
+{
+  "markdown": "string"
+}
+Responses
+Code	Description	Links
+200	
+Success
+
+No links
+400	
+If the creation or update failed
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+POST
+/notes/{brainId}/{thoughtId}/append
+Append to a thought's note
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Request body
+
+application/json-patch+json
+The new Markdown text to append to the note
+
+Example Value
+Schema
+{
+  "markdown": "string"
+}
+Responses
+Code	Description	Links
+200	
+Success
+
+No links
+400	
+If the creation or update failed
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+NotesImages
+
+
+GET
+/notes-images/{brainId}/{token}/{filename}
+This method does not require authorization and instead uses a token that expires to validate that this is a valid request.
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+brainId
+filename *
+string
+(path)
+filename
+token *
+string
+(path)
+token
+Responses
+Code	Description	Links
+200	
+Used to retrieve images in notes. token is generated when retrieving notes and will expire.
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+Search
+
+
+GET
+/search/{brainId}
+Returns search results from a brain
+
+Newly added content may take up to 15 seconds to be indexed.
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+queryText *
+string
+(query)
+The string to search for
+
+queryText
+maxResults *
+integer($int32)
+(query)
+The maximum amount of search results to return
+
+Default value : 30
+
+30
+onlySearchThoughtNames
+boolean
+(query)
+Whether to only search in thought names
+
+Default value : false
+
+
+false
+Responses
+Code	Description	Links
+200	
+Returns a list of search results
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "sourceThought": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.610Z",
+      "modificationDateTime": "2024-07-26T14:50:55.610Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.610Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.610Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.610Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    },
+    "sourceLink": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.610Z",
+      "modificationDateTime": "2024-07-26T14:50:55.610Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "kind": 0,
+      "color": "string",
+      "thickness": 0,
+      "thoughtIdA": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "thoughtIdB": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "relation": 0,
+      "direction": 0,
+      "meaning": 0
+    },
+    "searchResultType": 0,
+    "isFromOtherBrain": true,
+    "name": "string",
+    "attachmentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainName": "string",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "entityType": 1,
+    "sourceType": 1
+  }
+]
+No links
+400	
+If the search failed
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/search/public
+Returns search results from all public brains
+
+Newly added content may take up to 15 seconds to be indexed.
+
+Parameters
+Try it out
+Name	Description
+queryText *
+string
+(query)
+The string to search for
+
+queryText
+maxResults *
+integer($int32)
+(query)
+The maximum amount of search results to return
+
+Default value : 30
+
+30
+onlySearchThoughtNames
+boolean
+(query)
+Whether to only search in thought names
+
+Default value : false
+
+
+false
+excludeBrainIds
+array[string]
+(query)
+Brain IDs to exclude from the search results
+
+Responses
+Code	Description	Links
+200	
+Returns a list of search results
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "sourceThought": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.618Z",
+      "modificationDateTime": "2024-07-26T14:50:55.618Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.618Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.618Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.618Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    },
+    "sourceLink": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.618Z",
+      "modificationDateTime": "2024-07-26T14:50:55.618Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "kind": 0,
+      "color": "string",
+      "thickness": 0,
+      "thoughtIdA": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "thoughtIdB": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "relation": 0,
+      "direction": 0,
+      "meaning": 0
+    },
+    "searchResultType": 0,
+    "isFromOtherBrain": true,
+    "name": "string",
+    "attachmentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainName": "string",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "entityType": 1,
+    "sourceType": 1
+  }
+]
+No links
+400	
+If the search failed
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/search/accessible
+Returns search results from all brains with user access
+
+Newly added content may take up to 15 seconds to be indexed.
+
+Parameters
+Try it out
+Name	Description
+queryText *
+string
+(query)
+The string to search for
+
+queryText
+maxResults *
+integer($int32)
+(query)
+The maximum amount of search results to return
+
+Default value : 30
+
+30
+onlySearchThoughtNames
+boolean
+(query)
+Whether to only search in thought names
+
+Default value : false
+
+
+false
+Responses
+Code	Description	Links
+200	
+Returns a list of search results
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "sourceThought": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.626Z",
+      "modificationDateTime": "2024-07-26T14:50:55.626Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.626Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.626Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.626Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    },
+    "sourceLink": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.626Z",
+      "modificationDateTime": "2024-07-26T14:50:55.626Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "kind": 0,
+      "color": "string",
+      "thickness": 0,
+      "thoughtIdA": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "thoughtIdB": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "relation": 0,
+      "direction": 0,
+      "meaning": 0
+    },
+    "searchResultType": 0,
+    "isFromOtherBrain": true,
+    "name": "string",
+    "attachmentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainName": "string",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "entityType": 1,
+    "sourceType": 1
+  }
+]
+No links
+400	
+If the search failed
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+Thoughts
+
+
+GET
+/thoughts/{brainId}/{thoughtId}
+Returns details about the thought
+
+Thought properties and values:
+
+Guid 'id' - The ID of the thought
+Guid 'brainId' - The ID of the brain containing the thought
+Guid 'typeId' - The ID of the thought type
+        
+DateTime 'creationDateTime' - The DateTime that the thought was created at
+DateTime 'modificationDateTime' - The DateTime that the thought was last modified at
+DateTime 'forgottenDateTime' - The DateTime that the thought was forgotten at
+DateTime 'linksModificationDateTime' - The DateTime that the thought's links were last modified at
+
+string 'name' - The Name of the thought
+string 'label' - The Label of the thought
+string 'foregroundColor' - The RGB hexadecimal color of the thought's foreground color (Ex: '#ff7145')
+string 'backgroundColor' - The RGB hexadecimal color of the thought's background color (Ex: '#ff7145')
+        
+int 'acType' - The access type of the thought
+     Public = 0
+     Private = 1
+        
+int 'kind' - The kind of thought
+     Normal = 1
+     Type = 2
+     Event = 3
+     Tag = 4
+     System = 5
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Responses
+Code	Description	Links
+200	
+Returns details about the thought.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "creationDateTime": "2024-07-26T14:50:55.635Z",
+  "modificationDateTime": "2024-07-26T14:50:55.635Z",
+  "name": "string",
+  "cleanedUpName": "string",
+  "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "displayModificationDateTime": "2024-07-26T14:50:55.635Z",
+  "forgottenDateTime": "2024-07-26T14:50:55.635Z",
+  "linksModificationDateTime": "2024-07-26T14:50:55.635Z",
+  "acType": 0,
+  "kind": 0,
+  "label": "string",
+  "foregroundColor": "string",
+  "backgroundColor": "string"
+}
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+PATCH
+/thoughts/{brainId}/{thoughtId}
+Updates a thought using JSON Patch
+
+Thought properties and expected values:
+
+Guid 'typeId' (Optional) - The ID of the thought type
+
+string 'name' - The Name of the thought
+string 'label' (Optional)  - The Label of the thought
+string 'foregroundColor' (Optional)  - The RGB hexadecimal color of the thought's foreground color (Ex: '#ff7145')
+string 'backgroundColor' (Optional)  - The RGB hexadecimal color of the thought's background color (Ex: '#ff7145')
+        
+int 'acType' - The access type of the thought
+     Public = 0
+     Private = 1
+        
+int 'kind' - The kind of thought
+     Normal = 1
+     Type = 2
+     Event = 3
+     Tag = 4
+     System = 5
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought to be updated
+
+thoughtId
+Request body
+
+application/json-patch+json
+The JSON Patch document representing the changes to apply
+
+Examples: 
+Multiple Operations
+Example Value
+Schema
+[
+  {
+    "value": "New Name",
+    "operationType": 2,
+    "path": "/name",
+    "op": "replace"
+  },
+  {
+    "value": "#ff0000",
+    "operationType": 2,
+    "path": "/foregroundColor",
+    "op": "replace"
+  },
+  {
+    "value": "New Label",
+    "operationType": 0,
+    "path": "/label",
+    "op": "add"
+  },
+  {
+    "operationType": 1,
+    "path": "/backgroundColor",
+    "op": "remove"
+  }
+]
+Responses
+Code	Description	Links
+200	
+Success
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+DELETE
+/thoughts/{brainId}/{thoughtId}
+Deletes the specified thought
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Responses
+Code	Description	Links
+200	
+Success
+
+No links
+400	
+If the deletion of the thought failed
+
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/thoughts/{brainId}/{thoughtId}/graph
+Returns the thought and its attachments, links, and related thoughts
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+includeSiblings
+boolean
+(query)
+Whether sibling thoughts are included
+
+Default value : false
+
+
+false
+Responses
+Code	Description	Links
+200	
+Returns the thought and its attachments, links, and related thoughts.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "activeThought": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "creationDateTime": "2024-07-26T14:50:55.658Z",
+    "modificationDateTime": "2024-07-26T14:50:55.658Z",
+    "name": "string",
+    "cleanedUpName": "string",
+    "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "displayModificationDateTime": "2024-07-26T14:50:55.658Z",
+    "forgottenDateTime": "2024-07-26T14:50:55.658Z",
+    "linksModificationDateTime": "2024-07-26T14:50:55.658Z",
+    "acType": 0,
+    "kind": 0,
+    "label": "string",Clean this up and condense the API schema, retaining all semantics and not adding content
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    }
+  ],
+  "children": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.658Z",
+      "modificationDateTime": "2024-07-26T14:50:55.658Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.658Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    }
+  ],
+  "jumps": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.658Z",
+      "modificationDateTime": "2024-07-26T14:50:55.658Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.658Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    }
+  ],
+  "siblings": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.658Z",
+      "modificationDateTime": "2024-07-26T14:50:55.658Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.658Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    }
+  ],
+  "tags": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.658Z",
+      "modificationDateTime": "2024-07-26T14:50:55.658Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "displayModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "forgottenDateTime": "2024-07-26T14:50:55.658Z",
+      "linksModificationDateTime": "2024-07-26T14:50:55.658Z",
+      "acType": 0,
+      "kind": 0,
+      "label": "string",
+      "foregroundColor": "string",
+      "backgroundColor": "string"
+    }
+  ],
+  "type": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "creationDateTime": "2024-07-26T14:50:55.658Z",
+    "modificationDateTime": "2024-07-26T14:50:55.658Z",
+    "name": "string",
+    "cleanedUpName": "string",
+    "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "displayModificationDateTime": "2024-07-26T14:50:55.658Z",
+    "forgottenDateTime": "2024-07-26T14:50:55.658Z",
+    "linksModificationDateTime": "2024-07-26T14:50:55.658Z",
+    "acType": 0,
+    "kind": 0,
+    "label": "string",
+    "foregroundColor": "string",
+    "backgroundColor": "string"
+  },
+  "links": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "creationDateTime": "2024-07-26T14:50:55.658Z",
+      "modificationDateTime": "2024-07-26T14:50:55.658Z",
+      "name": "string",
+      "cleanedUpName": "string",
+      "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "kind": 0,
+      "color": "string",
+      "thickness": 0,
+      "thoughtIdA": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "thoughtIdB": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "relation": 0,
+      "direction": 0,
+      "meaning": 0
+    }
+  ],
+  "attachments": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "sourceType": 0,
+      "creationDateTime": "2024-07-26T14:50:55.659Z",
+      "modificationDateTime": "2024-07-26T14:50:55.659Z",
+      "name": "string",
+      "position": 0,
+      "fileModificationDateTime": "2024-07-26T14:50:55.659Z",
+      "type": 0,
+      "isNotes": true,
+      "dataLength": 0,
+      "location": "string"
+    }
+  ]
+}
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/thoughts/{brainId}/{thoughtId}/attachments
+Returns a list of attachments for the thought
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+thoughtId *
+string($uuid)
+(path)
+The ID of the thought
+
+thoughtId
+Responses
+Code	Description	Links
+200	
+Returns a list of attachments for the thought.
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "sourceType": 0,
+    "creationDateTime": "2024-07-26T14:50:55.670Z",
+    "modificationDateTime": "2024-07-26T14:50:55.670Z",
+    "name": "string",
+    "position": 0,
+    "fileModificationDateTime": "2024-07-26T14:50:55.670Z",
+    "type": 0,
+    "isNotes": true,
+    "dataLength": 0,
+    "location": "string"
+  }
+]
+No links
+401	
+If the API Key is missing or invalid
+
+No links
+
+GET
+/thoughts/{brainId}
+Returns the first thought matching the name exactly
+
+Parameters
+Try it out
+Name	Description
+brainId *
+string($uuid)
+(path)
+The ID of the brain
+
+brainId
+nameExact *
+string
+(query)
+The exact name of the thought
+
+nameExact
+Responses
+Code	Description	Links
+200	
+Returns the first thought matching the name exactly.
+
+Media type
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "creationDateTime": "2024-07-26T14:50:55.678Z",
+  "modificationDateTime": "2024-07-26T14:50:55.678Z",
+  "name": "string",
+  "cleanedUpName": "string",
+  "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "displayModificationDateTime": "2024-07-26T14:50:55.678Z",
+  "forgottenDateTime": "2024-07-26T14:50:55.678Z",
+  "linksModificationDateTime": "2024-07-26T14:50:55.678Z",
+  "acType": 0,
+  "kind": 0,
+  "label": "string",
+  "foregroundColor": "string",
+  "backgroundColor": "string"
+}
+No links
+401 If the API Key is missing or invalid
+No links
+
+POST /thoughts/{brainId}
+Creates a thought
+
+Thought properties and expected values:
+- string 'name' - The Name of the thought
+- string 'label' (Optional) - The Label of the thought
+- Guid 'sourceThoughtId' (Optional) - The ID of source thought. Exclude to create an Orphan thought
+- Guid 'typeId' (Optional) - The ID of the thought type
+- int 'acType' - The access type of the thought
+  - Public = 0
+  - Private = 1
+- int 'kind' - The kind of thought
+  - Normal = 1
+  - Type = 2
+  - Event = 3
+  - Tag = 4
+  - System = 5
+- int 'relation' - The relationship of the created thought to the source thought
+  - Child = 1
+  - Parent = 2
+  - Jump = 3
+  - Sibling = 4
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+
+Request body
+- application/json-patch+json
+  - Details of the thought to create
+
+Examples: 
+Thought
+Example Value
+Schema
+{
+  "name": "New Thought",
+  "kind": 1,
+  "label": "New Label",
+  "sourceThoughtId": "3d0ae6f0-b52c-4eb7-92e8-9fe7a51c887f",
+  "relation": 1,
+  "acType": 0
+}
+
+Responses
+Code	Description	Links
+200 Success - returns the ID of the newly created thought.
+Media type
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string"
+}
+No links
+400 If the creation of the thought failed
+No links
+401 If the API Key is missing or invalid
+No links
+404 If the 'sourceId' thought was not found
+No links
+
+POST /thoughts/{brainId}/{thoughtId}/pin
+Pins the specified thought
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+- thoughtId * string($uuid) (path) The ID of the thought
+
+Responses
+Code	Description	Links
+200 Success
+No links
+400 If the thought failed to be pinned
+No links
+401 If the API Key is missing or invalid
+No links
+404 If the provided thought was not found
+No links
+
+DELETE /thoughts/{brainId}/{thoughtId}/pin
+Un-pins the specified thought
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+- thoughtId * string($uuid) (path) The ID of the thought
+
+Responses
+Code	Description	Links
+200 Success
+No links
+400 If the thought failed to be un-pinned
+No links
+401 If the API Key is missing or invalid
+No links
+404 If the provided thought was not found
+No links
+
+GET /thoughts/{brainId}/pins
+Gets a list of all pinned thoughts in a brain
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+
+Responses
+Code	Description	Links
+200 Success
+Media type
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "creationDateTime": "2024-07-26T14:50:55.710Z",
+    "modificationDateTime": "2024-07-26T14:50:55.710Z",
+    "name": "string",
+    "cleanedUpName": "string",
+    "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "displayModificationDateTime": "2024-07-26T14:50:55.710Z",
+    "forgottenDateTime": "2024-07-26T14:50:55.710Z",
+    "linksModificationDateTime": "2024-07-26T14:50:55.710Z",
+    "acType": 0,
+    "kind": 0,
+    "label": "string",
+    "foregroundColor": "string",
+    "backgroundColor": "string"
+  }
+]
+No links
+400 If the list of pinned thoughts failed to be retrieved
+No links
+401 If the API Key is missing or invalid
+No links
+
+GET /thoughts/{brainId}/{thoughtId}/modifications
+Gets a list of modification logs for the specified thought
+
+modType values and their corresponding actions:
+- Generic Actions:
+  - 101: Created
+  - 102: Deleted
+  - 103: Changed Name
+  - 104: Created By Paste
+  - 105: Modified By Paste
+- Thoughts and Links:
+  - 201: Changed Color
+  - 202: Changed Label
+  - 203: Set Type
+  - 204: Changed Color2
+  - 205: Created Icon
+  - 206: Deleted Icon
+  - 207: Changed Icon
+  - 208: Changed Field Instance
+  - 209: Created Field Instance
+  - 210: Deleted Field Instance
+- Thought Specific:
+  - 301: Forgot
+  - 302: Remembered
+  - 303: Changed Thought Access Type
+  - 304: Changed Kind
+- Link Specific:
+  - 401: Changed Thickness
+  - 402: Moved Link
+  - 403: Changed Direction
+  - 404: Changed Meaning
+  - 405: Changed Relation
+- Attachment Specific:
+  - 501: Changed Content
+  - 502: Changed Location
+  - 503: Changed Position
+- Brain and Brain Setting Specific:
+  - 601: Changed Setting
+  - 602: Reordered Pins
+- Brain Access Specific:
+  - 701: Changed Brain Access Entry
+- Note Specific:
+  - 801: Created Note
+  - 802: Deleted Note
+  - 803: Changed Note
+  - 804: Deleted Note Asset
+  - 805: Created Note Asset
+  - 806: Changed Note Asset
+  - 807: Deleted Markdown Image
+  - 808: Created Markdown Image
+  - 809: Changed Markdown Image
+  - 810: Deleted Dynamic Wallpaper Image
+  - 811: Created Dynamic Wallpaper Image
+  - 812: Changed Dynamic Wallpaper Image
+- Calendar Event Specific:
+  - 900: Created Calendar Event
+  - 901: Modified Calendar Event
+  - 902: Deleted Calendar Event
+  - 903: Deleted Calendar Event Recurring Instance
+- Field Definition Specific:
+  - 1001: Changed Field Definition
+  - 1002: Created Field Definition
+  - 1003: Deleted Field Definition
+
+entityType values (used by sourceType, extraAType and extraBType)
+- -1: Unknown
+- 1: Brain
+- 2: Thought
+- 3: Link
+- 4: Attachment
+- 5: Brain Setting
+- 6: Brain Access Entry
+- 7: Calendar Event
+- 8: Field Instance
+- 9: Field Definition
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+- thoughtId * string($uuid) (path) The ID of the thought
+- maxLogs * integer($int32) (query) The maximum number of modifications to return in the list, beginning from the startTime
+  - Default value : 100
+- includeRelatedLogs * boolean (query) Whether to include modifications to links that were a result of modifying a thought
+  - Default value : true
+
+Responses
+Code	Description	Links
+200 Success
+Media type
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "sourceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "sourceType": 1,
+    "extraAId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "extraAType": 1,
+    "extraBId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "extraBType": 1,
+    "modType": 101,
+    "oldValue": "string",
+    "newValue": "string",
+    "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "creationDateTime": "2024-07-26T14:50:55.719Z",
+    "modificationDateTime": "2024-07-26T14:50:55.719Z",
+    "syncUpdateDateTime": "2024-07-26T14:50:55.719Z"
+  }
+]
+No links
+400 If the modification logs failed to be retrieved
+No links
+401 If the API Key is missing or invalid
+No links
+
+GET /thoughts/{brainId}/types
+Gets a list of all Types in a specified brain
+
+Thought properties and values:
+- Guid 'id' - The ID of the thought
+- Guid 'brainId' - The ID of the brain containing the thought
+- Guid 'typeId' - The ID of the thought type
+- DateTime 'creationDateTime' - The DateTime that the thought was created at
+- DateTime 'modificationDateTime' - The DateTime that the thought was last modified at
+- DateTime 'forgottenDateTime' - The DateTime that the thought was forgotten at
+- DateTime 'linksModificationDateTime' - The DateTime that the thought's links were last modified at
+- string 'name' - The Name of the thought
+- string 'label' - The Label of the thought
+- string 'foregroundColor' - The RGB hexadecimal color of the thought's foreground color (Ex: '#ff7145')
+- string 'backgroundColor' - The RGB hexadecimal color of the thought's background color (Ex: '#ff7145')
+- int 'acType' - The access type of the thought
+  - Public = 0
+  - Private = 1
+- int 'kind' - The kind of thought
+  - Normal = 1
+  - Type = 2
+  - Event = 3
+  - Tag = 4
+  - System = 5
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+
+Responses
+Code	Description	Links
+200 Success
+Media type
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "creationDateTime": "2024-07-26T14:50:55.725Z",
+    "modificationDateTime": "2024-07-26T14:50:55.725Z",
+    "name": "string",
+    "cleanedUpName": "string",
+    "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "displayModificationDateTime": "2024-07-26T14:50:55.725Z",
+    "forgottenDateTime": "2024-07-26T14:50:55.725Z",
+    "linksModificationDateTime": "2024-07-26T14:50:55.725Z",
+    "acType": 0,
+    "kind": 0,
+    "label": "string",
+    "foregroundColor": "string",
+    "backgroundColor": "string"
+  }
+]
+No links
+400 If the list of Types failed to be retrieved
+No links
+401 If the API Key is missing or invalid
+No links
+
+GET /thoughts/{brainId}/tags
+Gets a list of all Tags in a specified brain
+
+Thought properties and values:
+- Guid 'id' - The ID of the thought
+- Guid 'brainId' - The ID of the brain containing the thought
+- Guid 'typeId' - The ID of the thought type
+- DateTime 'creationDateTime' - The DateTime that the thought was created at
+- DateTime 'modificationDateTime' - The DateTime that the thought was last modified at
+- DateTime 'forgottenDateTime' - The DateTime that the thought was forgotten at
+- DateTime 'linksModificationDateTime' - The DateTime that the thought's links were last modified at
+- string 'name' - The Name of the thought
+- string 'label' - The Label of the thought
+- string 'foregroundColor' - The RGB hexadecimal color of the thought's foreground color (Ex: '#ff7145')
+- string 'backgroundColor' - The RGB hexadecimal color of the thought's background color (Ex: '#ff7145')
+- int 'acType' - The access type of the thought
+  - Public = 0
+  - Private = 1
+- int 'kind' - The kind of thought
+  - Normal = 1
+  - Type = 2
+  - Event = 3
+  - Tag = 4
+  - System = 5
+
+Parameters
+- brainId * string($uuid) (path) The ID of the brain
+
+Responses
+Code	Description	Links
+200 Success
+Media type
+text/plain
+Controls Accept header.
+Example Value
+Schema
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "brainId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "creationDateTime": "2024-07-26T14:50:55.730Z",
+    "modificationDateTime": "2024-07-26T14:50:55.730Z",
+    "name": "string",
+    "cleanedUpName": "string",
+    "typeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "displayModificationDateTime": "2024-07-26T14:50:55.730Z",
+    "forgottenDateTime": "2024-07-26T14:50:55.730Z",
+    "linksModificationDateTime": "2024-07-26T14:50:55.730Z",
+    "acType": 0,
+    "kind": 0,
+    "label": "string",
+    "foregroundColor": "string",
+    "backgroundColor": "string"
+  }
+]
+No links
+400 If the list of Tags failed to be retrieved
+No links
+401 If the API Key is missing or invalid
+No links

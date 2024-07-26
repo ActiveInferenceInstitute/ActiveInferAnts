@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             id="definitions_1">
+
+  <process id="Process_1" isExecutable="false">
+    <startEvent id="start1">
+      <outgoing>start1-task1</outgoing>
+    </startEvent>
+
+    <task id="task1" name="Register with the Virginia Department of Taxation">
+      <incoming>start1-task1</incoming>
+      <outgoing>task1-task2</outgoing>
+    </task>
+
+    <task id="task2" name="Download and complete R-1 Form">
+      <incoming>task1-task2</incoming>
+      <outgoing>task2-task3</outgoing>
+    </task>
+
+    <userTask id="task3" name="Complete Business Registration Application online">
+      <incoming>task2-task3</incoming>
+      <outgoing>task3-exclusive1</outgoing>
+    </userTask>
+
+    <exclusiveGateway id="exclusive1" name="Are you hiring employees?">
+      <incoming>task3-exclusive1</incoming>
+      <outgoing>exclusive1-task4</outgoing>
+      <outgoing>exclusive1-parallel1</outgoing>
+    </exclusiveGateway>
+
+    <task id="task4" name="Register with the Virginia Employment Commission">
+      <incoming>exclusive1-task4</incoming>
+      <outgoing>task4-task5</outgoing>
+    </task>
+
+    <task id="task5" name="Download and complete VEC-FC-27">
+      <incoming>task4-task5</incoming>
+      <outgoing>task5-task6</outgoing>
+    </task>
+
+    <userTask id="task6" name="Complete registration with the Virginia Employment Commission online">
+      <incoming>task5-task6</incoming>
+      <outgoing>task6-parallel1</outgoing>
+    </userTask>
+
+    <parallelGateway id="parallel1">
+      <incoming>task6-parallel1</incoming>
+      <incoming>exclusive1-parallel1</incoming>
+      <outgoing>parallel1-task7</outgoing>
+    </parallelGateway>
+
+    <task id="task7" name="Contact City of Charlottesville Zoning Office">
+      <incoming>parallel1-task7</incoming>
+      <outgoing>task7-task8</outgoing>
+    </task>
+
+    <userTask id="task8" name="Download Business License Zoning Approval Application">
+      <incoming>task7-task8</incoming>
+      <outgoing>task8-task9</outgoing>
+    </userTask>
+
+    <exclusiveGateway id="exclusive2" name="Conducting business from home?">
+      <incoming>task8-task9</incoming>
+      <outgoing>exclusive2-task9</outgoing>
+      <outgoing>exclusive2-exclusive3</outgoing>
+    </exclusiveGateway>
+
+    <userTask id="task9" name="Download Home Occupation Provisional Use Permit">
+      <incoming>exclusive2-task9</incoming>
+      <outgoing>task9-task10</outgoing>
+    </userTask>
+
+    <exclusiveGateway id="exclusive3" name="Erecting a sign at business location?">
+      <incoming>exclusive2-exclusive3</incoming>
+      <outgoing>exclusive3-task10</outgoing>
+      <outgoing>exclusive3-exclusive4</outgoing>
+    </exclusiveGateway>
+
+    <userTask id="task10" name="Download Sign Permit">
+      <incoming>task9-task10</incoming>
+      <incoming>exclusive3-task10</incoming>
+      <outgoing>task10-task11</outgoing>
+    </userTask>
+
+    <exclusiveGateway id="exclusive4" name="Need Certificate of Occupancy?">
+      <incoming>exclusive3-exclusive4</incoming>
+      <outgoing>exclusive4-task11</outgoing>
+      <outgoing>exclusive4-end1</outgoing>
+    </exclusiveGateway>
+
+    <task id="task11" name="View General Certificate of Occupancy (CO) information">
+      <incoming>task10-task11</incoming>
+      <incoming>exclusive4-task11</incoming>
+      <outgoing>task11-end1</outgoing>
+    </task>
+
+    <endEvent id="end1">
+      <incoming>task11-end1</incoming>
+      <incoming>exclusive4-end1</incoming>
+    </endEvent>
+
+    <sequenceFlow id="start1-task1" sourceRef="start1" targetRef="task1" />
+    <sequenceFlow id="task1-task2" sourceRef="task1" targetRef="task2" />
+    <sequenceFlow id="task2-task3" sourceRef="task2" targetRef="task3" />
+    <sequenceFlow id="task3-exclusive1" sourceRef="task3" targetRef="exclusive1" />
+    <sequenceFlow id="exclusive1-task4" name="Yes" sourceRef="exclusive1" targetRef="task4" />
+    <sequenceFlow id="task4-task5" sourceRef="task4" targetRef="task5" />
+    <sequenceFlow id="task5-task6" sourceRef="task5" targetRef="task6" />
+    <sequenceFlow id="task6-parallel1" sourceRef="task6" targetRef="parallel1" />
+    <sequenceFlow id="exclusive1-parallel1" name="No" sourceRef="exclusive1" targetRef="parallel1" />
+    <sequenceFlow id="parallel1-task7" sourceRef="parallel1" targetRef="task7" />
+    <sequenceFlow id="task7-task8" sourceRef="task7" targetRef="task8" />
+    <sequenceFlow id="task8-task9" sourceRef="task8" targetRef="exclusive2" />
+    <sequenceFlow id="exclusive2-task9" name="Yes" sourceRef="exclusive2" targetRef="task9" />
+    <sequenceFlow id="exclusive2-exclusive3" name="No" sourceRef="exclusive2" targetRef="exclusive3" />
+    <sequenceFlow id="task9-task10" sourceRef="task9" targetRef="task10" />
+    <sequenceFlow id="exclusive3-task10" name="Yes" sourceRef="exclusive3" targetRef="task10" />
+    <sequenceFlow id="exclusive3-exclusive4" name="No" sourceRef="exclusive3" targetRef="exclusive4" />
+    <sequenceFlow id="task10-task11" sourceRef="task10" targetRef="task11" />
+    <sequenceFlow id="exclusive4-task11" name="Yes" sourceRef="exclusive4" targetRef="task11" />
+    <sequenceFlow id="exclusive4-end1" name="No" sourceRef="exclusive4" targetRef="end1" />
+    <sequenceFlow id="task11-end1" sourceRef="task11" targetRef="end1" />
+  </process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <!-- BPMN diagram elements -->
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
