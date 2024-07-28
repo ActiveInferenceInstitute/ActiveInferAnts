@@ -44,58 +44,20 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
     
-    if isinstance(repo_urls, dict):
-        repo_urls = list(repo_urls.values())
+    # if isinstance(repo_urls, dict):
+    #     repo_urls = list(repo_urls.values())
     
-    for git_url in repo_urls:
-        clone_repo(git_url, target_dir)
+    # for git_url in repo_urls:
+    #     clone_repo(git_url, target_dir)
 
 # Enhanced cloning process with category-based organization
 if __name__ == "__main__":
     repos_to_clone = {
-        "ActiveInference": [
-            "https://github.com/infer-actively/pymdp",
-        ],
-        
-        "ActivityPub": [
-            "https://github.com/w3c/activitypub",
-            "https://github.com/BasixKOR/awesome-activitypub",
-            "https://github.com/superseriousbusiness/gotosocial",
-            "https://github.com/pterotype-project/activitypub-php",
-            "https://github.com/go-fed/activity",
-            "https://github.com/Automattic/wordpress-activitypub",
-            "https://github.com/LemmyNet/activitypub-federation-rust",
-            "https://github.com/immers-space/activitypub-express",
-        ],
-        
-        # "Nostr": [
-        #     "https://github.com/nostr-protocol/nostr",
-        #     "https://github.com/fiatjaf/nostr-tools",
-        #     "https://github.com/limina1/indextr-client",
-        #     "https://github.com/fiatjaf/quill-asciidoc",
-        #     "https://github.com/fiatjaf/svelte-asciidoc",
-        #     "https://github.com/github-tijlxyz/wikinostr",
-        #     "https://github.com/aljazceru/awesome-nostr",
-        #     "https://github.com/nostr-connect/connect"
-        # ]
-        # ,
-        # "Synergetics": [
-        #     "https://github.com/4dsolutions/MartianMath",
-        #     "https://github.com/4dsolutions/m4w",
-        #     "https://github.com/4dsolutions/python_camp",
-        #     "https://github.com/4dsolutions/School_of_Tomorrow",
-        #     "https://github.com/4dsolutions/DigitalMathematics",
-        #     "https://github.com/4dsolutions/Curriculum_Development"
-        # ],
-        # "Ants": [
-        #     "https://github.com/Social-Insect-Genomics/",
-        #     "https://github.com/johnssproul/Insect_REs",
-        #     "https://github.com/pbfrandsen/insect_genome_assemblies",
-        #     "https://github.com/PeterMulhair/DToL_insects",
-        #     "https://github.com/fohebert/GenomeAnnotation",
-        #     "https://github.com/guillemylla/Crickets_Genome_Annotation",
-        # ]
+        "Matterbridge": [
+            "https://github.com/42wim/matterbridge"
+        ]
     }
+    
     target_dir = input("Enter the target directory (default is 'repos/'): ").strip() or "repos/"
     
     for category, urls in repos_to_clone.items():
