@@ -44,22 +44,136 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
     
-    # if isinstance(repo_urls, dict):
-    #     repo_urls = list(repo_urls.values())
+    if isinstance(repo_urls, dict):
+        repo_urls = list(repo_urls.values())
     
-    # for git_url in repo_urls:
-    #     clone_repo(git_url, target_dir)
+    for git_url in repo_urls:
+        clone_repo(git_url, target_dir)
+
+# Flags to determine which categories to clone
+CLONE_THEBRAIN = True
+CLONE_NOSTR = True
+CLONE_SYNERGETICS = True
+CLONE_ANTS = False
+CLONE_ACTIVE_INFERENCE = True
+CLONE_MULTIAGENT_LLM = True
+CLONE_TASK_EXECUTION_AI_AGI = True
+CLONE_MULTIAGENT_AI = True
+CLONE_GENERAL_LLM_RESOURCES = True
+
+# Repositories to clone
+repos_to_clone = {
+    "TheBrain": [
+        "https://github.com/TheBrainTech/thebrain-api-quickstart-python"
+    ],
+    "Nostr": [
+        "https://github.com/nostr-protocol/nostr",
+        "https://github.com/fiatjaf/nostr-tools",
+        "https://github.com/limina1/indextr-client",
+        "https://github.com/fiatjaf/quill-asciidoc",
+        "https://github.com/fiatjaf/svelte-asciidoc",
+        "https://github.com/github-tijlxyz/wikinostr",
+        "https://github.com/aljazceru/awesome-nostr",
+        "https://github.com/nostr-connect/connect"
+    ],
+    "Synergetics": [
+        "https://github.com/4dsolutions/MartianMath",
+        "https://github.com/4dsolutions/m4w",
+        "https://github.com/4dsolutions/python_camp",
+        "https://github.com/4dsolutions/School_of_Tomorrow",
+        "https://github.com/4dsolutions/DigitalMathematics",
+        "https://github.com/4dsolutions/Curriculum_Development"
+    ],
+    "Ants": [
+        "https://github.com/Social-Insect-Genomics/",
+        "https://github.com/johnssproul/Insect_REs",
+        "https://github.com/pbfrandsen/insect_genome_assemblies",
+        "https://github.com/PeterMulhair/DToL_insects",
+        "https://github.com/fohebert/GenomeAnnotation",
+        "https://github.com/guillemylla/Crickets_Genome_Annotation"
+    ],
+    "ActiveInference": [
+        "https://github.com/ActiveInferenceInstitute/ActiveBlockference",
+        "https://github.com/infer-actively/pymdp",
+        "https://github.com/cadCAD-org/cadcad-ri"
+    ],
+    "MultiagentLLM": [
+        "https://github.com/nickm980/smallville",
+        "https://github.com/chatarena/chatarena",
+        "https://github.com/OpenGVLab/GITM",
+        "https://github.com/OpenBMB/AgentVerse",
+        "https://github.com/BladeTransformerLLC/OvercookedGPT",
+        "https://github.com/101dotxyz/GPTeam",
+        "https://github.com/mkturkcan/generative-agents"
+    ],
+    "TaskExecutionAIAGI": [
+        "https://docs.superagent.sh/concepts#prompts",
+        "https://github.com/Significant-Gravitas/Auto-GPT",
+        "https://github.com/SamurAIGPT/Camel-AutoGPT",
+        "https://github.com/Josh-XT/AGiXT",
+        "https://github.com/reworkd/AgentGPT",
+        "https://github.com/muellerberndt/mini-agi",
+        "https://github.com/enricoros/big-agi",
+        "https://github.com/TransformerOptimus/SuperAGI",
+        "https://github.com/TransformerOptimus/SuperAGI"
+    ],
+    "MultiagentAI": [
+        "https://github.com/deepmind/open_spiel",
+        "https://github.com/NeuralMMO/environment",
+        "https://github.com/datamllab/rlcard",
+        "https://github.com/Farama-Foundation/MAgent2",
+        "https://github.com/salesforce/ai-economist"
+    ],
+    "GeneralLLMResources": [
+        "https://github.com/filipecalegario/awesome-generative-ai",
+        "https://github.com/EmbraceAGI/Awesome-AGI",
+        "https://github.com/tigerneil/awesome-deep-rl",
+        "https://github.com/wel3kxial/AIGC_Resources",
+        "https://github.com/imaurer/awesome-decentralized-llm",
+        "https://github.com/gabriben/awesome-generative-information-retrieval",
+        "https://github.com/hwchase17/langchain",
+        "https://github.com/Mooler0410/LLMsPracticalGuide",
+        "https://github.com/microsoft/LMOps",
+        "https://github.com/ennucore/clippy"
+    ]
+}
 
 # Enhanced cloning process with category-based organization
 if __name__ == "__main__":
-    repos_to_clone = {
-        "TheBraj ": [
-            "https://github.com/TheBrainTech/thebrain-api-quickstart-python"
-        ]
-    }
-    
     target_dir = input("Enter the target directory (default is 'repos/'): ").strip() or "repos/"
     
-    for category, urls in repos_to_clone.items():
-        print(f"Cloning {category} repositories...")
-        clone_repos(urls, os.path.join(target_dir, category))
+    if CLONE_THEBRAIN:
+        print("Cloning TheBrain repositories...")
+        clone_repos(repos_to_clone["TheBrain"], os.path.join(target_dir, "TheBrain"))
+    
+    if CLONE_NOSTR:
+        print("Cloning Nostr repositories...")
+        clone_repos(repos_to_clone["Nostr"], os.path.join(target_dir, "Nostr"))
+    
+    if CLONE_SYNERGETICS:
+        print("Cloning Synergetics repositories...")
+        clone_repos(repos_to_clone["Synergetics"], os.path.join(target_dir, "Synergetics"))
+    
+    if CLONE_ANTS:
+        print("Cloning Ants repositories...")
+        clone_repos(repos_to_clone["Ants"], os.path.join(target_dir, "Ants"))
+    
+    if CLONE_ACTIVE_INFERENCE:
+        print("Cloning Active Inference repositories...")
+        clone_repos(repos_to_clone["ActiveInference"], os.path.join(target_dir, "ActiveInference"))
+    
+    if CLONE_MULTIAGENT_LLM:
+        print("Cloning Multiagent LLM repositories...")
+        clone_repos(repos_to_clone["MultiagentLLM"], os.path.join(target_dir, "MultiagentLLM"))
+    
+    if CLONE_TASK_EXECUTION_AI_AGI:
+        print("Cloning Task Execution AI and AGI repositories...")
+        clone_repos(repos_to_clone["TaskExecutionAIAGI"], os.path.join(target_dir, "TaskExecutionAIAGI"))
+    
+    if CLONE_MULTIAGENT_AI:
+        print("Cloning Multiagent AI repositories...")
+        clone_repos(repos_to_clone["MultiagentAI"], os.path.join(target_dir, "MultiagentAI"))
+    
+    if CLONE_GENERAL_LLM_RESOURCES:
+        print("Cloning General LLM resources repositories...")
+        clone_repos(repos_to_clone["GeneralLLMResources"], os.path.join(target_dir, "GeneralLLMResources"))
