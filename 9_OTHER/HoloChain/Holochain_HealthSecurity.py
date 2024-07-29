@@ -3,11 +3,11 @@ from dataclasses import dataclass
 from enum import Enum
 import hashlib
 import time
-from holochain import (
+from hdk import (
     create_entry, get_entry, update_entry, delete_entry,
-    create_link, get_links, query, call_remote_zome,
-    EntryHash, AgentPubKey, ActionHash, Timestamp, EntryType,
-    Action, Entry, ValidationPackage, ValidationResult
+    create_link, get_links, query, call,
+    EntryHash, AgentPubKey, ActionHash, Timestamp,
+    Entry, Action, DnaHash, ExternIO, ZomeCallResponse
 )
 
 # Enum for Entry Types
@@ -64,29 +64,31 @@ class Consent:
 # Zome Functions
 class HealthSecurityZome:
     def create_patient_record(self, record: PatientRecord) -> EntryHash:
-        entry = HealthEntry(HealthEntryType.PATIENT_RECORD, record)
-        return create_entry(entry)
+        entry = Entry.app(HealthEntryType.PATIENT_RECORD.value, record)
+        header_hash = create_entry(entry)
+        return header_hash
 
     def get_patient_record(self, record_hash: EntryHash) -> Optional[PatientRecord]:
-        entry = get_entry(record_hash)
-        if entry and entry.entry_type == HealthEntryType.PATIENT_RECORD:
-            return entry.content
+        maybe_record = get_entry(record_hash)
+        if maybe_record and maybe_record.entry_type == HealthEntryType.PATIENT_RECORD.value:
+            return PatientRecord(**maybe_record.content)
         return None
 
     def update_patient_record(self, record_hash: EntryHash, updated_record: PatientRecord) -> EntryHash:
-        entry = HealthEntry(HealthEntryType.PATIENT_RECORD, updated_record)
-        return update_entry(record_hash, entry)
+        entry = Entry.app(HealthEntryType.PATIENT_RECORD.value, updated_record)
+        header_hash = update_entry(record_hash, entry)
+        return header_hash
 
     def create_medical_event(self, event: MedicalEvent) -> EntryHash:
-        entry = HealthEntry(HealthEntryType.MEDICAL_EVENT, event)
+        entry = Entry.app(HealthEntryType.MEDICAL_EVENT.value, event)
         event_hash = create_entry(entry)
         create_link(event.patient_id, event_hash, "medical_events")
         return event_hash
 
     def get_medical_event(self, event_hash: EntryHash) -> Optional[MedicalEvent]:
-        entry = get_entry(event_hash)
-        if entry and entry.entry_type == HealthEntryType.MEDICAL_EVENT:
-            return entry.content
+        maybe_event = get_entry(event_hash)
+        if maybe_event and maybe_event.entry_type == HealthEntryType.MEDICAL_EVENT.value:
+            return MedicalEvent(**maybe_event.content)
         return None
 
     def get_patient_medical_events(self, patient_id: str) -> List[MedicalEvent]:
@@ -99,21 +101,21 @@ class HealthSecurityZome:
         return events
 
     def log_access(self, log: AccessLog) -> EntryHash:
-        entry = HealthEntry(HealthEntryType.ACCESS_LOG, log)
+        entry = Entry.app(HealthEntryType.ACCESS_LOG.value, log)
         log_hash = create_entry(entry)
         create_link(log.patient_id, log_hash, "access_logs")
         return log_hash
 
     def create_consent(self, consent: Consent) -> EntryHash:
-        entry = HealthEntry(HealthEntryType.CONSENT, consent)
+        entry = Entry.app(HealthEntryType.CONSENT.value, consent)
         consent_hash = create_entry(entry)
         create_link(consent.patient_id, consent_hash, "consents")
         return consent_hash
 
     def get_consent(self, consent_hash: EntryHash) -> Optional[Consent]:
-        entry = get_entry(consent_hash)
-        if entry and entry.entry_type == HealthEntryType.CONSENT:
-            return entry.content
+        maybe_consent = get_entry(consent_hash)
+        if maybe_consent and maybe_consent.entry_type == HealthEntryType.CONSENT.value:
+            return Consent(**maybe_consent.content)
         return None
 
     def revoke_consent(self, consent_hash: EntryHash) -> bool:
@@ -129,32 +131,28 @@ class HealthSecurityZome:
         return consents
 
     def query_patient_records(self, query_params: Dict[str, Any]) -> List[PatientRecord]:
-        return query(HealthEntryType.PATIENT_RECORD, query_params)
+        return query(HealthEntryType.PATIENT_RECORD.value, query_params)
 
 # Validation functions
-def validate_patient_record_create(action: Action, patient_record: PatientRecord) -> ValidationResult:
-    # Implement validation logic for creating a patient record
+def validate_patient_record_create(action: Action, patient_record: PatientRecord) -> ExternIO:
     if not patient_record.id or not patient_record.name:
-        return ValidationResult(valid=False, message="Patient ID and name are required")
-    return ValidationResult(valid=True)
+        return ExternIO.encode({"valid": False, "message": "Patient ID and name are required"})
+    return ExternIO.encode({"valid": True})
 
-def validate_medical_event_create(action: Action, medical_event: MedicalEvent) -> ValidationResult:
-    # Implement validation logic for creating a medical event
+def validate_medical_event_create(action: Action, medical_event: MedicalEvent) -> ExternIO:
     if not medical_event.patient_id or not medical_event.event_type:
-        return ValidationResult(valid=False, message="Patient ID and event type are required")
-    return ValidationResult(valid=True)
+        return ExternIO.encode({"valid": False, "message": "Patient ID and event type are required"})
+    return ExternIO.encode({"valid": True})
 
-def validate_access_log(action: Action, access_log: AccessLog) -> ValidationResult:
-    # Implement validation logic for logging access
+def validate_access_log(action: Action, access_log: AccessLog) -> ExternIO:
     if not access_log.patient_id or not access_log.accessor_id:
-        return ValidationResult(valid=False, message="Patient ID and accessor ID are required")
-    return ValidationResult(valid=True)
+        return ExternIO.encode({"valid": False, "message": "Patient ID and accessor ID are required"})
+    return ExternIO.encode({"valid": True})
 
-def validate_consent_create(action: Action, consent: Consent) -> ValidationResult:
-    # Implement validation logic for creating a consent
+def validate_consent_create(action: Action, consent: Consent) -> ExternIO:
     if not consent.patient_id or not consent.consenter_id or not consent.consentee_id:
-        return ValidationResult(valid=False, message="Patient ID, consenter ID, and consentee ID are required")
-    return ValidationResult(valid=True)
+        return ExternIO.encode({"valid": False, "message": "Patient ID, consenter ID, and consentee ID are required"})
+    return ExternIO.encode({"valid": True})
 
 # This improved Holochain Health Security system provides a comprehensive framework for managing
 # patient records, medical events, access logs, and consent in a secure and decentralized manner.
@@ -162,18 +160,22 @@ def validate_consent_create(action: Action, consent: Consent) -> ValidationResul
 # creating, retrieving, updating, and deleting these entries. Validation functions are also
 # provided to ensure data integrity and access control.
 # 
-# Improvements and additions:
-# 1. Integrated actual Holochain methods for entry creation, retrieval, and management.
-# 2. Added linking functionality to create relationships between entries.
-# 3. Implemented query functionality for more sophisticated data retrieval.
-# 4. Enhanced validation functions to return ValidationResult objects.
-# 5. Added methods to retrieve all medical events and consents for a patient.
+# Improvements and additions based on Holochain insights:
+# 1. Updated imports to use the latest Holochain Development Kit (HDK) functions and types.
+# 2. Modified entry creation to use Entry.app() for application-specific entries.
+# 3. Updated validation functions to return ExternIO for compatibility with Holochain's validation system.
+# 4. Adjusted error handling to align with Holochain's approach (returning Option types).
+# 5. Implemented linking functionality using create_link and get_links for relationship management.
+# 6. Utilized Holochain's native query function for data retrieval.
 # 
-# In a real-world implementation, you would need to:
+# Further considerations for a production-ready Holochain implementation:
 # 1. Implement proper error handling and logging throughout the zome functions.
-# 2. Add more sophisticated access control mechanisms, possibly using capabilities.
-# 3. Implement encryption for sensitive data, especially for patient records and medical events.
-# 4. Develop additional query methods for more complex data retrieval scenarios.
-# 5. Implement a front-end interface for healthcare providers and patients to interact with the system.
-# 6. Consider implementing remote zome calls for inter-DNA communication if needed.
-# 7. Add more comprehensive validation logic, possibly including cross-entry validation.
+# 2. Add more sophisticated access control mechanisms using Holochain's capabilities system.
+# 3. Implement encryption for sensitive data using Holochain's built-in encryption functions.
+# 4. Develop additional query methods leveraging Holochain's indexing and search capabilities.
+# 5. Implement a front-end interface using Holochain's web components or a compatible framework.
+# 6. Utilize Holochain's signals for real-time updates and notifications.
+# 7. Implement remote zome calls for inter-DNA communication if needed.
+# 8. Add more comprehensive validation logic, including cross-entry validation using Holochain's validation callbacks.
+# 9. Consider implementing Holochain's membrane proofs for network access control.
+# 10. Utilize Holochain's deterministic validation for ensuring data integrity across the network.
