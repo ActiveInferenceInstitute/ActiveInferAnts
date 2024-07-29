@@ -51,15 +51,17 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
         clone_repo(git_url, target_dir)
 
 # Flags to determine which categories to clone
-CLONE_THEBRAIN = True
-CLONE_NOSTR = True
-CLONE_SYNERGETICS = True
+CLONE_THEBRAIN = False
+CLONE_NOSTR = False
+CLONE_SYNERGETICS = False
 CLONE_ANTS = False
-CLONE_ACTIVE_INFERENCE = True
-CLONE_MULTIAGENT_LLM = True
-CLONE_TASK_EXECUTION_AI_AGI = True
-CLONE_MULTIAGENT_AI = True
-CLONE_GENERAL_LLM_RESOURCES = True
+CLONE_ACTIVE_INFERENCE = False
+CLONE_MULTIAGENT_LLM = False
+CLONE_TASK_EXECUTION_AI_AGI = False
+CLONE_MULTIAGENT_AI = False
+CLONE_GENERAL_LLM_RESOURCES = False
+CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
+CLONE_HOLOCHAIN = True
 
 # Repositories to clone
 repos_to_clone = {
@@ -135,6 +137,25 @@ repos_to_clone = {
         "https://github.com/Mooler0410/LLMsPracticalGuide",
         "https://github.com/microsoft/LMOps",
         "https://github.com/ennucore/clippy"
+    ],
+    "SocialMediaInteroperability": [
+        "https://github.com/42wim/matterbridge"
+    ],
+    "Holochain": [
+        "https://github.com/holochain/holochain",
+        "https://github.com/Holo-Host/holo",
+        "https://github.com/holochain-open-dev/holochain-open-dev",
+        "https://github.com/f13end/Holochain-Projects",
+        "https://github.com/holochain-apps/holochain-apps",
+        "https://github.com/holochain/scaffolding",
+        "https://github.com/holochain/holochain-client-rust",
+        "https://github.com/holochain/holochain-client-js",
+        "https://github.com/holochain/launcher-tauri",
+        "https://github.com/holochain/wind-tunnel",
+        "https://github.com/Holo-Host/hpos-service-crates",
+        "https://github.com/Holo-Host/host-console-ui",
+        "https://github.com/Holo-Host/ui-common-library",
+        "https://github.com/Holo-Host/holo-auto-installer"
     ]
 }
 
@@ -177,3 +198,11 @@ if __name__ == "__main__":
     if CLONE_GENERAL_LLM_RESOURCES:
         print("Cloning General LLM resources repositories...")
         clone_repos(repos_to_clone["GeneralLLMResources"], os.path.join(target_dir, "GeneralLLMResources"))
+    
+    if CLONE_SOCIAL_MEDIA_INTEROPERABILITY:
+        print("Cloning Social Media Interoperability repositories...")
+        clone_repos(repos_to_clone["SocialMediaInteroperability"], os.path.join(target_dir, "SocialMediaInteroperability"))
+    
+    if CLONE_HOLOCHAIN:
+        print("Cloning Holochain repositories...")
+        clone_repos(repos_to_clone["Holochain"], os.path.join(target_dir, "Holochain"))

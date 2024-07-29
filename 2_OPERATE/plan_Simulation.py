@@ -11,6 +11,8 @@ from data_logging import DataLogger
 from visualization import SimulationVisualizer
 from performance_metrics import PerformanceTracker
 from exception_handling import SimulationExceptionHandler
+from multiprocessing import Pool
+from tqdm import tqdm
 
 # Configure logging to provide detailed insights during the simulation process
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -129,12 +131,34 @@ class SimulationSetup:
 
     def run_multiple_simulations(self, num_simulations: int) -> List[Dict[str, Any]]:
         """Run multiple simulations and return a list of results."""
+        if self.parallel_execution['ENABLED']:
+            return self._run_parallel_simulations(num_simulations)
+        else:
+            return self._run_sequential_simulations(num_simulations)
+
+    def _run_sequential_simulations(self, num_simulations: int) -> List[Dict[str, Any]]:
+        """Run simulations sequentially."""
         all_results = []
-        for i in range(num_simulations):
+        for i in tqdm(range(num_simulations), desc="Running simulations"):
             logger.info(f"Starting simulation {i+1} of {num_simulations}")
             results = self.run_simulation()
             all_results.append(results)
         return all_results
+
+    def _run_parallel_simulations(self, num_simulations: int) -> List[Dict[str, Any]]:
+        """Run simulations in parallel using multiprocessing."""
+        with Pool(processes=self.parallel_execution['WORKER_COUNT']) as pool:
+            all_results = list(tqdm(
+                pool.imap(self._run_single_simulation, range(num_simulations)),
+                total=num_simulations,
+                desc="Running parallel simulations"
+            ))
+        return all_results
+
+    def _run_single_simulation(self, simulation_index: int) -> Dict[str, Any]:
+        """Helper method to run a single simulation (used for parallel execution)."""
+        logger.info(f"Starting simulation {simulation_index + 1}")
+        return self.run_simulation()
 
 if __name__ == "__main__":
     setup = SimulationSetup()
@@ -142,6 +166,11 @@ if __name__ == "__main__":
     if num_simulations > 1:
         all_results = setup.run_multiple_simulations(num_simulations)
         logger.info(f"Completed {num_simulations} simulations.")
+        # Perform analysis on all results
+        setup.data_logger.save_multiple_results(all_results)
+        setup.visualizer.create_comparative_plots(all_results)
+        aggregate_metrics = setup.performance_tracker.calculate_aggregate_metrics(all_results)
+        logger.info(f"Aggregate performance metrics: {aggregate_metrics}")
     else:
         results = setup.run_simulation()
-        logger.info(f"Simulation results: {results}")
+        logger.info("Simulation completed.")

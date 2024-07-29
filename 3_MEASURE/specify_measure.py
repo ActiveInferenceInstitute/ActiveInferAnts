@@ -1,8 +1,10 @@
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Union
 from enum import Enum, auto
 from dataclasses import dataclass, field
 import json
 from abc import ABC, abstractmethod
+import numpy as np
+from scipy.stats import unitary_group
 
 class MeasurementMethod(Enum):
     """Enumeration of supported measurement methods."""
@@ -10,6 +12,7 @@ class MeasurementMethod(Enum):
     POVM = auto()
     WEAK = auto()
     CONTINUOUS = auto()
+    ADAPTIVE = auto()  # New adaptive measurement method
 
 @dataclass
 class QRFParameters:
@@ -19,13 +22,33 @@ class QRFParameters:
     reference_state: Dict[str, Any]
     additional_params: Dict[str, Any] = field(default_factory=dict)
 
+    def __post_init__(self):
+        """Validate QRF parameters after initialization."""
+        if self.dimension < 2:
+            raise ValueError("Dimension must be at least 2.")
+        if not isinstance(self.symmetry_group, str):
+            raise TypeError("Symmetry group must be a string.")
+        if not isinstance(self.reference_state, dict):
+            raise TypeError("Reference state must be a dictionary.")
+
 class MeasurementStrategy(ABC):
     """Abstract base class for measurement strategies."""
     
     @abstractmethod
-    def execute(self, quantum_state: Any) -> Any:
+    def execute(self, quantum_state: np.ndarray) -> Union[np.ndarray, Dict[str, Any]]:
         """Execute the measurement strategy on a given quantum state."""
         pass
+
+class ProjectiveMeasurementStrategy(MeasurementStrategy):
+    """Concrete implementation of projective measurement strategy."""
+
+    def execute(self, quantum_state: np.ndarray) -> np.ndarray:
+        """Execute projective measurement on the given quantum state."""
+        # Implement projective measurement logic here
+        # This is a placeholder implementation
+        dim = quantum_state.shape[0]
+        projection = unitary_group.rvs(dim)
+        return np.abs(projection @ quantum_state) ** 2
 
 class QuantumCognitiveMeasure:
     """
@@ -47,6 +70,12 @@ class QuantumCognitiveMeasure:
         self.qrf_parameters = qrf_parameters or QRFParameters(dimension=2, symmetry_group="SU(2)", reference_state={})
         self.measurement_methods = measurement_methods or []
         self.measurement_strategies: Dict[MeasurementMethod, MeasurementStrategy] = {}
+        self._initialize_default_strategies()
+    
+    def _initialize_default_strategies(self) -> None:
+        """Initialize default measurement strategies."""
+        self.measurement_strategies[MeasurementMethod.PROJECTIVE] = ProjectiveMeasurementStrategy()
+        # Initialize other default strategies as needed
     
     def set_qrf_parameters(self, qrf_parameters: QRFParameters) -> None:
         """
@@ -66,16 +95,20 @@ class QuantumCognitiveMeasure:
         """
         return self.qrf_parameters
     
-    def add_measurement_method(self, method: MeasurementMethod, strategy: MeasurementStrategy) -> None:
+    def add_measurement_method(self, method: MeasurementMethod, strategy: Optional[MeasurementStrategy] = None) -> None:
         """
         Adds a measurement method and its corresponding strategy.
         
         Parameters:
         - method (MeasurementMethod): The measurement method to add.
-        - strategy (MeasurementStrategy): The strategy for executing the measurement.
+        - strategy (Optional[MeasurementStrategy]): The strategy for executing the measurement.
         """
-        self.measurement_methods.append(method)
-        self.measurement_strategies[method] = strategy
+        if method not in self.measurement_methods:
+            self.measurement_methods.append(method)
+        if strategy:
+            self.measurement_strategies[method] = strategy
+        elif method not in self.measurement_strategies:
+            raise ValueError(f"No default strategy available for {method.name}. Please provide a strategy.")
     
     def get_measurement_methods(self) -> List[Dict[str, str]]:
         """
@@ -87,16 +120,16 @@ class QuantumCognitiveMeasure:
         return [{"method": method.name, "description": f"Utilizes {method.name.lower()} measurement technique"} 
                 for method in self.measurement_methods]
     
-    def execute_measurement(self, method: MeasurementMethod, quantum_state: Any) -> Any:
+    def execute_measurement(self, method: MeasurementMethod, quantum_state: np.ndarray) -> Union[np.ndarray, Dict[str, Any]]:
         """
         Executes a specific measurement method on a given quantum state.
         
         Parameters:
         - method (MeasurementMethod): The measurement method to execute.
-        - quantum_state (Any): The quantum state to measure.
+        - quantum_state (np.ndarray): The quantum state to measure.
         
         Returns:
-        - Any: The result of the measurement.
+        - Union[np.ndarray, Dict[str, Any]]: The result of the measurement.
         
         Raises:
         - ValueError: If the specified method is not available.
@@ -157,4 +190,6 @@ class QuantumCognitiveMeasure:
         
         methods = [MeasurementMethod[method['method']] for method in spec['measurement_methods']]
         
-        return cls(spec['measurement_name'], qrf_params, methods)
+        instance = cls(spec['measurement_name'], qrf_params, methods)
+        instance._initialize_default_strategies()
+        return instance

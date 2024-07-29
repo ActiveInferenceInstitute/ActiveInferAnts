@@ -3,6 +3,7 @@ import numpy as np
 from typing import List, Optional, Dict, Any, Tuple
 from autograd import numpy as np_auto
 from scipy.stats import entropy
+import logging
 
 class Thing:
     """
@@ -41,10 +42,24 @@ class Thing:
 
         self.generative_model = self._construct_generative_model()
         self.model_dimensions = self._calculate_model_dimensions()
-        self.posterior_states = self.initial_state_distribution
+        self.posterior_states = self.initial_state_distribution.copy()
         self.updated_policies = None
         self.action_history = []
         self.observation_history = []
+
+        self.logger = self._setup_logger()
+
+    def _setup_logger(self) -> logging.Logger:
+        """
+        Sets up a logger for the Thing instance.
+        """
+        logger = logging.getLogger(f"{__name__}.{id(self)}")
+        logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        return logger
 
     def _construct_generative_model(self) -> Dict[str, Any]:
         """
@@ -98,6 +113,7 @@ class Thing:
         """
         Updates the Thing's beliefs based on new observations using Bayesian inference.
         """
+        self.logger.info("Updating beliefs based on new observation")
         self.posterior_states = inference.update_posterior_states(
             self.observation_model, observation, self.transition_model, 
             self.posterior_states, self.policy_length, self.inference_depth
@@ -112,6 +128,7 @@ class Thing:
         """
         Selects an action based on the Thing's current beliefs and updated policies.
         """
+        self.logger.info("Selecting action based on current beliefs and policies")
         action = control.sample_action(
             self.updated_policies, self.possible_policies, 
             self.model_dimensions['num_factors'], self.controllable_factors
@@ -123,6 +140,7 @@ class Thing:
         """
         Executes a decision-making cycle based on a new observation.
         """
+        self.logger.info("Executing decision-making cycle")
         self.update_beliefs(observation)
         action = self.select_action()
         self._update_models()  # Implement learning
@@ -141,6 +159,7 @@ class Thing:
         joint = likelihood * prior
         vfe = qs.dot(np_auto.log(qs) - np_auto.log(joint))
         
+        self.logger.debug(f"Calculated VFE: {vfe}")
         return vfe
 
     def calculate_efe(self, policy: np.ndarray) -> float:
@@ -161,6 +180,7 @@ class Thing:
                 efe_component = q_state * q_obs * (np_auto.log(q_state) - np_auto.log(p_desired))
                 efe += efe_component
         
+        self.logger.debug(f"Calculated EFE for policy: {efe}")
         return efe
 
     def simulate_future(self, policy: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
@@ -203,6 +223,8 @@ class Thing:
             self.transition_model[action] /= np.sum(self.transition_model[action], axis=1, keepdims=True)
             self.observation_model /= np.sum(self.observation_model, axis=1, keepdims=True)
 
+            self.logger.info("Updated internal models based on recent experiences")
+
     def calculate_information_gain(self, policy: np.ndarray) -> float:
         """
         Calculates the expected information gain for a given policy.
@@ -210,13 +232,17 @@ class Thing:
         prior_entropy = entropy(self.posterior_states)
         future_states, _ = self.simulate_future(policy)
         posterior_entropy = entropy(future_states)
-        return prior_entropy - posterior_entropy
+        info_gain = prior_entropy - posterior_entropy
+        self.logger.debug(f"Calculated information gain for policy: {info_gain}")
+        return info_gain
 
     def calculate_complexity(self) -> float:
         """
         Calculates the complexity of the Thing's current model.
         """
-        return np.sum([np.sum(model * np.log(model)) for model in self.transition_model])
+        complexity = np.sum([np.sum(model * np.log(model)) for model in self.transition_model])
+        self.logger.debug(f"Calculated model complexity: {complexity}")
+        return complexity
 
     def adaptive_learning_rate(self) -> None:
         """
@@ -228,6 +254,7 @@ class Thing:
         else:
             self.learning_rate *= 1.1
         self.learning_rate = np.clip(self.learning_rate, 0.01, 1.0)  # Keep learning rate in reasonable bounds
+        self.logger.info(f"Adapted learning rate to: {self.learning_rate}")
 
     def reset(self) -> None:
         """
@@ -237,3 +264,25 @@ class Thing:
         self.action_history = []
         self.observation_history = []
         self.updated_policies = None
+        self.logger.info("Reset internal state to initial conditions")
+
+    def get_state(self) -> Dict[str, Any]:
+        """
+        Returns a dictionary representation of the Thing's current state.
+        """
+        return {
+            'posterior_states': self.posterior_states,
+            'action_history': self.action_history,
+            'observation_history': self.observation_history,
+            'learning_rate': self.learning_rate
+        }
+
+    def set_state(self, state: Dict[str, Any]) -> None:
+        """
+        Sets the Thing's state based on a provided dictionary.
+        """
+        self.posterior_states = state['posterior_states']
+        self.action_history = state['action_history']
+        self.observation_history = state['observation_history']
+        self.learning_rate = state['learning_rate']
+        self.logger.info("Set internal state from provided dictionary")

@@ -1,6 +1,6 @@
 import time
 import logging
-from typing import List, Tuple, Callable, Optional
+from typing import List, Tuple, Callable, Optional, Dict, Any
 from render_Simulation import SimulationRenderer
 from situational_Antwareness import AgentVisualizer
 from plan_Simulation import SimulationPlanner
@@ -10,6 +10,7 @@ import metaconfig
 from data_logging import DataLogger
 from performance_monitor import PerformanceMonitor
 from error_handling import SimulationError, handle_simulation_error
+from report_generator import ReportGenerator
 
 class SimulationExecutor:
     def __init__(self, visualization_interval: int = 100, pause_duration: float = 0.1, log_level: int = logging.INFO):
@@ -19,6 +20,7 @@ class SimulationExecutor:
         self.pause_duration: float = pause_duration
         self.data_logger: DataLogger = DataLogger()
         self.performance_monitor: PerformanceMonitor = PerformanceMonitor()
+        self.report_generator: ReportGenerator = ReportGenerator()
         self.configure_logging(log_level)
     
     def configure_logging(self, log_level: int) -> None:
@@ -74,7 +76,7 @@ class SimulationExecutor:
     
     def _adjust_simulation_parameters(self) -> None:
         if self.simulation:
-            new_params = self.performance_monitor.suggest_parameter_adjustments()
+            new_params: Dict[str, Any] = self.performance_monitor.suggest_parameter_adjustments()
             self.simulation.update_parameters(new_params)
             logging.info(f"Adjusted simulation parameters: {new_params}")
     
@@ -91,10 +93,23 @@ class SimulationExecutor:
         self._generate_final_report()
     
     def _generate_final_report(self) -> None:
-        report = self.data_logger.generate_report()
-        performance_metrics = self.performance_monitor.get_metrics()
-        logging.info("Generating final simulation report")
-        # TODO: Implement report generation logic
+        report_data: Dict[str, Any] = {
+            'simulation_data': self.data_logger.generate_report(),
+            'performance_metrics': self.performance_monitor.get_metrics(),
+            'simulation_parameters': self.simulation.get_parameters() if self.simulation else {},
+            'environment_state': self.simulation.environment.get_state() if self.simulation else {}
+        }
+        report: str = self.report_generator.generate_report(report_data)
+        logging.info("Final simulation report generated")
+        self._save_report(report)
+    
+    def _save_report(self, report: str) -> None:
+        try:
+            with open('simulation_report.txt', 'w') as f:
+                f.write(report)
+            logging.info("Simulation report saved to simulation_report.txt")
+        except IOError as e:
+            logging.error(f"Failed to save simulation report: {e}")
     
     def run(self) -> None:
         logging.info("Simulation sequence initiation.")

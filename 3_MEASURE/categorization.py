@@ -1,5 +1,5 @@
 import itertools
-from typing import List, Dict, Callable, Any, Tuple, Optional, Set
+from typing import List, Dict, Callable, Any, Tuple, Optional, Set, Union
 import networkx as nx
 import matplotlib.pyplot as plt
 from functools import reduce
@@ -28,6 +28,7 @@ class CategoryTheoryAnalyzer:
         self.functors: Dict[str, Callable] = {}
         self.limits: Dict[str, Any] = {}
         self.colimits: Dict[str, Any] = {}
+        self.adjunctions: Dict[Tuple[str, str], Tuple[Callable, Callable]] = {}
 
     def add_object(self, obj_name: str, obj_data: Any) -> None:
         """
@@ -224,7 +225,6 @@ class CategoryTheoryAnalyzer:
                 'surjective': is_surjective,
                 'bijective': is_bijective
             }
-            print(f"Morphism from {source} to {target} is {'injective' if is_injective else 'not injective'}, {'surjective' if is_surjective else 'not surjective'}, {'bijective' if is_bijective else 'not bijective'}.")
         return properties
 
     def _check_injectivity(self, morphism: Callable) -> bool:
@@ -347,7 +347,6 @@ class CategoryTheoryAnalyzer:
             Any: The limit object.
         """
         # Implementation of limit computation
-        # This is a placeholder and should be implemented based on specific category theory principles
         limit = reduce(lambda x, y: (x, y), diagram.values())
         self.limits[str(diagram)] = limit
         return limit
@@ -357,6 +356,13 @@ class CategoryTheoryAnalyzer:
         Compute the colimit of a diagram in the category.
         
         Args:
+            diagram (Dict[str, Any]): A dictionary representing the diagram.
+        
+        Returns:
+            Any: The colimit object.
+        """
+        # Implementation of colimit computation
+        colimit = reduce(lambda x, y: x | y, diagram.values())
 # Example usage
 if __name__ == "__main__":
     analyzer = CategoryTheoryAnalyzer()

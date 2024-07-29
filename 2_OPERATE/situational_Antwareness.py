@@ -22,6 +22,13 @@ class AgentVisualizer(ABC):
             'ActiveForager': ("Foraging Strategy", lambda agent: agent.foraging_strategy),
             'ActiveDefender': ("Defense Capabilities", lambda agent: agent.defense_capabilities)
         }
+        self.visualization_dir = "agent_visualizations"
+        self._setup_visualization_directory()
+
+    def _setup_visualization_directory(self) -> None:
+        import os
+        if not os.path.exists(self.visualization_dir):
+            os.makedirs(self.visualization_dir)
 
     def check_agent_attributes(self) -> bool:
         missing_attrs = [attr for attr in self.required_attrs if not hasattr(self.agent, attr)]
@@ -46,16 +53,30 @@ class AgentVisualizer(ABC):
         plt.figure(figsize=(12, 10))
         sns.heatmap(matrix, annot=True, cmap='viridis', fmt='.2f')
         plt.title(f"{matrix_name} Visualization")
-        plt.savefig(f"{matrix_name}_visualization.png")
+        plt.savefig(f"{self.visualization_dir}/{matrix_name}_visualization.png")
         plt.close()
 
     def _analyze_matrix_properties(self, matrix_name: str, matrix: np.ndarray) -> None:
         eigenvalues, eigenvectors = np.linalg.eig(matrix)
         matrix_entropy = entropy(matrix.flatten())
+        condition_number = np.linalg.cond(matrix)
         logging.info(f"{matrix_name} Analysis:")
         logging.info(f"  - Eigenvalues: {eigenvalues}")
         logging.info(f"  - Matrix Entropy: {matrix_entropy}")
-        logging.info(f"  - Condition Number: {np.linalg.cond(matrix)}")
+        logging.info(f"  - Condition Number: {condition_number}")
+        self._visualize_matrix_properties(matrix_name, eigenvalues, matrix_entropy, condition_number)
+
+    def _visualize_matrix_properties(self, matrix_name: str, eigenvalues: np.ndarray, matrix_entropy: float, condition_number: float) -> None:
+        plt.figure(figsize=(12, 8))
+        plt.subplot(2, 1, 1)
+        plt.bar(range(len(eigenvalues)), np.abs(eigenvalues))
+        plt.title(f"{matrix_name} Eigenvalue Magnitudes")
+        plt.subplot(2, 1, 2)
+        plt.bar(['Entropy', 'Condition Number'], [matrix_entropy, np.log10(condition_number)])
+        plt.title(f"{matrix_name} Properties")
+        plt.tight_layout()
+        plt.savefig(f"{self.visualization_dir}/{matrix_name}_properties.png")
+        plt.close()
 
     def log_agent_specific_info(self) -> None:
         agent_type_name = type(self.agent).__name__
@@ -71,8 +92,11 @@ class AgentVisualizer(ABC):
             plt.bar(info.keys(), info.values())
         elif isinstance(info, (list, np.ndarray)):
             plt.plot(info)
+        elif isinstance(info, str):
+            plt.text(0.5, 0.5, info, ha='center', va='center', fontsize=12)
+            plt.axis('off')
         plt.title(f"{agent_type} Specific Information Visualization")
-        plt.savefig(f"{agent_type}_specific_info.png")
+        plt.savefig(f"{self.visualization_dir}/{agent_type}_specific_info.png")
         plt.close()
 
     @abstractmethod
@@ -106,7 +130,7 @@ class AgentVisualizer(ABC):
         Agent-Specific Information:
         {self._get_agent_specific_summary()}
         """
-        with open("agent_visualization_report.txt", "w") as f:
+        with open(f"{self.visualization_dir}/agent_visualization_report.txt", "w") as f:
             f.write(report)
 
     def _get_matrix_sizes(self) -> str:
@@ -120,7 +144,6 @@ class AgentVisualizer(ABC):
         return "  No specific information available for this agent type."
 
     def _visualize_agent_state_evolution(self) -> None:
-        # Assuming the agent has a method to get its state history
         if hasattr(self.agent, 'get_state_history'):
             state_history = self.agent.get_state_history()
             plt.figure(figsize=(14, 10))
@@ -130,7 +153,7 @@ class AgentVisualizer(ABC):
             plt.xlabel("Time Steps")
             plt.ylabel("State Values")
             plt.legend()
-            plt.savefig("agent_state_evolution.png")
+            plt.savefig(f"{self.visualization_dir}/agent_state_evolution.png")
             plt.close()
 
 class ConcreteAgentVisualizer(AgentVisualizer):
@@ -151,18 +174,17 @@ class ConcreteAgentVisualizer(AgentVisualizer):
             self._visualize_environment(simulation_context.simulation_environment)
             self._analyze_environment_dynamics(simulation_context.simulation_environment)
         except ImportError as e:
-            logging.warning("Could not integrate broader situational awareness due to missing modules: " + str(e))
+            logging.warning(f"Could not integrate broader situational awareness due to missing modules: {str(e)}")
 
     def _visualize_environment(self, environment: Any) -> None:
         plt.figure(figsize=(14, 12))
         env_state = environment.get_state()
         sns.heatmap(env_state, cmap='terrain', annot=False, cbar=True)
         plt.title('Simulation Environment Visualization')
-        plt.savefig('environment_visualization.png')
+        plt.savefig(f"{self.visualization_dir}/environment_visualization.png")
         plt.close()
 
     def _analyze_environment_dynamics(self, environment: Any) -> None:
-        # Assuming the environment has methods to get various dynamic properties
         if hasattr(environment, 'get_resource_distribution'):
             resource_distribution = environment.get_resource_distribution()
             self._visualize_resource_distribution(resource_distribution)
@@ -175,14 +197,14 @@ class ConcreteAgentVisualizer(AgentVisualizer):
         plt.figure(figsize=(12, 10))
         sns.heatmap(resource_distribution, cmap='YlGnBu', annot=False)
         plt.title('Resource Distribution in Environment')
-        plt.savefig('resource_distribution.png')
+        plt.savefig(f"{self.visualization_dir}/resource_distribution.png")
         plt.close()
 
     def _visualize_agent_density(self, agent_density: np.ndarray) -> None:
         plt.figure(figsize=(12, 10))
         sns.heatmap(agent_density, cmap='Reds', annot=False)
         plt.title('Agent Density in Environment')
-        plt.savefig('agent_density.png')
+        plt.savefig(f"{self.visualization_dir}/agent_density.png")
         plt.close()
 
 def create_agent_visualizer(agent: Any) -> AgentVisualizer:

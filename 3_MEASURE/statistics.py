@@ -2,9 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from scipy import stats
 from dataclasses import dataclass
+import os
+from abc import ABC, abstractmethod
 
 @dataclass
 class SimulationSummary:
@@ -18,6 +20,17 @@ class SimulationSummary:
     energy_median: float
     energy_min: float
     energy_max: float
+    energy_skewness: float
+    energy_kurtosis: float
+
+class StatisticalAnalysis(ABC):
+    @abstractmethod
+    def compute_summary(self) -> Any:
+        pass
+
+    @abstractmethod
+    def visualize(self, file_path: str) -> None:
+        pass
 
 class EnhancedSimulationStatistics:
     def __init__(self, simulation_results: pd.DataFrame):
@@ -63,7 +76,9 @@ class EnhancedSimulationStatistics:
             energy_std_dev=agents_data['energy'].std(),
             energy_median=agents_data['energy'].median(),
             energy_min=agents_data['energy'].min(),
-            energy_max=agents_data['energy'].max()
+            energy_max=agents_data['energy'].max(),
+            energy_skewness=stats.skew(agents_data['energy']),
+            energy_kurtosis=stats.kurtosis(agents_data['energy'])
         )
 
     def compute_agent_type_statistics(self) -> pd.DataFrame:
@@ -75,10 +90,9 @@ class EnhancedSimulationStatistics:
         """
         agent_stats = self.results.query("category == 'agents'").groupby('type')['energy'].agg([
             'count', 'mean', 'median', 'min', 'max', 'std',
-            lambda x: stats.skew(x),
-            lambda x: stats.kurtosis(x)
+            ('skewness', lambda x: stats.skew(x)),
+            ('kurtosis', lambda x: stats.kurtosis(x))
         ])
-        agent_stats.columns = ['count', 'mean', 'median', 'min', 'max', 'std', 'skewness', 'kurtosis']
         return agent_stats
 
     def visualize_agent_energy_distribution(self, file_path: str, agent_types: Optional[List[str]] = None) -> None:
@@ -112,7 +126,9 @@ class EnhancedSimulationStatistics:
         - pd.DataFrame: A DataFrame containing energy statistics for each simulation step.
         """
         energy_trends = self.results.query("category == 'agents'").groupby('simulation_steps')['energy'].agg([
-            'mean', 'median', 'min', 'max', 'std'
+            'mean', 'median', 'min', 'max', 'std',
+            ('skewness', lambda x: stats.skew(x)),
+            ('kurtosis', lambda x: stats.kurtosis(x))
         ])
         return energy_trends
 
@@ -125,18 +141,75 @@ class EnhancedSimulationStatistics:
         """
         energy_trends = self.analyze_energy_trends()
         
-        plt.figure(figsize=(12, 8))
-        plt.plot(energy_trends.index, energy_trends['mean'], label='Mean Energy')
-        plt.fill_between(energy_trends.index, 
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 16), sharex=True)
+        
+        # Plot mean and median energy
+        ax1.plot(energy_trends.index, energy_trends['mean'], label='Mean Energy')
+        ax1.fill_between(energy_trends.index, 
                          energy_trends['mean'] - energy_trends['std'],
                          energy_trends['mean'] + energy_trends['std'],
                          alpha=0.3, label='Standard Deviation')
-        plt.plot(energy_trends.index, energy_trends['median'], label='Median Energy', linestyle='--')
-        plt.xlabel('Simulation Steps', fontsize=14)
-        plt.ylabel('Energy', fontsize=14)
-        plt.title('Agent Energy Trends Over Simulation', fontsize=16)
-        plt.legend(fontsize=12)
-        plt.grid(True, linestyle=':', alpha=0.7)
+        ax1.plot(energy_trends.index, energy_trends['median'], label='Median Energy', linestyle='--')
+        ax1.set_ylabel('Energy', fontsize=14)
+        ax1.set_title('Agent Energy Trends Over Simulation', fontsize=16)
+        ax1.legend(fontsize=12)
+        ax1.grid(True, linestyle=':', alpha=0.7)
+        
+        # Plot skewness and kurtosis
+        ax2.plot(energy_trends.index, energy_trends['skewness'], label='Skewness', color='green')
+        ax2.plot(energy_trends.index, energy_trends['kurtosis'], label='Kurtosis', color='purple')
+        ax2.set_xlabel('Simulation Steps', fontsize=14)
+        ax2.set_ylabel('Value', fontsize=14)
+        ax2.set_title('Energy Distribution Shape Over Simulation', fontsize=16)
+        ax2.legend(fontsize=12)
+        ax2.grid(True, linestyle=':', alpha=0.7)
+        
+        plt.tight_layout()
+        plt.savefig(file_path, dpi=300)
+        plt.close()
+
+    def analyze_food_collection(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
+        """
+        Analyzes food collection trends and efficiency.
+
+        Returns:
+        - Tuple[pd.DataFrame, pd.DataFrame]: DataFrames containing food collection trends and efficiency statistics.
+        """
+        food_trends = self.results.query("category == 'nests'").groupby('simulation_steps')['food_collected'].sum().diff().fillna(0)
+        food_trends = food_trends.to_frame(name='food_collected_per_step')
+        
+        agent_counts = self.results.query("category == 'agents'").groupby('simulation_steps').size()
+        food_efficiency = food_trends['food_collected_per_step'] / agent_counts
+        food_trends['collection_efficiency'] = food_efficiency
+        
+        efficiency_stats = food_trends['collection_efficiency'].agg(['mean', 'median', 'std', 'min', 'max'])
+        
+        return food_trends, efficiency_stats
+
+    def visualize_food_collection(self, file_path: str) -> None:
+        """
+        Visualizes food collection trends and efficiency.
+
+        Parameters:
+        - file_path (str): The file path to save the plot.
+        """
+        food_trends, _ = self.analyze_food_collection()
+        
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 16), sharex=True)
+        
+        ax1.plot(food_trends.index, food_trends['food_collected_per_step'], label='Food Collected')
+        ax1.set_ylabel('Food Collected per Step', fontsize=14)
+        ax1.set_title('Food Collection Trends', fontsize=16)
+        ax1.legend(fontsize=12)
+        ax1.grid(True, linestyle=':', alpha=0.7)
+        
+        ax2.plot(food_trends.index, food_trends['collection_efficiency'], label='Collection Efficiency', color='orange')
+        ax2.set_xlabel('Simulation Steps', fontsize=14)
+        ax2.set_ylabel('Food Collected per Agent', fontsize=14)
+        ax2.set_title('Food Collection Efficiency', fontsize=16)
+        ax2.legend(fontsize=12)
+        ax2.grid(True, linestyle=':', alpha=0.7)
+        
         plt.tight_layout()
         plt.savefig(file_path, dpi=300)
         plt.close()
@@ -148,7 +221,6 @@ class EnhancedSimulationStatistics:
         Parameters:
         - output_dir (str): The directory to save the report files.
         """
-        import os
         os.makedirs(output_dir, exist_ok=True)
 
         # Generate summary statistics
@@ -164,10 +236,16 @@ class EnhancedSimulationStatistics:
         # Generate visualizations
         self.visualize_agent_energy_distribution(os.path.join(output_dir, 'agent_energy_distribution.png'))
         self.visualize_energy_trends(os.path.join(output_dir, 'energy_trends.png'))
+        self.visualize_food_collection(os.path.join(output_dir, 'food_collection_trends.png'))
 
         # Generate energy trends data
         energy_trends = self.analyze_energy_trends()
         energy_trends.to_csv(os.path.join(output_dir, 'energy_trends.csv'))
+
+        # Generate food collection data
+        food_trends, efficiency_stats = self.analyze_food_collection()
+        food_trends.to_csv(os.path.join(output_dir, 'food_collection_trends.csv'))
+        efficiency_stats.to_frame().to_csv(os.path.join(output_dir, 'food_collection_efficiency_stats.csv'))
 
         print(f"Comprehensive report generated in {output_dir}")
 
