@@ -17,6 +17,7 @@ import inflect
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
+import svgwrite
 
 Base = declarative_base()
 
@@ -158,70 +159,34 @@ class P3IF:
         finally:
             session.close()
 
-    def visualize_relationships(self, output_file: str = 'p3if_visualization.png'):
+    def visualize_relationships(self, output_file: str = 'p3if_visualization.svg'):
         try:
             session = self.Session()
             relationships = session.query(Relationship).all()
-            
-            fig = plt.figure(figsize=(20, 16))
-            
-            ax1 = fig.add_subplot(221, projection='3d')
             
             properties = {r.property_id: r.property.name for r in relationships}
             processes = {r.process_id: r.process.name for r in relationships}
             perspectives = {r.perspective_id: r.perspective.name for r in relationships}
 
-            x = [list(properties.keys()).index(r.property_id) for r in relationships]
-            y = [list(processes.keys()).index(r.process_id) for r in relationships]
-            z = [list(perspectives.keys()).index(r.perspective_id) for r in relationships]
-            colors = [plt.cm.viridis(r.strength) for r in relationships]
+            size = max(len(properties), len(processes), len(perspectives)) * 100
+            dwg = svgwrite.Drawing(output_file, profile='tiny', size=(size, size))
+            
+            for r in relationships:
+                prop_index = list(properties.keys()).index(r.property_id)
+                proc_index = list(processes.keys()).index(r.process_id)
+                persp_index = list(perspectives.keys()).index(r.perspective_id)
+                color = svgwrite.rgb(int(r.strength * 255), 0, 0, '%')
+                
+                dwg.add(dwg.line(start=(prop_index * 100, 0), end=(proc_index * 100, 100), stroke=color))
+                dwg.add(dwg.line(start=(proc_index * 100, 100), end=(persp_index * 100, 200), stroke=color))
+                dwg.add(dwg.line(start=(persp_index * 100, 200), end=(prop_index * 100, 0), stroke=color))
+                
+                dwg.add(dwg.text(properties[r.property_id], insert=(prop_index * 100, 10), fill='black'))
+                dwg.add(dwg.text(processes[r.process_id], insert=(proc_index * 100, 110), fill='black'))
+                dwg.add(dwg.text(perspectives[r.perspective_id], insert=(persp_index * 100, 210), fill='black'))
 
-            scatter1 = ax1.scatter(x, y, z, c=colors, s=50)
-
-            ax1.set_xlabel('Properties')
-            ax1.set_ylabel('Processes')
-            ax1.set_zlabel('Perspectives')
-
-            ax1.set_xticks(range(len(properties)))
-            ax1.set_yticks(range(len(processes)))
-            ax1.set_zticks(range(len(perspectives)))
-
-            ax1.set_xticklabels(list(properties.values()), rotation=45, ha='right')
-            ax1.set_yticklabels(list(processes.values()), rotation=45, ha='right')
-            ax1.set_zticklabels(list(perspectives.values()), rotation=45, ha='right')
-
-            ax2 = fig.add_subplot(222)
-            scatter2 = ax2.scatter(x, y, c=colors, s=50)
-            ax2.set_xlabel('Properties')
-            ax2.set_ylabel('Processes')
-            ax2.set_xticks(range(len(properties)))
-            ax2.set_yticks(range(len(processes)))
-            ax2.set_xticklabels(list(properties.values()), rotation=45, ha='right')
-            ax2.set_yticklabels(list(processes.values()), rotation=45, ha='right')
-
-            ax3 = fig.add_subplot(223)
-            scatter3 = ax3.scatter(x, z, c=colors, s=50)
-            ax3.set_xlabel('Properties')
-            ax3.set_ylabel('Perspectives')
-            ax3.set_xticks(range(len(properties)))
-            ax3.set_yticks(range(len(perspectives)))
-            ax3.set_xticklabels(list(properties.values()), rotation=45, ha='right')
-            ax3.set_yticklabels(list(perspectives.values()), rotation=45, ha='right')
-
-            ax4 = fig.add_subplot(224)
-            scatter4 = ax4.scatter(y, z, c=colors, s=50)
-            ax4.set_xlabel('Processes')
-            ax4.set_ylabel('Perspectives')
-            ax4.set_xticks(range(len(processes)))
-            ax4.set_yticks(range(len(perspectives)))
-            ax4.set_xticklabels(list(processes.values()), rotation=45, ha='right')
-            ax4.set_yticklabels(list(perspectives.values()), rotation=45, ha='right')
-
-            plt.colorbar(scatter1, ax=[ax1, ax2, ax3, ax4], label='Relationship Strength')
-            plt.tight_layout()
             output_path = os.path.join(self.export_folder, output_file)
-            plt.savefig(output_path, dpi=300, bbox_inches='tight')
-            plt.close()
+            dwg.saveas(output_path)
 
             self.logger.info(f"Successfully visualized relationships and saved to {output_path}")
         except Exception as e:

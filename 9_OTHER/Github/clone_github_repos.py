@@ -66,6 +66,7 @@ CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
 CLONE_HOLOCHAIN = False
 CLONE_EBPF = False
 CLONE_KAFKA = False
+CLONE_SUMO = False
 
 # Repositories to clone
 repos_to_clone = {
@@ -205,6 +206,19 @@ repos_to_clone = {
         "https://github.com/hifly81/kafka-examples",
         "https://github.com/bstashchuk/apache-kafka-course",
         "https://github.com/hpang123/Kafka"
+    ],
+    "SUMO": [
+        "https://github.com/ontologyportal/sumo",
+        "https://github.com/ontologyportal/sigmanlp",
+        "https://github.com/ontologyportal/sigmakee",
+        "https://github.com/ontologyportal/chatbot",
+        "https://github.com/ontologyportal/Calendar",
+        "https://github.com/ontologyportal/SigmaRest",
+        "https://github.com/ontologyportal/SigmaUtils",
+        "https://github.com/ontologyportal/SUMOjEdit",
+        "https://github.com/ontologyportal/JavaRes",
+        "https://github.com/ontologyportal/TPTP-ANTLR",
+        "https://github.com/ontologyportal/semconcor"
     ]
 }
 

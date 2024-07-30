@@ -1,0 +1,1426 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "name": "Decentralization",
+      "description": "Choose recent project tell impact.",
+      "type": "property"
+    },
+    {
+      "id": 2,
+      "name": "Transparency",
+      "description": "Particularly guy shake ten decision imagine.",
+      "type": "property"
+    },
+    {
+      "id": 3,
+      "name": "Immutability",
+      "description": "Yeah officer station present attention story last year.",
+      "type": "property"
+    },
+    {
+      "id": 4,
+      "name": "Security",
+      "description": "Fall much serious assume one kitchen.",
+      "type": "property"
+    },
+    {
+      "id": 5,
+      "name": "Consensus",
+      "description": "During ground billion box.",
+      "type": "property"
+    },
+    {
+      "id": 6,
+      "name": "Cryptography",
+      "description": "Expect letter must.",
+      "type": "property"
+    },
+    {
+      "id": 7,
+      "name": "Scalability",
+      "description": "Arm left other choose pattern.",
+      "type": "property"
+    },
+    {
+      "id": 8,
+      "name": "Interoperability",
+      "description": "Outside begin group interest citizen.",
+      "type": "property"
+    },
+    {
+      "id": 9,
+      "name": "Privacy",
+      "description": "Bill everyone she likely into administration.",
+      "type": "property"
+    },
+    {
+      "id": 10,
+      "name": "Smart Contract Functionality",
+      "description": "Opportunity throughout it office floor particular response.",
+      "type": "property"
+    },
+    {
+      "id": 11,
+      "name": "Energy Efficiency",
+      "description": "Voice third represent sing or share free.",
+      "type": "property"
+    },
+    {
+      "id": 12,
+      "name": "Transaction Speed",
+      "description": "Goal our order election.",
+      "type": "property"
+    },
+    {
+      "id": 13,
+      "name": "Governance",
+      "description": "Big the trouble movie act might.",
+      "type": "property"
+    },
+    {
+      "id": 14,
+      "name": "Tokenization",
+      "description": "Clear best specific dream school leave worker.",
+      "type": "property"
+    },
+    {
+      "id": 15,
+      "name": "Auditability",
+      "description": "Fund might day security produce good card.",
+      "type": "property"
+    },
+    {
+      "id": 16,
+      "name": "Fault Tolerance",
+      "description": "Employee position even edge those board.",
+      "type": "property"
+    },
+    {
+      "id": 17,
+      "name": "Anonymity",
+      "description": "Himself image education.",
+      "type": "property"
+    },
+    {
+      "id": 18,
+      "name": "Programmability",
+      "description": "Hair oil large house center a option.",
+      "type": "property"
+    },
+    {
+      "id": 19,
+      "name": "Finality",
+      "description": "Here west treat raise or yard.",
+      "type": "property"
+    },
+    {
+      "id": 20,
+      "name": "Determinism",
+      "description": "Reflect middle identify item.",
+      "type": "property"
+    },
+    {
+      "id": 21,
+      "name": "Latency",
+      "description": "Reality option lead politics world whether.",
+      "type": "property"
+    },
+    {
+      "id": 22,
+      "name": "Throughput",
+      "description": "Amount hair foot economy least media under.",
+      "type": "property"
+    },
+    {
+      "id": 23,
+      "name": "Network Effect",
+      "description": "Difference along series kind.",
+      "type": "property"
+    },
+    {
+      "id": 24,
+      "name": "Incentive Mechanism",
+      "description": "Case above everybody whether.",
+      "type": "property"
+    },
+    {
+      "id": 25,
+      "name": "Adaptability",
+      "description": "Sit cultural together four.",
+      "type": "property"
+    },
+    {
+      "id": 26,
+      "name": "Compliance",
+      "description": "Money water someone spring.",
+      "type": "property"
+    },
+    {
+      "id": 27,
+      "name": "Upgradability",
+      "description": "Difference lay artist resource.",
+      "type": "property"
+    },
+    {
+      "id": 28,
+      "name": "Quantum Resistance",
+      "description": "They himself pretty anything news.",
+      "type": "property"
+    },
+    {
+      "id": 29,
+      "name": "Cross-Chain Communication",
+      "description": "Where purpose by budget phone.",
+      "type": "property"
+    },
+    {
+      "id": 30,
+      "name": "Data Integrity",
+      "description": "Answer peace financial attention test since nothing.",
+      "type": "property"
+    },
+    {
+      "id": 31,
+      "name": "Accessibility",
+      "description": "Event and often could writer sing meet.",
+      "type": "property"
+    },
+    {
+      "id": 32,
+      "name": "Usability",
+      "description": "Medical allow suffer financial sea drop.",
+      "type": "property"
+    },
+    {
+      "id": 33,
+      "name": "Reversibility",
+      "description": "Special together fear claim plant final.",
+      "type": "property"
+    },
+    {
+      "id": 34,
+      "name": "Sustainability",
+      "description": "Major manager herself result push choice.",
+      "type": "property"
+    },
+    {
+      "id": 35,
+      "name": "Resilience",
+      "description": "Deep where although situation together state people.",
+      "type": "property"
+    },
+    {
+      "id": 36,
+      "name": "Composability",
+      "description": "Hit form top grow offer culture.",
+      "type": "property"
+    },
+    {
+      "id": 37,
+      "name": "Liquidity",
+      "description": "Positive everyone sport foreign their order.",
+      "type": "property"
+    },
+    {
+      "id": 38,
+      "name": "Atomicity",
+      "description": "Investment many area.",
+      "type": "property"
+    },
+    {
+      "id": 39,
+      "name": "Consistency",
+      "description": "Leader upon spend draw author.",
+      "type": "property"
+    },
+    {
+      "id": 40,
+      "name": "Isolation",
+      "description": "Least from add entire stock.",
+      "type": "property"
+    },
+    {
+      "id": 41,
+      "name": "Durability",
+      "description": "Good should job help.",
+      "type": "property"
+    },
+    {
+      "id": 42,
+      "name": "Sharding",
+      "description": "Also chair guy.",
+      "type": "property"
+    },
+    {
+      "id": 43,
+      "name": "Staking",
+      "description": "Paper second image outside resource assume.",
+      "type": "property"
+    },
+    {
+      "id": 44,
+      "name": "Mining Efficiency",
+      "description": "Program present my fact throw position.",
+      "type": "property"
+    },
+    {
+      "id": 45,
+      "name": "Forking Resistance",
+      "description": "Discuss keep affect interview.",
+      "type": "property"
+    },
+    {
+      "id": 46,
+      "name": "Censorship Resistance",
+      "description": "Government analysis them social decade.",
+      "type": "property"
+    },
+    {
+      "id": 47,
+      "name": "Permissionless Nature",
+      "description": "Wish nation option begin whatever employee hold even.",
+      "type": "property"
+    },
+    {
+      "id": 48,
+      "name": "Trustlessness",
+      "description": "Kid economy simply speech.",
+      "type": "property"
+    },
+    {
+      "id": 49,
+      "name": "Verifiability",
+      "description": "You defense professional prepare power send able.",
+      "type": "property"
+    },
+    {
+      "id": 50,
+      "name": "Portability",
+      "description": "Consumer collection could partner.",
+      "type": "property"
+    },
+    {
+      "id": 51,
+      "name": "Transaction Validation",
+      "description": "Kid behavior none bad mother necessary.",
+      "type": "process"
+    },
+    {
+      "id": 52,
+      "name": "Block Creation",
+      "description": "Investment organization even that daughter.",
+      "type": "process"
+    },
+    {
+      "id": 53,
+      "name": "Consensus Mechanism",
+      "description": "Candidate look whole speech.",
+      "type": "process"
+    },
+    {
+      "id": 54,
+      "name": "Mining",
+      "description": "Congress should image role hotel.",
+      "type": "process"
+    },
+    {
+      "id": 55,
+      "name": "Staking",
+      "description": "Performance structure dream sometimes.",
+      "type": "process"
+    },
+    {
+      "id": 56,
+      "name": "Smart Contract Execution",
+      "description": "Reach report yes police.",
+      "type": "process"
+    },
+    {
+      "id": 57,
+      "name": "Wallet Management",
+      "description": "Why phone entire until above area.",
+      "type": "process"
+    },
+    {
+      "id": 58,
+      "name": "Key Generation",
+      "description": "Put to watch interview edge position.",
+      "type": "process"
+    },
+    {
+      "id": 59,
+      "name": "Signature Verification",
+      "description": "Gas edge road travel others bag everything training.",
+      "type": "process"
+    },
+    {
+      "id": 60,
+      "name": "Hashing",
+      "description": "Group not fill stay hot admit business picture.",
+      "type": "process"
+    },
+    {
+      "id": 61,
+      "name": "Node Synchronization",
+      "description": "Claim eye oil office.",
+      "type": "process"
+    },
+    {
+      "id": 62,
+      "name": "Network Propagation",
+      "description": "Account structure woman indicate character.",
+      "type": "process"
+    },
+    {
+      "id": 63,
+      "name": "Fork Resolution",
+      "description": "Campaign great customer thank for school look.",
+      "type": "process"
+    },
+    {
+      "id": 64,
+      "name": "Chain Reorganization",
+      "description": "Rise painting catch.",
+      "type": "process"
+    },
+    {
+      "id": 65,
+      "name": "Merkle Tree Construction",
+      "description": "Great before direction pass.",
+      "type": "process"
+    },
+    {
+      "id": 66,
+      "name": "Address Generation",
+      "description": "American data effect.",
+      "type": "process"
+    },
+    {
+      "id": 67,
+      "name": "Token Minting",
+      "description": "Piece happen take military become probably.",
+      "type": "process"
+    },
+    {
+      "id": 68,
+      "name": "Token Burning",
+      "description": "Course deal data system effort charge.",
+      "type": "process"
+    },
+    {
+      "id": 69,
+      "name": "Gas Fee Calculation",
+      "description": "Hit owner blue seem religious city.",
+      "type": "process"
+    },
+    {
+      "id": 70,
+      "name": "State Transition",
+      "description": "Artist sister myself including method tend.",
+      "type": "process"
+    },
+    {
+      "id": 71,
+      "name": "Sharding",
+      "description": "View wind record woman herself agreement.",
+      "type": "process"
+    },
+    {
+      "id": 72,
+      "name": "Layer 2 Scaling",
+      "description": "Increase sort born certain effort left million probably.",
+      "type": "process"
+    },
+    {
+      "id": 73,
+      "name": "Cross-Chain Transfer",
+      "description": "Report value enjoy.",
+      "type": "process"
+    },
+    {
+      "id": 74,
+      "name": "Atomic Swap",
+      "description": "Write surface modern edge figure history if raise.",
+      "type": "process"
+    },
+    {
+      "id": 75,
+      "name": "Governance Voting",
+      "description": "Similar seven company.",
+      "type": "process"
+    },
+    {
+      "id": 76,
+      "name": "Oracle Data Feeding",
+      "description": "Turn reveal think over story.",
+      "type": "process"
+    },
+    {
+      "id": 77,
+      "name": "Identity Verification",
+      "description": "Shake design expert resource.",
+      "type": "process"
+    },
+    {
+      "id": 78,
+      "name": "Tokenization",
+      "description": "Perhaps citizen address likely.",
+      "type": "process"
+    },
+    {
+      "id": 79,
+      "name": "Initial Coin Offering",
+      "description": "Decade history know note need sort training.",
+      "type": "process"
+    },
+    {
+      "id": 80,
+      "name": "Airdrop",
+      "description": "Fill create even need tree hundred.",
+      "type": "process"
+    },
+    {
+      "id": 81,
+      "name": "Yield Farming",
+      "description": "Say local report.",
+      "type": "process"
+    },
+    {
+      "id": 82,
+      "name": "Liquidity Provision",
+      "description": "Put people off scientist sometimes bit why.",
+      "type": "process"
+    },
+    {
+      "id": 83,
+      "name": "Decentralized Exchange",
+      "description": "Body last charge white.",
+      "type": "process"
+    },
+    {
+      "id": 84,
+      "name": "Lending and Borrowing",
+      "description": "Drop bank air hundred take.",
+      "type": "process"
+    },
+    {
+      "id": 85,
+      "name": "Insurance Claim Processing",
+      "description": "Significant could country local word resource guy.",
+      "type": "process"
+    },
+    {
+      "id": 86,
+      "name": "Non-Fungible Token (NFT) Creation",
+      "description": "Old beautiful parent technology popular health pick.",
+      "type": "process"
+    },
+    {
+      "id": 87,
+      "name": "Decentralized Autonomous Organization (DAO) Operation",
+      "description": "Affect science woman certain.",
+      "type": "process"
+    },
+    {
+      "id": 88,
+      "name": "Stablecoin Pegging",
+      "description": "Family seven pretty determine item everybody bad.",
+      "type": "process"
+    },
+    {
+      "id": 89,
+      "name": "Privacy Preservation",
+      "description": "Argue test trip certainly.",
+      "type": "process"
+    },
+    {
+      "id": 90,
+      "name": "Zero-Knowledge Proof Generation",
+      "description": "Fine discover if new.",
+      "type": "process"
+    },
+    {
+      "id": 91,
+      "name": "Sidechain Operation",
+      "description": "Last executive enough expert.",
+      "type": "process"
+    },
+    {
+      "id": 92,
+      "name": "Interoperability Protocol",
+      "description": "Miss thousand thank effect teacher voice house.",
+      "type": "process"
+    },
+    {
+      "id": 93,
+      "name": "Blockchain Indexing",
+      "description": "Shake care score opportunity leave may near protect.",
+      "type": "process"
+    },
+    {
+      "id": 94,
+      "name": "Block Explorer Operation",
+      "description": "Car foot training artist doctor nothing source.",
+      "type": "process"
+    },
+    {
+      "id": 95,
+      "name": "Hard Fork Implementation",
+      "description": "Answer theory world author will also someone clearly.",
+      "type": "process"
+    },
+    {
+      "id": 96,
+      "name": "Soft Fork Implementation",
+      "description": "Else culture society prepare explain.",
+      "type": "process"
+    },
+    {
+      "id": 97,
+      "name": "Node Discovery",
+      "description": "Detail environment remember none business possible.",
+      "type": "process"
+    },
+    {
+      "id": 98,
+      "name": "Peer-to-Peer Communication",
+      "description": "Wear political finish arrive play family lead.",
+      "type": "process"
+    },
+    {
+      "id": 99,
+      "name": "Mempool Management",
+      "description": "Indicate everybody expert statement language product difficult.",
+      "type": "process"
+    },
+    {
+      "id": 100,
+      "name": "Chain Analysis",
+      "description": "Operation wife ask family manage either.",
+      "type": "process"
+    },
+    {
+      "id": 101,
+      "name": "Developer",
+      "description": "Child finish garden firm today pretty.",
+      "type": "perspective"
+    },
+    {
+      "id": 102,
+      "name": "Miner",
+      "description": "Learn model simple assume.",
+      "type": "perspective"
+    },
+    {
+      "id": 103,
+      "name": "Node Operator",
+      "description": "Town anything white drop.",
+      "type": "perspective"
+    },
+    {
+      "id": 104,
+      "name": "Token Holder",
+      "description": "Director wide billion.",
+      "type": "perspective"
+    },
+    {
+      "id": 105,
+      "name": "Smart Contract Auditor",
+      "description": "Indicate firm own yard program stage.",
+      "type": "perspective"
+    },
+    {
+      "id": 106,
+      "name": "Regulator",
+      "description": "Issue once team story color lay produce.",
+      "type": "perspective"
+    },
+    {
+      "id": 107,
+      "name": "Investor",
+      "description": "Note from though ago put type theory economic.",
+      "type": "perspective"
+    },
+    {
+      "id": 108,
+      "name": "Exchange Operator",
+      "description": "Measure development home someone front.",
+      "type": "perspective"
+    },
+    {
+      "id": 109,
+      "name": "Blockchain Analyst",
+      "description": "Win director also car.",
+      "type": "perspective"
+    },
+    {
+      "id": 110,
+      "name": "Cryptographer",
+      "description": "Organization how fire between.",
+      "type": "perspective"
+    },
+    {
+      "id": 111,
+      "name": "Economist",
+      "description": "Almost country grow throw my.",
+      "type": "perspective"
+    },
+    {
+      "id": 112,
+      "name": "Legal Expert",
+      "description": "Stage star ability exist.",
+      "type": "perspective"
+    },
+    {
+      "id": 113,
+      "name": "Privacy Advocate",
+      "description": "Unit game especially our relationship.",
+      "type": "perspective"
+    },
+    {
+      "id": 114,
+      "name": "Security Researcher",
+      "description": "Toward game someone success audience.",
+      "type": "perspective"
+    },
+    {
+      "id": 115,
+      "name": "User Experience Designer",
+      "description": "For condition ball prove but sport.",
+      "type": "perspective"
+    },
+    {
+      "id": 116,
+      "name": "Enterprise Adopter",
+      "description": "Into although science turn red close.",
+      "type": "perspective"
+    },
+    {
+      "id": 117,
+      "name": "Central Bank",
+      "description": "Not big family.",
+      "type": "perspective"
+    },
+    {
+      "id": 118,
+      "name": "Decentralized Finance (DeFi) User",
+      "description": "Interview claim company.",
+      "type": "perspective"
+    },
+    {
+      "id": 119,
+      "name": "NFT Artist",
+      "description": "Benefit determine seem forget before should.",
+      "type": "perspective"
+    },
+    {
+      "id": 120,
+      "name": "Governance Participant",
+      "description": "Rather such join girl water score tough.",
+      "type": "perspective"
+    }
+  ],
+  "relationships": [
+    {
+      "id": 1,
+      "property_id": 34,
+      "process_id": 63,
+      "perspective_id": 111,
+      "strength": 0.0751
+    },
+    {
+      "id": 2,
+      "property_id": 49,
+      "process_id": 70,
+      "perspective_id": 112,
+      "strength": 0.794
+    },
+    {
+      "id": 3,
+      "property_id": 25,
+      "process_id": 89,
+      "perspective_id": null,
+      "strength": 0.3967
+    },
+    {
+      "id": 4,
+      "property_id": 5,
+      "process_id": 74,
+      "perspective_id": 102,
+      "strength": 0.4234
+    },
+    {
+      "id": 5,
+      "property_id": 43,
+      "process_id": 78,
+      "perspective_id": null,
+      "strength": 0.3315
+    },
+    {
+      "id": 6,
+      "property_id": 8,
+      "process_id": 100,
+      "perspective_id": 101,
+      "strength": 0.8502
+    },
+    {
+      "id": 7,
+      "property_id": 20,
+      "process_id": 73,
+      "perspective_id": 109,
+      "strength": 0.5539
+    },
+    {
+      "id": 8,
+      "property_id": 34,
+      "process_id": 63,
+      "perspective_id": 107,
+      "strength": 0.4502
+    },
+    {
+      "id": 9,
+      "property_id": 19,
+      "process_id": 98,
+      "perspective_id": 108,
+      "strength": 0.0625
+    },
+    {
+      "id": 10,
+      "property_id": 3,
+      "process_id": 94,
+      "perspective_id": 115,
+      "strength": 0.033
+    },
+    {
+      "id": 11,
+      "property_id": 2,
+      "process_id": 57,
+      "perspective_id": null,
+      "strength": 0.1286
+    },
+    {
+      "id": 12,
+      "property_id": 21,
+      "process_id": 82,
+      "perspective_id": 101,
+      "strength": 0.0633
+    },
+    {
+      "id": 13,
+      "property_id": 8,
+      "process_id": 53,
+      "perspective_id": 109,
+      "strength": 0.5065
+    },
+    {
+      "id": 14,
+      "property_id": 17,
+      "process_id": 85,
+      "perspective_id": 103,
+      "strength": 0.4627
+    },
+    {
+      "id": 15,
+      "property_id": 20,
+      "process_id": 62,
+      "perspective_id": 114,
+      "strength": 0.1894
+    },
+    {
+      "id": 16,
+      "property_id": 19,
+      "process_id": 79,
+      "perspective_id": 104,
+      "strength": 0.4055
+    },
+    {
+      "id": 17,
+      "property_id": 26,
+      "process_id": 59,
+      "perspective_id": 113,
+      "strength": 0.5904
+    },
+    {
+      "id": 18,
+      "property_id": 15,
+      "process_id": 53,
+      "perspective_id": 101,
+      "strength": 0.3796
+    },
+    {
+      "id": 19,
+      "property_id": 24,
+      "process_id": 78,
+      "perspective_id": 104,
+      "strength": 0.9737
+    },
+    {
+      "id": 20,
+      "property_id": 41,
+      "process_id": 94,
+      "perspective_id": 103,
+      "strength": 0.6214
+    },
+    {
+      "id": 21,
+      "property_id": 38,
+      "process_id": 72,
+      "perspective_id": 107,
+      "strength": 0.5673
+    },
+    {
+      "id": 22,
+      "property_id": 26,
+      "process_id": 86,
+      "perspective_id": 120,
+      "strength": 0.002
+    },
+    {
+      "id": 23,
+      "property_id": 9,
+      "process_id": 96,
+      "perspective_id": 110,
+      "strength": 0.2179
+    },
+    {
+      "id": 24,
+      "property_id": 50,
+      "process_id": 77,
+      "perspective_id": 115,
+      "strength": 0.6463
+    },
+    {
+      "id": 25,
+      "property_id": 45,
+      "process_id": 88,
+      "perspective_id": 107,
+      "strength": 0.5153
+    },
+    {
+      "id": 26,
+      "property_id": 50,
+      "process_id": 93,
+      "perspective_id": 119,
+      "strength": 0.934
+    },
+    {
+      "id": 27,
+      "property_id": 2,
+      "process_id": 77,
+      "perspective_id": 117,
+      "strength": 0.6632
+    },
+    {
+      "id": 28,
+      "property_id": 26,
+      "process_id": 76,
+      "perspective_id": 102,
+      "strength": 0.2218
+    },
+    {
+      "id": 29,
+      "property_id": 4,
+      "process_id": 67,
+      "perspective_id": 106,
+      "strength": 0.3749
+    },
+    {
+      "id": 30,
+      "property_id": 16,
+      "process_id": 62,
+      "perspective_id": 109,
+      "strength": 0.0755
+    },
+    {
+      "id": 31,
+      "property_id": 12,
+      "process_id": 79,
+      "perspective_id": 118,
+      "strength": 0.3401
+    },
+    {
+      "id": 32,
+      "property_id": 31,
+      "process_id": 98,
+      "perspective_id": 113,
+      "strength": 0.0424
+    },
+    {
+      "id": 33,
+      "property_id": 16,
+      "process_id": 100,
+      "perspective_id": null,
+      "strength": 0.2315
+    },
+    {
+      "id": 34,
+      "property_id": 21,
+      "process_id": 64,
+      "perspective_id": 101,
+      "strength": 0.9388
+    },
+    {
+      "id": 35,
+      "property_id": 6,
+      "process_id": 87,
+      "perspective_id": 114,
+      "strength": 0.2965
+    },
+    {
+      "id": 36,
+      "property_id": 45,
+      "process_id": 77,
+      "perspective_id": 110,
+      "strength": 0.1412
+    },
+    {
+      "id": 37,
+      "property_id": 40,
+      "process_id": 53,
+      "perspective_id": 113,
+      "strength": 0.6909
+    },
+    {
+      "id": 38,
+      "property_id": 42,
+      "process_id": 79,
+      "perspective_id": 116,
+      "strength": 0.1621
+    },
+    {
+      "id": 39,
+      "property_id": 38,
+      "process_id": 59,
+      "perspective_id": 113,
+      "strength": 0.8243
+    },
+    {
+      "id": 40,
+      "property_id": 2,
+      "process_id": 79,
+      "perspective_id": 111,
+      "strength": 0.5822
+    },
+    {
+      "id": 41,
+      "property_id": 50,
+      "process_id": 56,
+      "perspective_id": 104,
+      "strength": 0.5356
+    },
+    {
+      "id": 42,
+      "property_id": 31,
+      "process_id": 84,
+      "perspective_id": null,
+      "strength": 0.7667
+    },
+    {
+      "id": 43,
+      "property_id": 30,
+      "process_id": 56,
+      "perspective_id": 106,
+      "strength": 0.6719
+    },
+    {
+      "id": 44,
+      "property_id": 26,
+      "process_id": 55,
+      "perspective_id": 116,
+      "strength": 0.3271
+    },
+    {
+      "id": 45,
+      "property_id": 49,
+      "process_id": 87,
+      "perspective_id": 101,
+      "strength": 0.249
+    },
+    {
+      "id": 46,
+      "property_id": 29,
+      "process_id": 78,
+      "perspective_id": 118,
+      "strength": 0.2105
+    },
+    {
+      "id": 47,
+      "property_id": 14,
+      "process_id": 70,
+      "perspective_id": 102,
+      "strength": 0.7475
+    },
+    {
+      "id": 48,
+      "property_id": 44,
+      "process_id": 96,
+      "perspective_id": 109,
+      "strength": 0.5152
+    },
+    {
+      "id": 49,
+      "property_id": 3,
+      "process_id": 90,
+      "perspective_id": 115,
+      "strength": 0.5228
+    },
+    {
+      "id": 50,
+      "property_id": 31,
+      "process_id": 73,
+      "perspective_id": null,
+      "strength": 0.6555
+    },
+    {
+      "id": 51,
+      "property_id": 42,
+      "process_id": 100,
+      "perspective_id": 115,
+      "strength": 0.0898
+    },
+    {
+      "id": 52,
+      "property_id": 49,
+      "process_id": 77,
+      "perspective_id": 118,
+      "strength": 0.1918
+    },
+    {
+      "id": 53,
+      "property_id": 15,
+      "process_id": 92,
+      "perspective_id": 105,
+      "strength": 0.4971
+    },
+    {
+      "id": 54,
+      "property_id": 38,
+      "process_id": 86,
+      "perspective_id": 102,
+      "strength": 0.9664
+    },
+    {
+      "id": 55,
+      "property_id": 27,
+      "process_id": 59,
+      "perspective_id": 115,
+      "strength": 0.5118
+    },
+    {
+      "id": 56,
+      "property_id": 17,
+      "process_id": 53,
+      "perspective_id": 113,
+      "strength": 0.3923
+    },
+    {
+      "id": 57,
+      "property_id": 4,
+      "process_id": null,
+      "perspective_id": 113,
+      "strength": 0.0782
+    },
+    {
+      "id": 58,
+      "property_id": 47,
+      "process_id": 97,
+      "perspective_id": 106,
+      "strength": 0.8386
+    },
+    {
+      "id": 59,
+      "property_id": 8,
+      "process_id": 75,
+      "perspective_id": 111,
+      "strength": 0.0506
+    },
+    {
+      "id": 60,
+      "property_id": 18,
+      "process_id": 64,
+      "perspective_id": 102,
+      "strength": 0.0794
+    },
+    {
+      "id": 61,
+      "property_id": 8,
+      "process_id": 92,
+      "perspective_id": 103,
+      "strength": 0.6801
+    },
+    {
+      "id": 62,
+      "property_id": 49,
+      "process_id": 94,
+      "perspective_id": 115,
+      "strength": 0.7083
+    },
+    {
+      "id": 63,
+      "property_id": 47,
+      "process_id": 74,
+      "perspective_id": 116,
+      "strength": 0.4598
+    },
+    {
+      "id": 64,
+      "property_id": 33,
+      "process_id": 90,
+      "perspective_id": 111,
+      "strength": 0.4422
+    },
+    {
+      "id": 65,
+      "property_id": 45,
+      "process_id": 61,
+      "perspective_id": 120,
+      "strength": 0.7727
+    },
+    {
+      "id": 66,
+      "property_id": 12,
+      "process_id": 90,
+      "perspective_id": 102,
+      "strength": 0.3451
+    },
+    {
+      "id": 67,
+      "property_id": 7,
+      "process_id": 81,
+      "perspective_id": 117,
+      "strength": 0.0915
+    },
+    {
+      "id": 68,
+      "property_id": 21,
+      "process_id": 77,
+      "perspective_id": 117,
+      "strength": 0.2201
+    },
+    {
+      "id": 69,
+      "property_id": 19,
+      "process_id": 82,
+      "perspective_id": 112,
+      "strength": 0.4531
+    },
+    {
+      "id": 70,
+      "property_id": 44,
+      "process_id": 98,
+      "perspective_id": 106,
+      "strength": 0.0125
+    },
+    {
+      "id": 71,
+      "property_id": 27,
+      "process_id": 54,
+      "perspective_id": 102,
+      "strength": 0.4675
+    },
+    {
+      "id": 72,
+      "property_id": 7,
+      "process_id": 62,
+      "perspective_id": 116,
+      "strength": 0.9735
+    },
+    {
+      "id": 73,
+      "property_id": 48,
+      "process_id": 92,
+      "perspective_id": 120,
+      "strength": 0.4028
+    },
+    {
+      "id": 74,
+      "property_id": 7,
+      "process_id": 51,
+      "perspective_id": 101,
+      "strength": 0.1951
+    },
+    {
+      "id": 75,
+      "property_id": 50,
+      "process_id": 58,
+      "perspective_id": 116,
+      "strength": 0.4786
+    },
+    {
+      "id": 76,
+      "property_id": 42,
+      "process_id": 85,
+      "perspective_id": 107,
+      "strength": 0.7229
+    },
+    {
+      "id": 77,
+      "property_id": 49,
+      "process_id": 65,
+      "perspective_id": 108,
+      "strength": 0.1378
+    },
+    {
+      "id": 78,
+      "property_id": 17,
+      "process_id": 95,
+      "perspective_id": null,
+      "strength": 0.4842
+    },
+    {
+      "id": 79,
+      "property_id": 49,
+      "process_id": 83,
+      "perspective_id": 102,
+      "strength": 0.8258
+    },
+    {
+      "id": 80,
+      "property_id": 11,
+      "process_id": 80,
+      "perspective_id": 113,
+      "strength": 0.7874
+    },
+    {
+      "id": 81,
+      "property_id": 9,
+      "process_id": 66,
+      "perspective_id": null,
+      "strength": 0.1259
+    },
+    {
+      "id": 82,
+      "property_id": 49,
+      "process_id": 51,
+      "perspective_id": 117,
+      "strength": 0.2235
+    },
+    {
+      "id": 83,
+      "property_id": 24,
+      "process_id": 64,
+      "perspective_id": 109,
+      "strength": 0.6633
+    },
+    {
+      "id": 84,
+      "property_id": 45,
+      "process_id": 78,
+      "perspective_id": 102,
+      "strength": 0.5823
+    },
+    {
+      "id": 85,
+      "property_id": 50,
+      "process_id": 78,
+      "perspective_id": 109,
+      "strength": 0.7279
+    },
+    {
+      "id": 86,
+      "property_id": 38,
+      "process_id": 96,
+      "perspective_id": 109,
+      "strength": 0.1269
+    },
+    {
+      "id": 87,
+      "property_id": 41,
+      "process_id": 83,
+      "perspective_id": 101,
+      "strength": 0.3485
+    },
+    {
+      "id": 88,
+      "property_id": 18,
+      "process_id": 82,
+      "perspective_id": 118,
+      "strength": 0.1224
+    },
+    {
+      "id": 89,
+      "property_id": 28,
+      "process_id": 77,
+      "perspective_id": 119,
+      "strength": 0.654
+    },
+    {
+      "id": 90,
+      "property_id": 4,
+      "process_id": 74,
+      "perspective_id": 116,
+      "strength": 0.1204
+    },
+    {
+      "id": 91,
+      "property_id": 40,
+      "process_id": 67,
+      "perspective_id": 112,
+      "strength": 0.9117
+    },
+    {
+      "id": 92,
+      "property_id": 7,
+      "process_id": 75,
+      "perspective_id": null,
+      "strength": 0.3964
+    },
+    {
+      "id": 93,
+      "property_id": 31,
+      "process_id": 88,
+      "perspective_id": 107,
+      "strength": 0.4475
+    },
+    {
+      "id": 94,
+      "property_id": 47,
+      "process_id": 65,
+      "perspective_id": 120,
+      "strength": 0.6445
+    },
+    {
+      "id": 95,
+      "property_id": 4,
+      "process_id": 70,
+      "perspective_id": 111,
+      "strength": 0.9161
+    },
+    {
+      "id": 96,
+      "property_id": 27,
+      "process_id": 83,
+      "perspective_id": null,
+      "strength": 0.2929
+    },
+    {
+      "id": 97,
+      "property_id": 18,
+      "process_id": 71,
+      "perspective_id": 113,
+      "strength": 0.5695
+    },
+    {
+      "id": 98,
+      "property_id": 13,
+      "process_id": 85,
+      "perspective_id": 114,
+      "strength": 0.2001
+    },
+    {
+      "id": 99,
+      "property_id": 2,
+      "process_id": 85,
+      "perspective_id": 109,
+      "strength": 0.7635
+    },
+    {
+      "id": 100,
+      "property_id": 12,
+      "process_id": 62,
+      "perspective_id": 110,
+      "strength": 0.8316
+    }
+  ]
+}

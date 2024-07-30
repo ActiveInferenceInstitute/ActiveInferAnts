@@ -1,0 +1,1036 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "name": "Intelligence Gathering",
+      "description": "Enter newspaper tough war past.",
+      "type": "property"
+    },
+    {
+      "id": 2,
+      "name": "Threat Assessment",
+      "description": "Relationship magazine cultural include party base teacher any.",
+      "type": "property"
+    },
+    {
+      "id": 3,
+      "name": "Border Security",
+      "description": "Whose through year with several phone example couple.",
+      "type": "property"
+    },
+    {
+      "id": 4,
+      "name": "Cybersecurity",
+      "description": "Ahead city home mission agency fire near.",
+      "type": "property"
+    },
+    {
+      "id": 5,
+      "name": "Counter-terrorism",
+      "description": "Teach teacher perhaps road beautiful.",
+      "type": "property"
+    },
+    {
+      "id": 6,
+      "name": "Military Readiness",
+      "description": "Democrat individual south experience according poor.",
+      "type": "property"
+    },
+    {
+      "id": 7,
+      "name": "Diplomatic Relations",
+      "description": "Base hard development.",
+      "type": "property"
+    },
+    {
+      "id": 8,
+      "name": "Economic Security",
+      "description": "Skin cut while three message interesting nothing.",
+      "type": "property"
+    },
+    {
+      "id": 9,
+      "name": "Critical Infrastructure Protection",
+      "description": "Receive style sound fear south live treatment.",
+      "type": "property"
+    },
+    {
+      "id": 10,
+      "name": "Emergency Response",
+      "description": "Through huge return smile begin unit detail.",
+      "type": "property"
+    },
+    {
+      "id": 11,
+      "name": "Nuclear Deterrence",
+      "description": "Half government begin plan.",
+      "type": "property"
+    },
+    {
+      "id": 12,
+      "name": "Biosecurity",
+      "description": "Spring listen seat memory.",
+      "type": "property"
+    },
+    {
+      "id": 13,
+      "name": "Information Warfare",
+      "description": "Onto these deal sure project trial wrong.",
+      "type": "property"
+    },
+    {
+      "id": 14,
+      "name": "Surveillance Capabilities",
+      "description": "Head member condition find onto use.",
+      "type": "property"
+    },
+    {
+      "id": 15,
+      "name": "Alliance Management",
+      "description": "Employee source example food radio.",
+      "type": "property"
+    },
+    {
+      "id": 16,
+      "name": "Weapons Control",
+      "description": "East court about month detail enough particular.",
+      "type": "property"
+    },
+    {
+      "id": 17,
+      "name": "Counterintelligence",
+      "description": "Detail million letter drug about born.",
+      "type": "property"
+    },
+    {
+      "id": 18,
+      "name": "Homeland Defense",
+      "description": "More thought world level success discover.",
+      "type": "property"
+    },
+    {
+      "id": 19,
+      "name": "Maritime Security",
+      "description": "Ever friend very peace discussion section our.",
+      "type": "property"
+    },
+    {
+      "id": 20,
+      "name": "Space Security",
+      "description": "Group score them.",
+      "type": "property"
+    },
+    {
+      "id": 21,
+      "name": "Intelligence Analysis",
+      "description": "When sort think call of sea fill already.",
+      "type": "process"
+    },
+    {
+      "id": 22,
+      "name": "Threat Monitoring",
+      "description": "Say hair where structure community.",
+      "type": "process"
+    },
+    {
+      "id": 23,
+      "name": "Border Patrol",
+      "description": "Out exactly including show part.",
+      "type": "process"
+    },
+    {
+      "id": 24,
+      "name": "Cyber Defense",
+      "description": "Meet toward the front.",
+      "type": "process"
+    },
+    {
+      "id": 25,
+      "name": "Counter-terrorism Operations",
+      "description": "Head care group either.",
+      "type": "process"
+    },
+    {
+      "id": 26,
+      "name": "Military Training",
+      "description": "Similar popular much claim activity into.",
+      "type": "process"
+    },
+    {
+      "id": 27,
+      "name": "Diplomatic Negotiations",
+      "description": "Need head hold certain make itself.",
+      "type": "process"
+    },
+    {
+      "id": 28,
+      "name": "Economic Sanctions",
+      "description": "But store run talk loss air physical close.",
+      "type": "process"
+    },
+    {
+      "id": 29,
+      "name": "Infrastructure Hardening",
+      "description": "Magazine camera line Congress.",
+      "type": "process"
+    },
+    {
+      "id": 30,
+      "name": "Crisis Management",
+      "description": "Environmental generation health pretty move four total structure.",
+      "type": "process"
+    },
+    {
+      "id": 31,
+      "name": "Nuclear Arms Control",
+      "description": "Plan ever would end.",
+      "type": "process"
+    },
+    {
+      "id": 32,
+      "name": "Biosurveillance",
+      "description": "Lay economic onto behind realize.",
+      "type": "process"
+    },
+    {
+      "id": 33,
+      "name": "Information Operations",
+      "description": "Once other behavior month.",
+      "type": "process"
+    },
+    {
+      "id": 34,
+      "name": "Surveillance Operations",
+      "description": "Born than phone must.",
+      "type": "process"
+    },
+    {
+      "id": 35,
+      "name": "Alliance Building",
+      "description": "Expert travel according really social various.",
+      "type": "process"
+    },
+    {
+      "id": 36,
+      "name": "Arms Control Verification",
+      "description": "Team spend before authority season.",
+      "type": "process"
+    },
+    {
+      "id": 37,
+      "name": "Counterintelligence Operations",
+      "description": "Institution well natural wonder ok.",
+      "type": "process"
+    },
+    {
+      "id": 38,
+      "name": "Homeland Security Coordination",
+      "description": "Too teach team wife security give party picture.",
+      "type": "process"
+    },
+    {
+      "id": 39,
+      "name": "Maritime Patrols",
+      "description": "Enjoy quality ask.",
+      "type": "process"
+    },
+    {
+      "id": 40,
+      "name": "Space Monitoring",
+      "description": "Especially opportunity could article.",
+      "type": "process"
+    },
+    {
+      "id": 41,
+      "name": "Intelligence Analyst",
+      "description": "Business probably quite theory message.",
+      "type": "perspective"
+    },
+    {
+      "id": 42,
+      "name": "Military Commander",
+      "description": "Matter major experience office baby marriage.",
+      "type": "perspective"
+    },
+    {
+      "id": 43,
+      "name": "Diplomat",
+      "description": "Moment role history or indicate.",
+      "type": "perspective"
+    },
+    {
+      "id": 44,
+      "name": "Cybersecurity Expert",
+      "description": "During news relate join pass difference space well.",
+      "type": "perspective"
+    },
+    {
+      "id": 45,
+      "name": "Counter-terrorism Specialist",
+      "description": "Military fly wind appear.",
+      "type": "perspective"
+    },
+    {
+      "id": 46,
+      "name": "Economic Advisor",
+      "description": "Mrs tax final because land each similar.",
+      "type": "perspective"
+    },
+    {
+      "id": 47,
+      "name": "Emergency Response Coordinator",
+      "description": "Example order another several reduce toward.",
+      "type": "perspective"
+    },
+    {
+      "id": 48,
+      "name": "Nuclear Strategist",
+      "description": "No old together career ask test choice.",
+      "type": "perspective"
+    },
+    {
+      "id": 49,
+      "name": "Biosecurity Researcher",
+      "description": "Approach new value guess per different professor.",
+      "type": "perspective"
+    },
+    {
+      "id": 50,
+      "name": "Information Warfare Specialist",
+      "description": "Candidate third special give.",
+      "type": "perspective"
+    },
+    {
+      "id": 51,
+      "name": "Surveillance Technician",
+      "description": "End so decide institution.",
+      "type": "perspective"
+    },
+    {
+      "id": 52,
+      "name": "Alliance Coordinator",
+      "description": "Full lead position risk where challenge.",
+      "type": "perspective"
+    },
+    {
+      "id": 53,
+      "name": "Arms Control Inspector",
+      "description": "Quality gas data system marriage our general.",
+      "type": "perspective"
+    },
+    {
+      "id": 54,
+      "name": "Homeland Security Officer",
+      "description": "Case majority really guy deal claim yes firm.",
+      "type": "perspective"
+    },
+    {
+      "id": 55,
+      "name": "Maritime Security Expert",
+      "description": "Air mother vote quickly government.",
+      "type": "perspective"
+    }
+  ],
+  "relationships": [
+    {
+      "id": 1,
+      "property_id": 7,
+      "process_id": 33,
+      "perspective_id": 55,
+      "strength": 0.5696
+    },
+    {
+      "id": 2,
+      "property_id": 19,
+      "process_id": 28,
+      "perspective_id": 45,
+      "strength": 0.0363
+    },
+    {
+      "id": 3,
+      "property_id": null,
+      "process_id": 21,
+      "perspective_id": 51,
+      "strength": 0.5809
+    },
+    {
+      "id": 4,
+      "property_id": 16,
+      "process_id": 36,
+      "perspective_id": 55,
+      "strength": 0.7072
+    },
+    {
+      "id": 5,
+      "property_id": 2,
+      "process_id": 24,
+      "perspective_id": 41,
+      "strength": 0.1874
+    },
+    {
+      "id": 6,
+      "property_id": 4,
+      "process_id": 21,
+      "perspective_id": 53,
+      "strength": 0.8824
+    },
+    {
+      "id": 7,
+      "property_id": 17,
+      "process_id": 28,
+      "perspective_id": 54,
+      "strength": 0.0949
+    },
+    {
+      "id": 8,
+      "property_id": 12,
+      "process_id": 33,
+      "perspective_id": 49,
+      "strength": 0.3356
+    },
+    {
+      "id": 9,
+      "property_id": 20,
+      "process_id": 30,
+      "perspective_id": null,
+      "strength": 0.1383
+    },
+    {
+      "id": 10,
+      "property_id": 8,
+      "process_id": 29,
+      "perspective_id": 47,
+      "strength": 0.2391
+    },
+    {
+      "id": 11,
+      "property_id": 8,
+      "process_id": 21,
+      "perspective_id": 44,
+      "strength": 0.6041
+    },
+    {
+      "id": 12,
+      "property_id": 16,
+      "process_id": 27,
+      "perspective_id": 53,
+      "strength": 0.6015
+    },
+    {
+      "id": 13,
+      "property_id": 11,
+      "process_id": 22,
+      "perspective_id": 52,
+      "strength": 0.5538
+    },
+    {
+      "id": 14,
+      "property_id": 14,
+      "process_id": 35,
+      "perspective_id": null,
+      "strength": 0.4307
+    },
+    {
+      "id": 15,
+      "property_id": 5,
+      "process_id": 35,
+      "perspective_id": 47,
+      "strength": 0.2351
+    },
+    {
+      "id": 16,
+      "property_id": 9,
+      "process_id": 29,
+      "perspective_id": 45,
+      "strength": 0.5637
+    },
+    {
+      "id": 17,
+      "property_id": null,
+      "process_id": 24,
+      "perspective_id": 49,
+      "strength": 0.186
+    },
+    {
+      "id": 18,
+      "property_id": 2,
+      "process_id": 23,
+      "perspective_id": 42,
+      "strength": 0.9703
+    },
+    {
+      "id": 19,
+      "property_id": 16,
+      "process_id": 34,
+      "perspective_id": 41,
+      "strength": 0.6572
+    },
+    {
+      "id": 20,
+      "property_id": 8,
+      "process_id": 40,
+      "perspective_id": 55,
+      "strength": 0.616
+    },
+    {
+      "id": 21,
+      "property_id": 11,
+      "process_id": 39,
+      "perspective_id": null,
+      "strength": 0.9773
+    },
+    {
+      "id": 22,
+      "property_id": 14,
+      "process_id": 38,
+      "perspective_id": 54,
+      "strength": 0.3611
+    },
+    {
+      "id": 23,
+      "property_id": 17,
+      "process_id": 35,
+      "perspective_id": 55,
+      "strength": 0.5993
+    },
+    {
+      "id": 24,
+      "property_id": null,
+      "process_id": 36,
+      "perspective_id": 51,
+      "strength": 0.0122
+    },
+    {
+      "id": 25,
+      "property_id": 8,
+      "process_id": 24,
+      "perspective_id": 55,
+      "strength": 0.7507
+    },
+    {
+      "id": 26,
+      "property_id": 12,
+      "process_id": 29,
+      "perspective_id": 52,
+      "strength": 0.2574
+    },
+    {
+      "id": 27,
+      "property_id": 19,
+      "process_id": 23,
+      "perspective_id": 43,
+      "strength": 0.5684
+    },
+    {
+      "id": 28,
+      "property_id": 2,
+      "process_id": 35,
+      "perspective_id": 42,
+      "strength": 0.9209
+    },
+    {
+      "id": 29,
+      "property_id": 17,
+      "process_id": 32,
+      "perspective_id": 44,
+      "strength": 0.9327
+    },
+    {
+      "id": 30,
+      "property_id": 3,
+      "process_id": 33,
+      "perspective_id": 51,
+      "strength": 0.4376
+    },
+    {
+      "id": 31,
+      "property_id": 14,
+      "process_id": 35,
+      "perspective_id": 51,
+      "strength": 0.368
+    },
+    {
+      "id": 32,
+      "property_id": 8,
+      "process_id": 24,
+      "perspective_id": 51,
+      "strength": 0.8977
+    },
+    {
+      "id": 33,
+      "property_id": 2,
+      "process_id": 21,
+      "perspective_id": 50,
+      "strength": 0.5496
+    },
+    {
+      "id": 34,
+      "property_id": 20,
+      "process_id": 30,
+      "perspective_id": 42,
+      "strength": 0.7293
+    },
+    {
+      "id": 35,
+      "property_id": 14,
+      "process_id": 23,
+      "perspective_id": 44,
+      "strength": 0.6301
+    },
+    {
+      "id": 36,
+      "property_id": 10,
+      "process_id": 36,
+      "perspective_id": 53,
+      "strength": 0.1147
+    },
+    {
+      "id": 37,
+      "property_id": null,
+      "process_id": 27,
+      "perspective_id": 50,
+      "strength": 0.0588
+    },
+    {
+      "id": 38,
+      "property_id": 12,
+      "process_id": 21,
+      "perspective_id": 50,
+      "strength": 0.8885
+    },
+    {
+      "id": 39,
+      "property_id": 20,
+      "process_id": 31,
+      "perspective_id": 55,
+      "strength": 0.3101
+    },
+    {
+      "id": 40,
+      "property_id": 4,
+      "process_id": 26,
+      "perspective_id": 49,
+      "strength": 0.3785
+    },
+    {
+      "id": 41,
+      "property_id": 18,
+      "process_id": 33,
+      "perspective_id": null,
+      "strength": 0.0211
+    },
+    {
+      "id": 42,
+      "property_id": 3,
+      "process_id": 23,
+      "perspective_id": 42,
+      "strength": 0.8067
+    },
+    {
+      "id": 43,
+      "property_id": 1,
+      "process_id": 26,
+      "perspective_id": 52,
+      "strength": 0.0606
+    },
+    {
+      "id": 44,
+      "property_id": 4,
+      "process_id": 34,
+      "perspective_id": null,
+      "strength": 0.2209
+    },
+    {
+      "id": 45,
+      "property_id": 8,
+      "process_id": 21,
+      "perspective_id": 43,
+      "strength": 0.4933
+    },
+    {
+      "id": 46,
+      "property_id": 13,
+      "process_id": 32,
+      "perspective_id": 50,
+      "strength": 0.847
+    },
+    {
+      "id": 47,
+      "property_id": 16,
+      "process_id": 25,
+      "perspective_id": 42,
+      "strength": 0.9614
+    },
+    {
+      "id": 48,
+      "property_id": 16,
+      "process_id": 23,
+      "perspective_id": 45,
+      "strength": 0.2573
+    },
+    {
+      "id": 49,
+      "property_id": 12,
+      "process_id": 40,
+      "perspective_id": null,
+      "strength": 0.3518
+    },
+    {
+      "id": 50,
+      "property_id": 1,
+      "process_id": 24,
+      "perspective_id": 47,
+      "strength": 0.3256
+    },
+    {
+      "id": 51,
+      "property_id": 19,
+      "process_id": 31,
+      "perspective_id": 46,
+      "strength": 0.902
+    },
+    {
+      "id": 52,
+      "property_id": 18,
+      "process_id": 39,
+      "perspective_id": 55,
+      "strength": 0.9622
+    },
+    {
+      "id": 53,
+      "property_id": 16,
+      "process_id": 21,
+      "perspective_id": 51,
+      "strength": 0.6608
+    },
+    {
+      "id": 54,
+      "property_id": 12,
+      "process_id": 32,
+      "perspective_id": 42,
+      "strength": 0.9666
+    },
+    {
+      "id": 55,
+      "property_id": 16,
+      "process_id": 22,
+      "perspective_id": 53,
+      "strength": 0.368
+    },
+    {
+      "id": 56,
+      "property_id": 7,
+      "process_id": null,
+      "perspective_id": null,
+      "strength": 0.0464
+    },
+    {
+      "id": 57,
+      "property_id": 18,
+      "process_id": 39,
+      "perspective_id": 44,
+      "strength": 0.0072
+    },
+    {
+      "id": 58,
+      "property_id": 1,
+      "process_id": 31,
+      "perspective_id": 50,
+      "strength": 0.7139
+    },
+    {
+      "id": 59,
+      "property_id": 7,
+      "process_id": 35,
+      "perspective_id": 48,
+      "strength": 0.2059
+    },
+    {
+      "id": 60,
+      "property_id": 2,
+      "process_id": 27,
+      "perspective_id": 55,
+      "strength": 0.2991
+    },
+    {
+      "id": 61,
+      "property_id": 16,
+      "process_id": 23,
+      "perspective_id": 41,
+      "strength": 0.204
+    },
+    {
+      "id": 62,
+      "property_id": 18,
+      "process_id": 30,
+      "perspective_id": 50,
+      "strength": 0.5001
+    },
+    {
+      "id": 63,
+      "property_id": 10,
+      "process_id": 21,
+      "perspective_id": 50,
+      "strength": 0.1641
+    },
+    {
+      "id": 64,
+      "property_id": 10,
+      "process_id": 24,
+      "perspective_id": 44,
+      "strength": 0.4406
+    },
+    {
+      "id": 65,
+      "property_id": 7,
+      "process_id": 40,
+      "perspective_id": 50,
+      "strength": 0.6429
+    },
+    {
+      "id": 66,
+      "property_id": 5,
+      "process_id": 24,
+      "perspective_id": 51,
+      "strength": 0.6847
+    },
+    {
+      "id": 67,
+      "property_id": 14,
+      "process_id": 24,
+      "perspective_id": null,
+      "strength": 0.1023
+    },
+    {
+      "id": 68,
+      "property_id": 20,
+      "process_id": null,
+      "perspective_id": 50,
+      "strength": 0.6499
+    },
+    {
+      "id": 69,
+      "property_id": 4,
+      "process_id": 34,
+      "perspective_id": 49,
+      "strength": 0.5647
+    },
+    {
+      "id": 70,
+      "property_id": 18,
+      "process_id": 23,
+      "perspective_id": 51,
+      "strength": 0.485
+    },
+    {
+      "id": 71,
+      "property_id": 15,
+      "process_id": 36,
+      "perspective_id": 49,
+      "strength": 0.2242
+    },
+    {
+      "id": 72,
+      "property_id": 2,
+      "process_id": 22,
+      "perspective_id": 50,
+      "strength": 0.736
+    },
+    {
+      "id": 73,
+      "property_id": 11,
+      "process_id": 27,
+      "perspective_id": 41,
+      "strength": 0.1963
+    },
+    {
+      "id": 74,
+      "property_id": 9,
+      "process_id": 40,
+      "perspective_id": 42,
+      "strength": 0.8319
+    },
+    {
+      "id": 75,
+      "property_id": 15,
+      "process_id": 39,
+      "perspective_id": 44,
+      "strength": 0.2997
+    },
+    {
+      "id": 76,
+      "property_id": 10,
+      "process_id": 23,
+      "perspective_id": 53,
+      "strength": 0.3797
+    },
+    {
+      "id": 77,
+      "property_id": 20,
+      "process_id": 30,
+      "perspective_id": 52,
+      "strength": 0.1635
+    },
+    {
+      "id": 78,
+      "property_id": 13,
+      "process_id": 35,
+      "perspective_id": 44,
+      "strength": 0.5688
+    },
+    {
+      "id": 79,
+      "property_id": 10,
+      "process_id": 32,
+      "perspective_id": 47,
+      "strength": 0.2679
+    },
+    {
+      "id": 80,
+      "property_id": 8,
+      "process_id": 40,
+      "perspective_id": 51,
+      "strength": 0.6672
+    },
+    {
+      "id": 81,
+      "property_id": 20,
+      "process_id": 26,
+      "perspective_id": 41,
+      "strength": 0.0321
+    },
+    {
+      "id": 82,
+      "property_id": 15,
+      "process_id": 38,
+      "perspective_id": 42,
+      "strength": 0.6914
+    },
+    {
+      "id": 83,
+      "property_id": 3,
+      "process_id": 29,
+      "perspective_id": 53,
+      "strength": 0.9421
+    },
+    {
+      "id": 84,
+      "property_id": 14,
+      "process_id": 39,
+      "perspective_id": 45,
+      "strength": 0.5999
+    },
+    {
+      "id": 85,
+      "property_id": 6,
+      "process_id": 35,
+      "perspective_id": 46,
+      "strength": 0.3903
+    },
+    {
+      "id": 86,
+      "property_id": 8,
+      "process_id": 29,
+      "perspective_id": 52,
+      "strength": 0.8548
+    },
+    {
+      "id": 87,
+      "property_id": 19,
+      "process_id": 39,
+      "perspective_id": 55,
+      "strength": 0.3068
+    },
+    {
+      "id": 88,
+      "property_id": 15,
+      "process_id": 25,
+      "perspective_id": null,
+      "strength": 0.3105
+    },
+    {
+      "id": 89,
+      "property_id": 3,
+      "process_id": 33,
+      "perspective_id": 50,
+      "strength": 0.2195
+    },
+    {
+      "id": 90,
+      "property_id": 11,
+      "process_id": 38,
+      "perspective_id": 42,
+      "strength": 0.1579
+    },
+    {
+      "id": 91,
+      "property_id": 8,
+      "process_id": 27,
+      "perspective_id": 46,
+      "strength": 0.72
+    },
+    {
+      "id": 92,
+      "property_id": 20,
+      "process_id": 36,
+      "perspective_id": 42,
+      "strength": 0.1475
+    },
+    {
+      "id": 93,
+      "property_id": 8,
+      "process_id": 25,
+      "perspective_id": 50,
+      "strength": 0.3193
+    },
+    {
+      "id": 94,
+      "property_id": 2,
+      "process_id": 28,
+      "perspective_id": 46,
+      "strength": 0.1388
+    },
+    {
+      "id": 95,
+      "property_id": 9,
+      "process_id": 26,
+      "perspective_id": 41,
+      "strength": 0.1236
+    },
+    {
+      "id": 96,
+      "property_id": 6,
+      "process_id": 32,
+      "perspective_id": 42,
+      "strength": 0.0608
+    },
+    {
+      "id": 97,
+      "property_id": 18,
+      "process_id": 34,
+      "perspective_id": 44,
+      "strength": 0.8536
+    },
+    {
+      "id": 98,
+      "property_id": 13,
+      "process_id": 21,
+      "perspective_id": null,
+      "strength": 0.9846
+    },
+    {
+      "id": 99,
+      "property_id": 3,
+      "process_id": 32,
+      "perspective_id": 55,
+      "strength": 0.2953
+    },
+    {
+      "id": 100,
+      "property_id": 15,
+      "process_id": 22,
+      "perspective_id": null,
+      "strength": 0.2405
+    }
+  ]
+}

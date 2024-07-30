@@ -1,0 +1,886 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "name": "ground",
+      "description": "Item born service century.",
+      "type": "property"
+    },
+    {
+      "id": 2,
+      "name": "may",
+      "description": "Model thought fish often personal least meeting.",
+      "type": "property"
+    },
+    {
+      "id": 3,
+      "name": "strong",
+      "description": "Gun director term their both her wish.",
+      "type": "property"
+    },
+    {
+      "id": 4,
+      "name": "meet",
+      "description": "Single sometimes soon.",
+      "type": "property"
+    },
+    {
+      "id": 5,
+      "name": "citizen",
+      "description": "Different hand senior call after possible.",
+      "type": "property"
+    },
+    {
+      "id": 6,
+      "name": "kid",
+      "description": "City agreement go artist answer throughout deal management.",
+      "type": "property"
+    },
+    {
+      "id": 7,
+      "name": "phone",
+      "description": "Establish school social country far course ok to.",
+      "type": "property"
+    },
+    {
+      "id": 8,
+      "name": "thought",
+      "description": "Store crime chair religious exactly agency.",
+      "type": "property"
+    },
+    {
+      "id": 9,
+      "name": "little",
+      "description": "Himself investment deep go bag space present either.",
+      "type": "property"
+    },
+    {
+      "id": 10,
+      "name": "certainly",
+      "description": "Field small never total including.",
+      "type": "property"
+    },
+    {
+      "id": 11,
+      "name": "experience",
+      "description": "Community theory show turn.",
+      "type": "process"
+    },
+    {
+      "id": 12,
+      "name": "family",
+      "description": "Son as take church machine believe million.",
+      "type": "process"
+    },
+    {
+      "id": 13,
+      "name": "west",
+      "description": "Consider class need.",
+      "type": "process"
+    },
+    {
+      "id": 14,
+      "name": "almost",
+      "description": "Pass myself eight place my garden newspaper usually.",
+      "type": "process"
+    },
+    {
+      "id": 15,
+      "name": "at",
+      "description": "Impact their begin high.",
+      "type": "process"
+    },
+    {
+      "id": 16,
+      "name": "none",
+      "description": "Election never book prevent this blood.",
+      "type": "process"
+    },
+    {
+      "id": 17,
+      "name": "recent",
+      "description": "Down face it money.",
+      "type": "process"
+    },
+    {
+      "id": 18,
+      "name": "section",
+      "description": "What sometimes find expect.",
+      "type": "process"
+    },
+    {
+      "id": 19,
+      "name": "really",
+      "description": "Support key feeling customer still few reveal image.",
+      "type": "process"
+    },
+    {
+      "id": 20,
+      "name": "pick",
+      "description": "Treat price charge any offer yourself.",
+      "type": "process"
+    },
+    {
+      "id": 21,
+      "name": "over",
+      "description": "Step key pattern.",
+      "type": "perspective"
+    },
+    {
+      "id": 22,
+      "name": "million",
+      "description": "Decide agreement education training address record low.",
+      "type": "perspective"
+    },
+    {
+      "id": 23,
+      "name": "land",
+      "description": "Since rule sometimes join along.",
+      "type": "perspective"
+    },
+    {
+      "id": 24,
+      "name": "fund",
+      "description": "Partner team meeting occur accept art perhaps finish.",
+      "type": "perspective"
+    },
+    {
+      "id": 25,
+      "name": "property",
+      "description": "Hold realize nor next almost with various.",
+      "type": "perspective"
+    },
+    {
+      "id": 26,
+      "name": "woman",
+      "description": "Air one sign black best maybe.",
+      "type": "perspective"
+    },
+    {
+      "id": 27,
+      "name": "new",
+      "description": "Far less back offer.",
+      "type": "perspective"
+    },
+    {
+      "id": 28,
+      "name": "couple",
+      "description": "Occur there her year.",
+      "type": "perspective"
+    },
+    {
+      "id": 29,
+      "name": "already",
+      "description": "Bit school room staff teach defense.",
+      "type": "perspective"
+    },
+    {
+      "id": 30,
+      "name": "wind",
+      "description": "Per man Democrat.",
+      "type": "perspective"
+    }
+  ],
+  "relationships": [
+    {
+      "id": 1,
+      "property_id": 9,
+      "process_id": 11,
+      "perspective_id": 23,
+      "strength": 0.5046104090326137
+    },
+    {
+      "id": 2,
+      "property_id": 7,
+      "process_id": 17,
+      "perspective_id": 29,
+      "strength": 0.9935977512312182
+    },
+    {
+      "id": 3,
+      "property_id": 1,
+      "process_id": 20,
+      "perspective_id": 26,
+      "strength": 0.3171697140512998
+    },
+    {
+      "id": 4,
+      "property_id": 5,
+      "process_id": 12,
+      "perspective_id": 25,
+      "strength": 0.9851041870746482
+    },
+    {
+      "id": 5,
+      "property_id": 9,
+      "process_id": 12,
+      "perspective_id": 26,
+      "strength": 0.9843907286131128
+    },
+    {
+      "id": 6,
+      "property_id": 10,
+      "process_id": 14,
+      "perspective_id": 30,
+      "strength": 0.7842779413723431
+    },
+    {
+      "id": 7,
+      "property_id": 3,
+      "process_id": 11,
+      "perspective_id": 27,
+      "strength": 0.8794899830544545
+    },
+    {
+      "id": 8,
+      "property_id": 6,
+      "process_id": 13,
+      "perspective_id": 30,
+      "strength": 0.5605641051587023
+    },
+    {
+      "id": 9,
+      "property_id": 4,
+      "process_id": 20,
+      "perspective_id": 23,
+      "strength": 0.3959129666597293
+    },
+    {
+      "id": 10,
+      "property_id": 4,
+      "process_id": 15,
+      "perspective_id": 21,
+      "strength": 0.5079413433352757
+    },
+    {
+      "id": 11,
+      "property_id": 6,
+      "process_id": 16,
+      "perspective_id": 25,
+      "strength": 0.8170056051148209
+    },
+    {
+      "id": 12,
+      "property_id": 6,
+      "process_id": 16,
+      "perspective_id": 30,
+      "strength": 0.6283696426460771
+    },
+    {
+      "id": 13,
+      "property_id": 9,
+      "process_id": 12,
+      "perspective_id": 24,
+      "strength": 0.7098564511542963
+    },
+    {
+      "id": 14,
+      "property_id": 3,
+      "process_id": 12,
+      "perspective_id": 23,
+      "strength": 0.1281405867472274
+    },
+    {
+      "id": 15,
+      "property_id": 1,
+      "process_id": 15,
+      "perspective_id": 22,
+      "strength": 0.6252722237213795
+    },
+    {
+      "id": 16,
+      "property_id": 5,
+      "process_id": 13,
+      "perspective_id": 26,
+      "strength": 0.3729353860682477
+    },
+    {
+      "id": 17,
+      "property_id": 3,
+      "process_id": 18,
+      "perspective_id": 25,
+      "strength": 0.666166771602754
+    },
+    {
+      "id": 18,
+      "property_id": 2,
+      "process_id": 19,
+      "perspective_id": 30,
+      "strength": 0.7500773340743929
+    },
+    {
+      "id": 19,
+      "property_id": 1,
+      "process_id": 19,
+      "perspective_id": 28,
+      "strength": 0.34764185751580257
+    },
+    {
+      "id": 20,
+      "property_id": 10,
+      "process_id": 14,
+      "perspective_id": 30,
+      "strength": 0.9728529193959858
+    },
+    {
+      "id": 21,
+      "property_id": 9,
+      "process_id": 15,
+      "perspective_id": 21,
+      "strength": 0.37409601035670126
+    },
+    {
+      "id": 22,
+      "property_id": 4,
+      "process_id": 19,
+      "perspective_id": 22,
+      "strength": 0.4262716913214435
+    },
+    {
+      "id": 23,
+      "property_id": 2,
+      "process_id": 16,
+      "perspective_id": 29,
+      "strength": 0.12249643364756468
+    },
+    {
+      "id": 24,
+      "property_id": 8,
+      "process_id": 13,
+      "perspective_id": 22,
+      "strength": 0.5211784982978453
+    },
+    {
+      "id": 25,
+      "property_id": 5,
+      "process_id": 19,
+      "perspective_id": 23,
+      "strength": 0.9917215532663145
+    },
+    {
+      "id": 26,
+      "property_id": 9,
+      "process_id": 13,
+      "perspective_id": 27,
+      "strength": 0.27415212195752403
+    },
+    {
+      "id": 27,
+      "property_id": 8,
+      "process_id": 16,
+      "perspective_id": 25,
+      "strength": 0.6403540885348146
+    },
+    {
+      "id": 28,
+      "property_id": 10,
+      "process_id": 19,
+      "perspective_id": 30,
+      "strength": 0.34502951192880815
+    },
+    {
+      "id": 29,
+      "property_id": 8,
+      "process_id": 17,
+      "perspective_id": 27,
+      "strength": 0.2393954704056196
+    },
+    {
+      "id": 30,
+      "property_id": 10,
+      "process_id": 19,
+      "perspective_id": 23,
+      "strength": 0.3561993691441755
+    },
+    {
+      "id": 31,
+      "property_id": 4,
+      "process_id": 19,
+      "perspective_id": 23,
+      "strength": 0.05594351666758324
+    },
+    {
+      "id": 32,
+      "property_id": 9,
+      "process_id": 17,
+      "perspective_id": 28,
+      "strength": 0.4326662641732725
+    },
+    {
+      "id": 33,
+      "property_id": 1,
+      "process_id": 11,
+      "perspective_id": 28,
+      "strength": 0.4059564686481708
+    },
+    {
+      "id": 34,
+      "property_id": 8,
+      "process_id": 20,
+      "perspective_id": 26,
+      "strength": 0.7978064752286355
+    },
+    {
+      "id": 35,
+      "property_id": 9,
+      "process_id": 16,
+      "perspective_id": 25,
+      "strength": 0.3958639513845721
+    },
+    {
+      "id": 36,
+      "property_id": 9,
+      "process_id": 15,
+      "perspective_id": 27,
+      "strength": 0.1005102648359052
+    },
+    {
+      "id": 37,
+      "property_id": 8,
+      "process_id": 11,
+      "perspective_id": 23,
+      "strength": 0.5480976225412606
+    },
+    {
+      "id": 38,
+      "property_id": 10,
+      "process_id": 16,
+      "perspective_id": 25,
+      "strength": 0.5804284387310102
+    },
+    {
+      "id": 39,
+      "property_id": 4,
+      "process_id": 14,
+      "perspective_id": 29,
+      "strength": 0.5994945306582451
+    },
+    {
+      "id": 40,
+      "property_id": 4,
+      "process_id": 20,
+      "perspective_id": 23,
+      "strength": 0.9316887868743327
+    },
+    {
+      "id": 41,
+      "property_id": 10,
+      "process_id": 16,
+      "perspective_id": 23,
+      "strength": 0.4354108877053128
+    },
+    {
+      "id": 42,
+      "property_id": 9,
+      "process_id": 19,
+      "perspective_id": 21,
+      "strength": 0.944075122480758
+    },
+    {
+      "id": 43,
+      "property_id": 3,
+      "process_id": 17,
+      "perspective_id": 23,
+      "strength": 0.2220593641435875
+    },
+    {
+      "id": 44,
+      "property_id": 7,
+      "process_id": 19,
+      "perspective_id": 30,
+      "strength": 0.4039800551388403
+    },
+    {
+      "id": 45,
+      "property_id": 2,
+      "process_id": 13,
+      "perspective_id": 21,
+      "strength": 0.2743122425489968
+    },
+    {
+      "id": 46,
+      "property_id": 2,
+      "process_id": 19,
+      "perspective_id": 28,
+      "strength": 0.7373173731785104
+    },
+    {
+      "id": 47,
+      "property_id": 5,
+      "process_id": 20,
+      "perspective_id": 30,
+      "strength": 0.3143028566155104
+    },
+    {
+      "id": 48,
+      "property_id": 4,
+      "process_id": 19,
+      "perspective_id": 29,
+      "strength": 0.4612995032713101
+    },
+    {
+      "id": 49,
+      "property_id": 6,
+      "process_id": 16,
+      "perspective_id": 28,
+      "strength": 0.4725534223322465
+    },
+    {
+      "id": 50,
+      "property_id": 3,
+      "process_id": 11,
+      "perspective_id": 24,
+      "strength": 0.04861997868652557
+    },
+    {
+      "id": 51,
+      "property_id": 8,
+      "process_id": 13,
+      "perspective_id": 23,
+      "strength": 0.8384496751379762
+    },
+    {
+      "id": 52,
+      "property_id": 9,
+      "process_id": 15,
+      "perspective_id": 28,
+      "strength": 0.43247958777590023
+    },
+    {
+      "id": 53,
+      "property_id": 8,
+      "process_id": 17,
+      "perspective_id": 26,
+      "strength": 0.8182367749868974
+    },
+    {
+      "id": 54,
+      "property_id": 3,
+      "process_id": 13,
+      "perspective_id": 24,
+      "strength": 0.899923791957262
+    },
+    {
+      "id": 55,
+      "property_id": 1,
+      "process_id": 11,
+      "perspective_id": 27,
+      "strength": 0.15699810318559826
+    },
+    {
+      "id": 56,
+      "property_id": 3,
+      "process_id": 14,
+      "perspective_id": 25,
+      "strength": 0.5981272130335341
+    },
+    {
+      "id": 57,
+      "property_id": 1,
+      "process_id": 13,
+      "perspective_id": 26,
+      "strength": 0.9026121027780938
+    },
+    {
+      "id": 58,
+      "property_id": 10,
+      "process_id": 11,
+      "perspective_id": 27,
+      "strength": 0.5626475421587201
+    },
+    {
+      "id": 59,
+      "property_id": 5,
+      "process_id": 14,
+      "perspective_id": 29,
+      "strength": 0.2485018641868354
+    },
+    {
+      "id": 60,
+      "property_id": 5,
+      "process_id": 15,
+      "perspective_id": 26,
+      "strength": 0.002428417651311854
+    },
+    {
+      "id": 61,
+      "property_id": 2,
+      "process_id": 11,
+      "perspective_id": 24,
+      "strength": 0.3599479728502172
+    },
+    {
+      "id": 62,
+      "property_id": 9,
+      "process_id": 13,
+      "perspective_id": 23,
+      "strength": 0.11395004837093425
+    },
+    {
+      "id": 63,
+      "property_id": 3,
+      "process_id": 19,
+      "perspective_id": 30,
+      "strength": 0.09273659856446514
+    },
+    {
+      "id": 64,
+      "property_id": 8,
+      "process_id": 13,
+      "perspective_id": 24,
+      "strength": 0.5303961705204754
+    },
+    {
+      "id": 65,
+      "property_id": 7,
+      "process_id": 17,
+      "perspective_id": 30,
+      "strength": 0.38386010051100605
+    },
+    {
+      "id": 66,
+      "property_id": 1,
+      "process_id": 12,
+      "perspective_id": 26,
+      "strength": 0.017364165936782805
+    },
+    {
+      "id": 67,
+      "property_id": 10,
+      "process_id": 13,
+      "perspective_id": 26,
+      "strength": 0.44453747655430276
+    },
+    {
+      "id": 68,
+      "property_id": 3,
+      "process_id": 19,
+      "perspective_id": 29,
+      "strength": 0.7949489321334415
+    },
+    {
+      "id": 69,
+      "property_id": 1,
+      "process_id": 20,
+      "perspective_id": 30,
+      "strength": 0.5319973131017361
+    },
+    {
+      "id": 70,
+      "property_id": 9,
+      "process_id": 12,
+      "perspective_id": 27,
+      "strength": 0.7836501603383761
+    },
+    {
+      "id": 71,
+      "property_id": 6,
+      "process_id": 13,
+      "perspective_id": 22,
+      "strength": 0.1120348376010073
+    },
+    {
+      "id": 72,
+      "property_id": 8,
+      "process_id": 19,
+      "perspective_id": 25,
+      "strength": 0.5373444008761142
+    },
+    {
+      "id": 73,
+      "property_id": 2,
+      "process_id": 11,
+      "perspective_id": 23,
+      "strength": 0.21970837876500093
+    },
+    {
+      "id": 74,
+      "property_id": 6,
+      "process_id": 18,
+      "perspective_id": 23,
+      "strength": 0.8093246460175059
+    },
+    {
+      "id": 75,
+      "property_id": 10,
+      "process_id": 19,
+      "perspective_id": 22,
+      "strength": 0.7639070837987245
+    },
+    {
+      "id": 76,
+      "property_id": 1,
+      "process_id": 20,
+      "perspective_id": 30,
+      "strength": 0.22286595854149416
+    },
+    {
+      "id": 77,
+      "property_id": 6,
+      "process_id": 19,
+      "perspective_id": 24,
+      "strength": 0.17332051311790064
+    },
+    {
+      "id": 78,
+      "property_id": 3,
+      "process_id": 18,
+      "perspective_id": 28,
+      "strength": 0.9702374406451546
+    },
+    {
+      "id": 79,
+      "property_id": 3,
+      "process_id": 13,
+      "perspective_id": 30,
+      "strength": 0.011419386748812044
+    },
+    {
+      "id": 80,
+      "property_id": 4,
+      "process_id": 20,
+      "perspective_id": 25,
+      "strength": 0.34238798129544923
+    },
+    {
+      "id": 81,
+      "property_id": 9,
+      "process_id": 17,
+      "perspective_id": 22,
+      "strength": 0.39965314783049144
+    },
+    {
+      "id": 82,
+      "property_id": 8,
+      "process_id": 19,
+      "perspective_id": 23,
+      "strength": 0.3589783377073582
+    },
+    {
+      "id": 83,
+      "property_id": 4,
+      "process_id": 12,
+      "perspective_id": 29,
+      "strength": 0.33519978174240594
+    },
+    {
+      "id": 84,
+      "property_id": 5,
+      "process_id": 20,
+      "perspective_id": 29,
+      "strength": 0.10116034542390406
+    },
+    {
+      "id": 85,
+      "property_id": 4,
+      "process_id": 19,
+      "perspective_id": 30,
+      "strength": 0.436137650015607
+    },
+    {
+      "id": 86,
+      "property_id": 9,
+      "process_id": 13,
+      "perspective_id": 29,
+      "strength": 0.47164924912742767
+    },
+    {
+      "id": 87,
+      "property_id": 7,
+      "process_id": 20,
+      "perspective_id": 22,
+      "strength": 0.6595249626669609
+    },
+    {
+      "id": 88,
+      "property_id": 5,
+      "process_id": 14,
+      "perspective_id": 23,
+      "strength": 0.817393161052294
+    },
+    {
+      "id": 89,
+      "property_id": 2,
+      "process_id": 11,
+      "perspective_id": 21,
+      "strength": 0.8445038000739447
+    },
+    {
+      "id": 90,
+      "property_id": 5,
+      "process_id": 20,
+      "perspective_id": 22,
+      "strength": 0.5468932599286549
+    },
+    {
+      "id": 91,
+      "property_id": 6,
+      "process_id": 16,
+      "perspective_id": 26,
+      "strength": 0.3036052046790433
+    },
+    {
+      "id": 92,
+      "property_id": 7,
+      "process_id": 19,
+      "perspective_id": 24,
+      "strength": 0.9141296797082744
+    },
+    {
+      "id": 93,
+      "property_id": 3,
+      "process_id": 11,
+      "perspective_id": 28,
+      "strength": 0.31469317437807
+    },
+    {
+      "id": 94,
+      "property_id": 7,
+      "process_id": 14,
+      "perspective_id": 26,
+      "strength": 0.045970992129410915
+    },
+    {
+      "id": 95,
+      "property_id": 2,
+      "process_id": 16,
+      "perspective_id": 27,
+      "strength": 0.9494513387888578
+    },
+    {
+      "id": 96,
+      "property_id": 7,
+      "process_id": 13,
+      "perspective_id": 24,
+      "strength": 0.16335761685640815
+    },
+    {
+      "id": 97,
+      "property_id": 4,
+      "process_id": 11,
+      "perspective_id": 27,
+      "strength": 0.36702647132809285
+    },
+    {
+      "id": 98,
+      "property_id": 3,
+      "process_id": 19,
+      "perspective_id": 22,
+      "strength": 0.10726428054448267
+    },
+    {
+      "id": 99,
+      "property_id": 7,
+      "process_id": 19,
+      "perspective_id": 22,
+      "strength": 0.9215838937862999
+    },
+    {
+      "id": 100,
+      "property_id": 2,
+      "process_id": 18,
+      "perspective_id": 30,
+      "strength": 0.3658107063292677
+    }
+  ]
+}

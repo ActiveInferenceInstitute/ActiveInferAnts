@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from typing import List, Dict, Any, Optional, Union, Tuple
+from typing import List, Dict, Any, Optional, Union
 from dataclasses import dataclass, field
 from faker import Faker
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, DateTime, func, text
@@ -15,8 +15,6 @@ import logging
 from datetime import datetime
 import inflect
 import os
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from tqdm import tqdm
 
 Base = declarative_base()
 
@@ -24,9 +22,9 @@ Base = declarative_base()
 class Pattern(Base):
     __tablename__ = 'patterns'
     id: int = Column(Integer, primary_key=True)
-    name: str = Column(String(100), unique=True, nullable=False)
-    description: str = Column(String(500))
-    type: str = Column(String(50))
+    name: str = Column(String, unique=True, nullable=False)
+    description: str = Column(String)
+    type: str = Column(String)
     created_at: datetime = Column(DateTime, default=datetime.utcnow)
     updated_at: datetime = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -81,7 +79,7 @@ class P3IF:
     def __init__(self, db_url: str = 'sqlite:///p3if.db', log_level: int = logging.INFO):
         self.db_url = db_url
         self.engine = create_engine(db_url)
-        self.logger = self._setup_logger(log_level)
+        self.logger = self._setup_logger(log_level)  # Initialize logger before recreating the database
         self._recreate_database()
         self.Session = sessionmaker(bind=self.engine)
         self.faker = Faker()
@@ -90,12 +88,20 @@ class P3IF:
             os.makedirs(self.export_folder)
 
     def _recreate_database(self):
+        # Extract the database file path from the URL
         db_path = self.db_url.replace('sqlite:///', '')
+        
+        # Remove the existing database file if it exists
         if os.path.exists(db_path):
             os.remove(db_path)
             self.logger.info(f"Removed existing database file: {db_path}")
+        
+        # Drop all tables
         Base.metadata.drop_all(self.engine)
+        
+        # Recreate all tables
         Base.metadata.create_all(self.engine)
+        
         self.logger.info("Database recreated successfully")
 
     def _setup_logger(self, log_level: int) -> logging.Logger:
@@ -147,8 +153,7 @@ class P3IF:
                 'num_properties': session.query(Property).count(),
                 'num_processes': session.query(Process).count(),
                 'num_perspectives': session.query(Perspective).count(),
-                'num_relationships': session.query(Relationship).count(),
-                'avg_relationship_strength': session.query(func.avg(Relationship.strength)).scalar()
+                'num_relationships': session.query(Relationship).count()
             }
             self.logger.info("Successfully retrieved summary statistics")
             return stats
@@ -165,6 +170,7 @@ class P3IF:
             
             fig = plt.figure(figsize=(20, 16))
             
+            # 3D plot
             ax1 = fig.add_subplot(221, projection='3d')
             
             properties = {r.property_id: r.property.name for r in relationships}
@@ -190,6 +196,7 @@ class P3IF:
             ax1.set_yticklabels(list(processes.values()), rotation=45, ha='right')
             ax1.set_zticklabels(list(perspectives.values()), rotation=45, ha='right')
 
+            # X-Y projection (Properties vs Processes)
             ax2 = fig.add_subplot(222)
             scatter2 = ax2.scatter(x, y, c=colors, s=50)
             ax2.set_xlabel('Properties')
@@ -199,6 +206,7 @@ class P3IF:
             ax2.set_xticklabels(list(properties.values()), rotation=45, ha='right')
             ax2.set_yticklabels(list(processes.values()), rotation=45, ha='right')
 
+            # X-Z projection (Properties vs Perspectives)
             ax3 = fig.add_subplot(223)
             scatter3 = ax3.scatter(x, z, c=colors, s=50)
             ax3.set_xlabel('Properties')
@@ -208,6 +216,7 @@ class P3IF:
             ax3.set_xticklabels(list(properties.values()), rotation=45, ha='right')
             ax3.set_yticklabels(list(perspectives.values()), rotation=45, ha='right')
 
+            # Y-Z projection (Processes vs Perspectives)
             ax4 = fig.add_subplot(224)
             scatter4 = ax4.scatter(y, z, c=colors, s=50)
             ax4.set_xlabel('Processes')
@@ -250,24 +259,23 @@ class P3IF:
         try:
             session = self.Session()
             class_map = {
-                'property_plural': Property,
-                'process_plural': Process,
-                'perspective_plural': Perspective
+                'property_plural': 'Property',
+                'process_plural': 'Process',
+                'perspective_plural': 'Perspective'
             }
 
             for dimension, items in external_framework.items():
-                class_type = class_map.get(dimension)
-                if not class_type:
+                class_name = class_map.get(dimension)
+                if not class_name:
                     self.logger.error(f"Unknown dimension: {dimension}")
                     continue
 
                 for item in items:
-                    existing = session.query(class_type).filter_by(name=item).first()
+                    existing = session.query(globals()[class_name]).filter_by(name=item).first()
                     if not existing:
-                        new_entry = class_type(name=item)
+                        new_entry = globals()[class_name](name=item)
                         session.add(new_entry)
             session.commit()
-            self.logger.info("Successfully multiplexed frameworks")
         except SQLAlchemyError as e:
             self.logger.error(f"Error multiplexing frameworks: {str(e)}")
             session.rollback()
@@ -331,16 +339,13 @@ class P3IF:
 
             session = self.Session()
 
-            pattern_map = {
-                'property': Property,
-                'process': Process,
-                'perspective': Perspective
-            }
-
             for pattern in data['patterns']:
-                pattern_class = pattern_map.get(pattern['type'])
-                if pattern_class:
-                    session.merge(pattern_class(id=pattern['id'], name=pattern['name'], description=pattern['description']))
+                if pattern['type'] == 'property':
+                    session.merge(Property(id=pattern['id'], name=pattern['name'], description=pattern['description']))
+                elif pattern['type'] == 'process':
+                    session.merge(Process(id=pattern['id'], name=pattern['name'], description=pattern['description']))
+                elif pattern['type'] == 'perspective':
+                    session.merge(Perspective(id=pattern['id'], name=pattern['name'], description=pattern['description']))
 
             for rel in data['relationships']:
                 session.merge(Relationship(id=rel['id'], property_id=rel['property_id'], process_id=rel['process_id'],
