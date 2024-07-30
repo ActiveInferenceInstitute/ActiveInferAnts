@@ -51,7 +51,9 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
         clone_repo(git_url, target_dir)
 
 # Flags to determine which categories to clone
-CLONE_THEBRAIN = False
+CLONE_THEBRAIN = True
+CLONE_GTD = True
+CLONE_GANTT = True
 CLONE_NOSTR = False
 CLONE_SYNERGETICS = False
 CLONE_ANTS = False
@@ -61,12 +63,30 @@ CLONE_TASK_EXECUTION_AI_AGI = False
 CLONE_MULTIAGENT_AI = False
 CLONE_GENERAL_LLM_RESOURCES = False
 CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
-CLONE_HOLOCHAIN = True
+CLONE_HOLOCHAIN = False
 
 # Repositories to clone
 repos_to_clone = {
     "TheBrain": [
-        "https://github.com/TheBrainTech/thebrain-api-quickstart-python"
+        "https://github.com/TheBrainTech/thebrain-api-quickstart-python",
+        "https://github.com/sanderdatema/thebrain2markdown",
+        "https://github.com/retorquere/zotero-thebrain-export",
+        "https://github.com/simoncos/thebrain2dot",
+        "https://github.com/TheBrainTech/thebrain-api-quickstart-blazor",
+        "https://github.com/TheBrainTech/thebrain-api-quickstart-node",
+        "https://github.com/TheBrainTech/xwt",
+        "https://github.com/cdebattista/thebrain-apiclient",
+        "https://github.com/MattGyverLee/TheBrain-API-Playground"
+    ],
+    "GTD": [
+        "https://github.com/connermcd/gtd",
+        "https://github.com/engineyard/todo",
+        "https://github.com/tewen/gtd-scripts"
+    ],
+    "Gantt": [
+        "https://github.com/neuronetio/gantt-schedule-timeline-calendar",
+        "https://github.com/frappe/gantt",
+        "https://github.com/neuronetio/gantt-elastic"
     ],
     "Nostr": [
         "https://github.com/nostr-protocol/nostr",
@@ -166,6 +186,14 @@ if __name__ == "__main__":
     if CLONE_THEBRAIN:
         print("Cloning TheBrain repositories...")
         clone_repos(repos_to_clone["TheBrain"], os.path.join(target_dir, "TheBrain"))
+    
+    if CLONE_GTD:
+        print("Cloning GTD repositories...")
+        clone_repos(repos_to_clone["GTD"], os.path.join(target_dir, "GTD"))
+    
+    if CLONE_GANTT:
+        print("Cloning Gantt repositories...")
+        clone_repos(repos_to_clone["Gantt"], os.path.join(target_dir, "Gantt"))
     
     if CLONE_NOSTR:
         print("Cloning Nostr repositories...")
