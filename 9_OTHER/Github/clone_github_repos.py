@@ -51,7 +51,7 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
         clone_repo(git_url, target_dir)
 
 # Flags to determine which categories to clone
-CLONE_THEBRAIN = True
+CLONE_THEBRAIN = False
 CLONE_GTD = False
 CLONE_GANTT = False
 CLONE_NOSTR = False
@@ -64,6 +64,8 @@ CLONE_MULTIAGENT_AI = False
 CLONE_GENERAL_LLM_RESOURCES = False
 CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
 CLONE_HOLOCHAIN = False
+CLONE_EBPF = True
+CLONE_KAFKA = False
 
 # Repositories to clone
 repos_to_clone = {
@@ -176,6 +178,32 @@ repos_to_clone = {
         "https://github.com/Holo-Host/host-console-ui",
         "https://github.com/Holo-Host/ui-common-library",
         "https://github.com/Holo-Host/holo-auto-installer"
+    ],
+    "eBPF": [
+        "https://github.com/cilium/ebpf",
+        "https://github.com/zoidyzoidzoid/awesome-ebpf",
+        "https://github.com/eunomia-bpf/bpf-developer-tutorial",
+        "https://github.com/microsoft/ebpf-for-windows",
+        "https://github.com/lizrice/learning-ebpf",
+        "https://github.com/lizrice/ebpf-beginners",
+        "https://github.com/xdp-project/bpf-examples",
+        "https://github.com/KindlingProject/kindling",
+        "https://github.com/iovisor/bcc",
+        "https://github.com/cilium/cilium"
+    ],
+    "Kafka": [
+        "https://github.com/apache/kafka",
+        "https://github.com/confluentinc/kafka-tutorials",
+        "https://github.com/monksy/awesome-kafka",
+        "https://github.com/confluentinc/kafka-streams-examples",
+        "https://github.com/confluentinc/examples",
+        "https://github.com/provectus/kafka-ui",
+        "https://github.com/pmoskovi/kafka-learning-resources",
+        "https://github.com/streamthoughts/awesome-opensource-contribs-kafka",
+        "https://github.com/MocMilo/kafka-project",
+        "https://github.com/hifly81/kafka-examples",
+        "https://github.com/bstashchuk/apache-kafka-course",
+        "https://github.com/hpang123/Kafka"
     ]
 }
 
@@ -234,3 +262,11 @@ if __name__ == "__main__":
     if CLONE_HOLOCHAIN:
         print("Cloning Holochain repositories...")
         clone_repos(repos_to_clone["Holochain"], os.path.join(target_dir, "Holochain"))
+    
+    if CLONE_EBPF:
+        print("Cloning eBPF repositories...")
+        clone_repos(repos_to_clone["eBPF"], os.path.join(target_dir, "eBPF"))
+    
+    if CLONE_KAFKA:
+        print("Cloning Kafka repositories...")
+        clone_repos(repos_to_clone["Kafka"], os.path.join(target_dir, "Kafka"))

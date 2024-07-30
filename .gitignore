@@ -1,4 +1,23 @@
 
 *.git
-9_OTHER/repos/ActiveInference/pymdp/
-9_OTHER/repos/TheBrain/thebrain-api-quickstart-python/
+/9_OTHER/Github/repo/*
+
+# Security and privacy protection
+*.env
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+*.log
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
