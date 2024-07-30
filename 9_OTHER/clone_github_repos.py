@@ -52,8 +52,8 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
 
 # Flags to determine which categories to clone
 CLONE_THEBRAIN = True
-CLONE_GTD = True
-CLONE_GANTT = True
+CLONE_GTD = False
+CLONE_GANTT = False
 CLONE_NOSTR = False
 CLONE_SYNERGETICS = False
 CLONE_ANTS = False
