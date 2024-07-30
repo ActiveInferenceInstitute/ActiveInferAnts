@@ -14,6 +14,8 @@ from dataclasses import dataclass
 import logging
 from concurrent.futures import ThreadPoolExecutor
 from collections import deque
+import secp256k1
+import base64
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -111,18 +113,23 @@ class NostrAnt:
         event = Event(
             public_key=self.public_key.hex(),
             created_at=int(time.time()),
-            kind=1000,  # Custom event kind for NostrAnt actions
+            kind=30000,  # Custom event kind for NostrAnt actions (NIP-33)
             tags=[
                 ["t", "nostr_ant_action"],
-                ["d", f"ant_action_{int(time.time())}"]  # Unique identifier for the action
+                ["d", f"ant_action_{int(time.time())}"],  # Unique identifier for the action
+                ["p", self.public_key.hex()]  # NIP-01: Reference to the ant's public key
             ],
             content=content
         )
         event.sign(self.private_key.hex())
+        
+        # NIP-01: Publish event to all connected relays
         await self.relay_manager.publish_event(event)
+        logger.info(f"Published action event: {event.id}")
 
     async def observe_environment(self) -> Optional[int]:
-        filters = Filters([Filter(kinds=[1001], tags=[["t", "nostr_environment_state"]])])
+        # NIP-01: Create subscription for environment state events
+        filters = Filters([Filter(kinds=[30001], tags=[["t", "nostr_environment_state"]])])
         subscription_id = self.relay_manager.add_subscription(filters)
         
         try:
@@ -130,12 +137,13 @@ class NostrAnt:
                 event_msg = await self.relay_manager.receive_message()
                 if event_msg.type == ClientMessageType.EVENT:
                     event = event_msg.event
-                    if event.kind == 1001 and ["t", "nostr_environment_state"] in event.tags:
+                    if event.kind == 30001 and ["t", "nostr_environment_state"] in event.tags:
                         state_data = json.loads(event.content)
                         return state_data.get("state")
                 elif event_msg.type == ClientMessageType.EOSE:
                     break
         finally:
+            # NIP-01: Close subscription after receiving EOSE
             self.relay_manager.close_subscription(subscription_id)
         
         return None
@@ -156,6 +164,24 @@ class NostrAnt:
 
         self.B[states, actions] += self.config.learning_rate * (target_q_values - current_q_values)
 
+    async def update_metadata(self):
+        # NIP-01: Update user metadata
+        metadata = {
+            "name": f"NostrAnt-{self.public_key.bech32()[:8]}",
+            "about": "I'm a Nostr-based ant agent in a colony simulation.",
+            "picture": f"https://robohash.org/{self.public_key.hex()}"
+        }
+        metadata_event = Event(
+            public_key=self.public_key.hex(),
+            created_at=int(time.time()),
+            kind=0,
+            tags=[],
+            content=json.dumps(metadata)
+        )
+        metadata_event.sign(self.private_key.hex())
+        await self.relay_manager.publish_event(metadata_event)
+        logger.info(f"Updated metadata for ant: {self.public_key.bech32()}")
+
 class NostrAntColony:
     def __init__(self, config: SimulationConfig):
         self.config = config
@@ -175,15 +201,17 @@ class NostrAntColony:
         event = Event(
             public_key=PrivateKey().public_key.hex(),
             created_at=int(time.time()),
-            kind=1001,  # Custom event kind for environment state
+            kind=30001,  # Custom event kind for environment state (NIP-33)
             tags=[
                 ["t", "nostr_environment_state"],
-                ["d", f"environment_state_{int(time.time())}"]  # Unique identifier for the state update
+                ["d", f"environment_state_{int(time.time())}"],  # Unique identifier for the state update
+                ["e", "previous_state_event_id"]  # NIP-10: Add reference to previous state event
             ],
             content=content
         )
         event.sign(PrivateKey().hex())
         await self.relay_manager.publish_event(event)
+        logger.info(f"Published environment state event: {event.id}")
 
     async def step(self) -> List[int]:
         actions = await asyncio.gather(*[ant.act() for ant in self.ants])
@@ -212,19 +240,25 @@ class NostrAntColony:
         
         return observations
 
-async def run_simulation(colony: NostrAntColony) -> Tuple[List[int], List[List[float]], List[np.ndarray]]:
-    global_states = []
-    ant_beliefs = [[] for _ in colony.ants]
-    pheromone_maps = []
-    
-    for _ in range(colony.config.num_steps):
-        observations = await colony.step()
-        global_states.append(colony.global_state)
-        for i, ant in enumerate(colony.ants):
-            ant_beliefs[i].append(ant.beliefs.copy())
-        pheromone_maps.append(colony.pheromone_map.copy())
-    
-    return global_states, ant_beliefs, pheromone_maps
+    async def initialize_ants(self):
+        # NIP-01: Initialize ant metadata
+        await asyncio.gather(*[ant.update_metadata() for ant in self.ants])
+
+    async def run_simulation(self) -> Tuple[List[int], List[List[float]], List[np.ndarray]]:
+        global_states = []
+        ant_beliefs = [[] for _ in self.ants]
+        pheromone_maps = []
+        
+        await self.initialize_ants()
+        
+        for _ in range(self.config.num_steps):
+            observations = await self.step()
+            global_states.append(self.global_state)
+            for i, ant in enumerate(self.ants):
+                ant_beliefs[i].append(ant.beliefs.copy())
+            pheromone_maps.append(self.pheromone_map.copy())
+        
+        return global_states, ant_beliefs, pheromone_maps
 
 def plot_results(global_states: List[int], ant_beliefs: List[List[float]], pheromone_maps: List[np.ndarray]):
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 18))
@@ -260,7 +294,7 @@ async def main():
         num_actions=3,
         num_observations=20,
         num_steps=100,
-        relays=["wss://relay.damus.io", "wss://relay.nostr.info"],
+        relays=["wss://relay.damus.io", "wss://relay.nostr.info", "wss://nostr-pub.wellorder.net"],
         learning_rate=0.1,
         discount_factor=0.95,
         exploration_rate=0.1,
@@ -268,7 +302,7 @@ async def main():
     )
 
     colony = NostrAntColony(config)
-    global_states, ant_beliefs, pheromone_maps = await run_simulation(colony)
+    global_states, ant_beliefs, pheromone_maps = await colony.run_simulation()
 
     plot_results(global_states, ant_beliefs, pheromone_maps)
 

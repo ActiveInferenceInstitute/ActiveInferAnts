@@ -12,6 +12,7 @@ from nostr.filter import Filter, Filters
 from nostr.message_type import ClientMessageType
 from datetime import datetime, timezone
 import hashlib
+import base64
 
 class ContentType(Enum):
     RESEARCH_PAPER = auto()
@@ -82,7 +83,12 @@ class NostrScience:
         tags = [
             ["t", content.type.name.lower()],
             ["title", content.title],
+            ["d", self.generate_d_tag(content.title)],
+            ["published_at", str(int(time.time()))],
         ] + [["keyword", kw] for kw in content.keywords]
+        
+        for author in content.authors:
+            tags.append(["p", self.get_author_pubkey(author)])
         
         if additional_tags:
             tags.extend(additional_tags)
@@ -100,12 +106,12 @@ class NostrScience:
 
     async def publish_dataset(self, dataset: ScientificContent, data_url: str) -> Event:
         dataset.type = ContentType.DATASET
-        additional_tags = [["data_url", data_url]]
+        additional_tags = [["r", data_url]]
         return await self.publish_scientific_content(dataset, additional_tags)
 
-    async def publish_peer_review(self, review: ScientificContent, paper_id: str) -> Event:
+    async def publish_peer_review(self, review: ScientificContent, paper_event_id: str) -> Event:
         review.type = ContentType.PEER_REVIEW
-        additional_tags = [["e", paper_id]]
+        additional_tags = [["e", paper_event_id, "", "reply"]]
         return await self.publish_scientific_content(review, additional_tags)
 
     async def publish_educational_resource(self, resource: ScientificContent, subject: str, level: str) -> Event:
@@ -176,6 +182,34 @@ class NostrScience:
         required_fields = ['title', 'abstract', 'content', 'authors', 'keywords']
         return all(getattr(content, field) for field in required_fields)
 
+    @staticmethod
+    def generate_d_tag(title: str) -> str:
+        """Generate a unique identifier for the 'd' tag."""
+        return base64.urlsafe_b64encode(hashlib.sha256(title.encode()).digest()).decode('utf-8')[:10]
+
+    @staticmethod
+    def get_author_pubkey(author: str) -> str:
+        """Get the public key for an author. This is a placeholder and should be implemented properly."""
+        return hashlib.sha256(author.encode()).hexdigest()
+
+    async def get_replies(self, event_id: str) -> List[Event]:
+        """Get all replies to a specific event."""
+        filters = Filters([Filter(kinds=[1], tags={'e': [event_id]})])
+        return await self.subscribe_to_events(filters)
+
+    async def get_author_content(self, author_pubkey: str, content_type: Optional[ContentType] = None) -> List[Event]:
+        """Get all content from a specific author, optionally filtered by content type."""
+        tags = {'p': [author_pubkey]}
+        if content_type:
+            tags['t'] = [content_type.name.lower()]
+        filters = Filters([Filter(kinds=[1], tags=tags)])
+        return await self.subscribe_to_events(filters)
+
+    async def search_content(self, query: str) -> List[Event]:
+        """Search for content based on a query string."""
+        filters = Filters([Filter(kinds=[1], search=query)])
+        return await self.subscribe_to_events(filters)
+
 # Example usage:
 async def main():
     relay_urls = ["wss://relay.damus.io", "wss://relay.nostr.info", "wss://nostr-pub.wellorder.net"]
@@ -244,8 +278,17 @@ async def main():
     print(f"Number of research papers: {len(papers)}")
 
     # Retrieve and print all peer reviews for a specific paper
-    reviews = await nostr_science.get_scientific_content(ContentType.PEER_REVIEW, {"e": [updated_paper_event.id]})
+    reviews = await nostr_science.get_replies(updated_paper_event.id)
     print(f"Number of peer reviews for the paper: {len(reviews)}")
+
+    # Search for content related to "quantum computing"
+    search_results = await nostr_science.search_content("quantum computing")
+    print(f"Number of search results for 'quantum computing': {len(search_results)}")
+
+    # Get all content from a specific author
+    author_pubkey = NostrScience.get_author_pubkey("Alice Johnson")
+    author_content = await nostr_science.get_author_content(author_pubkey)
+    print(f"Number of publications by Alice Johnson: {len(author_content)}")
 
     relay_manager.close_connections()
 

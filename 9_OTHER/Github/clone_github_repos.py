@@ -54,7 +54,7 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
 CLONE_THEBRAIN = False
 CLONE_GTD = False
 CLONE_GANTT = False
-CLONE_NOSTR = False
+CLONE_NOSTR = True
 CLONE_SYNERGETICS = False
 CLONE_ANTS = False
 CLONE_ACTIVE_INFERENCE = False
@@ -64,7 +64,7 @@ CLONE_MULTIAGENT_AI = False
 CLONE_GENERAL_LLM_RESOURCES = False
 CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
 CLONE_HOLOCHAIN = False
-CLONE_EBPF = True
+CLONE_EBPF = False
 CLONE_KAFKA = False
 
 # Repositories to clone
@@ -92,6 +92,7 @@ repos_to_clone = {
     ],
     "Nostr": [
         "https://github.com/nostr-protocol/nostr",
+        "https://github.com/nostr-protocol/nips",
         "https://github.com/fiatjaf/nostr-tools",
         "https://github.com/limina1/indextr-client",
         "https://github.com/fiatjaf/quill-asciidoc",

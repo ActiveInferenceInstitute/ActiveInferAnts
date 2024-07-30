@@ -15,12 +15,17 @@ class ThreatType(Enum):
     MALWARE = auto()
     DDOS = auto()
     SOCIAL_ENGINEERING = auto()
+    IMPERSONATION = auto()
+    SPAM = auto()
+    SCAM = auto()
     OTHER = auto()
 
 class ModerationAction(Enum):
     HIDE = "hide"
     FLAG = "flag"
     REMOVE = "remove"
+    MUTE = "mute"
+    BLOCK = "block"
 
 @dataclass
 class ThreatReport:
@@ -28,21 +33,26 @@ class ThreatReport:
     description: str
     severity: int
     indicators: List[str]
+    reported_pubkey: Optional[str] = None
+    reported_event_id: Optional[str] = None
 
 @dataclass
 class TrustScore:
     score: float
     reason: str
+    timestamp: int
 
 @dataclass
 class ContentModeration:
     action: ModerationAction
     reason: str
+    moderator_pubkey: str
 
 @dataclass
 class ReputationUpdate:
     reputation_change: float
     reason: str
+    timestamp: int
 
 @dataclass
 class NetworkAnalysis:
@@ -80,6 +90,10 @@ class NostrCogSec:
             ["k", "cogsec"],
             ["k", "threat"]
         ]
+        if report.reported_pubkey:
+            tags.append(["p", report.reported_pubkey])
+        if report.reported_event_id:
+            tags.append(["e", report.reported_event_id])
         return await self.publish_event(kind=30078, content=content, tags=tags)
 
     async def fetch_threat_reports(self, severity: Optional[int] = None, limit: int = 20) -> List[Event]:
@@ -110,7 +124,8 @@ class NostrCogSec:
             ["e", event_id],
             ["t", "content_moderation"],
             ["k", "cogsec"],
-            ["k", "moderation"]
+            ["k", "moderation"],
+            ["p", moderation.moderator_pubkey]
         ]
         return await self.publish_event(kind=30080, content=content, tags=tags)
 
@@ -153,6 +168,42 @@ class NostrCogSec:
     async def verify_event_signature(self, event: Event) -> bool:
         return event.verify()
 
+    async def get_user_profile(self, pubkey: str) -> Optional[Dict]:
+        filters = Filters([create_filter(kinds=[0], authors=[pubkey], limit=1)])
+        events = await self.fetch_events(filters)
+        if events:
+            return json.loads(events[0].content)
+        return None
+
+    async def get_user_contacts(self, pubkey: str) -> List[str]:
+        filters = Filters([create_filter(kinds=[3], authors=[pubkey], limit=1)])
+        events = await self.fetch_events(filters)
+        if events:
+            return [tag[1] for tag in events[0].tags if tag[0] == 'p']
+        return []
+
+    async def publish_encrypted_direct_message(self, recipient_pubkey: str, content: str) -> str:
+        shared_secret = self.private_key.compute_shared_secret(bytes.fromhex(recipient_pubkey))
+        encrypted_content = self.encrypt_message(content, shared_secret)
+        tags = [
+            ["p", recipient_pubkey],
+            ["k", "cogsec"],
+            ["k", "dm"]
+        ]
+        return await self.publish_event(kind=4, content=encrypted_content, tags=tags)
+
+    async def fetch_encrypted_direct_messages(self, limit: int = 20) -> List[Event]:
+        filters = Filters([create_filter(kinds=[4], authors=[self.public_key], limit=limit)])
+        return await self.fetch_events(filters)
+
+    def encrypt_message(self, message: str, shared_secret: bytes) -> str:
+        # Implement NIP-04 encryption here
+        pass
+
+    def decrypt_message(self, encrypted_message: str, shared_secret: bytes) -> str:
+        # Implement NIP-04 decryption here
+        pass
+
     def close_connections(self):
         self.relay_manager.close_connections()
 
@@ -164,14 +215,16 @@ async def main():
         threat_type=ThreatType.PHISHING,
         description="New phishing campaign targeting Nostr users",
         severity=8,
-        indicators=["nostr:npub1abc123...", "https://malicious-site.com"]
+        indicators=["nostr:npub1abc123...", "https://malicious-site.com"],
+        reported_pubkey="32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245"
     )
     threat_report_id = await cogsec.publish_threat_report(threat_report)
     print(f"Published threat report: {threat_report_id}")
     
     trust_score = TrustScore(
         score=0.85,
-        reason="Consistent high-quality content and positive community interactions"
+        reason="Consistent high-quality content and positive community interactions",
+        timestamp=int(time.time())
     )
     trust_score_id = await cogsec.publish_trust_score(
         "32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245",
@@ -181,7 +234,8 @@ async def main():
     
     moderation = ContentModeration(
         action=ModerationAction.HIDE,
-        reason="Spam content"
+        reason="Spam content",
+        moderator_pubkey=cogsec.public_key
     )
     moderation_id = await cogsec.publish_content_moderation(
         "1a2b3c4d5e6f7g8h9i0j...",
@@ -191,7 +245,8 @@ async def main():
     
     reputation_update = ReputationUpdate(
         reputation_change=0.05,
-        reason="Helpful contribution to community discussion"
+        reason="Helpful contribution to community discussion",
+        timestamp=int(time.time())
     )
     reputation_update_id = await cogsec.publish_reputation_update(
         "32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245",
@@ -206,6 +261,21 @@ async def main():
     )
     network_analysis_id = await cogsec.publish_network_analysis(network_analysis)
     print(f"Published network analysis: {network_analysis_id}")
+    
+    # Fetch user profile
+    user_profile = await cogsec.get_user_profile("32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245")
+    print(f"User profile: {user_profile}")
+    
+    # Fetch user contacts
+    user_contacts = await cogsec.get_user_contacts("32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245")
+    print(f"User contacts: {user_contacts}")
+    
+    # Send encrypted direct message
+    dm_id = await cogsec.publish_encrypted_direct_message(
+        "32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245",
+        "This is a confidential message related to cognitive security."
+    )
+    print(f"Sent encrypted direct message: {dm_id}")
     
     cogsec.close_connections()
 

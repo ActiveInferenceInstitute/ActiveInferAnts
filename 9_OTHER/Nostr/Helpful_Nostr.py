@@ -10,6 +10,11 @@ import asyncio
 import aiohttp
 import base64
 import logging
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -21,7 +26,7 @@ class NostrHelper:
     @staticmethod
     def create_event(private_key: str, kind: int, content: str, tags: List[List[str]] = None, created_at: int = None) -> Event:
         """
-        Create a Nostr event.
+        Create a Nostr event according to NIP-01.
         
         :param private_key: The private key as a hex string
         :param kind: The event kind (integer)
@@ -43,7 +48,7 @@ class NostrHelper:
 
     async def publish_event(self, event: Event, timeout: float = 5.0) -> Dict[str, bool]:
         """
-        Publish an event to all connected relays and wait for confirmations.
+        Publish an event to all connected relays and wait for confirmations (NIP-01).
         
         :param event: The Event to publish
         :param timeout: Maximum time to wait for confirmations (in seconds)
@@ -77,7 +82,7 @@ class NostrHelper:
 
     async def subscribe_to_events(self, filters: Filters, timeout: float = 30.0) -> List[Event]:
         """
-        Subscribe to events matching the given filters with a timeout.
+        Subscribe to events matching the given filters with a timeout (NIP-01).
         
         :param filters: The Filters to apply
         :param timeout: Maximum time to wait for events (in seconds)
@@ -106,7 +111,7 @@ class NostrHelper:
 
     async def setup_relay_manager(self, relay_urls: List[str], connection_timeout: float = 5.0) -> None:
         """
-        Set up a RelayManager with the given relay URLs and attempt connections.
+        Set up a RelayManager with the given relay URLs and attempt connections (NIP-01).
         
         :param relay_urls: List of relay URLs to connect to
         :param connection_timeout: Maximum time to wait for connections (in seconds)
@@ -129,7 +134,7 @@ class NostrHelper:
     def create_filter(authors: List[str] = None, kinds: List[int] = None, since: int = None, until: int = None, 
                       limit: int = None, ids: List[str] = None, tags: Dict[str, List[str]] = None) -> Filter:
         """
-        Create a comprehensive Filter object for querying events.
+        Create a comprehensive Filter object for querying events (NIP-01).
         
         :param authors: List of public keys to filter by
         :param kinds: List of event kinds to filter by
@@ -176,7 +181,7 @@ class NostrHelper:
     @staticmethod
     def get_event_tags(event: Event, tag_name: str) -> List[str]:
         """
-        Get all values for a specific tag from an event.
+        Get all values for a specific tag from an event (NIP-01).
         
         :param event: The Event object to search
         :param tag_name: The name of the tag to find
@@ -187,7 +192,7 @@ class NostrHelper:
     @staticmethod
     def create_encrypted_dm(sender_private_key: str, recipient_public_key: str, content: str) -> Event:
         """
-        Create an encrypted direct message event.
+        Create an encrypted direct message event (NIP-04).
         
         :param sender_private_key: The sender's private key as a hex string
         :param recipient_public_key: The recipient's public key as a hex string
@@ -197,19 +202,39 @@ class NostrHelper:
         sender_pk = PrivateKey(bytes.fromhex(sender_private_key))
         recipient_pk = PublicKey(bytes.fromhex(recipient_public_key))
         
-        encrypted_content = sender_pk.encrypt_message(content, recipient_pk)
+        shared_secret = sender_pk.compute_shared_secret(recipient_pk)
+        
+        # Use HKDF to derive a symmetric key
+        hkdf = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b'nip04',
+            backend=default_backend()
+        )
+        sym_key = hkdf.derive(shared_secret)
+        
+        # Encrypt the content
+        iv = os.urandom(16)
+        cipher = Cipher(algorithms.AES(sym_key), modes.CBC(iv), backend=default_backend())
+        encryptor = cipher.encryptor()
+        padded_content = content.encode('utf-8') + b'\0' * (16 - (len(content) % 16))
+        encrypted_content = encryptor.update(padded_content) + encryptor.finalize()
+        
+        # Encode the encrypted content
+        encoded_content = base64.b64encode(iv + encrypted_content).decode('utf-8')
         
         return NostrHelper.create_event(
             private_key=sender_private_key,
             kind=4,  # Encrypted Direct Message
-            content=encrypted_content,
+            content=encoded_content,
             tags=[['p', recipient_public_key]]
         )
 
     @staticmethod
     def decrypt_dm(private_key: str, event: Event) -> str:
         """
-        Decrypt a direct message event.
+        Decrypt a direct message event (NIP-04).
         
         :param private_key: The recipient's private key as a hex string
         :param event: The encrypted Event object
@@ -217,12 +242,35 @@ class NostrHelper:
         """
         pk = PrivateKey(bytes.fromhex(private_key))
         sender_pubkey = event.public_key
+        sender_pk = PublicKey(bytes.fromhex(sender_pubkey))
         
-        return pk.decrypt_message(event.content, sender_pubkey)
+        shared_secret = pk.compute_shared_secret(sender_pk)
+        
+        # Use HKDF to derive the symmetric key
+        hkdf = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b'nip04',
+            backend=default_backend()
+        )
+        sym_key = hkdf.derive(shared_secret)
+        
+        # Decode and decrypt the content
+        decoded_content = base64.b64decode(event.content)
+        iv = decoded_content[:16]
+        encrypted_content = decoded_content[16:]
+        
+        cipher = Cipher(algorithms.AES(sym_key), modes.CBC(iv), backend=default_backend())
+        decryptor = cipher.decryptor()
+        decrypted_content = decryptor.update(encrypted_content) + decryptor.finalize()
+        
+        # Remove padding
+        return decrypted_content.rstrip(b'\0').decode('utf-8')
 
     async def fetch_user_metadata(self, pubkey: str) -> Optional[Dict[str, Any]]:
         """
-        Fetch user metadata for a given public key.
+        Fetch user metadata for a given public key (NIP-01).
         
         :param pubkey: The public key of the user
         :return: A dictionary containing user metadata or None if not found
@@ -236,7 +284,7 @@ class NostrHelper:
 
     async def create_and_publish_reaction(self, private_key: str, event_id: str, reaction: str = "+") -> Event:
         """
-        Create and publish a reaction event.
+        Create and publish a reaction event (NIP-25).
         
         :param private_key: The private key of the user creating the reaction
         :param event_id: The ID of the event being reacted to
@@ -254,7 +302,7 @@ class NostrHelper:
 
     async def create_and_publish_repost(self, private_key: str, event_id: str, relay_url: str) -> Event:
         """
-        Create and publish a repost event.
+        Create and publish a repost event (NIP-18).
         
         :param private_key: The private key of the user creating the repost
         :param event_id: The ID of the event being reposted
@@ -272,7 +320,7 @@ class NostrHelper:
 
     async def fetch_event_replies(self, event_id: str) -> List[Event]:
         """
-        Fetch replies to a specific event.
+        Fetch replies to a specific event (NIP-10).
         
         :param event_id: The ID of the event to fetch replies for
         :return: A list of reply Events
