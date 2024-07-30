@@ -161,29 +161,31 @@ class P3IF:
 
     def visualize_relationships(self, output_file: str = 'p3if_visualization.svg'):
         try:
-            session = self.Session()
-            relationships = session.query(Relationship).all()
+            size = 800  # Large canvas size
+            dwg = svgwrite.Drawing(size=(size, size), profile='tiny', background='white')
             
-            properties = {r.property_id: r.property.name for r in relationships}
-            processes = {r.process_id: r.process.name for r in relationships}
-            perspectives = {r.perspective_id: r.perspective.name for r in relationships}
+            # Create a cube representation
+            cube_size = 600  # Large cube size
+            offset = 100  # Offset to center the cube
 
-            size = max(len(properties), len(processes), len(perspectives)) * 100
-            dwg = svgwrite.Drawing(output_file, profile='tiny', size=(size, size))
-            
-            for r in relationships:
-                prop_index = list(properties.keys()).index(r.property_id)
-                proc_index = list(processes.keys()).index(r.process_id)
-                persp_index = list(perspectives.keys()).index(r.perspective_id)
-                color = svgwrite.rgb(int(r.strength * 255), 0, 0, '%')
-                
-                dwg.add(dwg.line(start=(prop_index * 100, 0), end=(proc_index * 100, 100), stroke=color))
-                dwg.add(dwg.line(start=(proc_index * 100, 100), end=(persp_index * 100, 200), stroke=color))
-                dwg.add(dwg.line(start=(persp_index * 100, 200), end=(prop_index * 100, 0), stroke=color))
-                
-                dwg.add(dwg.text(properties[r.property_id], insert=(prop_index * 100, 10), fill='black'))
-                dwg.add(dwg.text(processes[r.process_id], insert=(proc_index * 100, 110), fill='black'))
-                dwg.add(dwg.text(perspectives[r.perspective_id], insert=(persp_index * 100, 210), fill='black'))
+            # Draw cube edges
+            dwg.add(dwg.line(start=(offset, offset), end=(offset + cube_size, offset), stroke='black'))
+            dwg.add(dwg.line(start=(offset, offset), end=(offset, offset + cube_size), stroke='black'))
+            dwg.add(dwg.line(start=(offset, offset), end=(offset + cube_size / 2, offset + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size, offset), end=(offset + cube_size, offset + cube_size), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size, offset), end=(offset + cube_size + cube_size / 2, offset + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset, offset + cube_size), end=(offset + cube_size, offset + cube_size), stroke='black'))
+            dwg.add(dwg.line(start=(offset, offset + cube_size), end=(offset + cube_size / 2, offset + cube_size + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size, offset + cube_size), end=(offset + cube_size + cube_size / 2, offset + cube_size + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size / 2, offset + cube_size / 2), end=(offset + cube_size + cube_size / 2, offset + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size / 2, offset + cube_size / 2), end=(offset + cube_size / 2, offset + cube_size + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size + cube_size / 2, offset + cube_size / 2), end=(offset + cube_size + cube_size / 2, offset + cube_size + cube_size / 2), stroke='black'))
+            dwg.add(dwg.line(start=(offset + cube_size / 2, offset + cube_size + cube_size / 2), end=(offset + cube_size + cube_size / 2, offset + cube_size + cube_size / 2), stroke='black'))
+
+            # Add axis labels
+            dwg.add(dwg.text('Properties', insert=(offset + cube_size / 2, offset - 20), fill='black'))
+            dwg.add(dwg.text('Processes', insert=(offset - 20, offset + cube_size / 2), fill='black'))
+            dwg.add(dwg.text('Perspectives', insert=(offset + cube_size + cube_size / 2 + 20, offset + cube_size / 2), fill='black'))
 
             output_path = os.path.join(self.export_folder, output_file)
             dwg.saveas(output_path)
@@ -191,8 +193,6 @@ class P3IF:
             self.logger.info(f"Successfully visualized relationships and saved to {output_path}")
         except Exception as e:
             self.logger.error(f"Error visualizing relationships: {str(e)}")
-        finally:
-            session.close()
 
     def hot_swap_dimension(self, old_dimension: str, new_dimension: str):
         try:

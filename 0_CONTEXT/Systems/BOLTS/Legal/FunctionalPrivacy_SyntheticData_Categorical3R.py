@@ -81,6 +81,72 @@ EXAMPLES = [
     # Miscellaneous
     {"Setting": "Fitness tracker", "Sub-domain": "Healthcare", "Recognize": "User profile", "Remember": "Activity data", "Respond": "Provide feedback"},
     {"Setting": "Ride-sharing", "Sub-domain": "Transport", "Recognize": "Driver ID", "Remember": "Ride history", "Respond": "Assign ride"},
+    
+    # Environmental Monitoring
+    {"Setting": "Air quality monitoring", "Sub-domain": "Environmental", "Recognize": "Sensor data", "Remember": "Historical data", "Respond": "Issue alerts"},
+    {"Setting": "Water quality monitoring", "Sub-domain": "Environmental", "Recognize": "Chemical levels", "Remember": "Baseline levels", "Respond": "Trigger cleanup"},
+    {"Setting": "Wildlife tracking", "Sub-domain": "Environmental", "Recognize": "GPS tags", "Remember": "Migration patterns", "Respond": "Adjust conservation efforts"},
+    {"Setting": "Deforestation monitoring", "Sub-domain": "Environmental", "Recognize": "Satellite images", "Remember": "Forest cover data", "Respond": "Initiate reforestation"},
+    
+    # Sports and Recreation
+    {"Setting": "Sports event", "Sub-domain": "Recreational", "Recognize": "Ticket", "Remember": "Attendee list", "Respond": "Grant entry"},
+    {"Setting": "Fitness class", "Sub-domain": "Recreational", "Recognize": "Membership card", "Remember": "Class schedule", "Respond": "Allow participation"},
+    {"Setting": "Online gaming tournament", "Sub-domain": "Entertainment", "Recognize": "Gamer tag", "Remember": "Tournament history", "Respond": "Match players"},
+    
+    # Arts and Culture
+    {"Setting": "Museum entry", "Sub-domain": "Cultural", "Recognize": "Ticket", "Remember": "Visitor records", "Respond": "Grant access"},
+    {"Setting": "Art gallery", "Sub-domain": "Cultural", "Recognize": "Membership card", "Remember": "Member database", "Respond": "Allow entry"},
+    {"Setting": "Theater performance", "Sub-domain": "Cultural", "Recognize": "Ticket", "Remember": "Seating chart", "Respond": "Assign seat"},
+    
+    # Agriculture
+    {"Setting": "Crop monitoring", "Sub-domain": "Agriculture", "Recognize": "Drone imagery", "Remember": "Growth patterns", "Respond": "Adjust irrigation"},
+    {"Setting": "Livestock tracking", "Sub-domain": "Agriculture", "Recognize": "RFID tags", "Remember": "Health records", "Respond": "Administer treatment"},
+    {"Setting": "Farm equipment", "Sub-domain": "Agriculture", "Recognize": "Machine status", "Remember": "Maintenance logs", "Respond": "Schedule service"},
+    
+    # Space Exploration
+    {"Setting": "Satellite control", "Sub-domain": "Space", "Recognize": "Telemetry data", "Remember": "Mission parameters", "Respond": "Adjust orbit"},
+    {"Setting": "Mars rover", "Sub-domain": "Space", "Recognize": "Terrain data", "Remember": "Navigation maps", "Respond": "Plot course"},
+    {"Setting": "Space station", "Sub-domain": "Space", "Recognize": "Crew ID", "Remember": "Mission logs", "Respond": "Grant access to modules"},
+    
+    # Disaster Management
+    {"Setting": "Earthquake response", "Sub-domain": "Disaster", "Recognize": "Seismic data", "Remember": "Historical events", "Respond": "Issue warnings"},
+    {"Setting": "Flood monitoring", "Sub-domain": "Disaster", "Recognize": "Water levels", "Remember": "Flood maps", "Respond": "Initiate evacuation"},
+    {"Setting": "Wildfire detection", "Sub-domain": "Disaster", "Recognize": "Smoke sensors", "Remember": "Fire history", "Respond": "Deploy firefighting resources"},
+    
+    # Transportation
+    {"Setting": "Traffic management", "Sub-domain": "Transport", "Recognize": "Traffic cameras", "Remember": "Traffic patterns", "Respond": "Adjust signals"},
+    {"Setting": "Railway control", "Sub-domain": "Transport", "Recognize": "Train ID", "Remember": "Schedule", "Respond": "Manage track usage"},
+    {"Setting": "Airport security", "Sub-domain": "Transport", "Recognize": "Boarding pass", "Remember": "Flight manifest", "Respond": "Allow boarding"},
+    
+    # Retail
+    {"Setting": "In-store shopping", "Sub-domain": "Retail", "Recognize": "Loyalty card", "Remember": "Purchase history", "Respond": "Offer discounts"},
+    {"Setting": "Self-checkout", "Sub-domain": "Retail", "Recognize": "Barcode", "Remember": "Inventory", "Respond": "Process payment"},
+    {"Setting": "Online order", "Sub-domain": "Retail", "Recognize": "Order number", "Remember": "Customer profile", "Respond": "Track shipment"},
+    
+    # Education
+    {"Setting": "Classroom attendance", "Sub-domain": "Education", "Recognize": "Student ID", "Remember": "Attendance records", "Respond": "Mark present"},
+    {"Setting": "Online exam", "Sub-domain": "Education", "Recognize": "Login credentials", "Remember": "Exam schedule", "Respond": "Grant access"},
+    {"Setting": "Library book return", "Sub-domain": "Education", "Recognize": "Book ID", "Remember": "Borrower records", "Respond": "Update inventory"},
+    
+    # Hospitality
+    {"Setting": "Restaurant reservation", "Sub-domain": "Hospitality", "Recognize": "Reservation ID", "Remember": "Booking system", "Respond": "Confirm table"},
+    {"Setting": "Spa appointment", "Sub-domain": "Hospitality", "Recognize": "Client ID", "Remember": "Appointment schedule", "Respond": "Provide service"},
+    {"Setting": "Hotel room service", "Sub-domain": "Hospitality", "Recognize": "Room number", "Remember": "Guest preferences", "Respond": "Deliver order"},
+    
+    # Legal and Professional
+    {"Setting": "Court hearing", "Sub-domain": "Legal", "Recognize": "Case number", "Remember": "Court records", "Respond": "Schedule hearing"},
+    {"Setting": "Patent filing", "Sub-domain": "Legal", "Recognize": "Patent application", "Remember": "Patent database", "Respond": "Grant patent"},
+    
+    # Healthcare
+    {"Setting": "Surgery scheduling", "Sub-domain": "Healthcare", "Recognize": "Patient ID", "Remember": "Surgery records", "Respond": "Schedule surgery"},
+    {"Setting": "Medical billing", "Sub-domain": "Healthcare", "Recognize": "Insurance ID", "Remember": "Billing records", "Respond": "Process payment"},
+    
+    # Environmental Monitoring
+    {"Setting": "Noise pollution monitoring", "Sub-domain": "Environmental", "Recognize": "Decibel levels", "Remember": "Noise regulations", "Respond": "Issue fines"},
+    {"Setting": "Waste management", "Sub-domain": "Environmental", "Recognize": "Waste type", "Remember": "Disposal guidelines", "Respond": "Schedule pickup"},
+    
+    # Transportation
+    {"Setting": "Fleet management", "Sub-domain": "Transport", "Recognize": "Vehicle ID", "Remember": "Maintenance logs", "Respond": "Schedule service"},
 ]
 
 def generate_synthetic_data(num_records: int) -> list:

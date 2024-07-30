@@ -66,8 +66,8 @@ def visualize_network(data: Dict[str, Any], output_file: str):
 
     G = nx.Graph()
     for _, row in relationships.iterrows():
-        prop = patterns[row['property_id']]['name'] if row['property_id'] else 'N/A'
-        proc = patterns[row['process_id']]['name'] if row['process_id'] else 'N/A'
+        prop = patterns[row['property_id']]['name'] if pd.notna(row['property_id']) and row['property_id'] in patterns else 'N/A'
+        proc = patterns[row['process_id']]['name'] if pd.notna(row['process_id']) and row['process_id'] in patterns else 'N/A'
         pers = patterns[row['perspective_id']]['name'] if pd.notna(row['perspective_id']) and row['perspective_id'] in patterns else 'N/A'
         G.add_edge(f"P:{prop}", f"Pr:{proc}", weight=row['strength'])
         G.add_edge(f"Pr:{proc}", f"Pe:{pers}", weight=row['strength'])
