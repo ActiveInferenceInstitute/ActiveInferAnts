@@ -1,30 +1,46 @@
 import numpy as np
 from InferAnts import ActiveNestmate, ActiveColony
 from configs import config, metaconfig
-from typing import List, Dict, Any, Union, Callable, Tuple
+from typing import List, Dict, Any, Union, Callable, Tuple, Optional
 import random
-from enum import Enum
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+from enum import Enum, auto
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, IsolationForest
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support, roc_auc_score
+from sklearn.preprocessing import StandardScaler
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import serialization
 import base64
 import logging
+import json
+from datetime import datetime
+import asyncio
+import aiohttp
 
 class ThreatLevel(Enum):
-    LOW = 1
-    MEDIUM = 2
-    HIGH = 3
-    CRITICAL = 4
+    NEGLIGIBLE = auto()
+    LOW = auto()
+    MEDIUM = auto()
+    HIGH = auto()
+    CRITICAL = auto()
+    CATASTROPHIC = auto()
+
+class SecurityProtocol(Enum):
+    ROUTINE = auto()
+    ELEVATED = auto()
+    HIGH_ALERT = auto()
+    LOCKDOWN = auto()
+    EVACUATION = auto()
 
 class CognitiveSecurity:
     """
-    A sophisticated Cognitive Security module acting as an Executive branch for Intelligence and National Security routines
-    within the ant colony simulation. It oversees advanced security protocols, threat detection, and decision-making
-    processes to safeguard the colony's integrity and operational security using AI-driven techniques.
+    An advanced Cognitive Security module acting as an Executive branch for Intelligence and National Security routines
+    within the ant colony simulation. It oversees sophisticated security protocols, threat detection, and decision-making
+    processes to safeguard the colony's integrity and operational security using state-of-the-art AI-driven techniques.
     """
     
     def __init__(self, colony: List[ActiveColony]):
@@ -36,11 +52,16 @@ class CognitiveSecurity:
         self.colony = colony
         self.threat_levels = {level: level.value for level in ThreatLevel}
         self.current_threat_level = ThreatLevel.LOW
+        self.current_security_protocol = SecurityProtocol.ROUTINE
         self.threat_assessment_model = self._initialize_threat_assessment_model()
         self.threat_recognition_model = self._initialize_threat_recognition_model()
+        self.anomaly_detection_model = self._initialize_anomaly_detection_model()
         self.encryption_key = self._generate_encryption_key()
         self.cipher_suite = Fernet(self.encryption_key)
         self.logger = self._setup_logger()
+        self.public_key, self.private_key = self._generate_asymmetric_keys()
+        self.historical_data = []
+        self.threat_threshold = metaconfig.THREAT_THRESHOLD
     
     def _initialize_threat_assessment_model(self) -> Dict[str, Callable[[Any], ThreatLevel]]:
         """
@@ -49,18 +70,43 @@ class CognitiveSecurity:
         :return: A dictionary representing the threat assessment model with callable assessments.
         """
         return {
-            "predator_proximity": lambda x: ThreatLevel.CRITICAL if x < metaconfig.PREDATOR_PROXIMITY_CRITICAL else ThreatLevel.HIGH if x < metaconfig.PREDATOR_PROXIMITY_THRESHOLD else ThreatLevel.LOW,
-            "rival_colony_activity": lambda x: ThreatLevel.HIGH if x > metaconfig.RIVAL_ACTIVITY_HIGH else ThreatLevel.MEDIUM if x > metaconfig.RIVAL_ACTIVITY_THRESHOLD else ThreatLevel.LOW,
-            "resource_levels": lambda x: ThreatLevel.CRITICAL if x < metaconfig.RESOURCE_CRITICAL else ThreatLevel.HIGH if x < metaconfig.RESOURCE_LOW else ThreatLevel.MEDIUM if x < metaconfig.RESOURCE_MEDIUM else ThreatLevel.LOW,
-            "colony_health": lambda x: ThreatLevel.CRITICAL if x < metaconfig.COLONY_HEALTH_CRITICAL else ThreatLevel.HIGH if x < metaconfig.COLONY_HEALTH_LOW else ThreatLevel.MEDIUM if x < metaconfig.COLONY_HEALTH_MEDIUM else ThreatLevel.LOW,
-            "internal_conflicts": lambda x: ThreatLevel.CRITICAL if x > metaconfig.INTERNAL_CONFLICT_CRITICAL else ThreatLevel.HIGH if x > metaconfig.INTERNAL_CONFLICT_HIGH else ThreatLevel.MEDIUM if x > metaconfig.INTERNAL_CONFLICT_MEDIUM else ThreatLevel.LOW,
+            "predator_proximity": lambda x: ThreatLevel.CATASTROPHIC if x < metaconfig.PREDATOR_PROXIMITY_CATASTROPHIC else
+                                  ThreatLevel.CRITICAL if x < metaconfig.PREDATOR_PROXIMITY_CRITICAL else
+                                  ThreatLevel.HIGH if x < metaconfig.PREDATOR_PROXIMITY_HIGH else
+                                  ThreatLevel.MEDIUM if x < metaconfig.PREDATOR_PROXIMITY_MEDIUM else
+                                  ThreatLevel.LOW if x < metaconfig.PREDATOR_PROXIMITY_LOW else ThreatLevel.NEGLIGIBLE,
+            "rival_colony_activity": lambda x: ThreatLevel.CRITICAL if x > metaconfig.RIVAL_ACTIVITY_CRITICAL else
+                                      ThreatLevel.HIGH if x > metaconfig.RIVAL_ACTIVITY_HIGH else
+                                      ThreatLevel.MEDIUM if x > metaconfig.RIVAL_ACTIVITY_MEDIUM else
+                                      ThreatLevel.LOW if x > metaconfig.RIVAL_ACTIVITY_LOW else ThreatLevel.NEGLIGIBLE,
+            "resource_levels": lambda x: ThreatLevel.CATASTROPHIC if x < metaconfig.RESOURCE_CATASTROPHIC else
+                               ThreatLevel.CRITICAL if x < metaconfig.RESOURCE_CRITICAL else
+                               ThreatLevel.HIGH if x < metaconfig.RESOURCE_HIGH else
+                               ThreatLevel.MEDIUM if x < metaconfig.RESOURCE_MEDIUM else
+                               ThreatLevel.LOW if x < metaconfig.RESOURCE_LOW else ThreatLevel.NEGLIGIBLE,
+            "colony_health": lambda x: ThreatLevel.CATASTROPHIC if x < metaconfig.COLONY_HEALTH_CATASTROPHIC else
+                             ThreatLevel.CRITICAL if x < metaconfig.COLONY_HEALTH_CRITICAL else
+                             ThreatLevel.HIGH if x < metaconfig.COLONY_HEALTH_HIGH else
+                             ThreatLevel.MEDIUM if x < metaconfig.COLONY_HEALTH_MEDIUM else
+                             ThreatLevel.LOW if x < metaconfig.COLONY_HEALTH_LOW else ThreatLevel.NEGLIGIBLE,
+            "internal_conflicts": lambda x: ThreatLevel.CATASTROPHIC if x > metaconfig.INTERNAL_CONFLICT_CATASTROPHIC else
+                                  ThreatLevel.CRITICAL if x > metaconfig.INTERNAL_CONFLICT_CRITICAL else
+                                  ThreatLevel.HIGH if x > metaconfig.INTERNAL_CONFLICT_HIGH else
+                                  ThreatLevel.MEDIUM if x > metaconfig.INTERNAL_CONFLICT_MEDIUM else
+                                  ThreatLevel.LOW if x > metaconfig.INTERNAL_CONFLICT_LOW else ThreatLevel.NEGLIGIBLE,
         }
     
     def _initialize_threat_recognition_model(self) -> RandomForestClassifier:
         """
         Initializes and returns a more sophisticated threat recognition model.
         """
-        return RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42)
+        return RandomForestClassifier(n_estimators=200, max_depth=15, min_samples_split=5, min_samples_leaf=2, random_state=42)
+    
+    def _initialize_anomaly_detection_model(self) -> IsolationForest:
+        """
+        Initializes and returns an advanced anomaly detection model.
+        """
+        return IsolationForest(n_estimators=100, contamination=0.1, random_state=42)
     
     def _generate_encryption_key(self) -> bytes:
         """
@@ -77,85 +123,178 @@ class CognitiveSecurity:
         )
         return base64.urlsafe_b64encode(kdf.derive(password))
     
+    def _generate_asymmetric_keys(self) -> Tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]:
+        """
+        Generates asymmetric key pair for secure communication.
+        """
+        private_key = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048,
+            backend=default_backend()
+        )
+        public_key = private_key.public_key()
+        return public_key, private_key
+    
     def _setup_logger(self) -> logging.Logger:
         """
-        Sets up and returns a logger for the CognitiveSecurity module.
+        Sets up and returns a sophisticated logger for the CognitiveSecurity module.
         """
         logger = logging.getLogger('CognitiveSecurity')
         logger.setLevel(logging.DEBUG)
-        handler = logging.FileHandler('cognitive_security.log')
+        file_handler = logging.FileHandler('cognitive_security.log')
+        console_handler = logging.StreamHandler()
+        file_handler.setLevel(logging.DEBUG)
+        console_handler.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
+        file_handler.setFormatter(formatter)
+        console_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+        logger.addHandler(console_handler)
         return logger
     
-    def assess_threats(self) -> None:
+    async def assess_threats(self) -> None:
         """
         Dynamically assesses the current threats to the colony using advanced AI techniques.
         Updates the current threat level based on the assessment.
         """
-        metrics = self._get_current_data()
+        metrics = await self._get_current_data()
         
         threat_levels = [self.threat_assessment_model[metric](value) for metric, value in metrics.items()]
         self.current_threat_level = max(threat_levels, key=lambda level: level.value)
         self.logger.info(f"Current threat level assessed: {self.current_threat_level}")
+        
+        # Update historical data
+        self.historical_data.append({**metrics, 'threat_level': self.current_threat_level})
+        if len(self.historical_data) > metaconfig.MAX_HISTORICAL_DATA_POINTS:
+            self.historical_data.pop(0)
+        
+        # Perform anomaly detection
+        anomaly_score = self.anomaly_detection_model.decision_function([list(metrics.values())])[0]
+        if anomaly_score < self.threat_threshold:
+            self.logger.warning(f"Anomaly detected! Score: {anomaly_score}")
+            await self.initiate_advanced_threat_analysis(metrics)
     
-    def _get_predator_proximity(self) -> float:
+    async def initiate_advanced_threat_analysis(self, metrics: Dict[str, float]) -> None:
+        """
+        Initiates an advanced threat analysis when an anomaly is detected.
+        
+        :param metrics: Current colony metrics
+        """
+        self.logger.info("Initiating advanced threat analysis...")
+        # Implement advanced threat analysis logic here
+        # This could include more sophisticated AI models, consulting external data sources, etc.
+        await self.consult_external_intelligence(metrics)
+    
+    async def consult_external_intelligence(self, metrics: Dict[str, float]) -> None:
+        """
+        Consults external intelligence sources for additional threat information.
+        
+        :param metrics: Current colony metrics
+        """
+        self.logger.info("Consulting external intelligence sources...")
+        # Simulate API call to external intelligence service
+        async with aiohttp.ClientSession() as session:
+            async with session.post('https://api.antintelligence.com/threat-analysis', json=metrics) as response:
+                if response.status == 200:
+                    external_threat_data = await response.json()
+                    self.logger.info(f"Received external threat data: {external_threat_data}")
+                    await self.integrate_external_intelligence(external_threat_data)
+                else:
+                    self.logger.error(f"Failed to retrieve external intelligence. Status: {response.status}")
+    
+    async def integrate_external_intelligence(self, external_threat_data: Dict[str, Any]) -> None:
+        """
+        Integrates external intelligence data into the threat assessment process.
+        
+        :param external_threat_data: Threat data from external sources
+        """
+        self.logger.info("Integrating external intelligence into threat assessment...")
+        # Implement logic to incorporate external threat data into the current threat assessment
+        # This could involve updating the threat recognition model, adjusting threat levels, etc.
+        if external_threat_data.get('threat_level', ThreatLevel.LOW).value > self.current_threat_level.value:
+            self.current_threat_level = external_threat_data['threat_level']
+            self.logger.warning(f"Threat level increased based on external intelligence: {self.current_threat_level}")
+            await self.execute_security_protocols()
+    
+    async def _get_predator_proximity(self) -> float:
         # Implement advanced predator detection logic here
         return np.random.uniform(*metaconfig.PREDATOR_PROXIMITY_RANGE)
     
-    def _get_rival_colony_activity(self) -> float:
+    async def _get_rival_colony_activity(self) -> float:
         # Implement sophisticated rival colony activity detection here
         return np.random.uniform(*metaconfig.RIVAL_ACTIVITY_RANGE)
     
-    def _get_internal_conflicts(self) -> float:
+    async def _get_internal_conflicts(self) -> float:
         # Implement nuanced internal conflict detection here
         return np.random.uniform(*metaconfig.INTERNAL_CONFLICT_RANGE)
     
-    def execute_security_protocols(self) -> None:
+    async def execute_security_protocols(self) -> None:
         """
         Executes advanced security protocols based on the current threat level.
         """
         protocol_actions = {
-            ThreatLevel.CRITICAL: [self.activate_emergency_protocols, self.initiate_evacuation_procedures],
-            ThreatLevel.HIGH: [self.activate_defense_mechanisms, self.reallocate_resources],
-            ThreatLevel.MEDIUM: [self.increase_surveillance, self.optimize_resource_allocation],
-            ThreatLevel.LOW: [self.maintain_routine_operations, self.conduct_preventive_measures]
+            ThreatLevel.CATASTROPHIC: [self.activate_emergency_protocols, self.initiate_evacuation_procedures, self.alert_neighboring_colonies],
+            ThreatLevel.CRITICAL: [self.activate_emergency_protocols, self.initiate_evacuation_procedures, self.fortify_colony_defenses],
+            ThreatLevel.HIGH: [self.activate_defense_mechanisms, self.reallocate_resources, self.increase_surveillance],
+            ThreatLevel.MEDIUM: [self.increase_surveillance, self.optimize_resource_allocation, self.prepare_defensive_measures],
+            ThreatLevel.LOW: [self.maintain_routine_operations, self.conduct_preventive_measures, self.update_threat_models],
+            ThreatLevel.NEGLIGIBLE: [self.maintain_routine_operations, self.conduct_regular_drills, self.analyze_historical_data]
         }
         actions = protocol_actions.get(self.current_threat_level, [self.default_action])
         for action in actions:
-            action()
+            await action()
+        
+        self.current_security_protocol = self._determine_security_protocol()
+        self.logger.info(f"Current security protocol: {self.current_security_protocol}")
     
-    def activate_emergency_protocols(self) -> None:
+    def _determine_security_protocol(self) -> SecurityProtocol:
+        """
+        Determines the appropriate security protocol based on the current threat level.
+        
+        :return: The current SecurityProtocol
+        """
+        if self.current_threat_level in [ThreatLevel.CATASTROPHIC, ThreatLevel.CRITICAL]:
+            return SecurityProtocol.EVACUATION
+        elif self.current_threat_level == ThreatLevel.HIGH:
+            return SecurityProtocol.LOCKDOWN
+        elif self.current_threat_level == ThreatLevel.MEDIUM:
+            return SecurityProtocol.HIGH_ALERT
+        elif self.current_threat_level == ThreatLevel.LOW:
+            return SecurityProtocol.ELEVATED
+        else:
+            return SecurityProtocol.ROUTINE
+    
+    async def activate_emergency_protocols(self) -> None:
         """
         Activates emergency protocols in response to critical-level threats.
         """
         self.logger.critical("Activating emergency protocols: Initiating colony-wide alert and defensive posture.")
-        self.colony[0].activate_emergency_protocols()
+        await self.colony[0].activate_emergency_protocols()
+        await self.send_secure_message("ALL_NESTMATES", "EMERGENCY PROTOCOL ACTIVATED. ASSUME DEFENSIVE POSITIONS.")
     
-    def activate_defense_mechanisms(self) -> None:
+    async def activate_defense_mechanisms(self) -> None:
         """
         Activates sophisticated defense mechanisms in response to high-level threats.
         """
         self.logger.warning("Activating advanced defense mechanisms: Increasing soldier ant production and fortifying nest entrance.")
-        self.colony[0].increase_soldier_production()
-        self.colony[0].fortify_nest_entrance()
+        await self.colony[0].increase_soldier_production()
+        await self.colony[0].fortify_nest_entrance()
     
-    def reallocate_resources(self) -> None:
+    async def reallocate_resources(self) -> None:
         """
         Implements an intelligent resource reallocation strategy under medium-level threats.
         """
         self.logger.info("Implementing intelligent resource reallocation: Optimizing defense and productivity balance.")
-        self.colony[0].reallocate_resources_for_defense()
+        await self.colony[0].reallocate_resources_for_defense()
     
-    def maintain_routine_operations(self) -> None:
+    async def maintain_routine_operations(self) -> None:
         """
         Maintains optimized routine operations under low-level threats.
         """
         self.logger.info("Maintaining optimized routine operations: Ensuring peak productivity and well-being of the colony.")
-        self.colony[0].continue_routine_operations()
+        await self.colony[0].continue_routine_operations()
     
-    def default_action(self) -> None:
+    async def default_action(self) -> None:
         """
         Executes a sophisticated default action when specific threat levels are not identified.
         """

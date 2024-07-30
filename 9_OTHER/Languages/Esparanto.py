@@ -9,10 +9,24 @@ import logging
 import concurrent.futures
 import time
 import json
+from pathlib import Path
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+import nltk
 
 # Agordo de protokolado
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
+# Ensure NLTK resources are downloaded
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+
+# Initialize Esperanto stopwords (if available)
+try:
+    esperanto_stopwords = set(stopwords.words('esperanto'))
+except:
+    esperanto_stopwords = set()
 
 def traduki_al_esperanto(teksto: str, provoj: int = 3, prokrasto: float = 1.0) -> Optional[str]:
     """
@@ -85,19 +99,20 @@ def traduki_dosieron(dosierindiko: str, elira_dosierujo: Optional[str] = None) -
 
         # Krei novan dosieron kun tradukita enhavo
         if elira_dosierujo:
-            os.makedirs(elira_dosierujo, exist_ok=True)
-            nova_dosierindiko = os.path.join(elira_dosierujo, f"{os.path.basename(dosierindiko)[:-3]}_eo.py")
+            elira_dosierujo = Path(elira_dosierujo)
+            elira_dosierujo.mkdir(parents=True, exist_ok=True)
+            nova_dosierindiko = elira_dosierujo / f"{Path(dosierindiko).stem}_eo.py"
         else:
-            nova_dosierindiko = f"{os.path.splitext(dosierindiko)[0]}_eo{os.path.splitext(dosierindiko)[1]}"
+            nova_dosierindiko = Path(dosierindiko).with_stem(f"{Path(dosierindiko).stem}_eo")
 
         with open(nova_dosierindiko, 'w', encoding='utf-8') as dosiero:
             dosiero.write(tradukita_enhavo)
 
         logger.info(f"Dosiero sukcese tradukita kaj konservita: {nova_dosierindiko}")
-        return dosierindiko, nova_dosierindiko
+        return str(dosierindiko), str(nova_dosierindiko)
     except Exception as e:
         logger.error(f"Eraro dum tradukado de dosiero {dosierindiko}: {str(e)}")
-        return dosierindiko, None
+        return str(dosierindiko), None
 
 def traduki_kodbazaron(radika_dosierujo: str, elira_dosierujo: Optional[str] = None, maksimumaj_laboristoj: int = 5) -> Dict[str, Optional[str]]:
     """
@@ -111,15 +126,12 @@ def traduki_kodbazaron(radika_dosierujo: str, elira_dosierujo: Optional[str] = N
     Returns:
         Dict[str, Optional[str]]: Vortaro kun indikoj al originalaj dosieroj kaj respondaj tradukitaj dosieroj.
     """
-    python_dosieroj = []
-    for dosierindiko, dosierujoj, dosieroj in os.walk(radika_dosierujo):
-        for dosiero in dosieroj:
-            if dosiero.endswith('.py'):
-                python_dosieroj.append(os.path.join(dosierindiko, dosiero))
+    radika_dosierujo = Path(radika_dosierujo)
+    python_dosieroj = list(radika_dosierujo.rglob('*.py'))
 
     rezultoj = {}
     with concurrent.futures.ProcessPoolExecutor(max_workers=maksimumaj_laboristoj) as plenumanto:
-        estonteco_al_dosiero = {plenumanto.submit(traduki_dosieron, dosierindiko, elira_dosierujo): dosierindiko for dosierindiko in python_dosieroj}
+        estonteco_al_dosiero = {plenumanto.submit(traduki_dosieron, str(dosierindiko), elira_dosierujo): dosierindiko for dosierindiko in python_dosieroj}
         
         with tqdm(total=len(python_dosieroj), desc="Tradukado de dosieroj") as pbar:
             for estonteco in concurrent.futures.as_completed(estonteco_al_dosiero):
@@ -129,7 +141,7 @@ def traduki_kodbazaron(radika_dosierujo: str, elira_dosierujo: Optional[str] = N
                     rezultoj[originala] = tradukita
                 except Exception as e:
                     logger.error(f"Eraro dum traktado de dosiero {dosierindiko}: {str(e)}")
-                    rezultoj[dosierindiko] = None
+                    rezultoj[str(dosierindiko)] = None
                 pbar.update(1)
 
     return rezultoj
@@ -144,7 +156,7 @@ def apliki_akuzativon(vorto: str) -> str:
     Returns:
         str: La vorto kun la akuzativa finaĵo.
     """
-    if vorto.endswith(('o', 'a')):
+    if vorto.endswith(('o', 'a', 'oj', 'aj')):
         return vorto + 'n'
     return vorto
 
@@ -170,7 +182,7 @@ def konjugacii_verbon(verbo: str, tempo: str) -> str:
     
     Args:
         verbo (str): La verbo en la infinitiva formo.
-        tempo (str): La dezirата tempo ('as' por prezenco, 'is' por preterito, 'os' por futuro).
+        tempo (str): La dezirата tempo ('as' por prezenco, 'is' por preterito, 'os' por futuro, 'us' por kondicionalo, 'u' por volitivo).
     
     Returns:
         str: La konjugaciita verbo.
@@ -191,6 +203,26 @@ def konservi_rezultojn(rezultoj: Dict[str, Optional[str]], elira_dosiero: str):
     with open(elira_dosiero, 'w', encoding='utf-8') as dosiero:
         json.dump(rezultoj, dosiero, ensure_ascii=False, indent=2)
     logger.info(f"Rezultoj konservitaj en: {elira_dosiero}")
+
+def analizi_tekston(teksto: str) -> Dict[str, Any]:
+    """
+    Analizas la donitan tekston kaj provizas bazajn statistikojn.
+    
+    Args:
+        teksto (str): La teksto por analizi.
+    
+    Returns:
+        Dict[str, Any]: Vortaro kun bazaj statistikoj pri la teksto.
+    """
+    vortoj = word_tokenize(teksto.lower())
+    signifaj_vortoj = [vorto for vorto in vortoj if vorto not in esperanto_stopwords]
+    
+    return {
+        "nombro_da_vortoj": len(vortoj),
+        "nombro_da_signifaj_vortoj": len(signifaj_vortoj),
+        "unikaj_vortoj": len(set(vortoj)),
+        "plej_oftaj_vortoj": Counter(signifaj_vortoj).most_common(10)
+    }
 
 def main():
     parser = argparse.ArgumentParser(description="Tradukado de komentoj en Python-kodo al Esperanto.")

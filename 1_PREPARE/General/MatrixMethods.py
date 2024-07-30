@@ -4,20 +4,27 @@ from scipy.sparse import csr_matrix, random as sparse_random
 from scipy.sparse.linalg import eigsh, svds
 from sklearn.utils.extmath import randomized_svd
 import warnings
+from typing import Union, Tuple, List, Optional
+from numpy.typing import ArrayLike
 
-def spectral_norm(matrix):
+def spectral_norm(matrix: ArrayLike) -> float:
     """
     Compute the spectral norm (largest singular value) of a matrix.
     
     Args:
-    matrix: Input matrix
+    matrix (ArrayLike): Input matrix
     
     Returns:
-    The spectral norm of the matrix.
+    float: The spectral norm of the matrix.
+    
+    Raises:
+    ValueError: If the input is not a 2D array.
     """
+    if not isinstance(matrix, np.ndarray) or matrix.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
     return np.linalg.norm(matrix, ord=2)
 
-def condition_number(matrix):
+def condition_number(matrix: ArrayLike, p: Optional[Union[int, str]] = None) -> float:
     """
     Compute the condition number of a matrix.
     
@@ -25,199 +32,301 @@ def condition_number(matrix):
     A large condition number indicates that the matrix is ill-conditioned.
     
     Args:
-    matrix: Input matrix
+    matrix (ArrayLike): Input matrix
+    p (Optional[Union[int, str]]): Order of the norm. Can be 1, 2, inf, or 'fro'. Default is 2.
     
     Returns:
-    The condition number of the matrix.
+    float: The condition number of the matrix.
+    
+    Raises:
+    ValueError: If the input is not a 2D array or if p is not a valid norm order.
     """
-    s = np.linalg.svd(matrix, compute_uv=False)
-    return s[0] / s[-1]
+    if not isinstance(matrix, np.ndarray) or matrix.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
+    
+    valid_p_values = [None, 1, 2, np.inf, 'fro']
+    if p not in valid_p_values:
+        raise ValueError(f"Invalid norm order. Must be one of {valid_p_values}")
+    
+    return np.linalg.cond(matrix, p=p)
 
-def matrix_rank(matrix, tol=None):
+def matrix_rank(matrix: ArrayLike, tol: Optional[float] = None, hermitian: bool = False) -> int:
     """
     Compute the rank of a matrix.
     
     Args:
-    matrix: Input matrix
-    tol: Tolerance for considering singular values as zero. If None, machine precision is used.
+    matrix (ArrayLike): Input matrix
+    tol (Optional[float]): Tolerance for considering singular values as zero. If None, machine precision is used.
+    hermitian (bool): If True, matrix is assumed to be Hermitian (symmetric if real-valued).
     
     Returns:
-    The rank of the matrix.
+    int: The rank of the matrix.
+    
+    Raises:
+    ValueError: If the input is not a 2D array.
     """
-    return np.linalg.matrix_rank(matrix, tol=tol)
+    if not isinstance(matrix, np.ndarray) or matrix.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
+    
+    return np.linalg.matrix_rank(matrix, tol=tol, hermitian=hermitian)
 
-def pseudoinverse(matrix, rcond=None):
+def pseudoinverse(matrix: ArrayLike, rcond: Optional[float] = None, hermitian: bool = False) -> np.ndarray:
     """
     Compute the Moore-Penrose pseudoinverse of a matrix.
     
     Args:
-    matrix: Input matrix
-    rcond: Cutoff for small singular values. Default is 1e-15.
+    matrix (ArrayLike): Input matrix
+    rcond (Optional[float]): Cutoff for small singular values. Default is 1e-15.
+    hermitian (bool): If True, matrix is assumed to be Hermitian (symmetric if real-valued).
     
     Returns:
-    The pseudoinverse of the matrix.
+    np.ndarray: The pseudoinverse of the matrix.
+    
+    Raises:
+    ValueError: If the input is not a 2D array.
     """
-    return np.linalg.pinv(matrix, rcond=rcond)
+    if not isinstance(matrix, np.ndarray) or matrix.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
+    
+    return np.linalg.pinv(matrix, rcond=rcond, hermitian=hermitian)
 
-def random_orthogonal_matrix(n):
+def random_orthogonal_matrix(n: int, random_state: Optional[Union[int, np.random.RandomState]] = None) -> np.ndarray:
     """
     Generate a random orthogonal matrix using QR decomposition.
     
     Args:
-    n: Size of the square matrix
+    n (int): Size of the square matrix
+    random_state (Optional[Union[int, np.random.RandomState]]): Seed for random number generator
     
     Returns:
-    A random orthogonal matrix of size n x n.
+    np.ndarray: A random orthogonal matrix of size n x n.
+    
+    Raises:
+    ValueError: If n is not a positive integer.
     """
-    Q, _ = np.linalg.qr(np.random.randn(n, n))
+    if not isinstance(n, int) or n <= 0:
+        raise ValueError("n must be a positive integer.")
+    
+    rng = np.random.default_rng(random_state)
+    Q, _ = np.linalg.qr(rng.standard_normal((n, n)))
     return Q
 
-def random_positive_definite_matrix(n, eigenvalue_range=(1, 10)):
+def random_positive_definite_matrix(n: int, eigenvalue_range: Tuple[float, float] = (1, 10), random_state: Optional[Union[int, np.random.RandomState]] = None) -> np.ndarray:
     """
     Generate a random positive definite matrix.
     
     Args:
-    n: Size of the square matrix
-    eigenvalue_range: Tuple specifying the range for eigenvalues
+    n (int): Size of the square matrix
+    eigenvalue_range (Tuple[float, float]): Tuple specifying the range for eigenvalues
+    random_state (Optional[Union[int, np.random.RandomState]]): Seed for random number generator
     
     Returns:
-    A random positive definite matrix of size n x n.
+    np.ndarray: A random positive definite matrix of size n x n.
+    
+    Raises:
+    ValueError: If n is not a positive integer or if eigenvalue_range is invalid.
     """
-    eigvals = np.random.uniform(*eigenvalue_range, size=n)
-    Q = random_orthogonal_matrix(n)
+    if not isinstance(n, int) or n <= 0:
+        raise ValueError("n must be a positive integer.")
+    
+    if not isinstance(eigenvalue_range, tuple) or len(eigenvalue_range) != 2 or eigenvalue_range[0] >= eigenvalue_range[1]:
+        raise ValueError("eigenvalue_range must be a tuple of two floats with the first value less than the second.")
+    
+    rng = np.random.default_rng(random_state)
+    eigvals = rng.uniform(*eigenvalue_range, size=n)
+    Q = random_orthogonal_matrix(n, random_state=rng)
     return Q @ np.diag(eigvals) @ Q.T
 
-def sparse_random_matrix(m, n, density=0.1, format='csr', dtype=None, random_state=None):
+def sparse_random_matrix(m: int, n: int, density: float = 0.1, format: str = 'csr', dtype: Optional[np.dtype] = None, random_state: Optional[Union[int, np.random.RandomState]] = None) -> csr_matrix:
     """
     Generate a sparse random matrix.
     
     Args:
-    m, n: Dimensions of the matrix
-    density: Density of non-zero elements (default: 0.1)
-    format: Sparse matrix format (default: 'csr')
-    dtype: Data type of the matrix elements
-    random_state: Seed for random number generator
+    m (int): Number of rows
+    n (int): Number of columns
+    density (float): Density of non-zero elements (default: 0.1)
+    format (str): Sparse matrix format (default: 'csr')
+    dtype (Optional[np.dtype]): Data type of the matrix elements
+    random_state (Optional[Union[int, np.random.RandomState]]): Seed for random number generator
     
     Returns:
-    A sparse random matrix.
+    csr_matrix: A sparse random matrix.
+    
+    Raises:
+    ValueError: If m or n are not positive integers, or if density is not in (0, 1].
     """
+    if not isinstance(m, int) or m <= 0 or not isinstance(n, int) or n <= 0:
+        raise ValueError("m and n must be positive integers.")
+    
+    if not 0 < density <= 1:
+        raise ValueError("density must be in the range (0, 1].")
+    
     return sparse_random(m, n, density=density, format=format, dtype=dtype, random_state=random_state)
 
-def truncated_svd(matrix, k, n_iter=5, random_state=None):
+def truncated_svd(matrix: ArrayLike, k: int, n_iter: int = 5, random_state: Optional[Union[int, np.random.RandomState]] = None) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Compute truncated SVD using randomized algorithm.
     
     Args:
-    matrix: Input matrix
-    k: Number of singular values and vectors to compute
-    n_iter: Number of power iterations (default: 5)
-    random_state: Random state for reproducibility
+    matrix (ArrayLike): Input matrix
+    k (int): Number of singular values and vectors to compute
+    n_iter (int): Number of power iterations (default: 5)
+    random_state (Optional[Union[int, np.random.RandomState]]): Random state for reproducibility
     
     Returns:
-    U, S, Vt: Left singular vectors, singular values, and right singular vectors
+    Tuple[np.ndarray, np.ndarray, np.ndarray]: Left singular vectors, singular values, and right singular vectors
+    
+    Raises:
+    ValueError: If k is not a positive integer or if n_iter is negative.
     """
+    if not isinstance(k, int) or k <= 0:
+        raise ValueError("k must be a positive integer.")
+    
+    if not isinstance(n_iter, int) or n_iter < 0:
+        raise ValueError("n_iter must be a non-negative integer.")
+    
     U, S, Vt = randomized_svd(matrix, n_components=k, n_iter=n_iter, random_state=random_state)
     return U, S, Vt
 
-def sparse_eigsh(matrix, k, which='LM', sigma=None, maxiter=None, tol=0):
+def sparse_eigsh(matrix: csr_matrix, k: int, which: str = 'LM', sigma: Optional[float] = None, maxiter: Optional[int] = None, tol: float = 0) -> Tuple[np.ndarray, np.ndarray]:
     """
     Compute k largest (or smallest) eigenvalues and eigenvectors of a sparse symmetric matrix.
     
     Args:
-    matrix: Input sparse symmetric matrix
-    k: Number of eigenvalues/vectors to compute
-    which: Which eigenvalues to find ('LM', 'SM', 'LA', 'SA', or 'BE')
-    sigma: Shift-invert mode for near shifts
-    maxiter: Maximum number of Arnoldi update iterations
-    tol: Relative accuracy for eigenvalues
+    matrix (csr_matrix): Input sparse symmetric matrix
+    k (int): Number of eigenvalues/vectors to compute
+    which (str): Which eigenvalues to find ('LM', 'SM', 'LA', 'SA', or 'BE')
+    sigma (Optional[float]): Shift-invert mode for near shifts
+    maxiter (Optional[int]): Maximum number of Arnoldi update iterations
+    tol (float): Relative accuracy for eigenvalues
     
     Returns:
-    eigenvalues, eigenvectors
+    Tuple[np.ndarray, np.ndarray]: eigenvalues, eigenvectors
+    
+    Raises:
+    ValueError: If k is not a positive integer or if which is not a valid option.
     """
+    if not isinstance(k, int) or k <= 0:
+        raise ValueError("k must be a positive integer.")
+    
+    valid_which = ['LM', 'SM', 'LA', 'SA', 'BE']
+    if which not in valid_which:
+        raise ValueError(f"which must be one of {valid_which}")
+    
     return eigsh(matrix, k=k, which=which, sigma=sigma, maxiter=maxiter, tol=tol)
 
-def sparse_svds(matrix, k, ncv=None, tol=0, which='LM', v0=None, maxiter=None, return_singular_vectors=True):
+def sparse_svds(matrix: csr_matrix, k: int, ncv: Optional[int] = None, tol: float = 0, which: str = 'LM', v0: Optional[np.ndarray] = None, maxiter: Optional[int] = None, return_singular_vectors: bool = True) -> Union[Tuple[np.ndarray, np.ndarray, np.ndarray], np.ndarray]:
     """
     Compute k largest singular values and vectors of a sparse matrix.
     
     Args:
-    matrix: Input sparse matrix
-    k: Number of singular values/vectors to compute
-    ncv: Number of Lanczos vectors generated
-    tol: Tolerance for singular values
-    which: Which singular values to find ('LM' or 'SM')
-    v0: Starting vector for iteration
-    maxiter: Maximum number of iterations
-    return_singular_vectors: Whether to return singular vectors
+    matrix (csr_matrix): Input sparse matrix
+    k (int): Number of singular values/vectors to compute
+    ncv (Optional[int]): Number of Lanczos vectors generated
+    tol (float): Tolerance for singular values
+    which (str): Which singular values to find ('LM' or 'SM')
+    v0 (Optional[np.ndarray]): Starting vector for iteration
+    maxiter (Optional[int]): Maximum number of iterations
+    return_singular_vectors (bool): Whether to return singular vectors
     
     Returns:
-    U, s, Vt: Left singular vectors, singular values, and right singular vectors
+    Union[Tuple[np.ndarray, np.ndarray, np.ndarray], np.ndarray]: 
+        If return_singular_vectors is True: (U, s, Vt) - Left singular vectors, singular values, and right singular vectors
+        If return_singular_vectors is False: s - Singular values
+    
+    Raises:
+    ValueError: If k is not a positive integer or if which is not a valid option.
     """
+    if not isinstance(k, int) or k <= 0:
+        raise ValueError("k must be a positive integer.")
+    
+    valid_which = ['LM', 'SM']
+    if which not in valid_which:
+        raise ValueError(f"which must be one of {valid_which}")
+    
     return svds(matrix, k=k, ncv=ncv, tol=tol, which=which, v0=v0, maxiter=maxiter, return_singular_vectors=return_singular_vectors)
 
-def toeplitz_matrix(c, r=None):
+def toeplitz_matrix(c: ArrayLike, r: Optional[ArrayLike] = None) -> np.ndarray:
     """
     Generate a Toeplitz matrix.
     
     Args:
-    c: First column of the matrix
-    r: First row of the matrix (if different from c)
+    c (ArrayLike): First column of the matrix
+    r (Optional[ArrayLike]): First row of the matrix (if different from c)
     
     Returns:
-    A Toeplitz matrix.
+    np.ndarray: A Toeplitz matrix.
+    
+    Raises:
+    ValueError: If c and r have incompatible shapes.
     """
     return linalg.toeplitz(c, r)
 
-def circulant_matrix(c):
+def circulant_matrix(c: ArrayLike) -> np.ndarray:
     """
     Generate a circulant matrix.
     
     Args:
-    c: First column of the circulant matrix
+    c (ArrayLike): First column of the circulant matrix
     
     Returns:
-    A circulant matrix.
+    np.ndarray: A circulant matrix.
     """
     return linalg.circulant(c)
 
-def hadamard_matrix(n):
+def hadamard_matrix(n: int) -> np.ndarray:
     """
     Generate a Hadamard matrix of order n.
     
     Args:
-    n: Order of the Hadamard matrix (must be a power of 2)
+    n (int): Order of the Hadamard matrix (must be a power of 2)
     
     Returns:
-    A Hadamard matrix of order n.
+    np.ndarray: A Hadamard matrix of order n.
+    
+    Raises:
+    ValueError: If n is not a power of 2.
     """
     if n & (n - 1) != 0:
         raise ValueError("n must be a power of 2")
     return linalg.hadamard(n)
 
-def is_positive_definite(matrix, tol=1e-8):
+def is_positive_definite(matrix: ArrayLike, tol: float = 1e-8) -> bool:
     """
     Check if a matrix is positive definite.
     
     Args:
-    matrix: Input symmetric matrix
-    tol: Tolerance for eigenvalue positivity check
+    matrix (ArrayLike): Input symmetric matrix
+    tol (float): Tolerance for eigenvalue positivity check
     
     Returns:
-    True if the matrix is positive definite, False otherwise.
+    bool: True if the matrix is positive definite, False otherwise.
+    
+    Raises:
+    ValueError: If the input is not a 2D square array.
     """
+    if not isinstance(matrix, np.ndarray) or matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
+        raise ValueError("Input must be a 2D square numpy array.")
+    
     return np.all(np.linalg.eigvalsh(matrix) > tol)
 
-def nearest_positive_definite(matrix, epsilon=0):
+def nearest_positive_definite(matrix: ArrayLike, epsilon: float = 0) -> np.ndarray:
     """
     Find the nearest positive definite matrix to the input matrix.
     
     Args:
-    matrix: Input matrix
-    epsilon: Small number added to the diagonal for numerical stability
+    matrix (ArrayLike): Input matrix
+    epsilon (float): Small number added to the diagonal for numerical stability
     
     Returns:
-    The nearest positive definite matrix.
+    np.ndarray: The nearest positive definite matrix.
+    
+    Raises:
+    ValueError: If the input is not a 2D square array.
     """
+    if not isinstance(matrix, np.ndarray) or matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
+        raise ValueError("Input must be a 2D square numpy array.")
+    
     B = (matrix + matrix.T) / 2
     _, s, V = np.linalg.svd(B)
     H = V.T @ np.diag(np.maximum(s, epsilon)) @ V

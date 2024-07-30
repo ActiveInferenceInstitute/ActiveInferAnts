@@ -1,6 +1,6 @@
 import numpy as np
 import config
-from typing import Dict, Any, Tuple, Callable
+from typing import Dict, Any, Tuple, Callable, List, Optional
 from scipy.stats import entropy
 from abc import ABC, abstractmethod
 
@@ -9,16 +9,17 @@ class ActiveInferenceAgent(ABC):
         """
         Initializes an active inference agent with specified parameters and matrices.
 
-        :param position: Initial position of the agent in a numpy array.
-        :param influence_factor: Influence factor for agent's actions as a float.
-        :param agent_params: Additional parameters for agent configuration as a dictionary.
+        Args:
+            position (np.ndarray): Initial position of the agent.
+            influence_factor (float): Influence factor for agent's actions.
+            **agent_params (Dict[str, Any]): Additional parameters for agent configuration.
         """
         self.position = position
         self.influence_factor = influence_factor
         self.agent_params = agent_params
         self.initialize_matrices()
 
-    def initialize_matrices(self):
+    def initialize_matrices(self) -> None:
         """
         Initializes matrices based on agent parameters.
         """
@@ -32,31 +33,37 @@ class ActiveInferenceAgent(ABC):
         """
         Helper method to initialize a matrix based on a configuration key and dimensions.
 
-        :param config_key: Configuration key for the matrix.
-        :param dims: Dimensions for the matrix.
-        :return: A numpy array representing the initialized matrix.
+        Args:
+            config_key (str): Configuration key for the matrix.
+            *dims: Dimensions for the matrix.
+
+        Returns:
+            np.ndarray: Initialized matrix.
         """
         matrix_config = self.agent_params.get(config_key, np.zeros(dims, dtype=np.float32))
-        if callable(matrix_config):
-            return matrix_config(*dims)
-        return np.array(matrix_config, dtype=np.float32)
+        return np.array(matrix_config(*dims) if callable(matrix_config) else matrix_config, dtype=np.float32)
 
-    def perceive(self, observations: np.ndarray):
+    def perceive(self, observations: np.ndarray) -> None:
         """
         Updates agent's beliefs based on new observations.
 
-        :param observations: New sensory observations as a numpy array.
+        Args:
+            observations (np.ndarray): New sensory observations.
         """
-        prediction_error = self.agent_params.get('perception_strategy', self._default_perception_strategy)(observations, self)
+        perception_strategy = self.agent_params.get('perception_strategy', self._default_perception_strategy)
+        prediction_error = perception_strategy(observations, self)
         self._update_beliefs(prediction_error)
 
     def _default_perception_strategy(self, observations: np.ndarray, agent: 'ActiveInferenceAgent') -> np.ndarray:
         """
         Default perception strategy.
 
-        :param observations: New sensory observations as a numpy array.
-        :param agent: The agent itself.
-        :return: Prediction error as a numpy array.
+        Args:
+            observations (np.ndarray): New sensory observations.
+            agent (ActiveInferenceAgent): The agent itself.
+
+        Returns:
+            np.ndarray: Prediction error.
         """
         return observations - agent._predict_sensory_outcomes()
 
@@ -64,54 +71,66 @@ class ActiveInferenceAgent(ABC):
         """
         Predicts sensory outcomes based on the agent's current position.
 
-        :return: A numpy array of predicted sensory outcomes.
+        Returns:
+            np.ndarray: Predicted sensory outcomes.
         """
         return np.dot(self.A_matrix, self.position)
 
-    def _update_beliefs(self, prediction_error: np.ndarray):
+    def _update_beliefs(self, prediction_error: np.ndarray) -> None:
         """
         Updates the agent's beliefs based on the prediction error.
 
-        :param prediction_error: Prediction error as a numpy array.
+        Args:
+            prediction_error (np.ndarray): Prediction error.
         """
-        self.position = self.position - self.influence_factor * prediction_error
+        self.position -= self.influence_factor * prediction_error
 
     def calculate_vfe(self, observation: np.ndarray) -> float:
         """
         Calculates the Variational Free Energy for a given observation.
 
-        :param observation: Observation as a numpy array.
-        :return: Variational Free Energy as a float.
+        Args:
+            observation (np.ndarray): Observation.
+
+        Returns:
+            float: Variational Free Energy.
         """
         qs = self._approximate_posterior(observation)
-        expected_log_likelihood = np.sum(qs * np.log(np.clip(self.A_matrix[:, observation], a_min=1e-10, a_max=None)))
-        kl_divergence = np.sum(qs * (np.log(np.clip(qs, a_min=1e-10, a_max=None)) - np.log(np.clip(self.position, a_min=1e-10, a_max=None))))
-        vfe = -(expected_log_likelihood - kl_divergence)
-        return vfe
+        expected_log_likelihood = np.sum(qs * np.log(np.clip(self.A_matrix[:, observation], 1e-10, None)))
+        kl_divergence = np.sum(qs * (np.log(np.clip(qs, 1e-10, None)) - np.log(np.clip(self.position, 1e-10, None))))
+        return -(expected_log_likelihood - kl_divergence)
 
     def calculate_efe(self, action: np.ndarray, future_states: np.ndarray, preferences: np.ndarray, uncertainty: float) -> float:
         """
         Calculates the Expected Free Energy for a given action.
 
-        :param action: Action as a numpy array.
-        :param future_states: Future states as a numpy array.
-        :param preferences: Preferences as a numpy array.
-        :param uncertainty: Uncertainty as a float.
-        :return: Expected Free Energy as a float.
+        Args:
+            action (np.ndarray): Action.
+            future_states (np.ndarray): Future states.
+            preferences (np.ndarray): Preferences.
+            uncertainty (float): Uncertainty.
+
+        Returns:
+            float: Expected Free Energy.
         """
-        pragmatic_value = np.sum(future_states * (np.log(np.clip(future_states, a_min=1e-10, a_max=None)) - np.log(np.clip(preferences, a_min=1e-10, a_max=None))))
+        pragmatic_value = np.sum(future_states * (np.log(np.clip(future_states, 1e-10, None)) - np.log(np.clip(preferences, 1e-10, None))))
         epistemic_value = entropy(future_states)
-        efe = pragmatic_value + uncertainty * epistemic_value
-        return efe
+        return pragmatic_value + uncertainty * epistemic_value
 
     def decide_next_action(self) -> np.ndarray:
         """
         Decides the next action based on Expected Free Energy scores.
 
-        :return: The chosen action as a numpy array.
+        Returns:
+            np.ndarray: The chosen action.
         """
         possible_actions = self._generate_possible_actions()
-        efe_scores = np.array([self.calculate_efe(action, self._predict_future_states(action), self.agent_params.get('preferences', np.zeros(self.position.shape)), self.agent_params.get('uncertainty', 0.1)) for action in possible_actions])
+        efe_scores = np.array([self.calculate_efe(
+            action,
+            self._predict_future_states(action),
+            self.agent_params.get('preferences', np.zeros(self.position.shape)),
+            self.agent_params.get('uncertainty', 0.1)
+        ) for action in possible_actions])
         return possible_actions[np.argmin(efe_scores)]
 
     @abstractmethod
@@ -119,7 +138,8 @@ class ActiveInferenceAgent(ABC):
         """
         Generates possible actions for the agent.
 
-        :return: A numpy array of possible actions.
+        Returns:
+            np.ndarray: Possible actions.
         """
         pass
 
@@ -128,8 +148,11 @@ class ActiveInferenceAgent(ABC):
         """
         Predicts future states based on a given action.
 
-        :param action: Action as a numpy array.
-        :return: Predicted future states as a numpy array.
+        Args:
+            action (np.ndarray): Action.
+
+        Returns:
+            np.ndarray: Predicted future states.
         """
         pass
 
@@ -138,63 +161,72 @@ class ActiveInferenceAgent(ABC):
         """
         Approximates the posterior distribution given an observation.
 
-        :param observation: Observation as a numpy array.
-        :return: Approximated posterior as a numpy array.
+        Args:
+            observation (np.ndarray): Observation.
+
+        Returns:
+            np.ndarray: Approximated posterior.
         """
         pass
 
-    def update_internal_states(self, action: np.ndarray, observation: np.ndarray):
+    def update_internal_states(self, action: np.ndarray, observation: np.ndarray) -> None:
         """
         Updates the agent's internal states based on action and observation.
 
-        :param action: Action taken by the agent as a numpy array.
-        :param observation: New observation received as a numpy array.
+        Args:
+            action (np.ndarray): Action taken by the agent.
+            observation (np.ndarray): New observation received.
         """
         self._update_action_model(action, observation)
         self._update_observation_model(observation)
 
-    def _update_action_model(self, action: np.ndarray, observation: np.ndarray):
+    def _update_action_model(self, action: np.ndarray, observation: np.ndarray) -> None:
         """
         Updates the action model based on the taken action and new observation.
 
-        :param action: Action taken by the agent as a numpy array.
-        :param observation: New observation received as a numpy array.
+        Args:
+            action (np.ndarray): Action taken by the agent.
+            observation (np.ndarray): New observation received.
         """
         self.B_matrix += np.outer(action, observation)
 
-    def _update_observation_model(self, observation: np.ndarray):
+    def _update_observation_model(self, observation: np.ndarray) -> None:
         """
         Updates the observation model based on the new observation.
 
-        :param observation: New observation received as a numpy array.
+        Args:
+            observation (np.ndarray): New observation received.
         """
         self.A_matrix += np.outer(observation, observation)
 
-    def move(self, direction: np.ndarray):
+    def move(self, direction: np.ndarray) -> None:
         """
         Updates the agent's position based on the chosen direction.
 
-        :param direction: Direction to move in as a numpy array.
+        Args:
+            direction (np.ndarray): Direction to move in.
         """
         self.position += direction
 
     @abstractmethod
-    def release_pheromone(self, type: str, rate: float):
+    def release_pheromone(self, pheromone_type: str, rate: float) -> None:
         """
         Releases pheromone of a specified type at a specified rate.
 
-        :param type: Type of pheromone as a string.
-        :param rate: Rate of pheromone release as a float.
+        Args:
+            pheromone_type (str): Type of pheromone.
+            rate (float): Rate of pheromone release.
         """
         pass
 
     @abstractmethod
-    def produce_sound(self, type: str, intensity: float):
+    def produce_sound(self, sound_type: str, intensity: float) -> None:
         """
         Produces sound of a specified type with a specified intensity.
 
-        :param type: Type of sound as a string.
-        :param intensity: Intensity of the sound as a float.
+        Args:
+            sound_type (str): Type of sound.
+            intensity (float): Intensity of the sound.
         """
         pass
 
@@ -204,23 +236,23 @@ class ActiveColony(ActiveInferenceAgent):
         self.colony_config = config.ANT_AND_COLONY_CONFIG['COLONY']
 
     def _generate_possible_actions(self) -> np.ndarray:
-        # Implement colony-specific action generation
-        pass
+        # TODO: Implement colony-specific action generation
+        return np.array([])  # Placeholder
 
     def _predict_future_states(self, action: np.ndarray) -> np.ndarray:
-        # Implement colony-specific future state prediction
-        pass
+        # TODO: Implement colony-specific future state prediction
+        return np.array([])  # Placeholder
 
     def _approximate_posterior(self, observation: np.ndarray) -> np.ndarray:
-        # Implement colony-specific posterior approximation
+        # TODO: Implement colony-specific posterior approximation
+        return np.array([])  # Placeholder
+
+    def release_pheromone(self, pheromone_type: str, rate: float) -> None:
+        # TODO: Implement colony-specific pheromone release
         pass
 
-    def release_pheromone(self, type: str, rate: float):
-        # Implement colony-specific pheromone release
-        pass
-
-    def produce_sound(self, type: str, intensity: float):
-        # Implement colony-specific sound production
+    def produce_sound(self, sound_type: str, intensity: float) -> None:
+        # TODO: Implement colony-specific sound production
         pass
 
 class ActiveNestmate(ActiveInferenceAgent):
@@ -229,21 +261,21 @@ class ActiveNestmate(ActiveInferenceAgent):
         self.nestmate_config = config.ANT_AND_COLONY_CONFIG['NESTMATE']
 
     def _generate_possible_actions(self) -> np.ndarray:
-        # Implement nestmate-specific action generation
-        pass
+        # TODO: Implement nestmate-specific action generation
+        return np.array([])  # Placeholder
 
     def _predict_future_states(self, action: np.ndarray) -> np.ndarray:
-        # Implement nestmate-specific future state prediction
-        pass
+        # TODO: Implement nestmate-specific future state prediction
+        return np.array([])  # Placeholder
 
     def _approximate_posterior(self, observation: np.ndarray) -> np.ndarray:
-        # Implement nestmate-specific posterior approximation
+        # TODO: Implement nestmate-specific posterior approximation
+        return np.array([])  # Placeholder
+
+    def release_pheromone(self, pheromone_type: str, rate: float) -> None:
+        # TODO: Implement nestmate-specific pheromone release
         pass
 
-    def release_pheromone(self, type: str, rate: float):
-        # Implement nestmate-specific pheromone release
-        pass
-
-    def produce_sound(self, type: str, intensity: float):
-        # Implement nestmate-specific sound production
+    def produce_sound(self, sound_type: str, intensity: float) -> None:
+        # TODO: Implement nestmate-specific sound production
         pass

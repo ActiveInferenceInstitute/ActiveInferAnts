@@ -7,27 +7,38 @@ import logging
 
 class Thing:
     """
-    A Thing class that utilizes active inference, leveraging the pymdp library for interactions with its environment.
-    This class implements Bayesian inference techniques and information-theoretic measures for decision-making.
+    A sophisticated Thing class that employs active inference principles for decision-making and learning.
+    
+    This class leverages the pymdp library to implement Bayesian inference techniques and 
+    information-theoretic measures for adaptive interaction with its environment. It maintains
+    and updates complex internal models, allowing for nuanced perception and action selection.
     """
-    def __init__(self, observation_model: np.ndarray, transition_model: np.ndarray, preference_model: np.ndarray, 
-                 initial_state_distribution: np.ndarray, policy_prior: Optional[np.ndarray] = None, 
-                 policy_length: int = 1, inference_depth: int = 1, controllable_factors: Optional[List[int]] = None, 
-                 possible_policies: Optional[np.ndarray] = None, learning_rate: float = 0.1):
+
+    def __init__(self, 
+                 observation_model: np.ndarray, 
+                 transition_model: np.ndarray, 
+                 preference_model: np.ndarray, 
+                 initial_state_distribution: np.ndarray, 
+                 policy_prior: Optional[np.ndarray] = None, 
+                 policy_length: int = 1, 
+                 inference_depth: int = 1, 
+                 controllable_factors: Optional[List[int]] = None, 
+                 possible_policies: Optional[np.ndarray] = None, 
+                 learning_rate: float = 0.1):
         """
-        Initializes the Thing with models of the environment, preferences, and initial states.
-        
+        Initializes the Thing with comprehensive models of its environment and preferences.
+
         Args:
-            observation_model (np.ndarray): Maps observations to states (Sensory mapping, Likelihoods)
-            transition_model (np.ndarray): Describes state transitions (Dynamics, State evolution)
-            preference_model (np.ndarray): Encodes preferences over observations (Goals, Desires)
-            initial_state_distribution (np.ndarray): Prior beliefs about initial states
-            policy_prior (Optional[np.ndarray]): Prior beliefs over policies
-            policy_length (int): Consideration span of policies
-            inference_depth (int): Depth of future state consideration
-            controllable_factors (Optional[List[int]]): Indices of factors the Thing can control
-            possible_policies (Optional[np.ndarray]): Explicit set of policies to consider
-            learning_rate (float): Rate at which the Thing updates its models based on experience
+            observation_model (np.ndarray): Likelihood mapping from hidden states to observations.
+            transition_model (np.ndarray): Dynamics model describing state transitions.
+            preference_model (np.ndarray): Encoded preferences over observations.
+            initial_state_distribution (np.ndarray): Prior beliefs about initial states.
+            policy_prior (Optional[np.ndarray]): Prior beliefs over policies.
+            policy_length (int): Temporal horizon for policy consideration.
+            inference_depth (int): Depth of recursive inference for state estimation.
+            controllable_factors (Optional[List[int]]): Indices of controllable state factors.
+            possible_policies (Optional[np.ndarray]): Set of feasible policies to consider.
+            learning_rate (float): Rate of model updates based on experience.
         """
         self.observation_model = utils.to_obj_array(observation_model)
         self.transition_model = utils.to_obj_array(transition_model)
@@ -51,7 +62,10 @@ class Thing:
 
     def _setup_logger(self) -> logging.Logger:
         """
-        Sets up a logger for the Thing instance.
+        Configures and returns a logger for the Thing instance.
+
+        Returns:
+            logging.Logger: Configured logger object.
         """
         logger = logging.getLogger(f"{__name__}.{id(self)}")
         logger.setLevel(logging.INFO)
@@ -63,7 +77,10 @@ class Thing:
 
     def _construct_generative_model(self) -> Dict[str, Any]:
         """
-        Constructs a generative model incorporating the Thing's environment and preferences.
+        Assembles the generative model from component parts.
+
+        Returns:
+            Dict[str, Any]: Comprehensive generative model of the environment.
         """
         return {
             'observation_model': self.observation_model,
@@ -75,7 +92,10 @@ class Thing:
 
     def _calculate_model_dimensions(self) -> Dict[str, Any]:
         """
-        Calculates the dimensions of the generative model's components.
+        Computes the dimensions of various model components.
+
+        Returns:
+            Dict[str, Any]: Dimensions of observations, states, modalities, and factors.
         """
         num_observations = [model.shape[0] for model in self.observation_model]
         num_states = [model.shape[0] for model in self.transition_model]
@@ -88,30 +108,42 @@ class Thing:
 
     def _initialize_policy_prior(self) -> np.ndarray:
         """
-        Initializes a policy prior based on the controllable factors and policy length.
+        Initializes a uniform prior over policies.
+
+        Returns:
+            np.ndarray: Uniform policy prior.
         """
         return np.ones((self.policy_length, len(self.controllable_factors))) / self.policy_length
 
     def _identify_controllable_factors(self) -> List[int]:
         """
-        Identifies controllable factors based on the transition model's dimensions and structure.
+        Identifies controllable factors based on transition model structure.
+
+        Returns:
+            List[int]: Indices of controllable factors.
         """
-        controllable = []
-        for i, model in enumerate(self.transition_model):
-            if np.any(model != model[0]):  # Check if any row is different from the first row
-                controllable.append(i)
-        return controllable
+        return [i for i, model in enumerate(self.transition_model) if np.any(model != model[0])]
 
     def _generate_possible_policies(self) -> np.ndarray:
         """
-        Generates a set of possible policies based on the model dimensions and controllable factors.
+        Generates all possible policies given the model dimensions and controllable factors.
+
+        Returns:
+            np.ndarray: Array of possible policies.
         """
-        return control.construct_policies(self.model_dimensions['num_states'], self.model_dimensions['num_factors'], 
-                                          self.policy_length, self.controllable_factors)
+        return control.construct_policies(
+            self.model_dimensions['num_states'], 
+            self.model_dimensions['num_factors'], 
+            self.policy_length, 
+            self.controllable_factors
+        )
 
     def update_beliefs(self, observation: np.ndarray) -> None:
         """
-        Updates the Thing's beliefs based on new observations using Bayesian inference.
+        Updates beliefs about hidden states and policies based on new observations.
+
+        Args:
+            observation (np.ndarray): New sensory observation.
         """
         self.logger.info("Updating beliefs based on new observation")
         self.posterior_states = inference.update_posterior_states(
@@ -126,7 +158,10 @@ class Thing:
 
     def select_action(self) -> np.ndarray:
         """
-        Selects an action based on the Thing's current beliefs and updated policies.
+        Selects an action based on current beliefs and updated policies.
+
+        Returns:
+            np.ndarray: Selected action.
         """
         self.logger.info("Selecting action based on current beliefs and policies")
         action = control.sample_action(
@@ -138,17 +173,29 @@ class Thing:
 
     def step(self, observation: np.ndarray) -> np.ndarray:
         """
-        Executes a decision-making cycle based on a new observation.
+        Executes a full decision-making cycle: perception, action selection, and learning.
+
+        Args:
+            observation (np.ndarray): New sensory observation.
+
+        Returns:
+            np.ndarray: Selected action.
         """
         self.logger.info("Executing decision-making cycle")
         self.update_beliefs(observation)
         action = self.select_action()
-        self._update_models()  # Implement learning
+        self._update_models()
         return action
     
     def calculate_vfe(self, observation: np.ndarray) -> float:
         """
-        Calculates the Variational Free Energy (VFE) given an observation.
+        Calculates the Variational Free Energy (VFE) for a given observation.
+
+        Args:
+            observation (np.ndarray): Observed sensory data.
+
+        Returns:
+            float: Calculated VFE.
         """
         qs = self.posterior_states
         obs_index = np_auto.argmax(observation)
@@ -165,6 +212,12 @@ class Thing:
     def calculate_efe(self, policy: np.ndarray) -> float:
         """
         Calculates the Expected Free Energy (EFE) for a given policy.
+
+        Args:
+            policy (np.ndarray): Policy to evaluate.
+
+        Returns:
+            float: Calculated EFE.
         """
         future_states, future_observations = self.simulate_future(policy)
         
@@ -185,18 +238,22 @@ class Thing:
 
     def simulate_future(self, policy: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         """
-        Simulates future states and observations based on the given policy.
+        Simulates future states and observations based on a given policy.
+
+        Args:
+            policy (np.ndarray): Policy to simulate.
+
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: Predicted future states and observations.
         """
         future_states = np.zeros(self.model_dimensions['num_states'])
         future_observations = np.zeros(self.model_dimensions['num_observations'])
         
         current_state = self.posterior_states
         for action in policy:
-            # Predict next state
             next_state = np.dot(self.transition_model[action], current_state)
             future_states += next_state
             
-            # Predict observation from next state
             predicted_obs = np.dot(self.observation_model, next_state)
             future_observations += predicted_obs
             
@@ -206,20 +263,16 @@ class Thing:
 
     def _update_models(self) -> None:
         """
-        Updates the Thing's internal models based on recent experiences.
+        Updates internal models based on recent experiences.
         """
         if len(self.observation_history) > 1:
             prev_obs = self.observation_history[-2]
             curr_obs = self.observation_history[-1]
             action = self.action_history[-1]
             
-            # Update transition model
             self.transition_model[action] += self.learning_rate * (np.outer(curr_obs, prev_obs) - self.transition_model[action])
-            
-            # Update observation model
             self.observation_model += self.learning_rate * (np.outer(curr_obs, self.posterior_states) - self.observation_model)
             
-            # Normalize models
             self.transition_model[action] /= np.sum(self.transition_model[action], axis=1, keepdims=True)
             self.observation_model /= np.sum(self.observation_model, axis=1, keepdims=True)
 
@@ -228,6 +281,12 @@ class Thing:
     def calculate_information_gain(self, policy: np.ndarray) -> float:
         """
         Calculates the expected information gain for a given policy.
+
+        Args:
+            policy (np.ndarray): Policy to evaluate.
+
+        Returns:
+            float: Expected information gain.
         """
         prior_entropy = entropy(self.posterior_states)
         future_states, _ = self.simulate_future(policy)
@@ -238,7 +297,10 @@ class Thing:
 
     def calculate_complexity(self) -> float:
         """
-        Calculates the complexity of the Thing's current model.
+        Calculates the complexity of the current internal model.
+
+        Returns:
+            float: Model complexity measure.
         """
         complexity = np.sum([np.sum(model * np.log(model)) for model in self.transition_model])
         self.logger.debug(f"Calculated model complexity: {complexity}")
@@ -246,14 +308,14 @@ class Thing:
 
     def adaptive_learning_rate(self) -> None:
         """
-        Adapts the learning rate based on the Thing's recent performance.
+        Adapts the learning rate based on recent performance.
         """
         recent_vfe = [self.calculate_vfe(obs) for obs in self.observation_history[-10:]]
-        if np.mean(recent_vfe) < 0.1:  # If VFE is consistently low, reduce learning rate
+        if np.mean(recent_vfe) < 0.1:
             self.learning_rate *= 0.9
         else:
             self.learning_rate *= 1.1
-        self.learning_rate = np.clip(self.learning_rate, 0.01, 1.0)  # Keep learning rate in reasonable bounds
+        self.learning_rate = np.clip(self.learning_rate, 0.01, 1.0)
         self.logger.info(f"Adapted learning rate to: {self.learning_rate}")
 
     def reset(self) -> None:
@@ -261,14 +323,17 @@ class Thing:
         Resets the Thing's internal state to initial conditions.
         """
         self.posterior_states = self.initial_state_distribution.copy()
-        self.action_history = []
-        self.observation_history = []
+        self.action_history.clear()
+        self.observation_history.clear()
         self.updated_policies = None
         self.logger.info("Reset internal state to initial conditions")
 
     def get_state(self) -> Dict[str, Any]:
         """
         Returns a dictionary representation of the Thing's current state.
+
+        Returns:
+            Dict[str, Any]: Current state of the Thing.
         """
         return {
             'posterior_states': self.posterior_states,
@@ -280,6 +345,9 @@ class Thing:
     def set_state(self, state: Dict[str, Any]) -> None:
         """
         Sets the Thing's state based on a provided dictionary.
+
+        Args:
+            state (Dict[str, Any]): State to set for the Thing.
         """
         self.posterior_states = state['posterior_states']
         self.action_history = state['action_history']

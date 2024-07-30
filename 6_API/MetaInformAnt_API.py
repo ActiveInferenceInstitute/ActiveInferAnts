@@ -1,5 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Query, Depends
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, validator
 from typing import Optional, Dict, List, Union, Any
 from sqlalchemy.orm import Session
 from ActiveInferAnts.core import AdvancedInferenceEngine, FederatedLearningEngine, SimulationEngine, EngineStatus
@@ -7,14 +7,19 @@ from ActiveInferAnts.security import SecureComputeSession, Authentication, Autho
 from ActiveInferAnts.utils import DataValidator, SimulationDataProcessor, create_session
 from ActiveInferAnts.models import User
 from ActiveInferAnts.logging import setup_logger
+from ActiveInferAnts.config import Settings
 
 app = FastAPI(
     title="MetaInformAnt API",
-    version="0.1",
-    description="Enhanced API for decentralized, federated, and secure computation with the MetaInformAnt package"
+    version="1.0.0",
+    description="Advanced API for decentralized, federated, and secure computation with the MetaInformAnt package",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+    openapi_url="/api/openapi.json"
 )
 
 logger = setup_logger(__name__)
+settings = Settings()
 
 class AdvancedInferenceRequest(BaseModel):
     data: Dict[str, List[float]] = Field(..., example={"feature1": [0.1, 0.2], "feature2": [0.3, 0.4]})
@@ -25,6 +30,12 @@ class AdvancedInferenceRequest(BaseModel):
     secure_compute: Optional[bool] = Field(default=False, description="Flag to enable secure computation")
     callback_url: Optional[HttpUrl] = Field(default=None, description="URL for callback notifications")
 
+    @validator('data')
+    def validate_data(cls, v):
+        if not v:
+            raise ValueError("Data cannot be empty")
+        return v
+
 class FederatedLearningRequest(BaseModel):
     data: Dict[str, List[float]] = Field(..., example={"feature1": [0.1, 0.2], "feature2": [0.3, 0.4]})
     learning_rate: Optional[float] = Field(default=0.01, gt=0, le=1, description="Learning rate for the federated learning model")
@@ -32,8 +43,16 @@ class FederatedLearningRequest(BaseModel):
     secure_compute: Optional[bool] = Field(default=False, description="Flag to enable secure computation")
     callback_url: Optional[HttpUrl] = Field(default=None, description="URL for callback notifications")
 
+    @validator('data')
+    def validate_data(cls, v):
+        if not v:
+            raise ValueError("Data cannot be empty")
+        return v
+
 class InferenceResponse(BaseModel):
-    result: Union[Dict[str, float], str]
+    task_id: str
+    status: str
+    result: Optional[Union[Dict[str, float], str]] = None
     data: Dict[str, List[float]]
     inference_type: Optional[str] = "default"
     simulation_steps: Optional[int] = 100
@@ -45,7 +64,7 @@ class ErrorResponse(BaseModel):
     error: str
     details: Optional[Dict[str, Any]] = None
 
-@app.post("/advanced_infer/", response_model=InferenceResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@app.post("/api/v1/advanced_infer/", response_model=InferenceResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 async def perform_advanced_inference(
     request: AdvancedInferenceRequest,
     background_tasks: BackgroundTasks,
@@ -74,7 +93,8 @@ async def perform_advanced_inference(
         logger.info(f"Advanced inference task {task_id} started for user {current_user.username}")
         
         return InferenceResponse(
-            result=f"Advanced inference task {task_id} started successfully",
+            task_id=task_id,
+            status="PROCESSING",
             data=request.data,
             inference_type=request.inference_type,
             simulation_steps=request.simulation_steps,
@@ -89,7 +109,7 @@ async def perform_advanced_inference(
         logger.exception(f"Unexpected error in advanced inference: {str(e)}")
         raise HTTPException(status_code=500, detail={"error": "Internal server error", "details": str(e)})
 
-@app.post("/federated_learn/", response_model=InferenceResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@app.post("/api/v1/federated_learn/", response_model=InferenceResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 async def perform_federated_learning(
     request: FederatedLearningRequest,
     background_tasks: BackgroundTasks,
@@ -116,7 +136,8 @@ async def perform_federated_learning(
         logger.info(f"Federated learning task {task_id} initiated for user {current_user.username}")
         
         return InferenceResponse(
-            result=f"Federated learning task {task_id} initiated successfully",
+            task_id=task_id,
+            status="PROCESSING",
             data=request.data,
             inference_type="federated_learning",
             simulation_steps=request.epochs,
@@ -130,7 +151,7 @@ async def perform_federated_learning(
         logger.exception(f"Unexpected error in federated learning: {str(e)}")
         raise HTTPException(status_code=500, detail={"error": "Internal server error", "details": str(e)})
 
-@app.get("/detailed_status/", response_model=Dict[str, Union[str, Dict[str, str]]])
+@app.get("/api/v1/status/", response_model=Dict[str, Union[str, Dict[str, str]]])
 async def check_detailed_status(
     simulation_id: Optional[str] = Query(None, description="Simulation ID to fetch detailed status for"),
     db: Session = Depends(create_session),
@@ -151,3 +172,7 @@ async def check_detailed_status(
     except Exception as e:
         logger.exception(f"Error fetching status: {str(e)}")
         raise HTTPException(status_code=500, detail={"error": "Internal server error", "details": str(e)})
+
+@app.get("/api/v1/health")
+async def health_check():
+    return {"status": "healthy", "version": app.version}
