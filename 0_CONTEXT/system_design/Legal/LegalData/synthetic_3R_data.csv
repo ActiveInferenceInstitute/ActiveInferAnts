@@ -1,31 +1,51 @@
 Setting,Recognize,Remember,Respond,UTC Timestamp,Recognizing Party,Remembering Party,Responding Party,Risk Score
-Event entry,Ticket,Event attendee list,Allow entry,2024-07-30T12:39:47.581452+00:00,Party_84,Party_62,Party_67,54
-Computer login,Password/biometric,Authorization registry,Grant access to system,2024-07-30T12:39:47.581370+00:00,Party_25,Party_61,Party_38,8
-Smart home,Voice command,Device settings,Execute command,2024-07-30T12:39:47.581409+00:00,Party_79,Party_88,Party_14,16
-Online subscription,Subscription ID,Subscription records,Grant access to content,2024-07-30T12:39:47.581355+00:00,Party_48,Party_84,Party_26,8
-Computer login,Password/biometric,Authorization registry,Grant access to system,2024-07-30T12:39:47.581370+00:00,Party_25,Party_61,Party_38,8
-Gym access,Membership card,Member database,Grant entry,2024-07-30T12:39:47.581257+00:00,Party_19,Party_29,Party_100,32
-Online subscription,Subscription ID,Subscription records,Grant access to content,2024-07-30T12:39:47.581355+00:00,Party_48,Party_84,Party_26,8
-USCIS Form I-9,Passport,Archive form I-9,Hire,2024-07-30T12:39:47.581393+00:00,Party_30,Party_40,Party_80,46
-Warehouse,RFID tag,Inventory system,Track item,2024-07-30T12:39:47.581402+00:00,Party_35,Party_49,Party_24,30
-Work for hire,Role-based access,Permission structure,Adopt employee output,2024-07-30T12:39:47.581289+00:00,Party_40,Party_63,Party_68,95
-Customer support,Ticket number,Support history,Resolve issue,2024-07-30T12:39:47.581378+00:00,Party_18,Party_22,Party_66,8
-Corporate network,VPN credentials,Access logs,Grant network access,2024-07-30T12:39:47.581305+00:00,Party_79,Party_65,Party_90,59
-Online education,Student ID,Grades,Provide feedback,2024-07-30T12:39:47.581313+00:00,Party_79,Party_55,Party_78,16
-Online banking,OTP,Transaction history,Authorize transaction,2024-07-30T12:39:47.581444+00:00,Party_96,Party_30,Party_58,66
-Smart home,Voice command,Device settings,Execute command,2024-07-30T12:39:47.581409+00:00,Party_79,Party_88,Party_14,16
-Factory/office,Key card,Employee ID registry,Unlock door,2024-07-30T12:39:47.581336+00:00,Party_2,Party_37,Party_38,62
-Smart home,Voice command,Device settings,Execute command,2024-07-30T12:39:47.581409+00:00,Party_79,Party_88,Party_14,16
-Online subscription,Subscription ID,Subscription records,Grant access to content,2024-07-30T12:39:47.581355+00:00,Party_48,Party_84,Party_26,8
-Online forum,Username,Post history,Allow posting,2024-07-30T12:39:47.581363+00:00,Party_20,Party_48,Party_94,39
-Computer login,Password/biometric,Authorization registry,Grant access to system,2024-07-30T12:39:47.581370+00:00,Party_25,Party_61,Party_38,8
-Customer support,Ticket number,Support history,Resolve issue,2024-07-30T12:39:47.581378+00:00,Party_18,Party_22,Party_66,8
-Online interactions,Username,Cookies,Custom content/ads,2024-07-30T12:39:47.581386+00:00,Party_88,Party_66,Party_83,15
-USCIS Form I-9,Passport,Archive form I-9,Hire,2024-07-30T12:39:47.581393+00:00,Party_30,Party_40,Party_80,46
-Warehouse,RFID tag,Inventory system,Track item,2024-07-30T12:39:47.581402+00:00,Party_35,Party_49,Party_24,30
-Smart home,Voice command,Device settings,Execute command,2024-07-30T12:39:47.581409+00:00,Party_79,Party_88,Party_14,16
-Law office,Law school diploma,Law school records,Admission to practice,2024-07-30T12:39:47.581417+00:00,Party_19,Party_9,Party_100,42
-University exam,Student ID,Enrollment records,Permit exam participation,2024-07-30T12:39:47.581426+00:00,Party_99,Party_23,Party_66,77
-Voting booth,Voter ID,Voter registry,Allow voting,2024-07-30T12:39:47.581436+00:00,Party_82,Party_81,Party_41,19
-Online banking,OTP,Transaction history,Authorize transaction,2024-07-30T12:39:47.581444+00:00,Party_96,Party_30,Party_58,66
-Event entry,Ticket,Event attendee list,Allow entry,2024-07-30T12:39:47.581452+00:00,Party_84,Party_62,Party_67,54
+Smart manufacturing,Machine status,Maintenance schedule,Schedule repair,2024-07-30T13:38:33.968012+00:00,Party_37,Party_55,Party_21,39
+Online dating,Profile,Match history,Suggest matches,2024-07-30T13:38:33.967453+00:00,Party_11,Party_41,Party_62,86
+Online education,Student ID,Grades,Provide feedback,2024-07-30T13:38:33.967538+00:00,Party_78,Party_91,Party_12,51
+Autonomous vehicle,Traffic signal,Route map,Adjust speed,2024-07-30T13:38:33.967832+00:00,Party_61,Party_76,Party_36,92
+Medical appointment,Insurance card,Patient records,Provide treatment,2024-07-30T13:38:33.967646+00:00,Party_4,Party_47,Party_5,86
+Health security - Telehealth,Patient login,Medical history,Start consultation,2024-07-30T13:38:33.967490+00:00,Party_39,Party_7,Party_71,57
+Factory/office,Key card,Employee ID registry,Unlock door,2024-07-30T13:38:33.967770+00:00,Party_57,Party_34,Party_80,54
+Smart manufacturing,Machine status,Maintenance schedule,Schedule repair,2024-07-30T13:38:33.968012+00:00,Party_37,Party_55,Party_21,39
+Telemedicine,Patient ID,Medical history,Conduct consultation,2024-07-30T13:38:33.967721+00:00,Party_45,Party_99,Party_18,5
+Cognitive security - Web browsing,Malicious URL,Blacklist,Block access,2024-07-30T13:38:33.967787+00:00,Party_44,Party_6,Party_39,64
+Virtual assistant,Voice,User preferences,Perform tasks,2024-07-30T13:38:33.967530+00:00,Party_6,Party_60,Party_78,84
+Online education,Student ID,Grades,Provide feedback,2024-07-30T13:38:33.967538+00:00,Party_78,Party_91,Party_12,51
+Smart tourism,Visitor preferences,Tour history,Customized tour suggestions,2024-07-30T13:38:33.967825+00:00,Party_48,Party_90,Party_92,61
+Warehouse,RFID tag,Inventory system,Track item,2024-07-30T13:38:33.967586+00:00,Party_3,Party_98,Party_72,61
+Online forum,Username,Post history,Allow posting,2024-07-30T13:38:33.967738+00:00,Party_72,Party_83,Party_47,6
+Voting booth,Voter ID,Voter registry,Allow voting,2024-07-30T13:38:33.967873+00:00,Party_72,Party_22,Party_56,92
+Customer support,Ticket number,Support history,Resolve issue,2024-07-30T13:38:33.967619+00:00,Party_32,Party_25,Party_14,30
+Medical appointment,Insurance card,Patient records,Provide treatment,2024-07-30T13:38:33.967646+00:00,Party_4,Party_47,Party_5,86
+Health security - Fitness app,User profile,Health data,Provide workout plan,2024-07-30T13:38:33.967654+00:00,Party_81,Party_47,Party_74,71
+E-learning platform,Student login,Course records,Access course materials,2024-07-30T13:38:33.967660+00:00,Party_96,Party_74,Party_99,66
+Hotel check-in,Reservation number,Booking system,Assign room,2024-07-30T13:38:33.968027+00:00,Party_94,Party_82,Party_48,32
+Autonomous vehicle,Traffic signal,Route map,Adjust speed,2024-07-30T13:38:33.967832+00:00,Party_61,Party_76,Party_36,92
+Streaming service,Account login,Watch history,Recommend content,2024-07-30T13:38:33.967705+00:00,Party_100,Party_44,Party_38,13
+USCIS Form I-9,Passport,Archive form I-9,Hire,2024-07-30T13:38:33.967713+00:00,Party_46,Party_10,Party_43,77
+Telemedicine,Patient ID,Medical history,Conduct consultation,2024-07-30T13:38:33.967721+00:00,Party_45,Party_99,Party_18,5
+Smart lighting,Motion sensor,Lighting preferences,Adjust lighting,2024-07-30T13:38:33.967881+00:00,Party_32,Party_54,Party_30,18
+Online forum,Username,Post history,Allow posting,2024-07-30T13:38:33.967738+00:00,Party_72,Party_83,Party_47,6
+Work for hire,Role-based access,Permission structure,Adopt employee output,2024-07-30T13:38:33.967745+00:00,Party_56,Party_44,Party_8,6
+Corporate network,VPN credentials,Access logs,Grant network access,2024-07-30T13:38:33.967841+00:00,Party_80,Party_41,Party_21,6
+Public transportation,Transit card,Travel history,Allow ride,2024-07-30T13:38:33.967762+00:00,Party_77,Party_5,Party_48,42
+Factory/office,Key card,Employee ID registry,Unlock door,2024-07-30T13:38:33.967770+00:00,Party_57,Party_34,Party_80,54
+Cognitive security - Web browsing,Malicious URL,Blacklist,Block access,2024-07-30T13:38:33.967787+00:00,Party_44,Party_6,Party_39,64
+Cognitive security - Web browsing,Malicious URL,Blacklist,Block access,2024-07-30T13:38:33.967787+00:00,Party_44,Party_6,Party_39,64
+Grocery store,Trademark,Consumer recalls ads,Purchase trusted brand,2024-07-30T13:38:33.967809+00:00,Party_75,Party_84,Party_76,65
+Smart fridge,Barcode,Inventory,Suggest recipes,2024-07-30T13:38:33.967817+00:00,Party_64,Party_89,Party_25,71
+Smart tourism,Visitor preferences,Tour history,Customized tour suggestions,2024-07-30T13:38:33.967825+00:00,Party_48,Party_90,Party_92,61
+Autonomous vehicle,Traffic signal,Route map,Adjust speed,2024-07-30T13:38:33.967832+00:00,Party_61,Party_76,Party_36,92
+Corporate network,VPN credentials,Access logs,Grant network access,2024-07-30T13:38:33.967841+00:00,Party_80,Party_41,Party_21,6
+Smart education,Student engagement,Learning progress,Adaptive learning content,2024-07-30T13:38:33.967849+00:00,Party_17,Party_31,Party_35,89
+Fitness tracker,User profile,Activity data,Provide feedback,2024-07-30T13:38:33.967857+00:00,Party_2,Party_10,Party_17,6
+Event entry,Ticket,Event attendee list,Allow entry,2024-07-30T13:38:33.967865+00:00,Party_95,Party_46,Party_49,22
+Voting booth,Voter ID,Voter registry,Allow voting,2024-07-30T13:38:33.967873+00:00,Party_72,Party_22,Party_56,92
+Smart lighting,Motion sensor,Lighting preferences,Adjust lighting,2024-07-30T13:38:33.967881+00:00,Party_32,Party_54,Party_30,18
+E-commerce checkout,Payment method,Order history,Process payment,2024-07-30T13:38:33.967888+00:00,Party_95,Party_49,Party_36,26
+Smart logistics,Package ID,Delivery route,Optimize delivery schedule,2024-07-30T13:38:33.967896+00:00,Party_70,Party_61,Party_34,8
+Library,Library card,Borrower records,Lend book,2024-07-30T13:38:33.968002+00:00,Party_78,Party_25,Party_91,18
+Smart manufacturing,Machine status,Maintenance schedule,Schedule repair,2024-07-30T13:38:33.968012+00:00,Party_37,Party_55,Party_21,39
+Gym access,Membership card,Member database,Grant entry,2024-07-30T13:38:33.968020+00:00,Party_85,Party_21,Party_59,80
+Hotel check-in,Reservation number,Booking system,Assign room,2024-07-30T13:38:33.968027+00:00,Party_94,Party_82,Party_48,32
+Cognitive security - Email,Suspicious email,Known phishing patterns,Block email,2024-07-30T13:38:33.968035+00:00,Party_73,Party_31,Party_44,9
