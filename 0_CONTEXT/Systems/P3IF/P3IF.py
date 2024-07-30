@@ -75,8 +75,6 @@ class Relationship(Base):
     process = relationship("Process", foreign_keys=[process_id])
     perspective = relationship("Perspective", foreign_keys=[perspective_id])
 
-Pattern.relationships = relationship("Relationship", foreign_keys=[Relationship.property_id, Relationship.process_id, Relationship.perspective_id])
-
 class P3IF:
     def __init__(self, db_url: str = 'sqlite:///p3if.db', log_level: int = logging.INFO):
         self.db_url = db_url
@@ -115,19 +113,23 @@ class P3IF:
     def generate_synthetic_data(self, num_properties: int, num_processes: int, num_perspectives: int, num_relationships: int):
         try:
             session = self.Session()
-            properties = [Property(name=self.faker.unique.word(), description=self.faker.sentence()) for _ in range(num_properties)]
-            processes = [Process(name=self.faker.unique.word(), description=self.faker.sentence()) for _ in range(num_processes)]
-            perspectives = [Perspective(name=self.faker.unique.word(), description=self.faker.sentence()) for _ in range(num_perspectives)]
+            properties = [Property(name=self.faker.unique.word(), description=self.faker.sentence(), type='property') for _ in range(num_properties)]
+            processes = [Process(name=self.faker.unique.word(), description=self.faker.sentence(), type='process') for _ in range(num_processes)]
+            perspectives = [Perspective(name=self.faker.unique.word(), description=self.faker.sentence(), type='perspective') for _ in range(num_perspectives)]
 
             session.add_all(properties + processes + perspectives)
             session.commit()
 
+            all_patterns = properties + processes + perspectives
             relationships = []
             for _ in range(num_relationships):
+                prop = np.random.choice(properties)
+                proc = np.random.choice(processes)
+                persp = np.random.choice(perspectives)
                 relationship = Relationship(
-                    property_id=np.random.choice([p.id for p in properties]),
-                    process_id=np.random.choice([p.id for p in processes]),
-                    perspective_id=np.random.choice([p.id for p in perspectives]),
+                    property_id=prop.id,
+                    process_id=proc.id,
+                    perspective_id=persp.id,
                     strength=np.random.uniform(0, 1)
                 )
                 relationships.append(relationship)
@@ -341,4 +343,7 @@ if __name__ == "__main__":
     p3if.multiplex_frameworks(external_framework)
 
     # Export the updated data
-    p3if.export_to_json('p3if_updated_export.json')
+    export_folder = 'P3IF_export'
+    if not os.path.exists(export_folder):
+        os.makedirs(export_folder)
+    p3if.export_to_json(os.path.join(export_folder, 'p3if_updated_export.json'))
