@@ -50,7 +50,7 @@ The P3IF system consists of three main scripts that should be run in sequence:
    ```
    python3 SyntheticData_P3IF.py
    ```
-   This script synthesizes data from different DOMAINS using realistic and relevant Processes, Properties, and Perspectives.
+   This script synthesizes data from different DOMAINS using realistic and relevant Processes, Properties, and Perspectives. 
 
 3. Visualize the data:
    ```
