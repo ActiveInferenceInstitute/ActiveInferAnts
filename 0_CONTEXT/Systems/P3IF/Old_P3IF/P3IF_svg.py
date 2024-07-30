@@ -87,8 +87,11 @@ class P3IF:
         self.Session = sessionmaker(bind=self.engine)
         self.faker = Faker()
         self.export_folder = 'P3IF_export'
+        self.visualization_folder = os.path.join(self.export_folder, 'visualizations')
         if not os.path.exists(self.export_folder):
             os.makedirs(self.export_folder)
+        if not os.path.exists(self.visualization_folder):
+            os.makedirs(self.visualization_folder)
 
     def _recreate_database(self):
         db_path = self.db_url.replace('sqlite:///', '')
@@ -187,7 +190,7 @@ class P3IF:
             dwg.add(dwg.text('Processes', insert=(offset - 20, offset + cube_size / 2), fill='black'))
             dwg.add(dwg.text('Perspectives', insert=(offset + cube_size + cube_size / 2 + 20, offset + cube_size / 2), fill='black'))
 
-            output_path = os.path.join(self.export_folder, output_file)
+            output_path = os.path.join(self.visualization_folder, output_file)
             dwg.saveas(output_path)
 
             self.logger.info(f"Successfully visualized relationships and saved to {output_path}")

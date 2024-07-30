@@ -24,7 +24,7 @@ def visualize_3d_scatter(data: Dict[str, Any], output_file: str):
     relationships = pd.DataFrame(data['relationships'])
     patterns = {p['id']: p for p in data['patterns']}
 
-    fig = plt.figure(figsize=(12, 8))
+    fig = plt.figure(figsize=(12, 10))
     ax = fig.add_subplot(111, projection='3d')
 
     properties = {id: p['name'] for id, p in patterns.items() if p['type'] == 'property'}
@@ -51,7 +51,8 @@ def visualize_3d_scatter(data: Dict[str, Any], output_file: str):
     ax.set_zticklabels(list(perspectives.values()), rotation=45, ha='right')
 
     plt.colorbar(scatter, label='Relationship Strength')
-    plt.tight_layout()
+    fig.suptitle('3D Scatter Plot of Relationships between Properties, Processes, and Perspectives', fontsize=16, y=0.95)
+    fig.subplots_adjust(left=0.2, right=0.8, top=0.85, bottom=0.2)
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -73,13 +74,14 @@ def visualize_network(data: Dict[str, Any], output_file: str):
         G.add_edge(f"Pr:{proc}", f"Pe:{pers}", weight=row['strength'])
         G.add_edge(f"Pe:{pers}", f"P:{prop}", weight=row['strength'])
 
-    plt.figure(figsize=(15, 15))
+    plt.figure(figsize=(15, 17))
     pos = nx.spring_layout(G)
     nx.draw(G, pos, with_labels=True, node_color='lightblue', 
             node_size=500, font_size=8, font_weight='bold')
     edge_weights = nx.get_edge_attributes(G, 'weight')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_weights)
-    plt.tight_layout()
+    plt.title('Network Visualization of Relationships between Properties, Processes, and Perspectives', fontsize=16, y=1.02)
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -90,16 +92,17 @@ def visualize_strength_distribution(data: Dict[str, Any], output_file: str):
         return
 
     relationships = pd.DataFrame(data['relationships'])
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 8))
     sns.histplot(relationships['strength'], kde=True)
-    plt.title('Distribution of Relationship Strengths')
+    plt.title('Distribution of Relationship Strengths across Properties, Processes, and Perspectives', fontsize=16)
     plt.xlabel('Strength')
     plt.ylabel('Count')
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     plt.close()
 
 def visualize_heatmap(data: Dict[str, Any], output_file: str):
-    """Create a heatmap of relationship strengths."""
+    """Create heatmaps of relationship strengths for all combinations of dimensions."""
     if 'relationships' not in data:
         print("Warning: 'relationships' key not found in the data. Skipping heatmap visualization.")
         return
@@ -108,38 +111,37 @@ def visualize_heatmap(data: Dict[str, Any], output_file: str):
     patterns = {p['id']: p for p in data['patterns']}
 
     # Create a mapping of IDs to names for each dimension
+    property_names = {id: p['name'] for id, p in patterns.items() if p['type'] == 'property'}
     process_names = {id: p['name'] for id, p in patterns.items() if p['type'] == 'process'}
     perspective_names = {id: p['name'] for id, p in patterns.items() if p['type'] == 'perspective'}
 
     # Replace IDs with names
+    relationships['property'] = relationships['property_id'].map(property_names)
     relationships['process'] = relationships['process_id'].map(process_names)
     relationships['perspective'] = relationships['perspective_id'].map(perspective_names)
 
-    # Create a pivot table
-    pivot_table = relationships.pivot_table(values='strength', 
-                                            index='process', 
-                                            columns='perspective',
-                                            aggfunc='mean')
-    
-    if pivot_table.empty:
-        print("Warning: Pivot table is empty. Skipping heatmap visualization.")
-        return
-    
+    # Create pivot tables for each combination
+    pivot_tables = {
+        'Property vs Process': relationships.pivot_table(values='strength', index='property', columns='process', aggfunc='mean'),
+        'Property vs Perspective': relationships.pivot_table(values='strength', index='property', columns='perspective', aggfunc='mean'),
+        'Process vs Perspective': relationships.pivot_table(values='strength', index='process', columns='perspective', aggfunc='mean')
+    }
+
     # Create a figure with constrained layout
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 16), constrained_layout=True)
+    fig, axs = plt.subplots(3, 1, figsize=(12, 26), constrained_layout=True)
 
     # Plot heatmaps
-    sns.heatmap(pivot_table, annot=False, cmap='YlOrRd', ax=ax1)
-    ax1.set_title('Heatmap of Relationship Strengths')
-    ax1.set_xlabel('Perspectives')
-    ax1.set_ylabel('Processes')
-
-    sns.heatmap(pivot_table.T, annot=False, cmap='YlOrRd', ax=ax2)
-    ax2.set_title('Transposed Heatmap of Relationship Strengths')
-    ax2.set_xlabel('Processes')
-    ax2.set_ylabel('Perspectives')
+    for ax, (title, pivot_table) in zip(axs, pivot_tables.items()):
+        if pivot_table.empty:
+            print(f"Warning: Pivot table for {title} is empty. Skipping heatmap visualization.")
+            continue
+        sns.heatmap(pivot_table, annot=False, cmap='YlOrRd', ax=ax)
+        ax.set_title(f'Heatmap of Relationship Strengths: {title}')
+        ax.set_xlabel(title.split(' vs ')[1])
+        ax.set_ylabel(title.split(' vs ')[0])
 
     # Save the figure
+    fig.suptitle('Heatmaps of Relationship Strengths', fontsize=16, y=0.95)
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -152,8 +154,8 @@ def visualize_dimension_comparison(data: Dict[str, Any], output_file: str):
     relationships = pd.DataFrame(data['relationships'])
     patterns = {p['id']: p for p in data['patterns']}
 
-    fig, axs = plt.subplots(2, 2, figsize=(20, 20))
-    fig.suptitle('Dimension Comparisons', fontsize=16)
+    fig, axs = plt.subplots(2, 2, figsize=(20, 22), constrained_layout=True)
+    fig.suptitle('Multi-dimensional Comparison of Properties, Processes, and Perspectives', fontsize=16, y=0.95)
 
     # Property vs Process
     axs[0, 0].scatter(relationships['property_id'], relationships['process_id'], 
@@ -180,7 +182,6 @@ def visualize_dimension_comparison(data: Dict[str, Any], output_file: str):
     sns.histplot(relationships['strength'], kde=True, ax=axs[1, 1])
     axs[1, 1].set_title('Strength Distribution')
 
-    plt.tight_layout()
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     plt.close()
 

@@ -1,0 +1,1642 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "name": "Transaction Security",
+      "description": "So nor notice all start military.",
+      "type": "property"
+    },
+    {
+      "id": 2,
+      "name": "User Authentication",
+      "description": "Pay present general physical safe box mean.",
+      "type": "property"
+    },
+    {
+      "id": 3,
+      "name": "Cash Availability",
+      "description": "They main doctor despite all huge.",
+      "type": "property"
+    },
+    {
+      "id": 4,
+      "name": "Machine Reliability",
+      "description": "Career figure court attack turn degree.",
+      "type": "property"
+    },
+    {
+      "id": 5,
+      "name": "Network Connectivity",
+      "description": "Develop mouth surface property whether chair say.",
+      "type": "property"
+    },
+    {
+      "id": 6,
+      "name": "Transaction Speed",
+      "description": "Common anyone nothing turn prepare hope.",
+      "type": "property"
+    },
+    {
+      "id": 7,
+      "name": "User Interface",
+      "description": "School eye such piece.",
+      "type": "property"
+    },
+    {
+      "id": 8,
+      "name": "Error Handling",
+      "description": "Speak series letter mouth rather single baby.",
+      "type": "property"
+    },
+    {
+      "id": 9,
+      "name": "Maintenance Scheduling",
+      "description": "Mother interesting concern different.",
+      "type": "property"
+    },
+    {
+      "id": 10,
+      "name": "Fraud Detection",
+      "description": "Heart movie black wide my mother expect.",
+      "type": "property"
+    },
+    {
+      "id": 11,
+      "name": "Compliance",
+      "description": "Hear live hour safe open western involve.",
+      "type": "property"
+    },
+    {
+      "id": 12,
+      "name": "Accessibility",
+      "description": "Success car manage dog yet.",
+      "type": "property"
+    },
+    {
+      "id": 13,
+      "name": "Energy Efficiency",
+      "description": "Every far situation defense amount modern.",
+      "type": "property"
+    },
+    {
+      "id": 14,
+      "name": "Data Privacy",
+      "description": "Option magazine range opportunity past forward.",
+      "type": "property"
+    },
+    {
+      "id": 15,
+      "name": "Service Availability",
+      "description": "Participant organization more within floor require.",
+      "type": "property"
+    },
+    {
+      "id": 16,
+      "name": "Card Reader Functionality",
+      "description": "Field natural write poor data dark leg.",
+      "type": "property"
+    },
+    {
+      "id": 17,
+      "name": "PIN Encryption",
+      "description": "Concern ten in.",
+      "type": "property"
+    },
+    {
+      "id": 18,
+      "name": "Cash Dispensing Accuracy",
+      "description": "That community include live trip.",
+      "type": "property"
+    },
+    {
+      "id": 19,
+      "name": "Receipt Printing Quality",
+      "description": "Those senior sure today challenge.",
+      "type": "property"
+    },
+    {
+      "id": 20,
+      "name": "Screen Visibility",
+      "description": "Allow too decision show ever instead.",
+      "type": "property"
+    },
+    {
+      "id": 21,
+      "name": "Keypad Responsiveness",
+      "description": "Happy somebody Democrat risk cover front.",
+      "type": "property"
+    },
+    {
+      "id": 22,
+      "name": "Software Stability",
+      "description": "Ahead response first smile place investment walk today.",
+      "type": "property"
+    },
+    {
+      "id": 23,
+      "name": "Hardware Durability",
+      "description": "Job upon take under fire man network.",
+      "type": "property"
+    },
+    {
+      "id": 24,
+      "name": "Network Latency",
+      "description": "Many upon force short none.",
+      "type": "property"
+    },
+    {
+      "id": 25,
+      "name": "Transaction Logging",
+      "description": "Professor certain case trip treatment car.",
+      "type": "property"
+    },
+    {
+      "id": 26,
+      "name": "Audit Trail",
+      "description": "Law all consumer positive.",
+      "type": "property"
+    },
+    {
+      "id": 27,
+      "name": "Biometric Authentication",
+      "description": "Fear human present day.",
+      "type": "property"
+    },
+    {
+      "id": 28,
+      "name": "Multi-Factor Authentication",
+      "description": "Letter attention any avoid if.",
+      "type": "property"
+    },
+    {
+      "id": 29,
+      "name": "Cash Recycling",
+      "description": "Glass there huge news.",
+      "type": "property"
+    },
+    {
+      "id": 30,
+      "name": "Foreign Currency Support",
+      "description": "Keep beyond tonight push mother.",
+      "type": "property"
+    },
+    {
+      "id": 31,
+      "name": "Contactless Technology",
+      "description": "Night value able color quickly its peace.",
+      "type": "property"
+    },
+    {
+      "id": 32,
+      "name": "Mobile Integration",
+      "description": "Performance painting the family pattern dog.",
+      "type": "property"
+    },
+    {
+      "id": 33,
+      "name": "Remote Monitoring",
+      "description": "Product him education treat themselves note party.",
+      "type": "property"
+    },
+    {
+      "id": 34,
+      "name": "Thermal Management",
+      "description": "Develop school report see think reveal.",
+      "type": "property"
+    },
+    {
+      "id": 35,
+      "name": "Power Backup",
+      "description": "Voice begin per television.",
+      "type": "property"
+    },
+    {
+      "id": 36,
+      "name": "Vandalism Resistance",
+      "description": "Cost effort test white take cost teacher.",
+      "type": "property"
+    },
+    {
+      "id": 37,
+      "name": "Environmental Adaptability",
+      "description": "Say yes interesting doctor.",
+      "type": "property"
+    },
+    {
+      "id": 38,
+      "name": "Noise Level",
+      "description": "Lay partner arm important position.",
+      "type": "property"
+    },
+    {
+      "id": 39,
+      "name": "Queue Management",
+      "description": "Industry plan son.",
+      "type": "property"
+    },
+    {
+      "id": 40,
+      "name": "Customer Support Integration",
+      "description": "Behind draw hard its book.",
+      "type": "property"
+    },
+    {
+      "id": 41,
+      "name": "Language Support",
+      "description": "Science in share forget ability four its.",
+      "type": "property"
+    },
+    {
+      "id": 42,
+      "name": "Braille Support",
+      "description": "Argue baby blue other brother debate.",
+      "type": "property"
+    },
+    {
+      "id": 43,
+      "name": "Audio Guidance",
+      "description": "Return collection glass kid street.",
+      "type": "property"
+    },
+    {
+      "id": 44,
+      "name": "Camera Surveillance",
+      "description": "Remember situation civil per line identify beat.",
+      "type": "property"
+    },
+    {
+      "id": 45,
+      "name": "Anti-Skimming Measures",
+      "description": "Establish low himself than citizen rate particularly.",
+      "type": "property"
+    },
+    {
+      "id": 46,
+      "name": "EMV Chip Technology",
+      "description": "Media score draw increase certainly sense.",
+      "type": "property"
+    },
+    {
+      "id": 47,
+      "name": "NFC Capability",
+      "description": "Land I almost training well painting.",
+      "type": "property"
+    },
+    {
+      "id": 48,
+      "name": "Software Update Mechanism",
+      "description": "Hear plan detail.",
+      "type": "property"
+    },
+    {
+      "id": 49,
+      "name": "Diagnostic Capabilities",
+      "description": "Big see rise per office.",
+      "type": "property"
+    },
+    {
+      "id": 50,
+      "name": "Cash Forecasting",
+      "description": "Sea view friend.",
+      "type": "property"
+    },
+    {
+      "id": 51,
+      "name": "Card Insertion",
+      "description": "Spring especially weight skin scientist activity describe.",
+      "type": "process"
+    },
+    {
+      "id": 52,
+      "name": "PIN Entry",
+      "description": "In field five where science scene suggest different.",
+      "type": "process"
+    },
+    {
+      "id": 53,
+      "name": "Account Verification",
+      "description": "As prepare from budget hundred site agency.",
+      "type": "process"
+    },
+    {
+      "id": 54,
+      "name": "Transaction Processing",
+      "description": "Realize sound want TV work.",
+      "type": "process"
+    },
+    {
+      "id": 55,
+      "name": "Cash Dispensing",
+      "description": "New peace religious may perhaps so win.",
+      "type": "process"
+    },
+    {
+      "id": 56,
+      "name": "Receipt Printing",
+      "description": "Rather go score trip growth become week.",
+      "type": "process"
+    },
+    {
+      "id": 57,
+      "name": "Balance Inquiry",
+      "description": "Ten argue guess seat property him.",
+      "type": "process"
+    },
+    {
+      "id": 58,
+      "name": "Mini Statement Printing",
+      "description": "Through answer decide hope catch perhaps.",
+      "type": "process"
+    },
+    {
+      "id": 59,
+      "name": "Fund Transfer",
+      "description": "Might tonight news field have glass do.",
+      "type": "process"
+    },
+    {
+      "id": 60,
+      "name": "Transaction Cancellation",
+      "description": "Weight news buy discuss charge.",
+      "type": "process"
+    },
+    {
+      "id": 61,
+      "name": "Error Reporting",
+      "description": "Over travel development exactly.",
+      "type": "process"
+    },
+    {
+      "id": 62,
+      "name": "Maintenance Check",
+      "description": "Third enter build least fill network pass total.",
+      "type": "process"
+    },
+    {
+      "id": 63,
+      "name": "Software Update",
+      "description": "Physical idea mouth take lot participant.",
+      "type": "process"
+    },
+    {
+      "id": 64,
+      "name": "Network Monitoring",
+      "description": "Ask billion receive general.",
+      "type": "process"
+    },
+    {
+      "id": 65,
+      "name": "Fraud Monitoring",
+      "description": "Young tax entire or rather local.",
+      "type": "process"
+    },
+    {
+      "id": 66,
+      "name": "Cash Replenishment",
+      "description": "Success price poor Congress.",
+      "type": "process"
+    },
+    {
+      "id": 67,
+      "name": "Journal Printing",
+      "description": "Education position car another serve number.",
+      "type": "process"
+    },
+    {
+      "id": 68,
+      "name": "User Authentication",
+      "description": "Level market art him small.",
+      "type": "process"
+    },
+    {
+      "id": 69,
+      "name": "Transaction Authorization",
+      "description": "Full lot traditional.",
+      "type": "process"
+    },
+    {
+      "id": 70,
+      "name": "Cash Counting",
+      "description": "Together party anyone without option because traditional now.",
+      "type": "process"
+    },
+    {
+      "id": 71,
+      "name": "Receipt Paper Replacement",
+      "description": "In live talk remember prepare meet.",
+      "type": "process"
+    },
+    {
+      "id": 72,
+      "name": "Screen Calibration",
+      "description": "Response professional whose former environmental.",
+      "type": "process"
+    },
+    {
+      "id": 73,
+      "name": "Keypad Testing",
+      "description": "Without mean agree officer realize training stay.",
+      "type": "process"
+    },
+    {
+      "id": 74,
+      "name": "Camera Adjustment",
+      "description": "Anything first enjoy system remain.",
+      "type": "process"
+    },
+    {
+      "id": 75,
+      "name": "Network Troubleshooting",
+      "description": "Charge wonder during likely production scientist lay.",
+      "type": "process"
+    },
+    {
+      "id": 76,
+      "name": "Software Diagnostics",
+      "description": "Against quickly traditional opportunity people determine citizen.",
+      "type": "process"
+    },
+    {
+      "id": 77,
+      "name": "Hardware Inspection",
+      "description": "Training claim several itself still happen.",
+      "type": "process"
+    },
+    {
+      "id": 78,
+      "name": "Security Seal Verification",
+      "description": "Upon thing firm lay former contain enjoy manager.",
+      "type": "process"
+    },
+    {
+      "id": 79,
+      "name": "Cash Cassette Balancing",
+      "description": "Site paper free stage dream community off environment.",
+      "type": "process"
+    },
+    {
+      "id": 80,
+      "name": "Transaction Reconciliation",
+      "description": "Office call relationship first be agreement boy.",
+      "type": "process"
+    },
+    {
+      "id": 81,
+      "name": "Audit Log Generation",
+      "description": "Sport cut current fall white year.",
+      "type": "process"
+    },
+    {
+      "id": 82,
+      "name": "Biometric Data Capture",
+      "description": "Sea director talk reflect western.",
+      "type": "process"
+    },
+    {
+      "id": 83,
+      "name": "Encryption Key Management",
+      "description": "Cultural north continue wait everything trouble various.",
+      "type": "process"
+    },
+    {
+      "id": 84,
+      "name": "Cash Recycling Process",
+      "description": "Vote order hundred former international method small.",
+      "type": "process"
+    },
+    {
+      "id": 85,
+      "name": "Currency Verification",
+      "description": "Player magazine wide sing investment adult sometimes.",
+      "type": "process"
+    },
+    {
+      "id": 86,
+      "name": "Contactless Transaction Processing",
+      "description": "Matter plant economy.",
+      "type": "process"
+    },
+    {
+      "id": 87,
+      "name": "Mobile App Integration",
+      "description": "Enter paper with wear market.",
+      "type": "process"
+    },
+    {
+      "id": 88,
+      "name": "Remote Diagnostics",
+      "description": "Finish about story ground.",
+      "type": "process"
+    },
+    {
+      "id": 89,
+      "name": "Temperature Monitoring",
+      "description": "Catch soon author real number new let.",
+      "type": "process"
+    },
+    {
+      "id": 90,
+      "name": "Power System Check",
+      "description": "Method within back from.",
+      "type": "process"
+    },
+    {
+      "id": 91,
+      "name": "Physical Security Check",
+      "description": "Song entire none throughout.",
+      "type": "process"
+    },
+    {
+      "id": 92,
+      "name": "Environmental Adaptation",
+      "description": "Class plan rather production ball serious white collection.",
+      "type": "process"
+    },
+    {
+      "id": 93,
+      "name": "Noise Level Testing",
+      "description": "Behind thing you top point education guess may.",
+      "type": "process"
+    },
+    {
+      "id": 94,
+      "name": "Queue Time Monitoring",
+      "description": "Time war heart moment anyone.",
+      "type": "process"
+    },
+    {
+      "id": 95,
+      "name": "Customer Support Routing",
+      "description": "Read environment rate work eight.",
+      "type": "process"
+    },
+    {
+      "id": 96,
+      "name": "Language Selection",
+      "description": "Indeed lot whom customer school social.",
+      "type": "process"
+    },
+    {
+      "id": 97,
+      "name": "Braille Interface Activation",
+      "description": "Spend morning that improve street.",
+      "type": "process"
+    },
+    {
+      "id": 98,
+      "name": "Audio Guidance Triggering",
+      "description": "Street investment impact hour performance offer.",
+      "type": "process"
+    },
+    {
+      "id": 99,
+      "name": "Video Feed Recording",
+      "description": "Common environment decision.",
+      "type": "process"
+    },
+    {
+      "id": 100,
+      "name": "Anti-Skimming Detection",
+      "description": "Respond measure mother case board relate why.",
+      "type": "process"
+    },
+    {
+      "id": 101,
+      "name": "EMV Chip Reading",
+      "description": "Away life mean anyone lead.",
+      "type": "process"
+    },
+    {
+      "id": 102,
+      "name": "NFC Data Exchange",
+      "description": "Civil garden type easy of particularly set.",
+      "type": "process"
+    },
+    {
+      "id": 103,
+      "name": "Software Patch Installation",
+      "description": "Certainly ago budget leg federal.",
+      "type": "process"
+    },
+    {
+      "id": 104,
+      "name": "Self-Diagnostic Routine",
+      "description": "Theory feel dark fish.",
+      "type": "process"
+    },
+    {
+      "id": 105,
+      "name": "Cash Demand Forecasting",
+      "description": "More try understand million.",
+      "type": "process"
+    },
+    {
+      "id": 106,
+      "name": "User",
+      "description": "Hit boy organization machine authority only other.",
+      "type": "perspective"
+    },
+    {
+      "id": 107,
+      "name": "Bank Official",
+      "description": "Follow space water east some bed.",
+      "type": "perspective"
+    },
+    {
+      "id": 108,
+      "name": "ATM Technician",
+      "description": "Catch beyond sing new meet trip focus.",
+      "type": "perspective"
+    },
+    {
+      "id": 109,
+      "name": "Security Analyst",
+      "description": "Politics production ask partner.",
+      "type": "perspective"
+    },
+    {
+      "id": 110,
+      "name": "Network Administrator",
+      "description": "Relationship manager church tell today worker tell.",
+      "type": "perspective"
+    },
+    {
+      "id": 111,
+      "name": "Compliance Officer",
+      "description": "Minute continue choose student.",
+      "type": "perspective"
+    },
+    {
+      "id": 112,
+      "name": "Maintenance Staff",
+      "description": "Serious my prove beat prevent nation.",
+      "type": "perspective"
+    },
+    {
+      "id": 113,
+      "name": "Customer Service Representative",
+      "description": "Husband place task ready film.",
+      "type": "perspective"
+    },
+    {
+      "id": 114,
+      "name": "Fraud Investigator",
+      "description": "Often foot performance daughter like Mrs thousand.",
+      "type": "perspective"
+    },
+    {
+      "id": 115,
+      "name": "Software Developer",
+      "description": "Air close meeting continue expert method talk.",
+      "type": "perspective"
+    },
+    {
+      "id": 116,
+      "name": "Hardware Engineer",
+      "description": "Benefit feeling into.",
+      "type": "perspective"
+    },
+    {
+      "id": 117,
+      "name": "Cash Management Specialist",
+      "description": "The receive finish thought reach.",
+      "type": "perspective"
+    },
+    {
+      "id": 118,
+      "name": "User Experience Designer",
+      "description": "Evidence security threat their.",
+      "type": "perspective"
+    },
+    {
+      "id": 119,
+      "name": "Accessibility Consultant",
+      "description": "Mention common whose someone.",
+      "type": "perspective"
+    },
+    {
+      "id": 120,
+      "name": "Energy Efficiency Expert",
+      "description": "Sport fine administration treat.",
+      "type": "perspective"
+    },
+    {
+      "id": 121,
+      "name": "Data Privacy Officer",
+      "description": "Dinner lose fill occur begin later own.",
+      "type": "perspective"
+    },
+    {
+      "id": 122,
+      "name": "Service Level Manager",
+      "description": "Meeting act yard add specific type under.",
+      "type": "perspective"
+    },
+    {
+      "id": 123,
+      "name": "Card Technology Specialist",
+      "description": "Yet life trial could.",
+      "type": "perspective"
+    },
+    {
+      "id": 124,
+      "name": "Encryption Expert",
+      "description": "Concern garden radio get any discuss foot coach.",
+      "type": "perspective"
+    },
+    {
+      "id": 125,
+      "name": "Cash Handling Specialist",
+      "description": "Center fear trial popular computer else represent pass.",
+      "type": "perspective"
+    },
+    {
+      "id": 126,
+      "name": "Printer Technician",
+      "description": "Pick together necessary American home site.",
+      "type": "perspective"
+    },
+    {
+      "id": 127,
+      "name": "Display Technology Expert",
+      "description": "Case write here certainly use defense people.",
+      "type": "perspective"
+    },
+    {
+      "id": 128,
+      "name": "Input Device Specialist",
+      "description": "Career seem both three sort mother camera.",
+      "type": "perspective"
+    },
+    {
+      "id": 129,
+      "name": "Software Quality Assurance",
+      "description": "Star process create street.",
+      "type": "perspective"
+    },
+    {
+      "id": 130,
+      "name": "Durability Tester",
+      "description": "Democrat miss store trip room including animal building.",
+      "type": "perspective"
+    },
+    {
+      "id": 131,
+      "name": "Network Performance Analyst",
+      "description": "Professor life sister available north base.",
+      "type": "perspective"
+    },
+    {
+      "id": 132,
+      "name": "Transaction Auditor",
+      "description": "Name look surface early doctor head both.",
+      "type": "perspective"
+    },
+    {
+      "id": 133,
+      "name": "Biometrics Specialist",
+      "description": "High explain serve walk.",
+      "type": "perspective"
+    },
+    {
+      "id": 134,
+      "name": "Authentication Expert",
+      "description": "Charge girl modern his.",
+      "type": "perspective"
+    },
+    {
+      "id": 135,
+      "name": "Cash Recycling Technician",
+      "description": "Control increase enter improve accept someone.",
+      "type": "perspective"
+    },
+    {
+      "id": 136,
+      "name": "Foreign Exchange Specialist",
+      "description": "Assume edge skin voice one attack.",
+      "type": "perspective"
+    },
+    {
+      "id": 137,
+      "name": "Contactless Payment Expert",
+      "description": "Increase likely mouth force yard.",
+      "type": "perspective"
+    },
+    {
+      "id": 138,
+      "name": "Mobile Integration Specialist",
+      "description": "Compare action yard finish oil modern late.",
+      "type": "perspective"
+    },
+    {
+      "id": 139,
+      "name": "Remote Monitoring Technician",
+      "description": "Agree theory over clearly cover yard guy.",
+      "type": "perspective"
+    },
+    {
+      "id": 140,
+      "name": "Thermal Engineer",
+      "description": "List why some him rise almost hair bed.",
+      "type": "perspective"
+    },
+    {
+      "id": 141,
+      "name": "Power Systems Engineer",
+      "description": "Office never method usually data team stuff well.",
+      "type": "perspective"
+    },
+    {
+      "id": 142,
+      "name": "Physical Security Specialist",
+      "description": "Sister card experience town.",
+      "type": "perspective"
+    },
+    {
+      "id": 143,
+      "name": "Environmental Adaptation Expert",
+      "description": "Staff good inside nature ready.",
+      "type": "perspective"
+    },
+    {
+      "id": 144,
+      "name": "Acoustics Engineer",
+      "description": "Experience tax create wait.",
+      "type": "perspective"
+    },
+    {
+      "id": 145,
+      "name": "Queue Management Specialist",
+      "description": "Back how forget dark.",
+      "type": "perspective"
+    },
+    {
+      "id": 146,
+      "name": "Customer Support Integration Expert",
+      "description": "Certainly affect out keep deal red entire.",
+      "type": "perspective"
+    },
+    {
+      "id": 147,
+      "name": "Localization Specialist",
+      "description": "Course thousand consider politics.",
+      "type": "perspective"
+    },
+    {
+      "id": 148,
+      "name": "Braille Technology Expert",
+      "description": "On service approach young camera side.",
+      "type": "perspective"
+    },
+    {
+      "id": 149,
+      "name": "Audio Systems Engineer",
+      "description": "Clearly whose before best citizen station any.",
+      "type": "perspective"
+    },
+    {
+      "id": 150,
+      "name": "Surveillance Specialist",
+      "description": "Free hand about my table consider.",
+      "type": "perspective"
+    },
+    {
+      "id": 151,
+      "name": "Anti-Fraud Technology Expert",
+      "description": "Main travel full near.",
+      "type": "perspective"
+    },
+    {
+      "id": 152,
+      "name": "EMV Technology Specialist",
+      "description": "Lot magazine nature bring specific meeting.",
+      "type": "perspective"
+    },
+    {
+      "id": 153,
+      "name": "NFC Technology Expert",
+      "description": "Wind Mr spend generation process.",
+      "type": "perspective"
+    },
+    {
+      "id": 154,
+      "name": "Software Update Manager",
+      "description": "Upon especially generation next second home pass.",
+      "type": "perspective"
+    },
+    {
+      "id": 155,
+      "name": "Diagnostic Systems Developer",
+      "description": "Top institution service forward.",
+      "type": "perspective"
+    },
+    {
+      "id": 156,
+      "name": "Cash Forecasting Analyst",
+      "description": "About least still everybody moment voice other focus.",
+      "type": "perspective"
+    }
+  ],
+  "relationships": [
+    {
+      "id": 1,
+      "property_id": 17,
+      "process_id": 75,
+      "perspective_id": 106,
+      "strength": 0.1574
+    },
+    {
+      "id": 2,
+      "property_id": 9,
+      "process_id": 89,
+      "perspective_id": 111,
+      "strength": 0.2487
+    },
+    {
+      "id": 3,
+      "property_id": 31,
+      "process_id": null,
+      "perspective_id": 156,
+      "strength": 0.7306
+    },
+    {
+      "id": 4,
+      "property_id": 19,
+      "process_id": 96,
+      "perspective_id": 132,
+      "strength": 0.6801
+    },
+    {
+      "id": 5,
+      "property_id": 33,
+      "process_id": 74,
+      "perspective_id": 116,
+      "strength": 0.102
+    },
+    {
+      "id": 6,
+      "property_id": 11,
+      "process_id": 62,
+      "perspective_id": 129,
+      "strength": 0.7333
+    },
+    {
+      "id": 7,
+      "property_id": 15,
+      "process_id": 105,
+      "perspective_id": 128,
+      "strength": 0.475
+    },
+    {
+      "id": 8,
+      "property_id": 15,
+      "process_id": 59,
+      "perspective_id": 125,
+      "strength": 0.7543
+    },
+    {
+      "id": 9,
+      "property_id": 16,
+      "process_id": 61,
+      "perspective_id": 152,
+      "strength": 0.3091
+    },
+    {
+      "id": 10,
+      "property_id": 18,
+      "process_id": 66,
+      "perspective_id": 151,
+      "strength": 0.147
+    },
+    {
+      "id": 11,
+      "property_id": 27,
+      "process_id": 74,
+      "perspective_id": 124,
+      "strength": 0.8335
+    },
+    {
+      "id": 12,
+      "property_id": 13,
+      "process_id": 86,
+      "perspective_id": 136,
+      "strength": 0.1347
+    },
+    {
+      "id": 13,
+      "property_id": 25,
+      "process_id": 90,
+      "perspective_id": 147,
+      "strength": 0.1944
+    },
+    {
+      "id": 14,
+      "property_id": 7,
+      "process_id": 72,
+      "perspective_id": 119,
+      "strength": 0.6433
+    },
+    {
+      "id": 15,
+      "property_id": 16,
+      "process_id": 104,
+      "perspective_id": 110,
+      "strength": 0.2991
+    },
+    {
+      "id": 16,
+      "property_id": 49,
+      "process_id": 74,
+      "perspective_id": 108,
+      "strength": 0.4484
+    },
+    {
+      "id": 17,
+      "property_id": 19,
+      "process_id": 76,
+      "perspective_id": 114,
+      "strength": 0.7595
+    },
+    {
+      "id": 18,
+      "property_id": 15,
+      "process_id": 60,
+      "perspective_id": 115,
+      "strength": 0.5265
+    },
+    {
+      "id": 19,
+      "property_id": 31,
+      "process_id": 105,
+      "perspective_id": 141,
+      "strength": 0.4288
+    },
+    {
+      "id": 20,
+      "property_id": 16,
+      "process_id": 99,
+      "perspective_id": 118,
+      "strength": 0.1618
+    },
+    {
+      "id": 21,
+      "property_id": 49,
+      "process_id": 93,
+      "perspective_id": 124,
+      "strength": 0.4061
+    },
+    {
+      "id": 22,
+      "property_id": 26,
+      "process_id": 91,
+      "perspective_id": 156,
+      "strength": 0.2223
+    },
+    {
+      "id": 23,
+      "property_id": 10,
+      "process_id": 70,
+      "perspective_id": 135,
+      "strength": 0.9533
+    },
+    {
+      "id": 24,
+      "property_id": 2,
+      "process_id": 78,
+      "perspective_id": 143,
+      "strength": 0.6343
+    },
+    {
+      "id": 25,
+      "property_id": 44,
+      "process_id": 84,
+      "perspective_id": 136,
+      "strength": 0.0547
+    },
+    {
+      "id": 26,
+      "property_id": 5,
+      "process_id": 51,
+      "perspective_id": 151,
+      "strength": 0.4343
+    },
+    {
+      "id": 27,
+      "property_id": 18,
+      "process_id": 77,
+      "perspective_id": 138,
+      "strength": 0.5767
+    },
+    {
+      "id": 28,
+      "property_id": 34,
+      "process_id": 97,
+      "perspective_id": 120,
+      "strength": 0.6344
+    },
+    {
+      "id": 29,
+      "property_id": 17,
+      "process_id": 60,
+      "perspective_id": 156,
+      "strength": 0.8309
+    },
+    {
+      "id": 30,
+      "property_id": 26,
+      "process_id": 85,
+      "perspective_id": 147,
+      "strength": 0.6339
+    },
+    {
+      "id": 31,
+      "property_id": 14,
+      "process_id": 97,
+      "perspective_id": 112,
+      "strength": 0.0417
+    },
+    {
+      "id": 32,
+      "property_id": 1,
+      "process_id": 92,
+      "perspective_id": 132,
+      "strength": 0.2439
+    },
+    {
+      "id": 33,
+      "property_id": 48,
+      "process_id": 65,
+      "perspective_id": 134,
+      "strength": 0.3029
+    },
+    {
+      "id": 34,
+      "property_id": 14,
+      "process_id": 87,
+      "perspective_id": 112,
+      "strength": 0.5904
+    },
+    {
+      "id": 35,
+      "property_id": 49,
+      "process_id": 81,
+      "perspective_id": 117,
+      "strength": 0.8374
+    },
+    {
+      "id": 36,
+      "property_id": 46,
+      "process_id": 71,
+      "perspective_id": 148,
+      "strength": 0.6441
+    },
+    {
+      "id": 37,
+      "property_id": 42,
+      "process_id": 78,
+      "perspective_id": 141,
+      "strength": 0.6378
+    },
+    {
+      "id": 38,
+      "property_id": 2,
+      "process_id": 105,
+      "perspective_id": 153,
+      "strength": 0.8063
+    },
+    {
+      "id": 39,
+      "property_id": 12,
+      "process_id": 74,
+      "perspective_id": 135,
+      "strength": 0.3612
+    },
+    {
+      "id": 40,
+      "property_id": 48,
+      "process_id": 85,
+      "perspective_id": 113,
+      "strength": 0.9301
+    },
+    {
+      "id": 41,
+      "property_id": 43,
+      "process_id": 103,
+      "perspective_id": 119,
+      "strength": 0.1708
+    },
+    {
+      "id": 42,
+      "property_id": 23,
+      "process_id": 87,
+      "perspective_id": 154,
+      "strength": 0.9024
+    },
+    {
+      "id": 43,
+      "property_id": 21,
+      "process_id": 70,
+      "perspective_id": 130,
+      "strength": 0.4831
+    },
+    {
+      "id": 44,
+      "property_id": 32,
+      "process_id": 87,
+      "perspective_id": 130,
+      "strength": 0.4621
+    },
+    {
+      "id": 45,
+      "property_id": 7,
+      "process_id": 54,
+      "perspective_id": 110,
+      "strength": 0.3922
+    },
+    {
+      "id": 46,
+      "property_id": 36,
+      "process_id": 91,
+      "perspective_id": 152,
+      "strength": 0.4341
+    },
+    {
+      "id": 47,
+      "property_id": 35,
+      "process_id": 89,
+      "perspective_id": 135,
+      "strength": 0.5436
+    },
+    {
+      "id": 48,
+      "property_id": 37,
+      "process_id": 92,
+      "perspective_id": 122,
+      "strength": 0.6145
+    },
+    {
+      "id": 49,
+      "property_id": 29,
+      "process_id": 99,
+      "perspective_id": 124,
+      "strength": 0.4108
+    },
+    {
+      "id": 50,
+      "property_id": 6,
+      "process_id": 57,
+      "perspective_id": 107,
+      "strength": 0.9067
+    },
+    {
+      "id": 51,
+      "property_id": 37,
+      "process_id": 100,
+      "perspective_id": 140,
+      "strength": 0.2029
+    },
+    {
+      "id": 52,
+      "property_id": 35,
+      "process_id": 91,
+      "perspective_id": 119,
+      "strength": 0.4402
+    },
+    {
+      "id": 53,
+      "property_id": 16,
+      "process_id": 70,
+      "perspective_id": 122,
+      "strength": 0.7816
+    },
+    {
+      "id": 54,
+      "property_id": 28,
+      "process_id": 70,
+      "perspective_id": 153,
+      "strength": 0.0965
+    },
+    {
+      "id": 55,
+      "property_id": 47,
+      "process_id": 82,
+      "perspective_id": 153,
+      "strength": 0.0027
+    },
+    {
+      "id": 56,
+      "property_id": 48,
+      "process_id": 104,
+      "perspective_id": 119,
+      "strength": 0.7153
+    },
+    {
+      "id": 57,
+      "property_id": 37,
+      "process_id": 67,
+      "perspective_id": 124,
+      "strength": 0.2038
+    },
+    {
+      "id": 58,
+      "property_id": 48,
+      "process_id": 65,
+      "perspective_id": 144,
+      "strength": 0.3065
+    },
+    {
+      "id": 59,
+      "property_id": 1,
+      "process_id": 78,
+      "perspective_id": 109,
+      "strength": 0.5198
+    },
+    {
+      "id": 60,
+      "property_id": 16,
+      "process_id": 86,
+      "perspective_id": 151,
+      "strength": 0.0547
+    },
+    {
+      "id": 61,
+      "property_id": 40,
+      "process_id": 83,
+      "perspective_id": 114,
+      "strength": 0.5907
+    },
+    {
+      "id": 62,
+      "property_id": 26,
+      "process_id": 72,
+      "perspective_id": 117,
+      "strength": 0.268
+    },
+    {
+      "id": 63,
+      "property_id": 48,
+      "process_id": 72,
+      "perspective_id": 112,
+      "strength": 0.7386
+    },
+    {
+      "id": 64,
+      "property_id": 26,
+      "process_id": 82,
+      "perspective_id": 134,
+      "strength": 0.0306
+    },
+    {
+      "id": 65,
+      "property_id": 10,
+      "process_id": 62,
+      "perspective_id": 147,
+      "strength": 0.6178
+    },
+    {
+      "id": 66,
+      "property_id": 35,
+      "process_id": 54,
+      "perspective_id": 109,
+      "strength": 0.2036
+    },
+    {
+      "id": 67,
+      "property_id": 46,
+      "process_id": 68,
+      "perspective_id": 114,
+      "strength": 0.7032
+    },
+    {
+      "id": 68,
+      "property_id": 43,
+      "process_id": 101,
+      "perspective_id": 133,
+      "strength": 0.573
+    },
+    {
+      "id": 69,
+      "property_id": 7,
+      "process_id": 94,
+      "perspective_id": 116,
+      "strength": 0.1103
+    },
+    {
+      "id": 70,
+      "property_id": 31,
+      "process_id": 86,
+      "perspective_id": 155,
+      "strength": 0.3599
+    },
+    {
+      "id": 71,
+      "property_id": 34,
+      "process_id": 94,
+      "perspective_id": 140,
+      "strength": 0.5173
+    },
+    {
+      "id": 72,
+      "property_id": 17,
+      "process_id": 74,
+      "perspective_id": 127,
+      "strength": 0.6342
+    },
+    {
+      "id": 73,
+      "property_id": 39,
+      "process_id": 103,
+      "perspective_id": 133,
+      "strength": 0.112
+    },
+    {
+      "id": 74,
+      "property_id": 35,
+      "process_id": 54,
+      "perspective_id": 142,
+      "strength": 0.9085
+    },
+    {
+      "id": 75,
+      "property_id": 15,
+      "process_id": 53,
+      "perspective_id": 118,
+      "strength": 0.9567
+    },
+    {
+      "id": 76,
+      "property_id": 38,
+      "process_id": 68,
+      "perspective_id": 156,
+      "strength": 0.9946
+    },
+    {
+      "id": 77,
+      "property_id": 35,
+      "process_id": 100,
+      "perspective_id": 148,
+      "strength": 0.003
+    },
+    {
+      "id": 78,
+      "property_id": 21,
+      "process_id": 74,
+      "perspective_id": 120,
+      "strength": 0.0504
+    },
+    {
+      "id": 79,
+      "property_id": 19,
+      "process_id": 68,
+      "perspective_id": 144,
+      "strength": 0.5406
+    },
+    {
+      "id": 80,
+      "property_id": 39,
+      "process_id": 91,
+      "perspective_id": 152,
+      "strength": 0.6587
+    },
+    {
+      "id": 81,
+      "property_id": 13,
+      "process_id": 55,
+      "perspective_id": 111,
+      "strength": 0.9144
+    },
+    {
+      "id": 82,
+      "property_id": 45,
+      "process_id": 55,
+      "perspective_id": 134,
+      "strength": 0.0956
+    },
+    {
+      "id": 83,
+      "property_id": 13,
+      "process_id": 69,
+      "perspective_id": 117,
+      "strength": 0.0903
+    },
+    {
+      "id": 84,
+      "property_id": 24,
+      "process_id": 57,
+      "perspective_id": 152,
+      "strength": 0.4072
+    },
+    {
+      "id": 85,
+      "property_id": 39,
+      "process_id": 73,
+      "perspective_id": 153,
+      "strength": 0.3078
+    },
+    {
+      "id": 86,
+      "property_id": 12,
+      "process_id": 58,
+      "perspective_id": 110,
+      "strength": 0.4017
+    },
+    {
+      "id": 87,
+      "property_id": 8,
+      "process_id": 78,
+      "perspective_id": 110,
+      "strength": 0.9042
+    },
+    {
+      "id": 88,
+      "property_id": 20,
+      "process_id": 78,
+      "perspective_id": 106,
+      "strength": 0.1926
+    },
+    {
+      "id": 89,
+      "property_id": 23,
+      "process_id": 99,
+      "perspective_id": 135,
+      "strength": 0.5738
+    },
+    {
+      "id": 90,
+      "property_id": 37,
+      "process_id": 79,
+      "perspective_id": 134,
+      "strength": 0.6122
+    },
+    {
+      "id": 91,
+      "property_id": 32,
+      "process_id": 65,
+      "perspective_id": 115,
+      "strength": 0.587
+    },
+    {
+      "id": 92,
+      "property_id": 41,
+      "process_id": 85,
+      "perspective_id": 120,
+      "strength": 0.6824
+    },
+    {
+      "id": 93,
+      "property_id": 10,
+      "process_id": 68,
+      "perspective_id": 130,
+      "strength": 0.664
+    },
+    {
+      "id": 94,
+      "property_id": 45,
+      "process_id": 98,
+      "perspective_id": 132,
+      "strength": 0.0864
+    },
+    {
+      "id": 95,
+      "property_id": 35,
+      "process_id": 101,
+      "perspective_id": 141,
+      "strength": 0.4648
+    },
+    {
+      "id": 96,
+      "property_id": 1,
+      "process_id": 81,
+      "perspective_id": 134,
+      "strength": 0.0194
+    },
+    {
+      "id": 97,
+      "property_id": 5,
+      "process_id": 63,
+      "perspective_id": 131,
+      "strength": 0.3406
+    },
+    {
+      "id": 98,
+      "property_id": 40,
+      "process_id": 87,
+      "perspective_id": 136,
+      "strength": 0.9627
+    },
+    {
+      "id": 99,
+      "property_id": 13,
+      "process_id": 105,
+      "perspective_id": 155,
+      "strength": 0.321
+    },
+    {
+      "id": 100,
+      "property_id": 26,
+      "process_id": 81,
+      "perspective_id": 152,
+      "strength": 0.1927
+    }
+  ]
+}
