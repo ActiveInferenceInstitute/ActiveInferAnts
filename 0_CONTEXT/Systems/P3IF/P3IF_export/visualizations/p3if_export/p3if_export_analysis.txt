@@ -1,0 +1,81 @@
+=== P3IF Data Analysis for p3if_export ===
+
+1. Basic Statistics:
+Total number of patterns: 86
+Total number of relationships: 100
+Number of unique properties: 0
+Number of unique processes: 35
+Number of unique perspectives: 10
+
+2. Pattern Type Distribution:
+Process: 42 (48.84%)
+Property: 32 (37.21%)
+Perspective: 12 (13.95%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.494760
+std        0.281301
+min        0.001454
+25%        0.235581
+50%        0.488991
+75%        0.748094
+max        0.982007
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9820):
+Property: Not found
+Process: others
+Perspective: care
+
+Weakest relationship (strength = 0.0015):
+Property: Not found
+Process: good
+Perspective: bad
+
+4. Network Analysis:
+Number of nodes: 0
+Number of edges: 0
+Average clustering coefficient: N/A
+Graph is empty, cannot compute connectivity or path lengths.
+Graph is empty, cannot compute centrality.
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+
+Betweenness Centrality:
+
+Eigenvector Centrality:
+Centrality measure not available.
+
+Closeness Centrality:
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          NaN      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+assume: 1
+region: 1
+she: 1
+cost: 1
+their: 1
+government: 1
+begin: 1
+direction: 1
+pay: 1
+reason: 1
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+1    35
+0    33
+2    32
+Name: count, dtype: int64

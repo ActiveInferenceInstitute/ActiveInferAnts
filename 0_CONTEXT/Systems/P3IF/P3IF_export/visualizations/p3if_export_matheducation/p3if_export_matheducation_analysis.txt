@@ -1,0 +1,99 @@
+=== P3IF Data Analysis for p3if_export_matheducation ===
+
+1. Basic Statistics:
+Total number of patterns: 150
+Total number of relationships: 100
+Number of unique properties: 45
+Number of unique processes: 43
+Number of unique perspectives: 41
+
+2. Pattern Type Distribution:
+Property: 50 (33.33%)
+Process: 50 (33.33%)
+Perspective: 50 (33.33%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.505497
+std        0.297599
+min        0.000000
+25%        0.254600
+50%        0.506350
+75%        0.748625
+max        0.996700
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9967):
+Property: Math Competition Preparation
+Process: Textbook Evaluation
+Perspective: Math Tutor Coordinator
+
+Weakest relationship (strength = 0.0000):
+Property: Mathematical Representations
+Process: Differentiated Teaching
+Perspective: Special Education Teacher
+
+4. Network Analysis:
+Number of nodes: 127
+Number of edges: 268
+Average clustering coefficient: 0.5290
+Graph is not connected.
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Math Tutor Coordinator: 0.1032
+Homework Strategy Specialist: 0.0952
+Modeling Activities: 0.0794
+Teacher Preparation: 0.0794
+Differentiated Teaching: 0.0794
+
+Betweenness Centrality:
+Math Tutor Coordinator: 0.1487
+Homework Strategy Specialist: 0.1262
+Teacher Preparation: 0.1079
+Technology Integration: 0.0829
+Modeling Activities: 0.0812
+
+Eigenvector Centrality:
+Homework Strategy Specialist: 0.2544
+Modeling Activities: 0.2371
+Teacher Preparation: 0.2316
+Math Tutor Coordinator: 0.2210
+Data Analysis in Education Expert: 0.1971
+
+Closeness Centrality:
+Teacher Preparation: 0.3480
+Math Tutor Coordinator: 0.3440
+Homework Strategy Specialist: 0.3411
+Modeling Activities: 0.3373
+Statistical Data Analysis: 0.3254
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+math: 44
+specialist: 12
+mathematical: 11
+design: 8
+development: 8
+teacher: 7
+coach: 7
+curriculum: 6
+assessment: 6
+integration: 6
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+0    41
+2    31
+1    28
+Name: count, dtype: int64

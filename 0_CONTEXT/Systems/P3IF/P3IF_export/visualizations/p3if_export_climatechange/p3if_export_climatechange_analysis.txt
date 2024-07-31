@@ -1,0 +1,99 @@
+=== P3IF Data Analysis for p3if_export_climatechange ===
+
+1. Basic Statistics:
+Total number of patterns: 155
+Total number of relationships: 100
+Number of unique properties: 42
+Number of unique processes: 45
+Number of unique perspectives: 41
+
+2. Pattern Type Distribution:
+Process: 55 (35.48%)
+Property: 50 (32.26%)
+Perspective: 50 (32.26%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.537672
+std        0.299791
+min        0.019200
+25%        0.295950
+50%        0.542350
+75%        0.820700
+max        0.994300
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9943):
+Property: Methane Release
+Process: Migration Pattern Analysis
+Perspective: Environmental Ethicist
+
+Weakest relationship (strength = 0.0192):
+Property: Carbon Sequestration
+Process: Arctic Research
+Perspective: Climate Educator
+
+4. Network Analysis:
+Number of nodes: 125
+Number of edges: 275
+Average clustering coefficient: 0.5374
+Graph is not connected.
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Ocean Circulation Changes: 0.1210
+Vector-Borne Diseases: 0.0968
+Sustainable Transportation: 0.0887
+Ecologist: 0.0887
+Circular Economy Transition: 0.0887
+
+Betweenness Centrality:
+Ocean Circulation Changes: 0.1768
+Ecologist: 0.1285
+Sustainable Transportation: 0.1231
+Vector-Borne Diseases: 0.1039
+Global Temperature Rise: 0.0985
+
+Eigenvector Centrality:
+Ocean Circulation Changes: 0.2694
+Ecologist: 0.2542
+Sustainable Urban Planning: 0.2317
+Circular Economy Transition: 0.2192
+Vector-Borne Diseases: 0.2125
+
+Closeness Centrality:
+Ecologist: 0.3797
+Ocean Circulation Changes: 0.3784
+Sustainable Urban Planning: 0.3678
+Vector-Borne Diseases: 0.3622
+Circular Economy Transition: 0.3504
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+climate: 28
+sustainable: 9
+carbon: 7
+energy: 7
+green: 6
+management: 6
+monitoring: 6
+specialist: 6
+environmental: 5
+ocean: 4
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+2    41
+1    32
+0    27
+Name: count, dtype: int64

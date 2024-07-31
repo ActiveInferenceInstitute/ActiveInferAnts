@@ -1,0 +1,100 @@
+=== P3IF Data Analysis for p3if_export_quantumcomputing ===
+
+1. Basic Statistics:
+Total number of patterns: 45
+Total number of relationships: 100
+Number of unique properties: 15
+Number of unique processes: 15
+Number of unique perspectives: 15
+
+2. Pattern Type Distribution:
+Property: 15 (33.33%)
+Process: 15 (33.33%)
+Perspective: 15 (33.33%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.515620
+std        0.303016
+min        0.006000
+25%        0.261450
+50%        0.551650
+75%        0.778650
+max        0.982900
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9829):
+Property: Qubits
+Process: Quantum Debugger
+Perspective: Quantum Ethics Specialist
+
+Weakest relationship (strength = 0.0060):
+Property: Quantum Annealing
+Process: Quantum-Classical Interfacing
+Perspective: Quantum Information Theorist
+
+4. Network Analysis:
+Number of nodes: 45
+Number of edges: 218
+Average clustering coefficient: 0.3110
+Average shortest path length: 1.9192
+Diameter of the graph: 4
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Quantum Sensing: 0.3864
+Quantum-Classical Interfacing: 0.3409
+Quantum Debugger: 0.3409
+Entanglement: 0.3409
+Quantum Annealing: 0.3182
+
+Betweenness Centrality:
+Quantum Debugger: 0.0641
+Quantum Sensing: 0.0601
+Entanglement: 0.0517
+Quantum Algorithm Designer: 0.0428
+Quantum Entrepreneur: 0.0425
+
+Eigenvector Centrality:
+Quantum Sensing: 0.2498
+Quantum-Classical Interfacing: 0.2307
+Entanglement: 0.2276
+Quantum Ethics Specialist: 0.2173
+Quantum Annealing: 0.2118
+
+Closeness Centrality:
+Quantum Sensing: 0.6111
+Quantum Debugger: 0.5946
+Entanglement: 0.5946
+Quantum-Classical Interfacing: 0.5867
+Quantum Entrepreneur: 0.5789
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+quantum: 40
+error: 3
+hardware: 3
+specialist: 3
+correction: 2
+software: 2
+algorithm: 2
+theorist: 2
+superposition: 1
+entanglement: 1
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+1    39
+0    34
+2    27
+Name: count, dtype: int64

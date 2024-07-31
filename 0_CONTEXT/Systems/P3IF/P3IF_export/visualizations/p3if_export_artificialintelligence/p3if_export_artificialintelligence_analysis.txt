@@ -1,0 +1,100 @@
+=== P3IF Data Analysis for p3if_export_artificialintelligence ===
+
+1. Basic Statistics:
+Total number of patterns: 120
+Total number of relationships: 100
+Number of unique properties: 44
+Number of unique processes: 46
+Number of unique perspectives: 15
+
+2. Pattern Type Distribution:
+Property: 55 (45.83%)
+Process: 50 (41.67%)
+Perspective: 15 (12.50%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.475767
+std        0.307325
+min        0.007400
+25%        0.244800
+50%        0.466300
+75%        0.729625
+max        0.993800
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9938):
+Property: Knowledge Representation
+Process: Algorithm Selection
+Perspective: Machine Learning Engineer
+
+Weakest relationship (strength = 0.0074):
+Property: Not found
+Process: Bias Detection
+Perspective: AI Entrepreneur
+
+4. Network Analysis:
+Number of nodes: 104
+Number of edges: 262
+Average clustering coefficient: 0.5421
+Average shortest path length: 2.9923
+Diameter of the graph: 6
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Machine Learning Engineer: 0.2427
+AI Policy Maker: 0.1650
+Domain Expert: 0.1359
+AI Researcher: 0.1262
+AI Product Manager: 0.1262
+
+Betweenness Centrality:
+Machine Learning Engineer: 0.2230
+AI Policy Maker: 0.1445
+Domain Expert: 0.1014
+Fairness Assessment: 0.0916
+AI Product Manager: 0.0760
+
+Eigenvector Centrality:
+Machine Learning Engineer: 0.3794
+Fairness Assessment: 0.2326
+A/B Testing: 0.2246
+AI Accountability: 0.2022
+AI Policy Maker: 0.1919
+
+Closeness Centrality:
+Machine Learning Engineer: 0.4661
+Fairness Assessment: 0.4402
+A/B Testing: 0.4292
+Domain Expert: 0.4204
+Data Pipeline Management: 0.4170
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+ai: 37
+learning: 15
+data: 7
+in: 7
+model: 7
+testing: 5
+systems: 4
+analysis: 4
+expert: 3
+safety: 3
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+1    38
+2    32
+0    30
+Name: count, dtype: int64

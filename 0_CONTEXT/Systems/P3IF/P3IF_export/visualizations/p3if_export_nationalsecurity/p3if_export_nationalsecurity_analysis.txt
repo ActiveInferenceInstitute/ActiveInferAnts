@@ -1,0 +1,100 @@
+=== P3IF Data Analysis for p3if_export_nationalsecurity ===
+
+1. Basic Statistics:
+Total number of patterns: 150
+Total number of relationships: 100
+Number of unique properties: 44
+Number of unique processes: 43
+Number of unique perspectives: 43
+
+2. Pattern Type Distribution:
+Property: 50 (33.33%)
+Process: 50 (33.33%)
+Perspective: 50 (33.33%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.483608
+std        0.289567
+min        0.022600
+25%        0.234375
+50%        0.423250
+75%        0.715225
+max        0.999700
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9997):
+Property: Weapons Control
+Process: Counterintelligence Operations
+Perspective: Maritime Security Expert
+
+Weakest relationship (strength = 0.0226):
+Property: Border Security
+Process: Anti-Drone Systems Deployment
+Perspective: Infrastructure Protection Specialist
+
+4. Network Analysis:
+Number of nodes: 126
+Number of edges: 269
+Average clustering coefficient: 0.5201
+Average shortest path length: 3.7307
+Diameter of the graph: 8
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Critical Mineral Stockpiling: 0.0960
+Resilience Planner: 0.0880
+Disaster Management Expert: 0.0800
+Chemical Security Inspector: 0.0800
+Emergency Response: 0.0800
+
+Betweenness Centrality:
+Critical Mineral Stockpiling: 0.1538
+Resilience Planner: 0.1425
+Disaster Management Expert: 0.0916
+Emergency Response: 0.0851
+Chemical Security Inspector: 0.0813
+
+Eigenvector Centrality:
+Critical Mineral Stockpiling: 0.2877
+Drone Defense Specialist: 0.2581
+Resilience Planner: 0.2321
+Emergency Response: 0.2249
+Intelligence Analysis: 0.2144
+
+Closeness Centrality:
+Critical Mineral Stockpiling: 0.3709
+Resilience Planner: 0.3623
+Drone Defense Specialist: 0.3592
+Disaster Management Expert: 0.3415
+Intelligence Gathering: 0.3406
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+security: 28
+defense: 8
+specialist: 8
+threat: 7
+management: 7
+operations: 7
+intelligence: 6
+response: 6
+control: 6
+arms: 6
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+1    48
+0    31
+2    21
+Name: count, dtype: int64

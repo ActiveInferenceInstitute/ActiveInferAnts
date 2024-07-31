@@ -1,0 +1,100 @@
+=== P3IF Data Analysis for p3if_export_healthcare ===
+
+1. Basic Statistics:
+Total number of patterns: 150
+Total number of relationships: 100
+Number of unique properties: 39
+Number of unique processes: 44
+Number of unique perspectives: 45
+
+2. Pattern Type Distribution:
+Property: 50 (33.33%)
+Process: 50 (33.33%)
+Perspective: 50 (33.33%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.489806
+std        0.280658
+min        0.004000
+25%        0.235125
+50%        0.482650
+75%        0.703375
+max        0.979700
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9797):
+Property: Treatment Efficacy
+Process: Surgery
+Perspective: Regulator
+
+Weakest relationship (strength = 0.0040):
+Property: Infection Control
+Process: Genetic Counseling
+Perspective: Pharmacist
+
+4. Network Analysis:
+Number of nodes: 123
+Number of edges: 271
+Average clustering coefficient: 0.5368
+Average shortest path length: 3.6532
+Diameter of the graph: 8
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Medical Records Management: 0.0984
+Emergency Medical Technician: 0.0984
+Cultural Competence: 0.0984
+Telemedicine Capability: 0.0820
+Treatment Efficacy: 0.0820
+
+Betweenness Centrality:
+Cultural Competence: 0.1800
+Emergency Medical Technician: 0.1159
+Medication Administration: 0.1118
+Medical Records Management: 0.0999
+Telemedicine Capability: 0.0887
+
+Eigenvector Centrality:
+Emergency Medical Technician: 0.2374
+Medication Administration: 0.2277
+Pharmacist: 0.2238
+Patient Satisfaction: 0.2059
+Cultural Competence: 0.2054
+
+Closeness Centrality:
+Cultural Competence: 0.3765
+Medication Administration: 0.3686
+Emergency Medical Technician: 0.3476
+Surgery: 0.3446
+Personalized Medicine: 0.3437
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+patient: 12
+care: 11
+management: 9
+health: 7
+therapy: 5
+safety: 4
+medical: 4
+staff: 3
+infection: 3
+emergency: 3
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+0    35
+2    35
+1    30
+Name: count, dtype: int64

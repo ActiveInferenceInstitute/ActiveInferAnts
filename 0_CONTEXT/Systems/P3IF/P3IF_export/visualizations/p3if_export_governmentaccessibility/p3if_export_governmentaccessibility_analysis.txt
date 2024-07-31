@@ -1,0 +1,99 @@
+=== P3IF Data Analysis for p3if_export_governmentaccessibility ===
+
+1. Basic Statistics:
+Total number of patterns: 150
+Total number of relationships: 100
+Number of unique properties: 46
+Number of unique processes: 42
+Number of unique perspectives: 44
+
+2. Pattern Type Distribution:
+Property: 50 (33.33%)
+Process: 50 (33.33%)
+Perspective: 50 (33.33%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.528434
+std        0.262556
+min        0.038900
+25%        0.331800
+50%        0.515050
+75%        0.700550
+max        0.997900
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9979):
+Property: Accessible Meeting Spaces
+Process: Web Accessibility Testing
+Perspective: Training Coordinator
+
+Weakest relationship (strength = 0.0389):
+Property: Digital Accessibility
+Process: Public Transit Accessibility Improvement
+Perspective: Language Access Coordinator
+
+4. Network Analysis:
+Number of nodes: 128
+Number of edges: 273
+Average clustering coefficient: 0.4962
+Graph is not connected.
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Caption Generation: 0.0945
+Employment Support Coordinator: 0.0787
+Mobile App Accessibility: 0.0787
+Translation Services: 0.0787
+Feedback Mechanisms: 0.0709
+
+Betweenness Centrality:
+Caption Generation: 0.1580
+Translation Services: 0.1286
+Employment Support Coordinator: 0.1042
+Mobile App Accessibility: 0.0938
+Training Coordinator: 0.0827
+
+Eigenvector Centrality:
+Caption Generation: 0.2947
+Mobile App Accessibility: 0.2236
+Translation Services: 0.2200
+Feedback Mechanisms: 0.2099
+Compliance Monitoring: 0.1842
+
+Closeness Centrality:
+Caption Generation: 0.3540
+Translation Services: 0.3382
+Mobile App Accessibility: 0.3272
+Feedback Mechanisms: 0.3211
+Service Delivery Manager: 0.3169
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+accessibility: 26
+accessible: 15
+specialist: 11
+design: 10
+services: 9
+language: 8
+coordinator: 8
+inclusive: 7
+public: 7
+assistive: 6
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+1    41
+2    37
+0    22
+Name: count, dtype: int64

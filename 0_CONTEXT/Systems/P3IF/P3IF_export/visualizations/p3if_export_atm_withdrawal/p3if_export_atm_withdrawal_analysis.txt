@@ -1,0 +1,100 @@
+=== P3IF Data Analysis for p3if_export_atm_withdrawal ===
+
+1. Basic Statistics:
+Total number of patterns: 156
+Total number of relationships: 100
+Number of unique properties: 45
+Number of unique processes: 48
+Number of unique perspectives: 42
+
+2. Pattern Type Distribution:
+Process: 55 (35.26%)
+Perspective: 51 (32.69%)
+Property: 50 (32.05%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.465810
+std        0.277769
+min        0.002700
+25%        0.203750
+50%        0.463450
+75%        0.660025
+max        0.994600
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9946):
+Property: Noise Level
+Process: User Authentication
+Perspective: Cash Forecasting Analyst
+
+Weakest relationship (strength = 0.0027):
+Property: NFC Capability
+Process: Biometric Data Capture
+Perspective: NFC Technology Expert
+
+4. Network Analysis:
+Number of nodes: 135
+Number of edges: 293
+Average clustering coefficient: 0.5448
+Average shortest path length: 3.7794
+Diameter of the graph: 8
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Camera Adjustment: 0.0896
+Power Backup: 0.0821
+Card Reader Functionality: 0.0746
+Audit Trail: 0.0746
+Security Seal Verification: 0.0746
+
+Betweenness Centrality:
+Card Reader Functionality: 0.1750
+Anti-Fraud Technology Expert: 0.1149
+EMV Technology Specialist: 0.0958
+Power Backup: 0.0929
+Camera Adjustment: 0.0865
+
+Eigenvector Centrality:
+Audit Trail: 0.2654
+Authentication Expert: 0.2180
+Power Backup: 0.1956
+Physical Security Check: 0.1955
+EMV Technology Specialist: 0.1949
+
+Closeness Centrality:
+Card Reader Functionality: 0.3583
+Audit Trail: 0.3481
+Cash Counting: 0.3454
+Cash Recycling Technician: 0.3436
+Power Backup: 0.3342
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+cash: 14
+specialist: 12
+expert: 10
+transaction: 9
+software: 8
+technology: 8
+network: 6
+support: 6
+monitoring: 6
+security: 5
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+cluster
+0    36
+2    34
+1    30
+Name: count, dtype: int64
