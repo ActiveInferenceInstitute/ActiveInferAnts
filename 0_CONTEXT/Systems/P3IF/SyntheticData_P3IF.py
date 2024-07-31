@@ -82,6 +82,82 @@ DOMAINS = {
             "Blockchain Policy Advisor", "Blockchain Social Impact Specialist", "Blockchain Identity Management Expert", "Blockchain Privacy Researcher", "Blockchain Forensics Analyst"
         ]
     },
+    "VideoChat": {
+        "properties": [
+            "Video Quality", "Audio Quality", "Latency", "Bandwidth Efficiency", "Scalability",
+            "Security", "Privacy", "Cross-Platform Compatibility", "User Interface", "Screen Sharing",
+            "Recording Capability", "Encryption", "Noise Cancellation", "Virtual Background", "Accessibility",
+            "Multi-Party Support", "Mobile Optimization", "Network Adaptability", "Integration Capabilities", "Customization Options",
+            "Breakout Rooms", "Live Streaming", "Chat Functionality", "File Sharing", "Whiteboard Feature",
+            "Gesture Recognition", "Facial Recognition", "Language Translation", "Closed Captioning", "Emoji Reactions",
+            "Attendance Tracking", "Polling/Voting", "Waiting Room", "Host Controls", "Background Blur",
+            "Echo Cancellation", "Lip Synchronization", "Bandwidth Management", "Device Compatibility", "Cloud Storage",
+            "API Availability", "Analytics Dashboard", "Compliance (GDPR, HIPAA)", "Single Sign-On", "End-to-End Encryption",
+            "Firewall Traversal", "Quality of Service (QoS)", "Adaptive Bitrate Streaming", "Low-Light Enhancement", "360-Degree Video Support"
+        ],
+        "processes": [
+            "Video Encoding", "Audio Encoding", "Data Compression", "Packet Transmission", "Jitter Buffer Management",
+            "Echo Cancellation", "Noise Suppression", "Video Rendering", "Audio Rendering", "Synchronization",
+            "Bandwidth Allocation", "Error Concealment", "Packet Loss Recovery", "Frame Rate Adaptation", "Resolution Scaling",
+            "User Authentication", "Session Initiation", "Media Negotiation", "NAT Traversal", "Encryption/Decryption",
+            "Screen Capture", "Audio Mixing", "Video Mixing", "Recording", "Transcoding",
+            "Background Subtraction", "Facial Detection", "Audio Level Detection", "Gesture Recognition", "Lip Movement Analysis",
+            "Network Quality Monitoring", "Adaptive Streaming", "Device Enumeration", "Audio Routing", "Video Filtering",
+            "Chat Message Processing", "File Transfer", "Whiteboard Rendering", "Breakout Room Management", "Poll Creation and Analysis",
+            "Attendance Logging", "Language Detection", "Speech-to-Text Conversion", "Text-to-Speech Conversion", "Emoji Rendering",
+            "Analytics Data Collection", "API Request Handling", "Cloud Synchronization", "Low-Light Image Enhancement", "360-Degree Video Processing"
+        ],
+        "perspectives": [
+            "End User", "IT Administrator", "Software Developer", "Network Engineer", "Security Specialist",
+            "User Experience Designer", "Product Manager", "Quality Assurance Tester", "Customer Support Representative", "Sales Representative",
+            "Marketing Specialist", "Business Analyst", "Data Scientist", "Legal Counsel", "Compliance Officer",
+            "Accessibility Expert", "Localization Specialist", "Training Coordinator", "System Integrator", "Cloud Architect",
+            "Mobile Developer", "Web Developer", "DevOps Engineer", "Database Administrator", "UI Designer",
+            "UX Researcher", "Content Creator", "Educator", "Healthcare Professional", "Financial Advisor",
+            "Human Resources Manager", "Event Organizer", "Project Manager", "Executive", "Entrepreneur",
+            "Journalist", "Politician", "Entertainer", "Social Media Influencer", "Customer",
+            "Investor", "Regulator", "Privacy Advocate", "Ethical AI Specialist", "Telecommunications Expert",
+            "Usability Tester", "Ergonomics Specialist", "Cognitive Psychologist", "Audiologist", "Ophthalmologist"
+        ]
+    },
+    "ActiveInferenceGrantProposal": {
+        "properties": [
+            "Theoretical Soundness", "Empirical Evidence", "Interdisciplinary Approach", "Novelty", "Practical Applicability",
+            "Scalability", "Computational Efficiency", "Biological Plausibility", "Predictive Power", "Explanatory Power",
+            "Model Complexity", "Data Requirements", "Interpretability", "Generalizability", "Robustness",
+            "Ethical Considerations", "Societal Impact", "Alignment with Funding Priorities", "Cost-Effectiveness", "Timeline Feasibility",
+            "Risk Assessment", "Potential for Collaboration", "Publication Potential", "Intellectual Property", "Educational Value",
+            "Clinical Relevance", "Technological Innovation", "Methodological Rigor", "Reproducibility", "Sustainability",
+            "Adaptability to New Domains", "Integration with Existing Theories", "Potential for Paradigm Shift", "Quantitative Metrics", "Qualitative Insights",
+            "Cross-Cultural Applicability", "Long-term Research Potential", "Short-term Deliverables", "Alignment with Institutional Goals", "Public Engagement",
+            "Policy Implications", "Economic Viability", "Environmental Considerations", "Ethical AI Alignment", "Potential for Spin-off Research",
+            "Interdepartmental Synergies", "International Collaboration Potential", "Industry Partnership Opportunities", "Funding Diversification", "Career Development Aspects"
+        ],
+        "processes": [
+            "Literature Review", "Hypothesis Formulation", "Experimental Design", "Data Collection", "Statistical Analysis",
+            "Model Development", "Simulation", "Empirical Testing", "Peer Review", "Grant Writing",
+            "Ethics Approval", "Participant Recruitment", "Data Preprocessing", "Feature Engineering", "Model Training",
+            "Hyperparameter Optimization", "Cross-Validation", "Error Analysis", "Results Interpretation", "Manuscript Preparation",
+            "Conference Presentation", "Code Documentation", "Data Management", "Team Coordination", "Budget Planning",
+            "Progress Reporting", "Stakeholder Engagement", "Risk Mitigation", "Quality Assurance", "Knowledge Dissemination",
+            "Intellectual Property Protection", "Collaboration Management", "Resource Allocation", "Timeline Management", "Performance Evaluation",
+            "Feedback Incorporation", "Iterative Refinement", "Scalability Testing", "Interdisciplinary Integration", "Theoretical Framework Development",
+            "Computational Implementation", "Biological Validation", "Clinical Translation", "Policy Brief Preparation", "Public Communication",
+            "Funding Acquisition", "Team Recruitment", "Equipment Procurement", "Software Development", "Data Visualization",
+            "Ethical Compliance Monitoring", "Impact Assessment", "Long-term Planning", "Knowledge Transfer", "Community Outreach"
+        ],
+        "perspectives": [
+            "Principal Investigator", "Co-Investigator", "Research Assistant", "Statistician", "Data Scientist",
+            "Neuroscientist", "Cognitive Psychologist", "Computer Scientist", "Mathematician", "Philosopher",
+            "Ethicist", "Funding Agency Representative", "Institutional Review Board Member", "Graduate Student", "Postdoctoral Researcher",
+            "Lab Manager", "Collaborator", "Industry Partner", "Policy Maker", "Journal Editor",
+            "Peer Reviewer", "Research Participant", "Clinical Practitioner", "AI Ethics Specialist", "Science Communicator",
+            "Grant Administrator", "Department Head", "University Dean", "Intellectual Property Lawyer", "Bioethicist",
+            "Computational Neuroscientist", "Roboticist", "Cognitive Scientist", "Systems Biologist", "Theoretical Physicist",
+            "Machine Learning Engineer", "Neuroengineer", "Behavioral Economist", "Developmental Psychologist", "Evolutionary Biologist",
+            "Computational Psychiatrist", "Neuroprosthetics Specialist", "Brain-Computer Interface Expert", "Neuroethicist", "Science Policy Advisor",
+            "Public Health Researcher", "Environmental Scientist", "Social Psychologist", "Anthropologist", "Education Researcher"
+        ]
     "NationalSecurity": {
         "properties": [
             "Intelligence Gathering", "Threat Assessment", "Border Security", "Cybersecurity", "Counter-terrorism",
