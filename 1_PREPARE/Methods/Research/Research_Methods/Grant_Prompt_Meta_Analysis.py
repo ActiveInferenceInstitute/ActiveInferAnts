@@ -17,31 +17,48 @@ from nltk.tokenize import word_tokenize
 import numpy as np
 from scipy.stats import gaussian_kde
 from scipy.stats import norm
+import logging
+import time
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib.utils import simpleSplit
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 class GrantPromptMetaAnalysis:
     def __init__(self, prompt_dir='Writing_Outputs/Grant_Prompts/', output_dir='Writing_Outputs/Grant_Prompt_MetaAnalysis/'):
+        logging.info("Initializing GrantPromptMetaAnalysis")
         self.prompt_dir = prompt_dir
         self.output_dir = output_dir
         self.files = self._get_files()
         self.texts = self._read_files()
         self.stop_words = set(stopwords.words('english'))
-        self.stop_words.update(['index', 'jsp', 'div', 'True', 'will', 'may'])
+        self.stop_words.update(['index', 'jsp', 'div', 'True', 'False', 'None', 'self', 'none', 'utf', '703', 'import', 'from', 'class', 'def', 'return', 'if', 'else', 'try', 'except', 'with', 'as', 'for', 'in', 'os', 'logging', 'open', 'read', 'write', 'join', 'path', 'exists', 'isdir', 'listdir', 'debug', 'info', 'warning', 'error', 'encoding', 'utf-8', 'and', 'of', 'the', 'to', 'a', 'Active', 'in', 'as', 'True', 'for', 'with', 'def', 'will', 'may', 'um', 'uh', 'true', 'shall', 'nsf'])
         self._ensure_output_dir_exists()
+        logging.info("Initialization complete")
 
     def _get_files(self):
-        return [f for f in os.listdir(self.prompt_dir) if f.endswith('.md')]
+        logging.info("Getting files from prompt directory")
+        files = [f for f in os.listdir(self.prompt_dir) if f.endswith('.md')]
+        logging.info(f"Found {len(files)} files")
+        return files
 
     def _read_files(self):
+        logging.info("Reading files")
         texts = {}
         for file in self.files:
+            logging.info(f"Reading file: {file}")
             with open(os.path.join(self.prompt_dir, file), 'r', encoding='utf-8') as f:
                 texts[file] = f.read()
+        logging.info("File reading complete")
         return texts
 
     def _ensure_output_dir_exists(self):
+        logging.info("Ensuring output directories exist")
         directories = [
             self.output_dir,
             os.path.join(self.output_dir, 'WordClouds'),
@@ -52,25 +69,17 @@ class GrantPromptMetaAnalysis:
         ]
         for directory in directories:
             os.makedirs(directory, exist_ok=True)
+        logging.info("Output directories created")
 
     def _preprocess_text(self, text):
+        logging.info("Preprocessing text")
         text = re.sub(r'[^\w\s]', '', text.lower())
         tokens = word_tokenize(text)
         return ' '.join([word for word in tokens if word not in self.stop_words])
 
-    def generate_word_clouds(self):
-        for file, text in self.texts.items():
-            wordcloud = WordCloud(width=1600, height=800, background_color='white').generate(text)
-            plt.figure(figsize=(20, 10))
-            plt.imshow(wordcloud, interpolation='bilinear')
-            plt.axis('off')
-            plt.title(f'Word Cloud for {file}', fontsize=24, pad=20)
-            plt.tight_layout(pad=2)
-            plt.savefig(os.path.join(self.output_dir, 'WordClouds', f'wordcloud_{file}.png'), dpi=300)
-            plt.close()
-
     def perform_tfidf_analysis(self):
-        vectorizer = TfidfVectorizer(stop_words='english')
+        logging.info("Performing TF-IDF analysis")
+        vectorizer = TfidfVectorizer(stop_words=list(self.stop_words))
         tfidf_matrix = vectorizer.fit_transform([self._preprocess_text(text) for text in self.texts.values()])
         feature_names = vectorizer.get_feature_names_out()
         
@@ -78,20 +87,22 @@ class GrantPromptMetaAnalysis:
         df = df[~df.index.duplicated(keep='first')]  # Remove duplicate index values
         top_terms = df.apply(lambda x: x.nlargest(10).index.tolist(), axis=1)
         
-        return top_terms, tfidf_matrix
+        logging.info("TF-IDF analysis complete")
+        return top_terms, tfidf_matrix, vectorizer
 
     def cluster_documents(self, n_clusters=3):
-        _, tfidf_matrix = self.perform_tfidf_analysis()
+        logging.info("Clustering documents")
+        _, tfidf_matrix, vectorizer = self.perform_tfidf_analysis()
         
-        # K-means clustering
+        logging.info("Performing K-means clustering")
         kmeans = KMeans(n_clusters=n_clusters, random_state=42)
         kmeans_labels = kmeans.fit_predict(tfidf_matrix)
         
-        # Hierarchical clustering
+        logging.info("Performing Hierarchical clustering")
         hierarchical = AgglomerativeClustering(n_clusters=n_clusters)
         hierarchical_labels = hierarchical.fit_predict(tfidf_matrix.toarray())
         
-        # Dimensionality reduction for visualization
+        logging.info("Performing dimensionality reduction")
         pca = PCA(n_components=2, random_state=42)
         tsne = TSNE(n_components=2, random_state=42, perplexity=5)
         svd = TruncatedSVD(n_components=2, random_state=42)
@@ -102,6 +113,7 @@ class GrantPromptMetaAnalysis:
         
         # Plotting functions
         def plot_clusters(coords, labels, title, filename, method):
+            logging.info(f"Plotting {title}")
             plt.figure(figsize=(16, 12))
             scatter = plt.scatter(coords[:, 0], coords[:, 1], c=labels, cmap='viridis', s=100)
             plt.colorbar(scatter, label='Cluster')
@@ -129,6 +141,7 @@ class GrantPromptMetaAnalysis:
             plt.tight_layout(pad=3)
             plt.savefig(os.path.join(self.output_dir, 'Clustering', filename), dpi=300, bbox_inches='tight')
             plt.close()
+            logging.info(f"Plot saved: {filename}")
         
         # Generate plots
         plot_clusters(pca_coords, kmeans_labels, 'K-means Clustering (PCA)', 'kmeans_pca_clustering.png', 'PCA')
@@ -137,22 +150,30 @@ class GrantPromptMetaAnalysis:
         plot_clusters(pca_coords, hierarchical_labels, 'Hierarchical Clustering (PCA)', 'hierarchical_pca_clustering.png', 'PCA')
         
         # Silhouette analysis
+        logging.info("Performing silhouette analysis")
         from sklearn.metrics import silhouette_score
         silhouette_kmeans = silhouette_score(tfidf_matrix, kmeans_labels)
         silhouette_hierarchical = silhouette_score(tfidf_matrix.toarray(), hierarchical_labels)
         
-        print(f"K-means Silhouette Score: {silhouette_kmeans:.4f}")
-        print(f"Hierarchical Clustering Silhouette Score: {silhouette_hierarchical:.4f}")
+        logging.info(f"K-means Silhouette Score: {silhouette_kmeans:.4f}")
+        logging.info(f"Hierarchical Clustering Silhouette Score: {silhouette_hierarchical:.4f}")
 
         # Visualization methods for dimensional projections
+        logging.info("Visualizing projections")
         self.visualize_projections(pca_coords, 'PCA')
 
+        # PCA interpretability methods
+        logging.info("Performing PCA interpretability analysis")
+        self.pca_interpretability(pca, vectorizer)
+
     def visualize_projections(self, coords, method):
+        logging.info(f"Visualizing {method} projections")
         entities = [file.split('_by_')[0] for file in self.files]
         grants = [file.split('_by_')[1].split('.md')[0] for file in self.files]
         catechisms = [file.split('_by_')[2].split('.md')[0] if len(file.split('_by_')) > 2 else 'None' for file in self.files]
 
         def plot_projection(color_by, title):
+            logging.info(f"Plotting {title}")
             plt.figure(figsize=(16, 12))
             unique_items = list(set(color_by))
             color_map = plt.cm.get_cmap('tab10')
@@ -186,12 +207,71 @@ class GrantPromptMetaAnalysis:
             plt.tight_layout(pad=3)
             plt.savefig(os.path.join(self.output_dir, 'Projections', f'{method}_projection_by_{title.split(" by ")[1]}.png'), dpi=300, bbox_inches='tight')
             plt.close()
+            logging.info(f"Plot saved: {method}_projection_by_{title.split(' by ')[1]}.png")
 
         plot_projection(entities, f'{method} Projection by Entity')
         plot_projection(grants, f'{method} Projection by Grant')
         plot_projection(catechisms, f'{method} Projection by Catechism')
 
+    def pca_interpretability(self, pca, vectorizer):
+        logging.info("Performing PCA interpretability analysis")
+        feature_names = vectorizer.get_feature_names_out()
+        
+        # Top terms for each principal component
+        def print_top_terms(component, feature_names, n=10):
+            top_indices = np.argsort(np.abs(component))[::-1][:n]
+            top_terms = [(feature_names[i], component[i]) for i in top_indices]
+            return top_terms
+
+        for i, component in enumerate(pca.components_):
+            logging.info(f"Top terms for PC{i+1}:")
+            logging.info(print_top_terms(component, feature_names))
+
+        # Visualize term loadings on principal components
+        logging.info("Visualizing term loadings on principal components")
+        plt.figure(figsize=(20, 10))
+        terms = feature_names
+        x = pca.components_[0]
+        y = pca.components_[1]
+        plt.scatter(x, y)
+        plt.xlabel("PC1")
+        plt.ylabel("PC2")
+        for i, term in enumerate(terms):
+            plt.annotate(term, (x[i], y[i]))
+        plt.title("Term Loadings on Principal Components")
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'PCA_Analysis', 'term_loadings.png'), dpi=300, bbox_inches='tight')
+        plt.close()
+        logging.info("Term loadings plot saved")
+
+        # Visualize documents in PCA space with term vectors
+        logging.info("Visualizing documents in PCA space with term vectors")
+        pca_coords = pca.transform(vectorizer.transform(self.texts.values()).toarray())
+        plt.figure(figsize=(20, 10))
+        plt.scatter(pca_coords[:, 0], pca_coords[:, 1])
+        for i, file in enumerate(self.texts.keys()):
+            plt.annotate(file, (pca_coords[i, 0], pca_coords[i, 1]), fontsize=8)
+        
+        # Add term vectors
+        n_terms = 20  # Number of terms to show
+        terms = feature_names
+        x = pca.components_[0]
+        y = pca.components_[1]
+        indices = np.argsort(np.sqrt(x**2 + y**2))[-n_terms:]
+        for i in indices:
+            plt.arrow(0, 0, x[i]*5, y[i]*5, color='r', alpha=0.5, head_width=0.05, head_length=0.05)
+            plt.text(x[i]*5.2, y[i]*5.2, terms[i], color='r', ha='center', va='center')
+
+        plt.xlabel("PC1")
+        plt.ylabel("PC2")
+        plt.title("Documents and Terms in PCA Space")
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'PCA_Analysis', 'documents_and_terms_pca.png'), dpi=300, bbox_inches='tight')
+        plt.close()
+        logging.info("Documents and terms in PCA space plot saved")
+
     def entity_grant_catechism_analysis(self):
+        logging.info("Performing entity-grant-catechism analysis")
         entities = list(set())
         grants = list(set())
         catechisms = list(set())
@@ -230,7 +310,7 @@ class GrantPromptMetaAnalysis:
 
     def run_analysis(self):
         print("Performing TF-IDF analysis...")
-        top_terms, _ = self.perform_tfidf_analysis()
+        top_terms, _, _ = self.perform_tfidf_analysis()
         print("Top terms for each document:")
         print(top_terms)
         
@@ -240,8 +320,8 @@ class GrantPromptMetaAnalysis:
         print("Analyzing entity-grant-catechism combinations...")
         self.entity_grant_catechism_analysis()
         
-        print("Generating word clouds...")
-        self.generate_word_clouds()
+        # print("Generating word clouds...")
+        # self.generate_word_clouds()
 
 def confidence_ellipse(x, y, ax, n_std=3.0, facecolor='none', **kwargs):
     """
