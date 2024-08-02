@@ -1,6 +1,8 @@
-# Meta-Grants README
+# Meta-Grants README 📊🔬
 
-This document outlines the comprehensive process for generating and analyzing grant proposals using synthetic prompts and meta-analysis techniques. The methodology described herein is designed to facilitate a systematic approach to grant writing and evaluation.
+This document outlines the comprehensive process for generating, analyzing, and reviewing grant proposals using various scripts and meta-analysis techniques. The methodology described herein is designed to facilitate a systematic approach to grant writing, evaluation, and analysis.
+
+## Terminology 📚
 
 | Term | Description |
 |------|-------------|
@@ -8,31 +10,67 @@ This document outlines the comprehensive process for generating and analyzing gr
 | Pro-Grant | A fully specified/answered Catechism that is ready to be used to generate a grant. |
 | Pre-Pro-Grant | The input for the grant writing tool. It consists of a set of instructions that the tool will follow to generate a pro-grant. |
 
+## Overview 🔎
 
+The meta-grants process involves several sophisticated scripts:
 
-## Overview
+1. PreProGrants_Write.py
+2. ProGrant_Write-with-LLM.py
+3. ProGrant_Review-with-LLM.py
+4. Grants_Summarize-with-LLM.py
+5. ProGrant_Meta-Analysis.py
 
-The meta-grants process is a sophisticated three-step procedure:
-1. Preparation of Input Data
-2. Generation of Synthetic Grant Prompts
-3. Meta-Analysis of Generated Prompts
+## Script Descriptions 🖥️
 
-## Step 1: Preparation of Input Data
+### 1. PreProGrants_Write.py
 
-Prior to executing the main scripts, it is imperative to ensure that the following directories are populated with pertinent and well-structured content:
+This script generates synthetic grant proposal prompts. Its primary functions include:
 
-1. `../Entities/`: This directory should contain subdirectories for each entity under consideration. Each subdirectory must include .py files that comprehensively describe the entity's technical capabilities and perspectival approaches.
+- Loading content from the Entities, Grants, and Catechisms folders.
+- Combining this content to create comprehensive and tailored grant proposal prompts.
+- Outputting the generated prompts to the `./Writing_Outputs/Grant_Prompts/` directory.
 
-2. `../Grants/`: This folder should be populated with .md files, each detailing specific grant calls and their associated requirements. These files serve as the foundation for tailoring proposals to various funding opportunities.
+### 2. ProGrant_Write-with-LLM.py
 
-3. `../Catechisms/`: This directory should contain .md files comprising comprehensive project description questions. These catechisms guide the structure and content of the generated grant proposals.
+This script utilizes a Language Learning Model (LLM) to generate grant proposals based on the prompts created by PreProGrants_Write.py. It performs the following tasks:
 
-## Step 2: Generation of Synthetic Grant Prompts
+- Reading the prompt files from the input directory.
+- Sending prompts to the OpenAI API for processing.
+- Saving the generated grant proposals in the output directory.
 
-Execute the `Write_Grant_Synthetic_Prompt.py` script to generate sophisticated synthetic grant proposal prompts. This script performs the following critical functions:
+### 3. ProGrant_Review-with-LLM.py
 
-1. Systematically loads and processes content from the Entities, Grants, and Catechisms folders.
-2. Utilizes advanced algorithms to combine this content, creating comprehensive and tailored grant proposal prompts.
-3. Outputs the generated prompts to the `./Writing_Outputs/Grant_Prompts/` directory for further analysis and refinement.
+This script employs an LLM to review the generated grant proposals. Its functions include:
 
-To initiate the script, use the following command in your terminal:
+- Reading the grant proposal files from the input directory.
+- Sending each proposal to the OpenAI API for review.
+- Saving the reviews in the output directory.
+
+### 4. Grants_Summarize-with-LLM.py
+
+This script summarizes grant applications using an LLM. It performs the following operations:
+
+- Reading grant application files from the input directory.
+- Sending each application to the OpenAI API for summarization.
+- Saving the summaries in the output directory.
+
+### 5. ProGrant_Meta-Analysis.py
+
+This script conducts meta-analysis on the generated grant proposals. It includes the following analytical processes:
+
+- TF-IDF analysis to identify top terms in each proposal.
+- Document clustering using K-means and Hierarchical clustering.
+- Dimensionality reduction using PCA, t-SNE, and SVD.
+- Generation of various visualizations including word clouds, heatmaps, and cluster plots.
+
+## Preparation of Input Data 📁
+
+Prior to executing these scripts, ensure that the following directories are populated with relevant content:
+
+1. `../Entities/`: Contains subdirectories for each entity, including .py files describing their capabilities and approaches.
+2. `../Grants/`: Contains .md files detailing specific grant calls and requirements.
+3. `../Catechisms/`: Contains .md files with comprehensive project description questions.
+
+## Execution Instructions 🚀
+
+To run any of these scripts, use the following command in your terminal:
