@@ -158,6 +158,7 @@ DOMAINS = {
             "Computational Psychiatrist", "Neuroprosthetics Specialist", "Brain-Computer Interface Expert", "Neuroethicist", "Science Policy Advisor",
             "Public Health Researcher", "Environmental Scientist", "Social Psychologist", "Anthropologist", "Education Researcher"
         ]
+    },
     "NationalSecurity": {
         "properties": [
             "Intelligence Gathering", "Threat Assessment", "Border Security", "Cybersecurity", "Counter-terrorism",
@@ -512,8 +513,38 @@ DOMAINS = {
             "Quantum Cryptographer", "Quantum Information Theorist", "Quantum Error Correction Specialist", "Quantum Complexity Theorist", "Quantum Applications Researcher",
             "Quantum Policy Maker", "Quantum Educator", "Quantum Entrepreneur", "Quantum Investor", "Quantum Ethics Specialist"
         ]
+    },
+    "Pipette_Use_In_Wet_Lab": {
+        "properties": [
+            "Accuracy", "Precision", "Ergonomics", "Volume Range", "Tip Compatibility",
+            "Ease of Calibration", "Durability", "Chemical Resistance", "Autoclavability", "User Comfort",
+            "Single Channel", "Multi-Channel", "Electronic", "Manual", "Adjustable Volume",
+            "Fixed Volume", "Lightweight", "Digital Display", "Maintenance Requirements", "Cost Efficiency",
+            "Contamination Prevention", "User Safety", "Reproducibility", "Pipetting Speed", "Liquid Retention",
+            "Tip Ejection Force", "Grip Comfort", "Balance", "Material Quality", "Warranty"
+        ],
+        "processes": [
+            "Sample Preparation", "Serial Dilution", "Reagent Addition", "Cell Culture", "PCR Setup",
+            "ELISA", "Western Blotting", "DNA Extraction", "RNA Extraction", "Protein Purification",
+            "Liquid Handling", "Assay Development", "High-Throughput Screening", "Genotyping", "Cloning",
+            "Transformation", "Transfection", "Library Preparation", "Sequencing", "Chromatography",
+            "Mass Spectrometry", "Flow Cytometry", "Microscopy", "Immunostaining", "In Situ Hybridization",
+            "Cell Sorting", "Cell Counting", "Cell Viability Assay", "Enzyme Assay", "Metabolite Analysis",
+            "Titration", "Buffer Preparation", "Media Preparation", "Sterilization", "Quality Control",
+            "Calibration", "Validation", "Standard Curve Preparation", "Sample Storage", "Sample Transport",
+            "Sample Mixing", "Sample Aliquoting", "Sample Homogenization", "Sample Filtration", "Sample Centrifugation",
+            "Sample Labeling", "Sample Thawing", "Sample Freezing", "Sample Incubation", "Sample Vortexing"
+        ],
+        "perspectives": [
+            "Lab Technician", "Research Scientist", "Principal Investigator", "Lab Manager", "Quality Control Specialist",
+            "Clinical Researcher", "Pharmaceutical Scientist", "Biotechnologist", "Microbiologist", "Molecular Biologist",
+            "Geneticist", "Biochemist", "Cell Biologist", "Immunologist", "Pathologist",
+            "Forensic Scientist", "Environmental Scientist", "Agricultural Scientist", "Food Scientist", "Veterinary Scientist",
+            "Chemical Engineer", "Biomedical Engineer", "Regulatory Affairs Specialist", "Lab Equipment Sales Representative", "Technical Support Specialist",
+            "Lab Assistant", "Postdoctoral Researcher", "Graduate Student", "Undergraduate Student", "Lab Coordinator",
+            "Lab Safety Officer", "Lab Automation Specialist", "Lab IT Specialist", "Lab Procurement Officer", "Lab Maintenance Technician"
+        ]
     }
-}
 
 def generate_synthetic_data(domain_name):
     fake = Faker()

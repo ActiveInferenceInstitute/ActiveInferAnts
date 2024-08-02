@@ -106,7 +106,7 @@ class WrittenGrantMetaAnalysis:
         
         logging.info("Performing dimensionality reduction")
         pca = PCA(n_components=50, random_state=42)
-        tsne = TSNE(n_components=50, random_state=42, perplexity=5)
+        tsne = TSNE(n_components=2, random_state=42, perplexity=5)
         svd = TruncatedSVD(n_components=50, random_state=42)
         
         pca_coords = pca.fit_transform(tfidf_matrix.toarray())[:, :2]
