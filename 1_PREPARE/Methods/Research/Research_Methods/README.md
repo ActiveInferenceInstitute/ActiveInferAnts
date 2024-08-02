@@ -1,76 +1,81 @@
-# Meta-Grants README 📊🔬
+# Meta-Grants Methodology 📊🔬
 
-This document outlines the comprehensive process for generating, analyzing, and reviewing grant proposals using various scripts and meta-analysis techniques. The methodology described herein is designed to facilitate a systematic approach to grant writing, evaluation, and analysis.
+This document outlines a comprehensive methodology for generating, analyzing, and reviewing grant proposals using advanced scripts and meta-analysis techniques. The process described herein is designed to facilitate a systematic and rigorous approach to grant writing, evaluation, and analysis.
 
 ## Terminology 📚
 
 | Term | Description |
 |------|-------------|
-| Grant | The fully formatted, ready-to-be-submitted document. It includes page requirements, font specifications, and attachments such as letters and budgets. |
-| Pro-Grant | A fully specified/answered Catechism that is ready to be used to generate a grant. |
-| Pre-Pro-Grant | The input for the grant writing tool. It consists of a set of instructions that the tool will follow to generate a pro-grant. |
+| Grant | The fully formatted, submission-ready document. It adheres to specific page requirements, font specifications, and includes necessary attachments such as letters of support and detailed budgets. |
+| Pro-Grant | A fully specified and answered Catechism that serves as the basis for generating a complete grant proposal. |
+| Pre-Pro-Grant | The input for the grant writing tool, consisting of a set of structured instructions that guide the tool in generating a pro-grant. |
 
-## Overview 🔎
+## Methodology Overview 🔎
 
-The meta-grants process involves several sophisticated scripts:
+The meta-grants process employs a suite of sophisticated scripts:
 
 1. PreProGrants_Write.py
 2. ProGrant_Write-with-LLM.py
 3. ProGrant_Review-with-LLM.py
 4. Grants_Summarize-with-LLM.py
 5. ProGrant_Meta-Analysis.py
+6. PreProGrant_Meta-Analysis.py
 
-## Script Descriptions 🖥️
+## Script Descriptions and Functionalities 🖥️
+
+### Data Preparation 📁
+
+Prior to script execution, ensure the following directories are populated with relevant content:
+
+1. `../Entities/`: Contains subdirectories for each entity, including .py files describing their capabilities and methodological approaches.
+2. `../Grants/`: Contains .md files detailing specific grant calls and their requirements.
+3. `../Catechisms/`: Contains .md files with comprehensive project description questionnaires.
+
+Additionally, create an `LLM_keys.key` file to store your OpenAI API key. This file is included in .gitignore to ensure it is not shared in open-source repositories.
 
 ### 1. PreProGrants_Write.py
 
-This script generates synthetic grant proposal prompts. Its primary functions include:
+This script generates synthetic PRE-PRO-GRANTS by concatenating prompts in the format of "Entity X Grant X Catechism" combinations. Its primary functions include:
 
-- Loading content from the Entities, Grants, and Catechisms folders.
-- Combining this content to create comprehensive and tailored grant proposal prompts.
+- Loading and processing content from the Entities, Grants, and Catechisms folders.
+- Combining this content to create structured, concatenated outputs.
 - Outputting the generated prompts to the `./Writing_Outputs/PreProGrants/` directory.
 
 ### 2. ProGrant_Write-with-LLM.py
 
-This script utilizes a Language Learning Model (LLM) to generate pro-grants based on the pre-pro-grants created by PreProGrants_Write.py. It performs the following tasks:
+This script utilizes a Large Language Model (LLM) to generate PRO-GRANTs based on the pre-pro-grants created by PreProGrants_Write.py. It simulates an entity responding to a grant call using the format specified in the Catechism. Key functions include:
 
-- Reading the pre-pro-grant files from the `./Writing_Outputs/Grant_Prompts/` directory.
-- Sending prompts to the OpenAI API for processing.
+- Reading and processing pre-pro-grant files from the `./Writing_Outputs/PreProGrants/` directory.
+- Sending structured prompts to the OpenAI API for processing.
 - Saving the generated pro-grants in the `./Writing_Outputs/Written_ProGrants/` directory.
 
 ### 3. ProGrant_Review-with-LLM.py
 
-This script employs an LLM to review the generated pro-grants. Its functions include:
+This script employs an LLM to conduct comprehensive reviews of the generated pro-grants. Its functions include:
 
-- Reading the pro-grant files from the `./Writing_Outputs/Written_ProGrants/` directory.
-- Sending each pro-grant to the OpenAI API for review.
-- Saving the reviews in the `./Writing_Outputs/ProGrant_Reviews/` directory.
+- Reading pro-grant files from the `./Writing_Outputs/Written_ProGrants/` directory.
+- Submitting each pro-grant to the OpenAI API for detailed review and analysis.
+- Saving the generated reviews in the `./Writing_Outputs/ProGrant_Reviews/` directory.
 
 ### 4. Grants_Summarize-with-LLM.py
 
-This script summarizes grant applications using an LLM. It performs the following operations:
+This script leverages an LLM to create concise summaries of grant applications. It performs the following operations:
 
 - Reading grant application files from the `../Grants/` directory.
-- Sending each application to the OpenAI API for summarization.
-- Saving the summaries in the `./Writing_Outputs/Summarized_Grants/` directory.
+- Submitting each application to the OpenAI API for summarization.
+- Saving the generated summaries in the `./Writing_Outputs/Summarized_Grants/` directory.
 
 ### 5. ProGrant_Meta-Analysis.py
 
-This script conducts meta-analysis on the generated pro-grants. It includes the following analytical processes:
+This script conducts sophisticated meta-analysis on the generated pro-grants. It includes the following analytical processes:
 
-- TF-IDF analysis to identify top terms in each pro-grant.
-- Document clustering using K-means and Hierarchical clustering.
-- Dimensionality reduction using PCA, t-SNE, and SVD.
-- Generation of various visualizations including word clouds, heatmaps, and cluster plots.
+- TF-IDF (Term Frequency-Inverse Document Frequency) analysis to identify key terms in each pro-grant.
+- Document clustering using K-means and Hierarchical clustering algorithms.
+- Dimensionality reduction techniques including PCA (Principal Component Analysis), t-SNE (t-Distributed Stochastic Neighbor Embedding), and SVD (Singular Value Decomposition).
+- Generation of various data visualizations including word clouds, heatmaps, and cluster plots.
 
-## Preparation of Input Data 📁
+### 6. PreProGrant_Meta-Analysis.py
 
-Prior to executing these scripts, ensure that the following directories are populated with relevant content:
+This script performs meta-analysis on the pre-pro-grants, offering insights into the initial instruction sets. Its functionalities mirror those of ProGrant_Meta-Analysis.py but focus on the pre-pro-grant data.
 
-1. `../Entities/`: Contains subdirectories for each entity, including .py files describing their capabilities and approaches.
-2. `../Grants/`: Contains .md files detailing specific grant calls and requirements.
-3. `../Catechisms/`: Contains .md files with comprehensive project description questions.
-
-## Execution Instructions 🚀
-
-To run any of these scripts, use the following command in your terminal:
+This comprehensive suite of scripts provides a robust framework for systematic grant proposal generation, analysis, and evaluation, leveraging advanced natural language processing and machine learning techniques.

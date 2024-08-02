@@ -48,7 +48,7 @@ class GrantWriter:
         return response.choices[0].message['content'].strip()
 
     def process_grants(self):
-        prompt_dir = "./Writing_Outputs/Grant_Prompts/"
+        prompt_dir = "./Writing_Outputs/PreProGrants/"
         prompts = [f for f in os.listdir(prompt_dir) if f.endswith(".md")]
         
         # Print histogram and ask for confirmation
@@ -81,6 +81,8 @@ class GrantWriter:
                 logging.warning(f"Prompt file {prompt_file} exceeds the maximum word limit. Word count: {word_count}")
 
     def save_output(self, output: str, prompt_file: str):
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
         output_filename = f"{os.path.splitext(prompt_file)[0]}_{self.model}_output.md"
         output_file = os.path.join(self.output_dir, output_filename)
         logging.info(f"Saving output to file: {output_file}")

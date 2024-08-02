@@ -32,7 +32,7 @@ nltk.download('stopwords', quiet=True)
 plt.rcParams['font.family'] = 'DejaVu Sans'
 
 class WrittenGrantMetaAnalysis:
-    def __init__(self, grant_dir='Writing_Outputs/Written_ProGrants/', output_dir='Writing_Outputs/Written_PeoGrant_Meta-Analysis/'):
+    def __init__(self, grant_dir='Writing_Outputs/Written_ProGrants/', output_dir='Writing_Outputs/Written_ProGrant_Meta-Analysis/'):
         logging.info("Initializing WrittenGrantMetaAnalysis")
         self.grant_dir = grant_dir
         self.output_dir = output_dir
@@ -105,9 +105,9 @@ class WrittenGrantMetaAnalysis:
         hierarchical_labels = hierarchical.fit_predict(tfidf_matrix.toarray())
         
         logging.info("Performing dimensionality reduction")
-        pca = PCA(n_components=100, random_state=42)
-        tsne = TSNE(n_components=2, random_state=42, perplexity=5)
-        svd = TruncatedSVD(n_components=100, random_state=42)
+        pca = PCA(n_components=50, random_state=42)
+        tsne = TSNE(n_components=50, random_state=42, perplexity=5)
+        svd = TruncatedSVD(n_components=50, random_state=42)
         
         pca_coords = pca.fit_transform(tfidf_matrix.toarray())[:, :2]
         tsne_coords = tsne.fit_transform(tfidf_matrix.toarray())
