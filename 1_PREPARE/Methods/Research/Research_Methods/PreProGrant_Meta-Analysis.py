@@ -32,7 +32,7 @@ nltk.download('stopwords', quiet=True)
 plt.rcParams['font.family'] = 'DejaVu Sans'
 
 class GrantPromptMetaAnalysis:
-    def __init__(self, prompt_dir='Writing_Outputs/Grant_Prompts/', output_dir='Writing_Outputs/Grant_Prompt_MetaAnalysis/'):
+    def __init__(self, prompt_dir='Writing_Outputs/PreProGrants/', output_dir='Writing_Outputs/PreProGrant_MetaAnalysis/'):
         logging.info("Initializing GrantPromptMetaAnalysis")
         self.prompt_dir = prompt_dir
         self.output_dir = output_dir

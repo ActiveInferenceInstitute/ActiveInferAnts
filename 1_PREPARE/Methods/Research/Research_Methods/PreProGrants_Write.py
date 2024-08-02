@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class GrantWriter:
     def __init__(self):
-        self.output_dir = "./Writing_Outputs/Grant_Prompts/"
+        self.output_dir = "./Writing_Outputs/PreProGrants/"
         os.makedirs(self.output_dir, exist_ok=True)
 
     def write_grants(self):

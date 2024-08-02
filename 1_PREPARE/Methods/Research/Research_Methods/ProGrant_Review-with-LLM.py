@@ -18,7 +18,7 @@ if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY not found in LLM_keys.key file")
 
 class GrantReviewer:
-    def __init__(self, api_key: str = OPENAI_API_KEY, input_dir: str = "./Writing_Outputs/Written_Grants/", output_dir: str = "./Writing_Outputs/Grant_Reviews/"):
+    def __init__(self, api_key: str = OPENAI_API_KEY, input_dir: str = "./Writing_Outputs/Written_ProGrants/", output_dir: str = "./Writing_Outputs/ProGrant_Reviews/"):
         self.api_key = api_key
         self.input_dir = input_dir
         self.output_dir = output_dir

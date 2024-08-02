@@ -18,7 +18,7 @@ if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY not found in LLM_keys.key file")
 
 class GrantWriter:
-    def __init__(self, api_key: str = OPENAI_API_KEY, output_dir: str = "./Writing_Outputs/Written_Grants/", max_prompt_words: int = 10000):
+    def __init__(self, api_key: str = OPENAI_API_KEY, output_dir: str = "./Writing_Outputs/Written_ProGrants/", max_prompt_words: int = 10000):
         self.api_key = api_key
         self.output_dir = output_dir
         self.max_prompt_words = max_prompt_words

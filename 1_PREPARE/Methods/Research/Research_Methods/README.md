@@ -28,37 +28,37 @@ This script generates synthetic grant proposal prompts. Its primary functions in
 
 - Loading content from the Entities, Grants, and Catechisms folders.
 - Combining this content to create comprehensive and tailored grant proposal prompts.
-- Outputting the generated prompts to the `./Writing_Outputs/Grant_Prompts/` directory.
+- Outputting the generated prompts to the `./Writing_Outputs/PreProGrants/` directory.
 
 ### 2. ProGrant_Write-with-LLM.py
 
-This script utilizes a Language Learning Model (LLM) to generate grant proposals based on the prompts created by PreProGrants_Write.py. It performs the following tasks:
+This script utilizes a Language Learning Model (LLM) to generate pro-grants based on the pre-pro-grants created by PreProGrants_Write.py. It performs the following tasks:
 
-- Reading the prompt files from the input directory.
+- Reading the pre-pro-grant files from the `./Writing_Outputs/Grant_Prompts/` directory.
 - Sending prompts to the OpenAI API for processing.
-- Saving the generated grant proposals in the output directory.
+- Saving the generated pro-grants in the `./Writing_Outputs/Written_ProGrants/` directory.
 
 ### 3. ProGrant_Review-with-LLM.py
 
-This script employs an LLM to review the generated grant proposals. Its functions include:
+This script employs an LLM to review the generated pro-grants. Its functions include:
 
-- Reading the grant proposal files from the input directory.
-- Sending each proposal to the OpenAI API for review.
-- Saving the reviews in the output directory.
+- Reading the pro-grant files from the `./Writing_Outputs/Written_ProGrants/` directory.
+- Sending each pro-grant to the OpenAI API for review.
+- Saving the reviews in the `./Writing_Outputs/ProGrant_Reviews/` directory.
 
 ### 4. Grants_Summarize-with-LLM.py
 
 This script summarizes grant applications using an LLM. It performs the following operations:
 
-- Reading grant application files from the input directory.
+- Reading grant application files from the `../Grants/` directory.
 - Sending each application to the OpenAI API for summarization.
-- Saving the summaries in the output directory.
+- Saving the summaries in the `./Writing_Outputs/Summarized_Grants/` directory.
 
 ### 5. ProGrant_Meta-Analysis.py
 
-This script conducts meta-analysis on the generated grant proposals. It includes the following analytical processes:
+This script conducts meta-analysis on the generated pro-grants. It includes the following analytical processes:
 
-- TF-IDF analysis to identify top terms in each proposal.
+- TF-IDF analysis to identify top terms in each pro-grant.
 - Document clustering using K-means and Hierarchical clustering.
 - Dimensionality reduction using PCA, t-SNE, and SVD.
 - Generation of various visualizations including word clouds, heatmaps, and cluster plots.
