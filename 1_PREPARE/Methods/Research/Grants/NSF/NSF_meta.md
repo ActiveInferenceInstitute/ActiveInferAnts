@@ -1,40 +1,19 @@
-## NSF Directorates and Divisions
+The National Science Foundation (NSF) is structured into seven primary directorates and one office, each overseeing multiple divisions or programs. This organization reflects the NSF's commitment to supporting a wide range of scientific disciplines and interdisciplinary research. The directorates and their key focus areas are:
 
-### Directorate for Biological Sciences (BIO)
-- [Division of Environmental Biology (BIO/DEB)](https://www.nsf.gov/div/index.jsp?div=DEB)
-- [Division of Integrative Organismal Systems (BIO/IOS)](https://www.nsf.gov/div/index.jsp?div=IOS)
-- [Division of Molecular and Cellular Biosciences (BIO/MCB)](https://www.nsf.gov/div/index.jsp?div=MCB)
+1. Biological Sciences (BIO): Supports research in environmental biology, integrative organismal systems, and molecular and cellular biosciences. This directorate advances understanding of living systems at various scales, from molecules to ecosystems.
 
-### Directorate for Computer and Information Science and Engineering (CISE)
-- [Division of Computing and Communication Foundations (CISE/CCF)](https://www.nsf.gov/div/index.jsp?div=CCF)
-- [Division of Computer and Network Systems (CISE/CNS)](https://www.nsf.gov/div/index.jsp?div=CNS)
-- [Division of Information and Intelligent Systems (CISE/IIS)](https://www.nsf.gov/div/index.jsp?div=IIS)
-- [Office of Advanced Cyberinfrastructure (CISE/OAC)](https://www.nsf.gov/dir/index.jsp?org=OAC)
+2. Computer and Information Science and Engineering (CISE): Focuses on computing, communication foundations, computer and network systems, information and intelligent systems, and advanced cyberinfrastructure. CISE drives innovation in computing technologies and their applications across various domains.
 
-### Directorate for STEM Education (EDU)
-- [Division of Graduate Education (EDU/DGE)](https://www.nsf.gov/div/index.jsp?div=DGE)
-- [Division of Undergraduate Education (EDU/DUE)](https://www.nsf.gov/div/index.jsp?div=DUE)
-- [Division of Research on Learning in Formal and Informal Settings (EDU/DRL)](https://www.nsf.gov/div/index.jsp?div=DRL)
-- [Division of Equity for Excellence in STEM (EDU/EES)](https://www.nsf.gov/div/index.jsp?div=EES)
+3. STEM Education (EDU): Concentrates on improving STEM education at all levels, from K-12 through graduate studies. It supports research on learning in formal and informal settings, undergraduate and graduate education, and promotes equity and excellence in STEM.
 
-### Directorate for Engineering (ENG)
-- [Division of Chemical, Bioengineering, Environmental and Transport Systems (ENG/CBET)](https://www.nsf.gov/div/index.jsp?div=CBET)
-- [Division of Civil, Mechanical and Manufacturing Innovation (ENG/CMMI)](https://www.nsf.gov/div/index.jsp?div=CMMI)
-- [Division of Electrical, Communications and Cyber Systems (ENG/ECCS)](https://www.nsf.gov/div/index.jsp?div=ECCS)
+4. Engineering (ENG): Advances research in chemical, bioengineering, environmental, transport systems, civil, mechanical, manufacturing innovation, electrical, communications, and cyber systems. This directorate fosters engineering breakthroughs that address national challenges.
 
-### Directorate for Geosciences (GEO)
-- [Division of Atmospheric and Geospace Sciences (GEO/AGS)](https://www.nsf.gov/div/index.jsp?div=AGS)
-- [Division of Earth Sciences (GEO/EAR)](https://www.nsf.gov/div/index.jsp?div=EAR)
-- [Division of Ocean Sciences (GEO/OCE)](https://www.nsf.gov/div/index.jsp?div=OCE)
+5. Geosciences (GEO): Supports research in atmospheric and geospace sciences, earth sciences, and ocean sciences. GEO enhances understanding of the Earth's environment, including its terrestrial, atmospheric, and marine processes.
 
-### Directorate for Mathematical and Physical Sciences (MPS)
-- [Division of Chemistry (MPS/CHE)](https://www.nsf.gov/div/index.jsp?div=CHE)
-- [Division of Materials Research (MPS/DMR)](https://www.nsf.gov/div/index.jsp?div=DMR)
-- [Division of Mathematical Sciences (MPS/DMS)](https://www.nsf.gov/div/index.jsp?div=DMS)
-- [Division of Physics (MPS/PHY)](https://www.nsf.gov/div/index.jsp?div=PHY)
+6. Mathematical and Physical Sciences (MPS): Covers research in chemistry, materials, mathematical sciences, and physics. This directorate advances fundamental knowledge in physical sciences and mathematics, often underpinning progress in other scientific fields.
 
-### Directorate for Social, Behavioral and Economic Sciences (SBE)
-- [Directorate for Social, Behavioral and Economic Sciences (SBE)](https://www.nsf.gov/dir/index.jsp?org=SBE)
+7. Social, Behavioral and Economic Sciences (SBE): Promotes research to understand human behavior, interactions, and social and economic systems. SBE's work informs policies and addresses societal challenges.
 
-### Office of Integrative Activities (OD/OIA)
-- [Office of Integrative Activities (OD/OIA)](https://www.nsf.gov/od/oia/index.jsp)
+Additionally, the Office of Integrative Activities (OD/OIA) supports cross-cutting programs and NSF-wide initiatives, fostering interdisciplinary research and innovation.
+
+This structure enables the NSF to support a diverse range of scientific endeavors, from fundamental research to applied sciences, and to address complex, multidisciplinary challenges. By maintaining distinct yet interconnected directorates, the NSF can effectively allocate resources, set research priorities, and foster collaboration across scientific disciplines, ultimately advancing the frontiers of knowledge and supporting the nation's scientific enterprise.

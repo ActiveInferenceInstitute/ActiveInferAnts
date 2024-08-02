@@ -1,12 +1,24 @@
-import os
-import logging
-from typing import Dict, List, Any, Tuple
-import numpy as np
-
 class FieldsWorldView:
     def __init__(self):
         self.name = "Chris Fields"
-        self.description = "A physicist and interdisciplinary researcher focusing on the foundations of cognition, consciousness, and reality from an information-theoretic perspective"
+        self.description = ("A physicist and interdisciplinary researcher focusing on the foundations of cognition, "
+                            "consciousness, and reality from an information-theoretic perspective")
+        self.key_concepts = {
+            "information_realism": "Information is the most fundamental aspect of reality, more fundamental than matter or energy.",
+            "observer_dependence": "Reality is fundamentally shaped by observation and cannot be separated from the observer.",
+            "active_inference": "A framework explaining how systems interact with and model their environment through prediction and error minimization.",
+            "free_energy_principle": "A unifying principle explaining the behavior of self-organizing systems through the minimization of free energy.",
+            "semantic_information": "Information is inherently meaningful and relational, forming the basis of reality.",
+            "quantum_cognition": "Applying quantum mechanical principles to understanding cognition and consciousness.",
+            "embodied_cognition": "Cognitive processes are deeply rooted in the body's interactions with the world.",
+            "predictive_processing": "Perception and cognition are fundamentally predictive processes, constantly refining models of the world.",
+            "measurement_problem": "The issue in quantum mechanics regarding the nature of measurement and observation, potentially linked to consciousness.",
+            "context_dependence": "Context determines meaning and reality; information has no meaning without context.",
+            "cognitive_illusions": "Phenomena that reveal fundamental truths about perception and reality, rather than mere errors of cognition.",
+            "thermodynamics_of_cognition": "The study of energetic costs and constraints of information processing in cognitive systems.",
+            "category_theory": "A mathematical framework for describing structures and relationships, potentially more fundamental than set theory for describing reality.",
+            "quantum_darwinism": "A theory explaining the emergence of classical reality from quantum substrates through a process analogous to natural selection."
+        }
         
     def worldview(self) -> Dict[str, Any]:
         return {
@@ -17,7 +29,7 @@ class FieldsWorldView:
             },
             "active_inference": {
                 "importance": 10,
-                "description": "A framework explaining how all systems, including minds, interact with and model their environment",
+                "description": "A framework explaining how systems interact with and model their environment",
                 "quote": "Active inference isn't just a theory of brain function; it's a theory of life itself."
             },
             "quantum_mechanics": {
@@ -27,7 +39,7 @@ class FieldsWorldView:
             },
             "free_energy_principle": {
                 "importance": 10,
-                "description": "A unifying principle explaining the behavior of all self-organizing systems",
+                "description": "A unifying principle explaining the behavior of self-organizing systems",
                 "quote": "The free energy principle is not just a theory of brain function, but a fundamental principle of self-organizing systems."
             },
             "holographic_principle": {
@@ -42,28 +54,28 @@ class FieldsWorldView:
             },
             "observer_dependence": {
                 "importance": 10,
-                "description": "The idea that reality is fundamentally shaped by the act of observation",
+                "description": "Reality is fundamentally shaped by observation",
                 "quote": "The world is not 'out there' waiting to be observed; it is constructed by observation."
             },
             "information_realism": {
                 "importance": 10,
-                "description": "The view that information is the most fundamental aspect of reality",
+                "description": "Information is the most fundamental aspect of reality",
                 "quote": "The universe is not just described by information; it is information."
             },
             "semantic_information": {
                 "importance": 9,
-                "description": "The idea that information is inherently meaningful and relational",
+                "description": "Information is inherently meaningful and relational",
                 "quote": "Reality is not made of stuff, but of semantics - meaningful relationships between bits of information."
             },
             "quantum_darwinism": {
                 "importance": 8,
                 "description": "A theory explaining the emergence of classical reality from quantum substrates",
-                "quote": "Quantum Darwinism shows us how the classical world we experience emerges from the quantum realm through a process of information selection."
+                "quote": "Quantum Darwinism shows how the classical world emerges from the quantum realm through information selection."
             },
             "embodied_cognition": {
                 "importance": 9,
-                "description": "The view that cognitive processes are deeply rooted in the body's interactions with the world",
-                "quote": "Cognition isn't just in the head; it's a process that involves the entire body and its environment."
+                "description": "Cognitive processes are deeply rooted in the body's interactions with the world",
+                "quote": "Cognition isn't just in the head; it involves the entire body and its environment."
             },
             "consciousness": {
                 "importance": 10,
@@ -72,7 +84,7 @@ class FieldsWorldView:
             },
             "measurement_problem": {
                 "importance": 9,
-                "description": "The fundamental issue in quantum mechanics regarding the nature of measurement and observation",
+                "description": "The issue in quantum mechanics regarding the nature of measurement and observation",
                 "quote": "The hard problem of consciousness and the measurement problem in quantum mechanics may be two sides of the same coin."
             },
             "context_dependence": {
@@ -88,7 +100,7 @@ class FieldsWorldView:
             "thermodynamics_of_cognition": {
                 "importance": 8,
                 "description": "The energetic costs and constraints of information processing in cognitive systems",
-                "quote": "The costs of information processing aren't just practical constraints; they shape the very nature of cognition and reality."
+                "quote": "The costs of information processing shape the very nature of cognition and reality."
             },
             "category_theory": {
                 "importance": 7,
@@ -97,7 +109,7 @@ class FieldsWorldView:
             },
             "predictive_processing": {
                 "importance": 9,
-                "description": "The idea that perception and cognition are fundamentally predictive processes",
+                "description": "Perception and cognition are fundamentally predictive processes",
                 "quote": "The brain is not a passive receiver of information, but an active predictor constantly refining its models of the world."
             }
         }
@@ -205,70 +217,30 @@ class FieldsWorldView:
     
     def beliefs(self) -> Dict[str, bool]:
         return {
-            "reality_is_observer_dependent": True,
-            "information_is_fundamental": True,
-            "consciousness_is_fundamental": True,
-            "cognition_extends_beyond_brain": True,
-            "quantum_effects_relevant_to_cognition": True,
-            "free_will_is_illusion": True,
-            "self_is_constructed": True,
-            "perception_is_active_inference": True,
-            "reality_is_unified_information_space": True,
-            "measurement_creates_reality": True,
-            "time_is_emergent": True,
-            "space_is_emergent": True,
-            "holographic_principle_applies_to_cognition": True,
-            "hard_problem_of_consciousness_is_solvable": True,
-            "observer_and_observed_are_inseparable": True,
-            "reality_is_fundamentally_semantic": True,
-            "quantum_decoherence_explains_classical_reality": True,
-            "cognition_is_quantum_computational": True,
-            "information_has_physical_consequences": True,
-            "consciousness_is_intrinsic_to_information_processing": True,
-            "context_is_fundamental_to_information": True,
-            "cognitive_illusions_reveal_fundamental_truths": True,
-            "quantum_darwinism_explains_classical_emergence": True,
-            "thermodynamics_constrains_cognition": True,
-            "category_theory_describes_deep_structure_of_reality": True,
-            "active_inference_applies_to_all_self_organizing_systems": True,
-            "free_energy_principle_is_universal": True,
-            "reality_is_fundamentally_relational": True,
-            "information_processing_has_intrinsic_cost": True,
-            "observer_observed_distinction_is_artificial": True
+            belief: True for belief in [
+                "reality_is_observer_dependent", "information_is_fundamental", "consciousness_is_fundamental",
+                "cognition_extends_beyond_brain", "quantum_effects_relevant_to_cognition", "free_will_is_illusion",
+                "self_is_constructed", "perception_is_active_inference", "reality_is_unified_information_space",
+                "measurement_creates_reality", "time_is_emergent", "space_is_emergent", "holographic_principle_applies_to_cognition",
+                "hard_problem_of_consciousness_is_solvable", "observer_and_observed_are_inseparable", "reality_is_fundamentally_semantic",
+                "quantum_decoherence_explains_classical_reality", "cognition_is_quantum_computational", "information_has_physical_consequences",
+                "consciousness_is_intrinsic_to_information_processing", "context_is_fundamental_to_information", "cognitive_illusions_reveal_fundamental_truths",
+                "quantum_darwinism_explains_classical_emergence", "thermodynamics_constrains_cognition", "category_theory_describes_deep_structure_of_reality",
+                "active_inference_applies_to_all_self_organizing_systems", "free_energy_principle_is_universal", "reality_is_fundamentally_relational",
+                "information_processing_has_intrinsic_cost", "observer_observed_distinction_is_artificial"
+            ]
         }
     
     def methodologies(self) -> List[str]:
         return [
-            "Information theory",
-            "Quantum mechanics",
-            "Active inference",
-            "Free energy principle",
-            "Bayesian inference",
-            "Category theory",
-            "Cognitive neuroscience",
-            "Philosophy of mind",
-            "Computational modeling",
-            "Interdisciplinary synthesis",
-            "Quantum information theory",
-            "Holographic models",
-            "Graph theory",
-            "Formal semantics",
-            "Thermodynamics of computation",
-            "Quantum cognition models",
-            "Information-theoretic approaches to consciousness",
-            "Predictive processing frameworks",
-            "Quantum decoherence analysis",
-            "Semantic network analysis",
-            "Quantum Darwinism modeling",
-            "Contextual analysis",
-            "Cognitive illusion studies",
-            "Information-theoretic cost analysis",
-            "Holographic cognitive integration modeling",
-            "Category-theoretic modeling of cognition",
-            "Observer-dependent reality simulations",
-            "Semantic information processing models",
-            "Embodied cognition experiments",
-            "Quantum measurement theory"
+            "Information theory", "Quantum mechanics", "Active inference", "Free energy principle", "Bayesian inference",
+            "Category theory", "Cognitive neuroscience", "Philosophy of mind", "Computational modeling", "Interdisciplinary synthesis",
+            "Quantum information theory", "Holographic models", "Graph theory", "Formal semantics", "Thermodynamics of computation",
+            "Quantum cognition models", "Information-theoretic approaches to consciousness", "Predictive processing frameworks",
+            "Quantum decoherence analysis", "Semantic network analysis", "Quantum Darwinism modeling", "Contextual analysis",
+            "Cognitive illusion studies", "Information-theoretic cost analysis", "Holographic cognitive integration modeling",
+            "Category-theoretic modeling of cognition", "Observer-dependent reality simulations", "Semantic information processing models",
+            "Embodied cognition experiments", "Quantum measurement theory"
         ]
     
     def quotes(self) -> List[str]:
@@ -295,8 +267,8 @@ class FieldsWorldView:
             "Category theory provides a language for describing the deep structure of reality that transcends the limitations of set theory.",
             "Context isn't just important; it's everything. Without context, information has no meaning.",
             "Cognitive illusions aren't errors; they're windows into the fundamental nature of perception and reality.",
-            "Quantum Darwinism shows us how the classical world we experience emerges from the quantum realm through a process of information selection.",
-            "The costs of information processing aren't just practical constraints; they shape the very nature of cognition and reality.",
+            "Quantum Darwinism shows how the classical world emerges from the quantum realm through information selection.",
+            "The costs of information processing shape the very nature of cognition and reality.",
             "The hard problem of consciousness and the measurement problem in quantum mechanics are deeply connected. Solving one may solve the other.",
             "The brain doesn't create consciousness; it constrains it.",
             "Reality is not a collection of things, but a network of relationships.",
@@ -307,6 +279,13 @@ class FieldsWorldView:
 
     def key_papers(self) -> List[Dict[str, str]]:
         return [
+            {"title": "If Physics Is an Information Science, What Is an Observer?", "description": "Explores the idea of observers as information-processing systems and its implications for physics and cognition."},
+            {"title": "Conscious observation and the measurement problem in quantum mechanics", "description": "Discusses the role of consciousness in quantum measurement and its implications for our understanding of reality."},
+            {"title": "Some consequences of the thermodynamic cost of system identification", "description": "Examines the energetic costs of perception and cognition from an information-theoretic perspective."},
+            {"title": "A holographic model of cognitive integration and quantum cognition", "description": "Proposes a model of cognition based on the holographic principle and quantum information theory."},
+            {"title": "Decoherence and the theory of the subject", "description": "Explores the relationship between quantum decoherence and the emergence of classical reality and subjectivity."},
+            {"title": "On the reality of cognitive illusions", "description": "Examines the nature of cognitive illusions from an information-theoretic perspective, challenging traditional notions of perception and reality."},
+            {"title": "Quantum Darwinism as a darwinian process", "description": "Analyzes the concept of quantum Darwinism and its implications for the emergence of classical reality from quantum substrates."},
             {
                 "title": "If Physics Is an Information Science, What Is an Observer?",
                 "description": "Explores the idea of observers as information-processing systems and its implications for physics and cognition."
@@ -427,6 +406,3 @@ class FieldsWorldView:
         network = {concept: [] for concept in concepts}
         # Generate connections between concepts based on Fields' theories
         return network
-
-def load_fields_entity():
-    return FieldsWorldView()

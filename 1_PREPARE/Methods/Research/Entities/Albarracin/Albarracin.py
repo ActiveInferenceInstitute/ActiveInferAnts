@@ -2,154 +2,87 @@ import numpy as np
 
 class AlbarracinWorldview:
     def __init__(self):
-        self.scripts = {}
-        self.possibility_spaces = {}
-        self.metastable_formations = []
-        self.attractor_sets = {}
-        self.epistemic_network = {}
-        self.social_dynamics = {}
-        
-        # Core concepts and perspectives
-        self.core_concepts = {
-            "active_inference": True,
-            "free_energy_principle": True,
-            "multi_scale_generative_models": True,
-            "epistemic_communities": True,
-            "social_scripts": True,
-            "metastable_formations": True,
-            "attractor_landscapes": True,
-            "habit_formation": True,
-            "cultural_affordances": True,
-            "social_media_dynamics": True,
-            "cultural_evolution": True,
-            "social_cognition": True,
-            "embodied_cognition": True,
-            "extended_mind": True,
-            "predictive_processing": True,
-            "cultural_niche_construction": True,
-            "collective_intelligence": True,
-            "social_contagion": True,
-            "cultural_attractors": True,
-            "epistemic_vulnerability": True,
-            "enactive_cognition": True,
-            "situated_cognition": True,
-            "distributed_cognition": True,
-            "4E_cognition": True,
-            "cultural_cognitive_ecology": True,
-            "cultural_resilience": True,
-            "epistemic_resilience": True,
-            "cultural_memes": True,
-            "cultural_transmission": True,
-            "cultural_feedback_loops": True,
-            "identity_as_predictive_model": True,
-            "misinformation_dynamics": True,
-            "technology_mediated_cognition": True
-        }
-        
-        self.key_perspectives = {
-            "cognition_as_cultural": True,
-            "behavior_as_inference": True,
-            "social_interaction_as_active_inference": True,
-            "culture_as_regulator_of_uncertainty": True,
-            "identity_as_predictive_model": True,
-            "social_media_as_attractor_landscape": True,
-            "misinformation_as_epistemic_trap": True,
-            "culture_as_collective_active_inference": True,
-            "social_conformity_as_uncertainty_reduction": True,
-            "cultural_practices_as_error_correction_mechanisms": True,
-            "language_as_shared_generative_model": True,
-            "institutions_as_uncertainty_reduction_devices": True,
-            "collective_intelligence_as_distributed_cognition": True,
-            "social_contagion_as_belief_propagation": True,
-            "cultural_attractors_as_stable_patterns": True,
-            "epistemic_vulnerability_as_societal_risk": True,
-            "cognition_as_enactive_process": True,
-            "culture_as_cognitive_scaffold": True,
-            "technology_as_cognitive_extension": True,
-            "social_media_as_belief_amplifier": True,
-            "misinformation_as_cultural_virus": True,
-            "cultural_resilience_as_adaptive_capacity": True,
-            "epistemic_resilience_as_robustness": True,
-            "cultural_memes_as_information_units": True,
-            "cultural_transmission_as_learning_process": True,
-            "cultural_feedback_loops_as_adaptive_mechanisms": True,
-            "identity_as_dynamic_model": True,
-            "misinformation_as_cultural_contagion": True,
-            "technology_as_cognitive_mediator": True
+        self.name = "Mahault Albarracin"
+        self.key_concepts = {
+            "active_inference": "Minimizing prediction errors and uncertainty.",
+            "free_energy_principle": "Biological systems aim to minimize free energy.",
+            "multi_scale_generative_models": "Hierarchical models generating predictions at multiple levels.",
+            "epistemic_communities": "Groups sharing common knowledge structures and practices.",
+            "social_scripts": "Culturally shared sequences guiding behavior.",
+            "metastable_formations": "Temporarily stable patterns of thought or behavior.",
+            "attractor_landscapes": "Conceptual spaces representing possible states of a system.",
+            "habit_formation": "Behaviors becoming automatic through repetition.",
+            "cultural_affordances": "Possibilities shaped by cultural practices, norms, and artifacts.",
+            "social_media_dynamics": "Interactions and information flows within social media platforms.",
+            "cultural_evolution": "Change of cultural traits over time through variation, selection, and transmission.",
+            "social_cognition": "Cognitive processes involved in social interactions.",
+            "embodied_cognition": "Cognitive processes shaped by the body's interactions with the environment.",
+            "extended_mind": "Cognitive processes extending beyond the individual brain.",
+            "predictive_processing": "Brain generating predictions about sensory inputs.",
+            "cultural_niche_construction": "Organisms modifying their environment, influencing cognition and behavior.",
+            "collective_intelligence": "Emergent intelligence from collaboration within a cultural framework.",
+            "social_contagion": "Spread of emotions, behaviors, or beliefs through a population.",
+            "cultural_attractors": "Concepts or beliefs likely to be adopted within a culture.",
+            "epistemic_vulnerability": "Susceptibility to false or misleading information.",
+            "enactive_cognition": "Cognition through interactions between mind, body, and environment.",
+            "situated_cognition": "Thinking tied to the environment and context.",
+            "distributed_cognition": "Cognitive processes distributed across individuals and artifacts.",
+            "4E_cognition": "Embodied, embedded, extended, and enactive approaches to cognition.",
+            "cultural_cognitive_ecology": "Study of how cultural practices shape cognitive processes.",
+            "cultural_resilience": "Capacity to maintain core values in the face of challenges.",
+            "epistemic_resilience": "Ability to maintain accurate beliefs and resist misinformation.",
+            "cultural_memes": "Units of cultural information spreading through social learning.",
+            "cultural_transmission": "Passing cultural information between individuals and generations.",
+            "cultural_feedback_loops": "Cyclical processes where cultural practices influence cognition.",
+            "identity_as_predictive_model": "Identities functioning as predictive models for social navigation.",
+            "misinformation_dynamics": "Spread and persistence of false information within social systems.",
+            "technology_mediated_cognition": "Influence of technological tools on cognitive processes."
         }
         
         self.methodologies = [
-            "computational_modeling",
-            "agent_based_simulations",
-            "network_analysis",
-            "natural_language_processing",
-            "social_media_data_analysis",
-            "cross-cultural_studies",
-            "ethnographic_fieldwork",
-            "experimental_psychology",
-            "neuroimaging",
-            "longitudinal_studies",
-            "dynamical_systems_analysis",
-            "information_theoretic_approaches",
-            "cultural_evolution_simulations",
-            "social_network_experiments",
-            "cognitive_anthropology_methods",
-            "participatory_action_research",
-            "mixed_methods_approaches",
-            "digital_ethnography",
-            "computational_social_science",
-            "cultural_niche_construction_modeling",
-            "epistemic_resilience_analysis",
-            "cultural_resilience_simulations",
-            "cultural_feedback_loop_analysis",
-            "identity_dynamics_simulation",
-            "misinformation_spread_modeling",
+            "computational_modeling", "agent_based_simulations", "network_analysis", "natural_language_processing",
+            "social_media_data_analysis", "cross-cultural_studies", "ethnographic_fieldwork", "experimental_psychology",
+            "neuroimaging", "longitudinal_studies", "dynamical_systems_analysis", "information_theoretic_approaches",
+            "cultural_evolution_simulations", "social_network_experiments", "cognitive_anthropology_methods",
+            "participatory_action_research", "mixed_methods_approaches", "digital_ethnography", "computational_social_science",
+            "cultural_niche_construction_modeling", "epistemic_resilience_analysis", "cultural_resilience_simulations",
+            "cultural_feedback_loop_analysis", "identity_dynamics_simulation", "misinformation_spread_modeling",
             "technology_mediation_studies"
         ]
 
-        # Albarracin's specific stances and beliefs
         self.stances = {
-            "importance_of_cultural_context": 0.95,
-            "role_of_active_inference_in_social_behavior": 0.9,
-            "impact_of_social_media_on_belief_formation": 0.85,
-            "necessity_of_interdisciplinary_approach": 0.95,
-            "potential_of_computational_social_science": 0.8,
-            "significance_of_collective_intelligence": 0.85,
-            "relevance_of_cultural_evolution_to_modern_societies": 0.9,
-            "importance_of_addressing_epistemic_vulnerability": 0.95,
-            "value_of_enactive_approaches_to_cognition": 0.9,
-            "centrality_of_4E_cognition_in_understanding_culture": 0.85,
-            "need_for_ecological_validity_in_cognitive_research": 0.9,
-            "importance_of_studying_technology_mediated_cognition": 0.85,
-            "necessity_of_cultural_resilience": 0.9,
-            "importance_of_epistemic_resilience": 0.9,
-            "importance_of_cultural_feedback_loops": 0.9,
-            "dynamic_nature_of_identity": 0.85,
-            "misinformation_as_cultural_contagion": 0.9,
-            "technology_as_cognitive_mediator": 0.85
+            "importance_of_cultural_context": 0.95, "role_of_active_inference_in_social_behavior": 0.9,
+            "impact_of_social_media_on_belief_formation": 0.85, "necessity_of_interdisciplinary_approach": 0.95,
+            "potential_of_computational_social_science": 0.8, "significance_of_collective_intelligence": 0.85,
+            "relevance_of_cultural_evolution_to_modern_societies": 0.9, "importance_of_addressing_epistemic_vulnerability": 0.95,
+            "value_of_enactive_approaches_to_cognition": 0.9, "centrality_of_4E_cognition_in_understanding_culture": 0.85,
+            "need_for_ecological_validity_in_cognitive_research": 0.9, "importance_of_studying_technology_mediated_cognition": 0.85,
+            "necessity_of_cultural_resilience": 0.9, "importance_of_epistemic_resilience": 0.9,
+            "importance_of_cultural_feedback_loops": 0.9, "dynamic_nature_of_identity": 0.85,
+            "misinformation_as_cultural_contagion": 0.9, "technology_as_cognitive_mediator": 0.85
         }
 
         self.beliefs = {
-            "culture_shapes_cognition": "Culture fundamentally shapes cognitive processes and structures, acting as a regulator of uncertainty and a scaffold for predictive models.",
-            "social_behavior_as_inference": "Social behavior can be understood as a form of inference about the world, guided by cultural priors and active inference principles.",
-            "identity_as_predictive_model": "Personal and social identities function as predictive models for navigating the social world, constantly updated through cultural feedback loops.",
-            "misinformation_dynamics": "Misinformation spreads through exploitation of existing belief structures, social trust dynamics, and cultural contagion processes.",
-            "cultural_evolution_mechanism": "Cultural evolution operates through processes of collective active inference, niche construction, and the formation of cultural attractors.",
-            "collective_intelligence": "Collective intelligence emerges from the distributed cognition of individuals within a cultural framework, facilitated by shared generative models.",
-            "epistemic_vulnerability": "Societies face increasing epistemic vulnerability due to rapid information flow, filter bubbles, and the exploitation of cognitive biases in digital environments.",
-            "cultural_affordances": "Cultural affordances shape the possibility space for action and cognition, influencing perception, decision-making, and behavior in profound ways.",
-            "enactive_cognition": "Cognition is an active process of sense-making through interaction with the environment, fundamentally shaped by cultural practices and norms.",
-            "extended_mind": "Cognitive processes extend beyond the individual brain, incorporating cultural artifacts, technologies, and social interactions as integral components of thought.",
-            "social_media_impact": "Social media platforms function as attractor landscapes, shaping belief formation and social dynamics through algorithmic curation and network effects.",
-            "cultural_cognitive_ecology": "Human cognition operates within a complex ecology of cultural practices, technologies, and social structures that co-evolve over time.",
-            "cultural_resilience": "Cultural resilience is the adaptive capacity of a culture to withstand and recover from challenges and changes.",
-            "epistemic_resilience": "Epistemic resilience is the robustness of a society's knowledge systems against misinformation and epistemic traps.",
-            "cultural_memes": "Cultural memes are units of information that propagate through social learning and cultural transmission.",
-            "cultural_transmission": "Cultural transmission is the process by which cultural knowledge, practices, and norms are passed from one generation to the next.",
-            "cultural_feedback_loops": "Cultural feedback loops are adaptive mechanisms through which cultural practices and norms are continuously updated and refined.",
-            "identity_as_dynamic_model": "Identity is a dynamic model that evolves through continuous interaction with cultural and social feedback.",
-            "misinformation_as_cultural_contagion": "Misinformation spreads like a cultural contagion, exploiting cognitive biases and social trust networks.",
-            "technology_as_cognitive_mediator": "Technology acts as a mediator of cognitive processes, shaping how individuals interact with and interpret their environment."
+            "culture_shapes_cognition": "Culture shapes cognitive processes and structures.",
+            "social_behavior_as_inference": "Social behavior is a form of inference guided by cultural priors.",
+            "identity_as_predictive_model": "Identities function as predictive models for social navigation.",
+            "misinformation_dynamics": "Misinformation spreads by exploiting belief structures and social trust.",
+            "cultural_evolution_mechanism": "Cultural evolution operates through collective active inference.",
+            "collective_intelligence": "Emerges from distributed cognition within a cultural framework.",
+            "epistemic_vulnerability": "Societies face increasing vulnerability due to rapid information flow.",
+            "cultural_affordances": "Shape the possibility space for action and cognition.",
+            "enactive_cognition": "Cognition is an active process of sense-making through interaction.",
+            "extended_mind": "Cognitive processes extend beyond the brain to include cultural artifacts.",
+            "social_media_impact": "Social media shapes belief formation through algorithmic curation.",
+            "cultural_cognitive_ecology": "Cognition operates within a complex ecology of cultural practices.",
+            "cultural_resilience": "Adaptive capacity to withstand and recover from challenges.",
+            "epistemic_resilience": "Robustness of knowledge systems against misinformation.",
+            "cultural_memes": "Units of information propagating through social learning.",
+            "cultural_transmission": "Passing cultural knowledge across generations.",
+            "cultural_feedback_loops": "Adaptive mechanisms updating cultural practices.",
+            "identity_as_dynamic_model": "Identity evolves through cultural and social feedback.",
+            "misinformation_as_cultural_contagion": "Misinformation spreads like a cultural contagion.",
+            "technology_as_cognitive_mediator": "Technology mediates cognitive processes."
         }
 
     def worldview(self):
@@ -195,21 +128,21 @@ class AlbarracinWorldview:
         Provides key quotes that encapsulate Albarracin's ideas and perspectives.
         """
         return [
-            "Culture acts as a regulator of uncertainty, shaping the predictive models individuals use to navigate their social world.",
-            "Social media platforms create attractor landscapes that can trap users in epistemic bubbles, reinforcing existing beliefs and limiting exposure to diverse perspectives.",
-            "Misinformation spreads through networks as a form of 'cultural contagion', exploiting existing belief structures and social trust dynamics.",
-            "Identity itself can be understood as a predictive model, constantly updated through social interactions and cultural feedback loops.",
-            "The free energy principle, when applied to social systems, suggests that cultures evolve to minimize collective uncertainty and maximize adaptive fitness.",
-            "Cultural practices can be viewed as error correction mechanisms, helping individuals and groups to minimize prediction errors in their social environments.",
-            "Language functions as a shared generative model, allowing for the efficient transmission of cultural knowledge and the coordination of social behavior.",
-            "Institutions serve as uncertainty reduction devices, providing stable frameworks for social interaction and decision-making.",
-            "Social conformity can be understood as a strategy for uncertainty reduction, aligning individual behavior with cultural norms to minimize prediction errors.",
-            "The extended mind hypothesis suggests that culture and technology function as external cognitive resources, fundamentally shaping human thought and behavior.",
-            "Collective intelligence emerges from the distributed cognition of individuals within a cultural framework, facilitated by shared generative models and cultural affordances.",
-            "Epistemic vulnerability in modern societies arises from the interaction between rapid information flow, cognitive biases, and the exploitation of cultural attractors in digital environments.",
-            "Cultural evolution can be understood as a process of collective active inference, where societies as a whole attempt to minimize prediction errors and adapt to changing environments.",
-            "Social contagion processes, including the spread of beliefs and behaviors, can be modeled using principles from active inference and cultural evolution theory.",
-            "The concept of 'cultural affordances' provides a bridge between embodied cognition, active inference, and sociocultural dynamics, explaining how culture shapes the possibility space for action and thought."
+            "Culture regulates uncertainty, shaping predictive models for social navigation.",
+            "Social media creates attractor landscapes, reinforcing existing beliefs.",
+            "Misinformation spreads as 'cultural contagion', exploiting belief structures.",
+            "Identity is a predictive model, updated through social interactions.",
+            "The free energy principle suggests cultures evolve to minimize uncertainty.",
+            "Cultural practices act as error correction mechanisms.",
+            "Language is a shared generative model for transmitting cultural knowledge.",
+            "Institutions reduce uncertainty, providing stable frameworks for interaction.",
+            "Social conformity reduces uncertainty by aligning behavior with cultural norms.",
+            "The extended mind hypothesis sees culture and technology as cognitive resources.",
+            "Collective intelligence emerges from distributed cognition within a cultural framework.",
+            "Epistemic vulnerability arises from rapid information flow and cognitive biases.",
+            "Cultural evolution is a process of collective active inference.",
+            "Social contagion processes can be modeled using active inference principles.",
+            "Cultural affordances bridge embodied cognition, active inference, and sociocultural dynamics."
         ]
 
     def simulate_cultural_contagion(self, initial_beliefs, social_network, num_iterations):
@@ -240,6 +173,24 @@ class AlbarracinWorldview:
         final_belief = population + misinformation_impact - resilience_effect
         return np.clip(final_belief, 0, 1)  # Ensure beliefs stay between 0 and 1
 
+    def cultural_feedback_loop(self, initial_cultural_state, individual_variation, social_influence, num_iterations):
+        """
+        Simulates a cultural feedback loop where individual cognition and cultural practices mutually influence each other.
+        
+        Parameters:
+        - initial_cultural_state: Starting state of cultural practices
+        - individual_variation: Degree of variation in individual cognitive responses
+        - social_influence: Strength of cultural influence on individual cognition
+        - num_iterations: Number of cycles to simulate
+        
+        Returns:
+        - List of cultural states over time
+        """
+        cultural_states = [initial_cultural_state]
+        current_state = initial_cultural_state
+        
+        for _ in range(num_iterations):
+            # Individual cognitive responses to cultural state
 # Example usage
 albarracin = AlbarracinWorldview()
 print(albarracin.worldview())

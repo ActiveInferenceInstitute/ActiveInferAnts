@@ -2,22 +2,29 @@
 
 **ReSCIND Program BAA Page 1 of 88**
 
-Naval Information Warfare Systems Center, Pacific (NIWC Pacific)  
-53560 Hull Street  
-San Diego, CA 92152-5001  
-In collaboration with the  
-Intelligence Advanced Research Projects Activity  
-Broad Agency Announcement (BAA)  
-Reimagining Security with Cyberpsychology-Informed Network Defenses (ReSCIND) Program  
-N66001-23-S-4510  
-**AMENDMENT 1 – 28 April 2023**  
-**Release Date: 11 April 2023**
+Program Overview:
+- Develop novel cyberpsychology-informed defenses that leverage attacker's human limitations and cognitive vulnerabilities
+- Improve cybersecurity by impacting attacker decision-making and increasing effort/resources spent by attackers
+- 45-month effort in 3 phases beginning November 2023
 
-**ReSCIND Program BAA Page 2 of 88**
+Technical Challenges and Objectives:
+1. Identify and provide evidence of Cognitive Vulnerabilities (CogVulns) relevant to cyber attackers
+2. Understand, measure, and induce changes in cyber attack behavior and success  
+3. Develop Cyberpsychology-informed Defenses (CyphiDs) for early and late stage attacks
+4. Create Cyber-specific Computational Cognitive Model(s) (C3M) that reflect and predict attacker behavior
+5. Produce Adaptative Psychology-informed Defenses (APhiDs) to automate CyphiD selection based on attacker behavior
 
-### OVERVIEW INFORMATION
+Phases:
+- Phase 1 (18 months): Identify CogVulns and develop bias sensors/triggers
+- Phase 2 (15 months): Develop CyphiDs that measurably disrupt cyber attack behavior 
+- Phase 3 (12 months): Develop APhiD and C3Ms based on prior experimental results
 
-This notice constitutes a Broad Agency Announcement (BAA) and sets forth research of interest in the area described in detail below. The solicitation process will follow Federal Acquisition Regulation (FAR) Part 35, Research and Development Contracting, as supplemented with additional information included in this notice. Awards based on responses to this BAA will be considered the result of full and open competition.
+Proposal Requirements:
+- Address all technical challenges and phases
+- Include full experimental protocol for Phase 1 human subjects research 
+- Describe team expertise in relevant disciplines
+- Identify technical risks and mitigation strategies
+- Describe software development approach
 
 - **Federal Agency Name:** Naval Information Warfare Center, Pacific (NIWC Pacific) on behalf of the Office of the Director of National Intelligence/Intelligence Advanced Research Projects Activity (IARPA)
 - **Funding:** RDT&E (2 year)

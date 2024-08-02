@@ -17,6 +17,164 @@ Washington, DC 20240
 
 ## Contents
 
+- **SECTION 1: FUNDING OPPORTUNITY DESCRIPTION**
+  - **1.A. Program Overview**
+    - **1.A.1 Technical Areas**
+    - **1.A.2 Utility Constraints**
+    - **1.A.3 Program Phases**
+  - **1.B. Team Expertise**
+    - **1.B.1 Program Scope and Limitations**
+  - **1.C. Program Data**
+    - **1.C.1 Development Data**
+    - **1.C.2 Evaluation Data**
+  - **1.D. Test and Evaluation (T&E)**
+  - **1.E. Program Metrics**
+    - **1.E.1 Metrics for TA1**
+    - **1.E.2 Metrics for TA2**
+    - **1.E.3 Metrics for TA3**
+    - **1.E.4 Metrics for Latency**
+    - **1.E.5 Metrics for Understandability**
+    - **1.E.6 Metrics for Naturalness**
+    - **1.E.7 Summary of Metrics**
+  - **1.F. Program Waypoints, Milestones, and Deliverables**
+    - **1.F.1 Program Milestone, Waypoint, and Deliverables Timeline**
+    - **1.F.2 Software Deliverable Formatting**
+  - **1.G. Meeting and Travel Requirements**
+    - **1.G.1 Kickoff Meetings and PI Workshops**
+    - **1.G.2 Site Visits**
+  - **1.H. Anticipated Period of Performance**
+  - **1.I. Place of Performance**
+  - **1.J. Acronyms**
+- **SECTION 2: AWARD INFORMATION**
+- **SECTION 3: ELIGIBILITY INFORMATION**
+  - **3.A. Eligible Applicants**
+    - **3.A.1 Organizational Conflicts of Interest (OCI)**
+    - **3.A.2 Multiple Submissions to the BAA**
+  - **3.B. U.S. Academic Institutions**
+  - **3.C. Other Eligibility Criteria**
+    - **3.C.1 Collaboration Efforts**
+- **SECTION 4: PROPOSAL AND SUBMISSION INFORMATION**
+  - **4.A. Proposal Information**
+    - **4.A.1 Submission Requirements**
+    - **4.A.2 Proposal Evaluation Participants**
+  - **4.B. Proposal Format and Content**
+    - **4.B.1 Volume I: Technical and Management Proposal**
+    - **4.B.2 Volume II: Cost Proposal (No Page Limit)**
+  - **4.C. Submission Details**
+    - **4.C.1 Due Dates**
+    - **4.C.2 Proposal Delivery**
+  - **4.D. Funding Restrictions**
+- **SECTION 5: PROPOSAL REVIEW INFORMATION**
+  - **5.A. Technical and Funding Availability Evaluation Factors**
+    - **5.A.1 Technical Evaluation Factor**
+    - **5.A.2 Funding Availability Factor**
+  - **5.B. Method of Evaluation and Selection Process**
+  - **5.C. Negotiation and Contract Award**
+  - **5.D. Proposal Retention**
+- **SECTION 6: AWARD ADMINISTRATION INFORMATION**
+  - **6.A. Award Notices**
+  - **6.B. Administrative and National Policy Requirements**
+    - **6.B.1 Proprietary Data**
+    - **6.B.2 Intellectual Property**
+    - **6.B.3 Human Use**
+    - **6.B.4 Animal Use**
+    - **6.B.5 Publication Approval**
+    - **6.B.6 Export Control**
+    - **6.B.7 Subcontracting**
+    - **6.B.8 Reporting**
+    - **6.B.9 System for Award Management (SAM)**
+    - **6.B.10 Representations and Certifications**
+    - **6.B.11 Lawful Use and Privacy Protection Measures**
+    - **6.B.12 Public Access to Results**
+    - **6.B.13 Other Contract Requirements**
+
+## SECTION 1: FUNDING OPPORTUNITY DESCRIPTION
+
+**Program Overview:**
+- Develop systems to modify spontaneous speech in real-time for privacy.
+- Address three Technical Areas (TAs):
+  - TA1: Speaker De-Identification (SDID)
+  - TA2: Modification of Static Traits (dialect, gender, age)
+  - TA3: Removal of Dynamic Traits (emotion, psychological state)
+- Solutions must meet utility constraints: latency, understandability, naturalness.
+
+**Program Phases:**
+- Phase 1: English language focus (18 months)
+- Phase 2: Non-English languages (18 months)
+
+**Team Expertise:**
+- Multidisciplinary teams encouraged.
+- Expertise in speech processing, synthesis, recognition, linguistics, AI, etc.
+
+**Program Data:**
+- Government-provided speech data.
+- Use of external data with approval.
+
+**Test and Evaluation (T&E):**
+- Independent evaluation of deliverables.
+- Regular feedback to performers.
+
+**Program Metrics:**
+- TA1: Equal Error Rate (EER) targets.
+- TA2: Human evaluator accuracy.
+- TA3: Unweighted Average Recall (UAR).
+- Utility constraints: latency (350ms Phase 1, 150ms Phase 2), understandability, naturalness.
+
+## SECTION 2: AWARD INFORMATION
+
+## SECTION 3: ELIGIBILITY INFORMATION
+
+**Eligible Applicants:**
+- Organizational Conflicts of Interest (OCI) must be addressed.
+- Multiple submissions allowed.
+
+**U.S. Academic Institutions:**
+- Collaboration encouraged.
+
+## SECTION 4: PROPOSAL AND SUBMISSION INFORMATION
+
+**Proposal Information:**
+DEPARTMENT OF INTERIOR
+In partnership with
+The Intelligence Advanced Research Projects Activity (IARPA)
+BROAD AGENCY ANNOUNCEMENT
+Anonymous Real-Time Speech (ARTS)
+DOI-BAA-ARTS-FY24-01
+Issued By:
+The Department of the Interior (DOI), Interior Business Center (IBC)
+Acquisition Services Directorate (AQD)
+E-Mail: IARPA_DOI_ARTS@IBC.DOI.Gov
+Release Date: 07 September 2024
+United States Department of the Interior
+INTERIOR BUSINESS CENTER
+Washington, DC 20240
+Contents
+SECTION 1: FUNDING OPPORTUNITY DESCRIPTION
+1.A. Program Overview
+1.A.1 Technical Areas
+1.A.2 Utility Constraints
+1.A.3 Program Phases
+1.B. Team Expertise
+1.B.1 Program Scope and Limitations
+1.C. Program Data
+1.C.1 Development Data
+1.C.2 Evaluation Data
+1.D. Test and Evaluation (T&E)
+1.E. Program Metrics
+1.E.1 Metrics for TA1
+1.E.2 Metrics for TA2
+1.E.3 Metrics for TA3
+1.E.4 Metrics for Latency
+1.E.5 Metrics for Understandability
+1.E.6 Metrics for Naturalness
+1.E.7 Summary of Metrics
+1.F. Program Waypoints, Milestones, and Deliverables
+1.F.1 Program Milestone, Waypoint, and Deliverables Timeline
+1.F.2 Software Deliverable Formatting
+1.G. Meeting and Travel Requirements
+1.G.1 Kickoff Meetings and PI Workshops
+1.G.2 Site Visits
+1.H. Anticipated Period of Performance
 - **SECTION 1: FUNDING OPPORTUNITY DESCRIPTION** ..................................................... 8
   - **1.A. Program Overview** ............................................................................................................... 8
     - **1.A.1 Technical Areas** ...................................................................................................... 11

@@ -29,6 +29,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 
+plt.rcParams['font.family'] = 'DejaVu Sans'
+
 class GrantPromptMetaAnalysis:
     def __init__(self, prompt_dir='Writing_Outputs/Grant_Prompts/', output_dir='Writing_Outputs/Grant_Prompt_MetaAnalysis/'):
         logging.info("Initializing GrantPromptMetaAnalysis")
@@ -37,7 +39,7 @@ class GrantPromptMetaAnalysis:
         self.files = self._get_files()
         self.texts = self._read_files()
         self.stop_words = set(stopwords.words('english'))
-        self.stop_words.update(['index', 'jsp', 'div', 'True', 'False', 'None', 'self', 'none', 'utf', '703', 'import', 'from', 'class', 'def', 'return', 'if', 'else', 'try', 'except', 'with', 'as', 'for', 'in', 'os', 'logging', 'open', 'read', 'write', 'join', 'path', 'exists', 'isdir', 'listdir', 'debug', 'info', 'warning', 'error', 'encoding', 'utf-8', 'and', 'of', 'the', 'to', 'a', 'Active', 'in', 'as', 'True', 'for', 'with', 'def', 'will', 'may', 'um', 'uh', 'true', 'shall', 'nsf'])
+        self.stop_words.update(['index', 'jsp', 'div', 'true', 'false', 'none', 'self', 'grantsgov', 'right', 'none', 'utf', '703', 'import', 'from', 'class', 'def', 'return', 'if', 'else', 'try', 'except', 'with', 'as', 'for', 'in', 'os', 'logging', 'open', 'read', 'write', 'join', 'path', 'exists', 'isdir', 'listdir', 'debug', 'info', 'warning', 'error', 'encoding', 'utf-8', 'and', 'of', 'the', 'to', 'a', 'active', 'in', 'as', 'true', 'for', 'with', 'def', 'will', 'may', 'um', 'uh', 'true', 'shall', 'nsf', "'d", "'ll", "'re", "'s", "'ve", 'could', 'might', 'must', "n't", 'need', 'sha', 'wo', 'would'])
         self._ensure_output_dir_exists()
         logging.info("Initialization complete")
 
@@ -51,7 +53,7 @@ class GrantPromptMetaAnalysis:
         logging.info("Reading files")
         texts = {}
         for file in self.files:
-            logging.info(f"Reading file: {file}")
+            logging.info(f"Reading file: {os.path.join(self.prompt_dir, file)}")
             with open(os.path.join(self.prompt_dir, file), 'r', encoding='utf-8') as f:
                 texts[file] = f.read()
         logging.info("File reading complete")
@@ -79,7 +81,7 @@ class GrantPromptMetaAnalysis:
 
     def perform_tfidf_analysis(self):
         logging.info("Performing TF-IDF analysis")
-        vectorizer = TfidfVectorizer(stop_words=list(self.stop_words))
+        vectorizer = TfidfVectorizer(stop_words=list(self.stop_words), lowercase=True, tokenizer=word_tokenize, token_pattern=None)
         tfidf_matrix = vectorizer.fit_transform([self._preprocess_text(text) for text in self.texts.values()])
         feature_names = vectorizer.get_feature_names_out()
         
@@ -103,13 +105,13 @@ class GrantPromptMetaAnalysis:
         hierarchical_labels = hierarchical.fit_predict(tfidf_matrix.toarray())
         
         logging.info("Performing dimensionality reduction")
-        pca = PCA(n_components=2, random_state=42)
+        pca = PCA(n_components=30, random_state=42)
         tsne = TSNE(n_components=2, random_state=42, perplexity=5)
-        svd = TruncatedSVD(n_components=2, random_state=42)
+        svd = TruncatedSVD(n_components=100, random_state=42)
         
-        pca_coords = pca.fit_transform(tfidf_matrix.toarray())
+        pca_coords = pca.fit_transform(tfidf_matrix.toarray())[:, :2]
         tsne_coords = tsne.fit_transform(tfidf_matrix.toarray())
-        svd_coords = svd.fit_transform(tfidf_matrix)
+        svd_coords = svd.fit_transform(tfidf_matrix)[:, :2]
         
         # Plotting functions
         def plot_clusters(coords, labels, title, filename, method):
@@ -141,7 +143,7 @@ class GrantPromptMetaAnalysis:
             plt.tight_layout(pad=3)
             plt.savefig(os.path.join(self.output_dir, 'Clustering', filename), dpi=300, bbox_inches='tight')
             plt.close()
-            logging.info(f"Plot saved: {filename}")
+            logging.info(f"Plot saved: {os.path.join(self.output_dir, 'Clustering', filename)}")
         
         # Generate plots
         plot_clusters(pca_coords, kmeans_labels, 'K-means Clustering (PCA)', 'kmeans_pca_clustering.png', 'PCA')
@@ -169,7 +171,7 @@ class GrantPromptMetaAnalysis:
     def visualize_projections(self, coords, method):
         logging.info(f"Visualizing {method} projections")
         entities = [file.split('_by_')[0] for file in self.files]
-        grants = [file.split('_by_')[1].split('.md')[0] for file in self.files]
+        grants = [file.split('_by_')[1].split('.md')[0] if len(file.split('_by_')) > 1 else 'Unknown' for file in self.files]
         catechisms = [file.split('_by_')[2].split('.md')[0] if len(file.split('_by_')) > 2 else 'None' for file in self.files]
 
         def plot_projection(color_by, title):
@@ -187,8 +189,9 @@ class GrantPromptMetaAnalysis:
             # Add confidence intervals
             for item in unique_items:
                 item_coords = coords[np.array(color_by) == item]
-                confidence_ellipse(item_coords[:, 0], item_coords[:, 1], plt.gca(), n_std=2.0, 
-                                   edgecolor=color_dict[item], label=f'{item} (95% CI)')
+                if len(item_coords) > 1:  # Only add confidence ellipse if there's more than one point
+                    confidence_ellipse(item_coords[:, 0], item_coords[:, 1], plt.gca(), n_std=2.0, 
+                                       edgecolor=color_dict[item], label=f'{item} (95% CI)')
             
             # Add gradient zones
             xx, yy = np.mgrid[coords[:, 0].min():coords[:, 0].max():100j, 
@@ -196,18 +199,23 @@ class GrantPromptMetaAnalysis:
             positions = np.vstack([xx.ravel(), yy.ravel()]).T
             for item in unique_items:
                 item_coords = coords[np.array(color_by) == item]
-                kernel = gaussian_kde(item_coords.T)
-                f = np.reshape(kernel(positions.T).T, xx.shape)
-                plt.contourf(xx, yy, f, cmap='Blues', alpha=0.2)
+                if len(item_coords) > 1:  # Only add kernel density estimate if there's more than one point
+                    try:
+                        kernel = gaussian_kde(item_coords[:, :2].T)
+                        f = np.reshape(kernel(positions.T).T, xx.shape)
+                        plt.contourf(xx, yy, f, cmap='Blues', alpha=0.2)
+                    except np.linalg.LinAlgError:
+                        logging.warning(f"Could not compute kernel density estimate for {item}")
             
             plt.legend(title=title.split(' by ')[1], loc='center left', bbox_to_anchor=(1, 0.5))
             plt.title(title, fontsize=24, pad=20)
             plt.xlabel(f'{method} Component 1', fontsize=14)
             plt.ylabel(f'{method} Component 2', fontsize=14)
             plt.tight_layout(pad=3)
-            plt.savefig(os.path.join(self.output_dir, 'Projections', f'{method}_projection_by_{title.split(" by ")[1]}.png'), dpi=300, bbox_inches='tight')
+            
+            filename = f"{method}_projection_by_{title.split(' by ')[-1].replace(' ', '_')}.png"
+            plt.savefig(os.path.join(self.output_dir, 'Projections', filename), dpi=300, bbox_inches='tight')
             plt.close()
-            logging.info(f"Plot saved: {method}_projection_by_{title.split(' by ')[1]}.png")
 
         plot_projection(entities, f'{method} Projection by Entity')
         plot_projection(grants, f'{method} Projection by Grant')
@@ -242,11 +250,11 @@ class GrantPromptMetaAnalysis:
         plt.tight_layout()
         plt.savefig(os.path.join(self.output_dir, 'PCA_Analysis', 'term_loadings.png'), dpi=300, bbox_inches='tight')
         plt.close()
-        logging.info("Term loadings plot saved")
+        logging.info(f"Term loadings plot saved: {os.path.join(self.output_dir, 'PCA_Analysis', 'term_loadings.png')}")
 
         # Visualize documents in PCA space with term vectors
         logging.info("Visualizing documents in PCA space with term vectors")
-        pca_coords = pca.transform(vectorizer.transform(self.texts.values()).toarray())
+        pca_coords = pca.transform(vectorizer.transform(self.texts.values()).toarray())[:, :2]
         plt.figure(figsize=(20, 10))
         plt.scatter(pca_coords[:, 0], pca_coords[:, 1])
         for i, file in enumerate(self.texts.keys()):
@@ -268,7 +276,38 @@ class GrantPromptMetaAnalysis:
         plt.tight_layout()
         plt.savefig(os.path.join(self.output_dir, 'PCA_Analysis', 'documents_and_terms_pca.png'), dpi=300, bbox_inches='tight')
         plt.close()
-        logging.info("Documents and terms in PCA space plot saved")
+        logging.info(f"Documents and terms in PCA space plot saved: {os.path.join(self.output_dir, 'PCA_Analysis', 'documents_and_terms_pca.png')}")
+
+        # Variance explained by each principal component
+        logging.info("Plotting variance explained by each principal component")
+        plt.figure(figsize=(10, 6))
+        plt.plot(np.cumsum(pca.explained_variance_ratio_), marker='o', linestyle='--')
+        plt.xlabel('Number of Components')
+        plt.ylabel('Cumulative Explained Variance')
+        plt.title('Explained Variance by Number of Principal Components')
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'PCA_Analysis', 'explained_variance.png'), dpi=300, bbox_inches='tight')
+        plt.close()
+        logging.info(f"Explained variance plot saved: {os.path.join(self.output_dir, 'PCA_Analysis', 'explained_variance.png')}")
+
+        # 3D PCA plot
+        logging.info("Creating 3D PCA plot")
+        from mpl_toolkits.mplot3d import Axes3D
+        fig = plt.figure(figsize=(12, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        pca_coords_3d = pca.transform(vectorizer.transform(self.texts.values()).toarray())[:, :3]
+        ax.scatter(pca_coords_3d[:, 0], pca_coords_3d[:, 1], pca_coords_3d[:, 2], c='b', marker='o')
+        for i, file in enumerate(self.texts.keys()):
+            ax.text(pca_coords_3d[i, 0], pca_coords_3d[i, 1], pca_coords_3d[i, 2], file, fontsize=8)
+        ax.set_xlabel('PC1')
+        ax.set_ylabel('PC2')
+        ax.set_zlabel('PC3')
+        ax.set_title('3D PCA Plot')
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'PCA_Analysis', '3d_pca_plot.png'), dpi=300, bbox_inches='tight')
+        plt.close()
+        logging.info(f"3D PCA plot saved: {os.path.join(self.output_dir, 'PCA_Analysis', '3d_pca_plot.png')}")
 
     def entity_grant_catechism_analysis(self):
         logging.info("Performing entity-grant-catechism analysis")
