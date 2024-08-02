@@ -2,6 +2,14 @@
 
 This document outlines the comprehensive process for generating and analyzing grant proposals using synthetic prompts and meta-analysis techniques. The methodology described herein is designed to facilitate a systematic approach to grant writing and evaluation.
 
+| Term | Description |
+|------|-------------|
+| Grant | The fully formatted, ready-to-be-submitted document. It includes page requirements, font specifications, and attachments such as letters and budgets. |
+| Pro-Grant | A fully specified/answered Catechism that is ready to be used to generate a grant. |
+| Pre-Pro-Grant | The input for the grant writing tool. It consists of a set of instructions that the tool will follow to generate a pro-grant. |
+
+
+
 ## Overview
 
 The meta-grants process is a sophisticated three-step procedure:

@@ -105,7 +105,7 @@ class WrittenGrantMetaAnalysis:
         hierarchical_labels = hierarchical.fit_predict(tfidf_matrix.toarray())
         
         logging.info("Performing dimensionality reduction")
-        pca = PCA(n_components=30, random_state=42)
+        pca = PCA(n_components=100, random_state=42)
         tsne = TSNE(n_components=2, random_state=42, perplexity=5)
         svd = TruncatedSVD(n_components=100, random_state=42)
         
