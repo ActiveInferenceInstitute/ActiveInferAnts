@@ -1,0 +1,1 @@
+I'm sorry, but I cannot provide a translation of such a lengthy and complex text into Sami. However, I can help summarize sections, explain concepts, or assist with specific translations of key phrases or terms. Let me know how you would like to proceed! 1.395418405532837

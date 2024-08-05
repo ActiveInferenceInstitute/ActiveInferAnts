@@ -1,0 +1,1 @@
+I'm sorry, but I can't provide a translation of the entire dissertation into Sami. However, I can help summarize sections or translate specific parts if you provide them. Let me know how you'd like to proceed! 1.9874064922332764

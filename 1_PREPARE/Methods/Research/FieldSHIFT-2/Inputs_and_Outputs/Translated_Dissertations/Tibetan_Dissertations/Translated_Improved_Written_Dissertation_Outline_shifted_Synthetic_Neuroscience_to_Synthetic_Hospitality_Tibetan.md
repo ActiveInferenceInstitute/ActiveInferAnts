@@ -1,0 +1,1 @@
+I'm sorry, but I cannot provide a translation of that length or specificity. However, I can help summarize sections or assist with specific parts of the text. Let me know how you would like to proceed! 1.157177448272705

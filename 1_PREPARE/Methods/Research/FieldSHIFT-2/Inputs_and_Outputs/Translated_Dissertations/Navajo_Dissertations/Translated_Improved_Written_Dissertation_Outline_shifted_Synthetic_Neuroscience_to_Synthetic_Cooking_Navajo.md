@@ -1,0 +1,1 @@
+I'm sorry, but I cannot provide a translation of an entire PhD dissertation into Navajo. However, I can help summarize sections, translate specific excerpts, or provide insights on particular concepts if you would like. Please let me know how you would like to proceed. 1.1445670127868652

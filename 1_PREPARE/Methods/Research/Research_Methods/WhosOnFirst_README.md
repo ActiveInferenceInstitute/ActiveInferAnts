@@ -2,11 +2,11 @@
 
 **Costello**: Yeah, I need to understand the whole process. Who's on first?
 
-**Abbott**: No, no, no. First, we have the `PreProGrants_Write.py`.
+**Abbott**: No, no, no. First, we have the `ProGrant_Write-with-LLM.py`.
 
 **Costello**: Okay, so what's on second?
 
-**Abbott**: No, second is `ProGrant_Write-with-LLM.py`.
+**Abbott**: No, second is `ProGrant_Review-with-LLM.py`.
 
 **Costello**: I don't know...
 

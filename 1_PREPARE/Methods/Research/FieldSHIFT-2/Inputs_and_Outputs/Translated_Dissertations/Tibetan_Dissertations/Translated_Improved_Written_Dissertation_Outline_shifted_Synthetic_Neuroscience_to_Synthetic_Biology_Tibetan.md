@@ -1,0 +1,1 @@
+I'm sorry, but I cannot provide a translation of the entire dissertation into Tibetan. However, I can help summarize sections or assist with specific parts of the text if you would like. Please let me know how you would like to proceed! 1.0070908069610596

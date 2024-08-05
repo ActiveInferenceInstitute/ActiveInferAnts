@@ -1,6 +1,6 @@
 # Pre-Pro-Insulin Methodology 🧬💉
 
-This document provides a metaphorical map comparing the Pre-Pro-Grant process to the Pre-Pro-Insulin process, illustrating the increasing levels of sophistication in both methodologies.
+This document provides a detailed comparison between the Pre-Pro-Grant process and the Pre-Pro-Insulin process, highlighting the similarities and differences between both processes.
 
 ## Terminology Comparison 📚
 
@@ -19,9 +19,9 @@ This document provides a metaphorical map comparing the Pre-Pro-Grant process to
 | Adipose Tissue | Reviewers assessing the feasibility and resource allocation of the proposal, much like adipose tissue responds to insulin by storing excess glucose as fat. |
 | Pancreatic Cells | Reviewers examining the proposal's alignment with funding priorities and strategic goals, similar to how pancreatic cells regulate insulin secretion in response to blood sugar levels. |
 
-## Body of Review in Synthetic Intelligence Setting 🧠🤖
+## Synthetic Intelligence Review Process 🧠🤖
 
-In a synthetic intelligence setting, the "Body of Review" would encompass a comprehensive and multi-faceted evaluation process, including:
+In a synthetic intelligence setting, the "Body of Review" encompasses a comprehensive and multi-faceted evaluation process, including:
 
 - **Algorithmic Analysis**: Utilizing advanced algorithms to assess the structural integrity and coherence of the grant proposal, ensuring logical flow and consistency.
 - **Natural Language Processing (NLP)**: Employing NLP techniques to evaluate the clarity, readability, and persuasiveness of the proposal's language.
@@ -34,7 +34,7 @@ In a synthetic intelligence setting, the "Body of Review" would encompass a comp
 - **Bias Detection**: Identifying and mitigating any potential biases in the proposal, ensuring a fair and objective evaluation.
 - **Comprehensive Reporting**: Generating detailed reports summarizing the findings of the review process, including strengths, weaknesses, and recommendations for improvement.
 
-## Imaginary Methodology Overview for how the Meta-Insulin Grant Pipeline WOULD/COULD be 🔎
+## Hypothetical Methodology for the Meta-Insulin Grant Pipeline 🔎
 
 The Pre-Pro-Insulin process employs a series of sophisticated steps analogous to the Pre-Pro-Grant process:
 
@@ -48,7 +48,7 @@ The Pre-Pro-Insulin process employs a series of sophisticated steps analogous to
 
 ### 1. PreProInsulin_Synthesis.py
 
-This script generates synthetic PRE-PRO-INSULIN by synthesizing the initial polypeptide chain. Its primary functions include:
+This script generates synthetic pre-pro-insulin by synthesizing the initial polypeptide chain. Its primary functions include:
 
 - Synthesizing the initial polypeptide chain.
 - Ensuring the correct sequence of amino acids.
@@ -56,7 +56,7 @@ This script generates synthetic PRE-PRO-INSULIN by synthesizing the initial poly
 
 ### 2. ProInsulin_Processing.py
 
-This script processes the pre-pro-insulin to generate PRO-INSULIN. It simulates the enzymatic cleavage and formation of disulfide bonds. Key functions include:
+This script processes the pre-pro-insulin to generate pro-insulin. It simulates the enzymatic cleavage and formation of disulfide bonds. Key functions include:
 
 - Reading and processing pre-pro-insulin files from the `./Synthesis_Outputs/PreProInsulin/` directory.
 - Cleaving the polypeptide chain and forming disulfide bonds.
@@ -64,7 +64,7 @@ This script processes the pre-pro-insulin to generate PRO-INSULIN. It simulates 
 
 ### 3. Insulin_Activation.py
 
-This script activates the pro-insulin to generate active INSULIN. Its functions include:
+This script activates the pro-insulin to generate active insulin. Its functions include:
 
 - Reading pro-insulin files from the `./Processing_Outputs/ProInsulin/` directory.
 - Performing final modifications to activate the insulin.

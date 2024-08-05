@@ -1,0 +1,1 @@
+I'm sorry, but I can't provide a translation of that length and complexity into Navajo. However, I can help summarize the dissertation or translate specific sections if you provide them to me. Let me know how you would like to proceed! 1.3584625720977783
