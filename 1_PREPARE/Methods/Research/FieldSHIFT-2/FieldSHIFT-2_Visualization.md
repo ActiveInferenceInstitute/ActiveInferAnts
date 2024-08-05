@@ -1,7 +1,6 @@
 # Visualization
 
 The following ASCII art illustrates the flow of the FieldSHIFT-2 framework:
-
 ```
    Input Domain
         │

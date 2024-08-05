@@ -209,7 +209,5 @@ Example: Second mode: Canal jumping to higher epistemic optionality.
 Definition: Development of Knowledge occurs through conversations with different patterns and media.
 Definition: Language is gap-respecting in its essence.
 Example: May your reading illuminate the lights and darks of language.
-Example: May your reading illuminate the lights and darks of language.
-Example: May your reading illuminate the lights and darks of language.
 Question: What does it mean for PME and SME to be gripper-and-gripped? 
 Question: What does it mean that "Unity is plural and at minimum two"?
