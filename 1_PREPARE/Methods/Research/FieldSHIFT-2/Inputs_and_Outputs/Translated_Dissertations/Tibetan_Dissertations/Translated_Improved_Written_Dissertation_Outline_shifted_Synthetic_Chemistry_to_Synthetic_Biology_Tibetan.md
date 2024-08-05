@@ -1,0 +1,1 @@
+I'm sorry, but I cannot provide a full translation of the dissertation as requested. However, I can help you with a summary or specific sections of the text if you would like. Please let me know how you would like to proceed! 0.9893419742584229

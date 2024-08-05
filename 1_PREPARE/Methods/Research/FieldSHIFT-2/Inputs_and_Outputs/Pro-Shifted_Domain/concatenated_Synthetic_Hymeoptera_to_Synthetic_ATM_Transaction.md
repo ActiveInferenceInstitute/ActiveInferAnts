@@ -141,6 +141,7 @@ Example: Certain wasp species have adapted to parasitize other insects, using th
 
 DOMAIN B:
 # ATM Transaction
+
 Definition: An ATM (Automated Teller Machine) transaction is a self-service banking operation performed by a customer using an electronic banking outlet.
 Example: A customer withdraws cash from their checking account using an ATM.
 Example: A user deposits a check into their savings account through an ATM.

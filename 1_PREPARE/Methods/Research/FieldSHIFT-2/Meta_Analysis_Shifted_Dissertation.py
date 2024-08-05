@@ -24,6 +24,13 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import simpleSplit
 import networkx as nx
 from scipy.stats import spearmanr
+import plotly.graph_objects as go
+import plotly.express as px
+from sklearn.metrics import silhouette_score
+from scipy.cluster.hierarchy import dendrogram, linkage
+from wordcloud import WordCloud, STOPWORDS
+from PIL import Image
+import matplotlib.cm as cm
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -72,7 +79,10 @@ class DissertationMetaAnalysis:
             os.path.join(self.output_dir, 'PCA_Analysis'),
             os.path.join(self.output_dir, 'TopTerms'),
             os.path.join(self.output_dir, 'Diversity'),
-            os.path.join(self.output_dir, 'Networks')
+            os.path.join(self.output_dir, 'Networks'),
+            os.path.join(self.output_dir, 'Interactive'),
+            os.path.join(self.output_dir, 'Dendrograms'),
+            os.path.join(self.output_dir, 'WordClouds', 'Shaped'),
         ]
         for directory in directories:
             os.makedirs(directory, exist_ok=True)
@@ -158,7 +168,6 @@ class DissertationMetaAnalysis:
         
         # Silhouette analysis
         logging.info("Performing silhouette analysis")
-        from sklearn.metrics import silhouette_score
         silhouette_kmeans = silhouette_score(tfidf_matrix, kmeans_labels)
         silhouette_hierarchical = silhouette_score(tfidf_matrix.toarray(), hierarchical_labels)
         
@@ -175,6 +184,58 @@ class DissertationMetaAnalysis:
 
         # Plot top terms per PCA component
         self.plot_top_terms_per_component(pca, vectorizer.get_feature_names_out())
+
+        # Generate interactive 3D scatter plot
+        self.generate_interactive_3d_scatter(pca_coords, kmeans_labels)
+
+        # Generate dendrogram
+        self.generate_dendrogram(tfidf_matrix.toarray())
+
+    def generate_interactive_3d_scatter(self, pca_coords, labels):
+        logging.info("Generating interactive 3D scatter plot")
+        fig = go.Figure(data=[go.Scatter3d(
+            x=pca_coords[:, 0],
+            y=pca_coords[:, 1],
+            z=pca_coords[:, 2],
+            mode='markers',
+            marker=dict(
+                size=5,
+                color=labels,
+                colorscale='Viridis',
+                opacity=0.8
+            ),
+            text=[f"Document: {doc}<br>Cluster: {label}" for doc, label in zip(self.texts.keys(), labels)],
+            hoverinfo='text'
+        )])
+
+        fig.update_layout(
+            title='Interactive 3D Scatter Plot of Documents',
+            autosize=False,
+            width=900,
+            height=800,
+            margin=dict(l=0, r=0, b=0, t=40)
+        )
+
+        fig.write_html(os.path.join(self.output_dir, 'Interactive', 'Interactive_3D_Scatter.html'))
+        logging.info(f"Interactive 3D scatter plot saved: {os.path.join(self.output_dir, 'Interactive', 'Interactive_3D_Scatter.html')}")
+
+    def generate_dendrogram(self, data):
+        logging.info("Generating dendrogram")
+        linked = linkage(data, 'ward')
+
+        plt.figure(figsize=(20, 10))
+        dendrogram(linked,
+                   orientation='top',
+                   labels=list(self.texts.keys()),
+                   distance_sort='descending',
+                   show_leaf_counts=True)
+        plt.title('Hierarchical Clustering Dendrogram')
+        plt.xlabel('Sample Index')
+        plt.ylabel('Distance')
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'Dendrograms', 'Hierarchical_Clustering_Dendrogram.png'), dpi=300, bbox_inches='tight')
+        plt.close()
+        logging.info(f"Dendrogram saved: {os.path.join(self.output_dir, 'Dendrograms', 'Hierarchical_Clustering_Dendrogram.png')}")
 
     def plot_top_terms_per_component(self, pca, feature_names, n_terms=20):
         logging.info("Plotting top terms per PCA component")
