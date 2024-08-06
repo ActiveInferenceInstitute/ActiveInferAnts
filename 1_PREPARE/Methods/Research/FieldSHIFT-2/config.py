@@ -54,7 +54,7 @@ USER_CONFIG = {
         'Prompts': os.path.join(SCRIPT_DIR, 'Inputs_and_Outputs', 'Prompts')
     },
     'llm_params': {
-        'model': 'gpt-4o-mini',
+        'model': 'gpt-4o-mini-2024-07-18',
         'max_tokens': 4096,
         'temperature': 0.5,
         'top_p': 1.0,
