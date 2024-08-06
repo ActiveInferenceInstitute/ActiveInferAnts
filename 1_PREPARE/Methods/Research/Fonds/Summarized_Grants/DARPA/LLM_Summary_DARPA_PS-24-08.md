@@ -1,0 +1,1 @@
+I apologize, but it seems that you haven't provided the specific grant application text that you would like summarized. Please share the details or the content of the grant application, and I will be happy to help you create a detailed and well-structured summary.

@@ -2,17 +2,33 @@
 
 ## Executive Summary
 
-This dissertation explores the innovative intersection of culinary arts and blockchain technology, termed the "Culinary Blockchain Domain." By analyzing the foundational principles of both fields, this research aims to create a comprehensive framework that highlights the transformative potential of integrating culinary practices with blockchain applications. The study will address significant gaps in both domains, propose novel hypotheses, and offer practical applications that can revolutionize culinary practices and enhance blockchain usability. Ultimately, this work seeks to establish a new paradigm that empowers culinary professionals and fosters innovation while preserving cultural heritage.
+This dissertation explores the innovative intersection of culinary arts and blockchain technology, termed the "Culinary Blockchain Domain." By analyzing the foundational principles of both fields, this research aims to create a comprehensive framework that highlights the transformative potential of integrating culinary practices with blockchain applications. The study addresses significant gaps in both domains, proposes novel hypotheses, and offers practical applications that can revolutionize culinary practices while enhancing blockchain usability. Ultimately, this work seeks to establish a new paradigm that empowers culinary professionals and fosters innovation while preserving cultural heritage. 
+
+**Key Contributions:**
+- Development of the "Culinary Blockchain Model" to integrate culinary principles into blockchain frameworks.
+- Identification of interdisciplinary opportunities that promote ethical sourcing and transparency in the culinary industry.
+- Proposals for innovative applications and experiments to test the integration of culinary concepts with blockchain technology.
 
 ## Introduction
 
 ### Background of the Shifted Domain
 
-The culinary arts and blockchain technology have traditionally been seen as distinct fields, each with its own language, values, and methodologies. The culinary arts reflect cultural identity and heritage, showcasing a rich tapestry of flavors, techniques, and traditions that vary across regions and communities. On the other hand, blockchain technology represents a significant advancement in data management and security, characterized by its decentralized nature and immutability. This dissertation seeks to bridge these domains, illustrating how culinary principles can inform blockchain applications and vice versa. By examining the values inherent in culinary practices—such as collaboration, transparency, and creativity—this research posits that these principles can enhance the functionality and user experience of blockchain technologies.
+The culinary arts and blockchain technology have traditionally been seen as distinct fields. Cuisine reflects cultural identity and heritage, often serving as a medium for storytelling and community engagement. On the other hand, blockchain represents a technological advancement in data management and security, characterized by decentralization, transparency, and immutability. This dissertation seeks to bridge these domains, illustrating how culinary principles can inform blockchain applications and vice versa. By examining the intersection of these fields, we uncover a rich tapestry of potential applications that can enhance both culinary practices and blockchain technology.
+
+**Creative Question:** How can the storytelling aspect of culinary arts inform the narrative structures within blockchain applications to foster user engagement?
 
 ### Significance and Novelty of the Research
 
-The integration of culinary arts into blockchain technology presents a unique opportunity to enhance transparency, collaboration, and innovation in both fields. This dissertation aims to create a new lexicon and framework that can facilitate the development of decentralized culinary networks, enriching culinary practices and promoting ethical sourcing. By leveraging culinary concepts, this research will not only address existing challenges in blockchain applications—such as user engagement and accessibility—but will also underscore the importance of cultural heritage in the digital age. The novelty of this research lies in its interdisciplinary approach, which merges two seemingly disparate fields to uncover new insights and applications.
+The integration of culinary arts into blockchain technology presents a unique opportunity to enhance transparency, collaboration, and innovation in both fields. Culinary practices are inherently collaborative, involving the sharing of recipes, techniques, and cultural narratives. By leveraging culinary concepts, this research aims to create a new lexicon and framework that can facilitate the development of decentralized culinary networks, thereby enriching culinary practices and promoting ethical sourcing. This novel approach not only addresses existing gaps in both fields but also offers a fresh perspective on how technology can serve to preserve and innovate cultural heritage.
+
+**Table 1: Potential Applications of Culinary Blockchain Integration**
+
+| Application Area        | Potential Impact                                      | Stakeholders Involved          |
+|-------------------------|------------------------------------------------------|--------------------------------|
+| Recipe Sharing          | Decentralized access to global culinary knowledge    | Chefs, home cooks, food enthusiasts |
+| Ethical Sourcing        | Enhanced tracking of ingredient provenance            | Farmers, suppliers, consumers   |
+| Culinary Education       | Collaborative platforms for culinary learning         | Culinary schools, educators     |
+| Cultural Preservation    | Digital archives of traditional recipes               | Cultural organizations, historians |
 
 ### Overarching Research Questions and Objectives
 
@@ -26,19 +42,25 @@ The integration of culinary arts into blockchain technology presents a unique op
 
 #### Culinary Arts
 
-The evolution of culinary practices is deeply intertwined with cultural significance and innovation. Culinary arts have been a means of expression and identity for communities throughout history. From the ancient civilizations that cultivated early agricultural practices to modern gastronomic movements that emphasize sustainability and local sourcing, the culinary landscape is continually evolving. The role of innovation in cuisine is evident in the rise of fusion cooking, molecular gastronomy, and the increasing emphasis on plant-based diets. Each of these trends reflects broader societal changes and technological advancements, underscoring the dynamic nature of culinary arts.
+The culinary arts have evolved significantly over centuries, influenced by cultural, social, and technological changes. From the early days of communal cooking to the intricate gastronomy of modern haute cuisine, culinary practices reflect the values and identities of different societies. The role of innovation in cuisine cannot be understated; it is often driven by the need for sustainability, health consciousness, and the fusion of diverse culinary traditions.
+
+**Advanced Concept:** The "Culinary Innovation Spiral" posits that culinary evolution occurs through iterative cycles of experimentation, feedback, and adaptation, akin to the principles of design thinking.
 
 #### Blockchain Technology
 
-Blockchain technology emerged from the need for secure, transparent, and decentralized data management systems. Initially developed as the underlying technology for cryptocurrencies, blockchain has since expanded its applications to various industries, including finance, supply chain management, and healthcare. Key principles of blockchain include decentralization, consensus mechanisms, and smart contracts. These principles enable secure transactions and data integrity, fostering trust among users. The historical development of blockchain can be traced from its inception in the late 2000s to its current status as a transformative force in numerous sectors.
+Blockchain technology emerged from the desire for a decentralized, secure method of managing digital transactions. Initially conceptualized in the context of cryptocurrencies, it has since found applications across various industries, including finance, supply chain management, and healthcare. The foundational principles of blockchain—decentralization, transparency, and immutability—provide a robust framework for enhancing trust and efficiency in many applications.
+
+**Creative Question:** How can the principles of blockchain inform the ethical considerations of culinary sourcing and production?
 
 ### Current State of Knowledge in Both Fields
 
-Existing research on culinary innovation emphasizes the importance of collaboration, sustainability, and cultural preservation. Studies have highlighted successful case studies in which culinary professionals have adopted innovative practices to enhance their offerings and engage with consumers. In parallel, blockchain research has focused on its potential to enhance transparency and efficiency in supply chains, particularly in the food industry. However, there remains a lack of interdisciplinary research connecting culinary arts and blockchain technology, creating an opportunity for new insights and applications.
+Existing research in culinary innovation often focuses on the sensory aspects of food, culinary education, and the sociocultural implications of food practices. Concurrently, blockchain research has primarily concentrated on its technical aspects and applications in finance and supply chain management. However, there is a notable lack of interdisciplinary research connecting culinary arts and blockchain technology. This gap presents an opportunity for new insights and applications that can benefit both fields.
 
 ### Gaps and Opportunities Presented by the Shifted Domain
 
-The intersection of culinary arts and blockchain technology presents significant gaps in existing literature. Despite the potential for culinary principles to inform blockchain design, there is limited exploration of how these domains can coexist and mutually enhance each other. This research aims to fill this gap by proposing novel frameworks that integrate culinary concepts into blockchain applications, thereby fostering innovation and collaboration.
+The absence of interdisciplinary research at the intersection of culinary arts and blockchain technology highlights a significant opportunity. By exploring this uncharted territory, this dissertation aims to contribute to both fields, offering frameworks and applications that can enhance culinary practices while advancing blockchain technology.
+
+**Testable Hypothesis:** The integration of culinary arts into blockchain applications will lead to increased user engagement and satisfaction compared to traditional blockchain applications.
 
 ## Theoretical Framework
 
@@ -46,43 +68,45 @@ The intersection of culinary arts and blockchain technology presents significant
 
 #### Culinary Theory
 
-Culinary theory encompasses various concepts, including flavor profiles, ingredient interaction, and cooking techniques. Understanding these principles allows for the creation of innovative dishes and the exploration of new culinary experiences. Theories of flavor pairing, for instance, have been instrumental in guiding chefs in their creative processes, while techniques such as sous-vide cooking have revolutionized the way food is prepared and presented.
+Culinary theory encompasses various concepts, including flavor profiles, ingredient interaction, and cooking techniques. The understanding of how ingredients complement each other and how techniques can alter the final product is fundamental to culinary innovation. This theoretical foundation will inform the integration of culinary principles into blockchain applications.
+
+**New Theory:** The "Flavor Interaction Model" suggests that just as ingredients interact to create complex flavors, different blockchain components can be combined to enhance functionality and user experience.
 
 #### Blockchain Theory
 
-Blockchain theory is grounded in principles of decentralization, consensus mechanisms, and smart contracts. Decentralization eliminates the need for intermediaries, fostering direct interactions between users. Consensus mechanisms, such as Proof of Work and Proof of Stake, ensure that all participants in the network agree on the validity of transactions. Smart contracts facilitate automated and self-executing agreements, enhancing efficiency and reducing the potential for disputes.
+Blockchain theory is rooted in principles such as decentralization, consensus mechanisms, and smart contracts. These concepts provide the basis for understanding how blockchain technology operates and how it can be applied across different domains. The exploration of these principles will facilitate the development of a Culinary Blockchain Model.
 
 ### New Theoretical Constructs Emerging from the Shift
 
-This research proposes the development of a "Culinary Blockchain Model" that incorporates culinary principles into blockchain frameworks. This model will serve as a foundation for understanding how culinary concepts can enhance blockchain applications, particularly in areas such as user engagement, data integrity, and collaborative practices.
+The development of a "Culinary Blockchain Model" is a central focus of this dissertation. This model will incorporate culinary principles into blockchain frameworks, allowing for a more nuanced understanding of how these two fields can inform and enhance each other.
 
-### Proposed Integrated Theoretical Model
-
-The proposed integrated theoretical model illustrates the interplay between culinary concepts and blockchain technology. By visualizing the connections between these domains, the model highlights how culinary principles can inform blockchain design and vice versa. This model will serve as a guiding framework for the subsequent chapters of this dissertation.
-
-| Culinary Concept | Blockchain Application | Potential Outcomes |
-|------------------|-----------------------|--------------------|
-| Collaboration    | Decentralized networks | Enhanced community engagement |
-| Transparency      | Provenance tracking    | Increased consumer trust |
-| Innovation        | Smart contracts        | Streamlined processes and creativity |
+**Proposed Integrated Theoretical Model:** A visual representation of the interplay between culinary concepts and blockchain technology will be developed, illustrating how they can inform and enhance each other. This model will serve as a foundational tool for further research and application development.
 
 ## Methodology
 
 ### Research Design Overview
 
-This research employs a mixed-methods approach, combining qualitative and quantitative research to explore the integration of culinary arts and blockchain technology. This design allows for a comprehensive understanding of the intersection between these fields, drawing on the strengths of both methodologies.
+This dissertation will employ a mixed-methods approach, combining qualitative and quantitative research to explore the integration of culinary arts and blockchain technology. This approach allows for a comprehensive analysis of the intersection of these fields, capturing both the technical aspects of blockchain and the cultural dimensions of culinary practices.
 
 ### Data Collection Methods
 
-Data collection will involve surveys and interviews with culinary professionals, blockchain developers, and users. These methods will gather insights on the intersection of both fields, exploring perceptions, experiences, and challenges. Additionally, case studies of existing culinary blockchain applications will provide practical examples of how these domains are currently being integrated.
+Data collection will involve surveys and interviews with culinary professionals, blockchain developers, and users to gather insights on the intersection of both fields. Additionally, case studies of existing culinary blockchain applications will be conducted to identify best practices and areas for improvement.
+
+**Table 2: Data Collection Strategy**
+
+| Methodology         | Description                                         | Purpose                          |
+|---------------------|-----------------------------------------------------|----------------------------------|
+| Surveys              | Quantitative data from a broad audience            | Measure perceptions and experiences |
+| Interviews           | Qualitative insights from key stakeholders          | Gain in-depth understanding      |
+| Case Studies        | Analysis of existing applications                   | Identify best practices          |
 
 ### Analytical Approaches
 
-Qualitative data will be analyzed using thematic analysis, allowing for the identification of recurring themes and patterns in participants' responses. Quantitative data collected from surveys will undergo statistical analysis to identify trends and correlations between culinary principles and blockchain applications.
+Thematic analysis will be employed for qualitative data, allowing for the identification of trends and patterns in the responses of participants. Statistical analysis will be conducted on survey results to quantify relationships and correlations between culinary practices and blockchain applications.
 
 ### Ethical Considerations
 
-Ethical considerations will be paramount throughout the research process. Informed consent will be obtained from all participants, ensuring they understand the purpose and potential implications of the study. Additionally, measures will be taken to address potential biases in data collection and analysis, promoting the integrity of the research findings.
+Ethical considerations will include ensuring informed consent from participants and addressing potential biases in data collection and analysis. The research will adhere to ethical guidelines established by the Institutional Review Board (IRB).
 
 ## Core Chapters
 
@@ -90,86 +114,104 @@ Ethical considerations will be paramount throughout the research process. Inform
 
 #### Sub-section 1: Integrating Global Cuisines
 
-**Hypothesis**: Merging data streams from diverse culinary traditions can enhance blockchain applications.
+**Hypothesis:** Merging data streams from diverse culinary traditions can enhance blockchain applications.
 
-The integration of global cuisines into blockchain applications can provide a rich dataset that reflects culinary diversity. By developing a prototype decentralized application (DApp) that incorporates recipes from various cultures, this research aims to explore how culinary data fusion can enhance user engagement and creativity. The DApp will allow users to contribute their recipes, share cooking techniques, and collaborate on culinary projects, fostering a sense of community and cultural exchange.
+**Proposed Experiment:** Develop a prototype decentralized application (DApp) that incorporates recipes from various cultures. This DApp will serve as a platform for users to share and access culinary knowledge, promoting cultural exchange and innovation.
+
+**Creative Question:** How can the incorporation of diverse culinary traditions into blockchain applications foster a sense of global community?
 
 #### Sub-section 2: Enhancing Culinary Innovation
 
-**Hypothesis**: Culinary data fusion leads to new recipe development and culinary techniques.
+**Hypothesis:** Culinary data fusion leads to new recipe development and culinary techniques.
 
-To test this hypothesis, workshops will be conducted where culinary professionals collaborate to create new dishes using a curated dataset of global recipes. Participants will be encouraged to experiment with flavor combinations and cooking techniques, fostering an environment of creativity and innovation. The effectiveness of data fusion in culinary creativity will be evaluated through participant feedback and the assessment of the resulting dishes.
+**Proposed Experiment:** Conduct workshops to test the effectiveness of data fusion in culinary creativity. Participants will engage in collaborative cooking sessions, utilizing data-driven insights to create innovative dishes.
 
 ### Consensus Cooking Techniques
 
 #### Sub-section 1: Mapping Cooking Techniques to Consensus Mechanisms
 
-**Hypothesis**: Different cooking methods can inform the design of consensus protocols.
+**Hypothesis:** Different cooking methods can inform the design of consensus protocols.
 
-This section will analyze the efficiency of various consensus mechanisms through culinary analogies. For instance, the comparison of consensus protocols to cooking techniques—such as baking (where precise measurements and timing are crucial) versus grilling (which allows for more improvisation)—can provide insights into the strengths and weaknesses of each approach. By mapping cooking techniques to consensus mechanisms, this research aims to identify best practices for designing blockchain applications that prioritize efficiency and user engagement.
+**Proposed Experiment:** Analyze the efficiency of various consensus mechanisms through culinary analogies. By drawing parallels between cooking techniques and consensus protocols, we can identify best practices for enhancing blockchain functionality.
 
 #### Sub-section 2: Evaluating User Engagement
 
-**Hypothesis**: Culinary-inspired consensus mechanisms improve user engagement in blockchain applications.
+**Hypothesis:** Culinary-inspired consensus mechanisms improve user engagement in blockchain applications.
 
-To test this hypothesis, a culinary-themed blockchain application will be developed, incorporating elements of gamification and collaboration. User interaction will be measured through metrics such as participation rates, feedback, and overall satisfaction. The findings will provide valuable insights into how culinary-inspired design elements can enhance user engagement in blockchain applications.
+**Proposed Experiment:** Implement a culinary-themed blockchain application and measure user interaction. This study will assess how culinary elements can enhance user experience and foster community engagement.
 
 ### Recipe Development in Smart Contracts
 
 #### Sub-section 1: Iterative Development Processes
 
-**Hypothesis**: The iterative nature of recipe development can inform smart contract creation.
+**Hypothesis:** The iterative nature of recipe development can inform smart contract creation.
 
-This section will explore how the iterative processes involved in recipe development can be applied to the creation of smart contracts. By developing a series of smart contracts based on culinary recipes, this research aims to analyze their performance in terms of efficiency, adaptability, and user satisfaction. The findings will contribute to a deeper understanding of how culinary practices can inform the design of blockchain applications.
+**Proposed Experiment:** Develop a series of smart contracts based on culinary recipes and analyze their performance. This experiment will explore how iterative processes in cooking can inform the development of robust smart contracts.
 
 #### Sub-section 2: Standardization in Culinary Practices
 
-**Hypothesis**: Standardizing culinary practices through smart contracts enhances collaboration.
+**Hypothesis:** Standardizing culinary practices through smart contracts enhances collaboration.
 
-To test this hypothesis, a smart contract framework will be created for collaborative recipe development among chefs. This framework will outline the roles and responsibilities of participants, ensuring clarity and accountability in the collaborative process. The effectiveness of this framework will be evaluated through case studies of collaborative culinary projects, assessing the impact of standardization on collaboration and innovation.
+**Proposed Experiment:** Create a smart contract framework for collaborative recipe development among chefs. This framework will facilitate the sharing of culinary knowledge and promote collaborative innovation.
 
 ## Interdisciplinary Implications
 
 ### Impact on Original Domain A
 
-The integration of blockchain technology into culinary practices has the potential to enhance transparency and ethical sourcing. By utilizing blockchain to track the provenance of ingredients, culinary professionals can provide consumers with verifiable information about the origins of their food. This transparency fosters trust and accountability, encouraging ethical sourcing practices and supporting local producers.
+The integration of blockchain technology can significantly enhance culinary practices by promoting transparency and ethical sourcing. For instance, blockchain can track the provenance of ingredients, ensuring that culinary professionals can verify the authenticity and sustainability of their sources.
+
+**Creative Question:** How can blockchain technology be utilized to create a digital ledger of culinary heritage that preserves traditional recipes?
 
 ### Impact on Original Domain B
 
-Conversely, culinary principles can improve blockchain technology by enhancing user experience and application design. By incorporating elements of culinary creativity and collaboration, blockchain applications can become more engaging and accessible to users. This integration can lead to increased adoption and utilization of blockchain technology within the culinary industry, driving innovation and collaboration.
+Conversely, culinary principles can improve blockchain technology, particularly in user experience and application design. By incorporating culinary concepts into blockchain applications, developers can create more engaging and user-friendly platforms that resonate with diverse audiences.
+
+**Table 3: Interdisciplinary Impact Assessment**
+
+| Impact Area         | Culinary Arts Contribution                       | Blockchain Technology Contribution |
+|---------------------|-------------------------------------------------|-----------------------------------|
+| Transparency         | Improved ingredient sourcing                     | Enhanced data integrity            |
+| User Engagement      | Culinary storytelling in applications            | Gamification elements in blockchain|
+| Cultural Exchange    | Global recipe sharing                            | Cross-cultural collaborations      |
 
 ### Potential for New Sub-disciplines or Fields
 
-The intersection of culinary arts and blockchain technology presents opportunities for the emergence of new sub-disciplines, such as Culinary Blockchain Management and Culinary Data Science. These fields will focus on the integration of culinary practices with blockchain applications, fostering interdisciplinary collaboration and innovation.
+The exploration of the Culinary Blockchain Domain may give rise to emerging fields such as Culinary Blockchain Management and Culinary Data Science. These sub-disciplines can foster interdisciplinary collaboration and innovation, ultimately enriching both culinary arts and blockchain technology.
 
 ## Practical Applications
 
 ### Industry Relevance
 
-The potential applications of this research in the culinary industry are vast. Decentralized recipe sharing platforms can empower chefs to share their creations and collaborate with others, fostering a sense of community and innovation. Additionally, tokenized culinary contributions can incentivize participation and reward creativity, enhancing engagement within the culinary blockchain ecosystem.
+Potential applications in the culinary industry include decentralized recipe-sharing platforms and tokenized culinary contributions. These innovations can empower chefs and home cooks alike, enabling them to share their culinary creations while receiving recognition and compensation.
+
+**Hypothesis:** The implementation of tokenized culinary contributions will increase the quantity and quality of shared recipes in decentralized platforms.
 
 ### Policy Implications
 
-Policymakers play a crucial role in promoting the integration of blockchain technology in the food industry. Recommendations for policymakers include supporting research and development initiatives that explore the intersection of culinary arts and blockchain technology. Additionally, policies that encourage transparency and ethical sourcing practices can help drive the adoption of blockchain solutions in the culinary sector.
+Policymakers should consider promoting the integration of blockchain technology in the food industry. By supporting initiatives that leverage blockchain for transparency and ethical sourcing, governments can foster innovation and sustainability within the culinary sector.
 
 ### Societal Impact
 
-The integration of culinary arts and blockchain technology has the potential to foster cultural preservation and innovation in culinary practices. By utilizing blockchain to document and share culinary traditions, communities can celebrate their cultural heritage while encouraging the exploration of new culinary experiences. This integration can lead to a more inclusive and diverse culinary landscape, enriching the experiences of consumers and culinary professionals alike.
+The integration of culinary arts and blockchain technology can foster cultural preservation and innovation in culinary practices. By creating platforms that celebrate diverse culinary traditions, we can promote cultural exchange and appreciation within the global community.
 
 ## Future Research Directions
 
 ### Short-term Research Opportunities
 
-Short-term research opportunities include investigating user experience in existing culinary blockchain applications and gathering feedback for improvements. This research can provide valuable insights into the challenges and opportunities faced by users, informing the design of future applications.
+Investigating user experience in existing culinary blockchain applications will provide valuable insights for future developments. Gathering feedback from users can inform improvements and enhancements to these platforms.
 
 ### Long-term Research Agenda
 
-A long-term research agenda should focus on developing comprehensive frameworks for interdisciplinary collaboration between culinary arts and blockchain technology. This agenda can explore the potential for joint research initiatives, educational programs, and industry partnerships that promote innovation and collaboration.
+Developing comprehensive frameworks for interdisciplinary collaboration between culinary arts and blockchain technology will be essential for advancing both fields. Future research should explore the potential for collaborative projects and initiatives that bridge these domains.
+
+**Creative Question:** What role can culinary schools play in shaping the future of blockchain technology in the culinary industry?
 
 ### Potential Collaborations and Interdisciplinary Projects
 
-Establishing partnerships between culinary schools and blockchain technology firms can facilitate research and educational initiatives. Collaborative projects can explore the practical applications of blockchain technology in culinary arts, fostering innovation and enhancing the educational experience for students in both fields.
+Establishing partnerships between culinary schools and blockchain technology firms can lead to innovative research and educational initiatives. Collaborative projects can foster a deeper understanding of both fields and promote the development of practical applications.
 
 ## Conclusion
 
-This dissertation aims to pave the way for groundbreaking research at the intersection of culinary arts and blockchain technology. By developing a comprehensive framework that integrates principles from both domains, this work will contribute to the advancement of culinary practices and the evolution of blockchain applications. Ultimately, this research seeks to foster a collaborative and innovative culinary ecosystem that celebrates cultural heritage and promotes ethical practices, paving the way for a more sustainable and equitable food system. 26.484071969985962
+This dissertation aims to pave the way for groundbreaking research at the intersection of culinary arts and blockchain technology. By developing a comprehensive framework that integrates principles from both domains, this work will contribute to the advancement of culinary practices and the evolution of blockchain applications. Ultimately, this research seeks to foster a collaborative and innovative culinary ecosystem that celebrates cultural heritage and promotes ethical practices. Through the integration of culinary arts and blockchain technology, we can create a future that honors tradition while embracing innovation. 
+
+**Final Thought:** As we venture into the Culinary Blockchain Domain, we invite culinary professionals, technologists, and policymakers to collaborate in crafting a future where culinary arts thrive in a transparent, ethical, and innovative technological landscape. 54.96696972846985

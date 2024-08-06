@@ -2,22 +2,9 @@
 
 FieldSHIFT-2 is a sophisticated system for executing domain shifting operations. It provides a high-level interface for users to transform input domains into shifted domains and generate corresponding dissertation outlines.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Directory Structure](#directory-structure)
-- [Key Components](#key-components)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
-- [Visualization](#visualization)
-
 ## Overview
 
-FieldSHIFT-2 takes input domains, generates pro-shifted domains, performs domain shifting, and creates dissertation outlines based on the shifted domains.
-It also includes translation & linguistic analysis capabilities for comprehensive evaluation of the results.
+FieldSHIFT-2 is a framework for domain shifting operations. It processes input domains, generates pro-shifted and shifted domains, and creates dissertation outlines. The system also includes translation and linguistic analysis features for result evaluation.
 
 ## Directory Structure
 

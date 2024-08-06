@@ -52,13 +52,13 @@ def improve_dissertation(dissertation_content: str, llm_params: Dict[str, Any]) 
     1. Maintain the existing structure and core arguments of the dissertation.
     2. Add depth and length to each section by incorporating additional unique explanations, salient creative questions, and advanced concepts.
     3. Introduce tables of alternative outcomes to showcase different perspectives or potential results.
-    4. Formulate and include testable hypotheses that extend the research.
-    5. Enhance the academic language and terminology where appropriate.
-    6. Integrate new, cutting-edge theories or methodologies that complement the existing content.
+    4. Formulate and include specific, formulated,testable, falsifiable hypotheses that extend the research.
+    5. Enhance the concise academic language and terminology where appropriate.
+    6. Integrate new creatively-named theories or structured methodologies that complement and extend the existing content.
     7. Propose innovative experiments or research directions that build upon the current work.
     8. Expand on the implications and applications of the research, considering interdisciplinary connections.
     9. Ensure improved coherence and flow between sections.
-    10. Maintain and elevate the professional academic tone throughout the dissertation.
+    10. Maintain and elevate the crisp professional academic tone throughout the dissertation.
 
     Here's the dissertation to improve:
 

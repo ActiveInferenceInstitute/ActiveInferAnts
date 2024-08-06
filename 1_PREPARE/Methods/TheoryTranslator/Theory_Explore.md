@@ -96,4 +96,3 @@ Building on the existing perspectives in TheoryTranslator.py, here are some addi
    - Consciousness: "Self-concept"
 
 These additional perspectives further enrich the Three Minds framework, demonstrating its applicability across various domains of psychology and cognitive science. They could be incorporated into the ThreeMindsAnalyzer class to expand its scope and analytical capabilities.
-

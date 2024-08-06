@@ -100,7 +100,7 @@ Example: Italian pasta-making traditions vary by region, with each area speciali
 Example: Spanish paella is a traditional dish that combines rice, saffron, and a variety of seafood or meats.
 Example: Ethiopian injera is a sourdough flatbread that serves as both a utensil and a base for various stews and dishes.
 
-# Ingredient
+## Ingredient
 
 Definition: An ingredient is a substance used in cooking to prepare a dish or beverage.
 Example: Salt is a fundamental ingredient used for seasoning and preservation in many cuisines.
@@ -201,7 +201,7 @@ Example: Nutritional yeast, popular in vegan cooking, provides a cheesy flavor a
 Example: Sumac, a Middle Eastern spice, adds a tangy, lemony flavor to dishes.
 Example: Harissa, a North African chili paste, adds heat and depth to stews and sauces.
 
-# Technique
+## Technique
 
 Definition: A culinary technique is a specific method or procedure used in food preparation and cooking.
 Example: Braising involves first searing meat at high heat, then cooking it slowly in liquid to tenderize tough cuts.
@@ -262,7 +262,7 @@ Example: Molecular gastronomy techniques like spherification create unique textu
 Example: The Italian technique of pulling mozzarella by hand ensures the proper texture and stretchiness of fresh mozzarella cheese.
 Example: Pressure cooking uses steam under pressure to cook foods quickly while retaining moisture and flavor, ideal for tough cuts of meat or dried beans.
 
-# Recipe
+## Recipes
 
 Definition: A recipe is a set of instructions for preparing a particular dish, including ingredients, quantities, and cooking methods.
 Example: A classic French baguette recipe includes flour, water, yeast, and salt, with specific instructions for kneading, proofing, and baking.

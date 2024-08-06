@@ -1,8 +1,8 @@
-## Research Methods Version 2
+# Research Methods Version 2
 
 This document outlines the second iteration of research methodologies, building upon the concepts explored in the `./Research_Methods/` directory. The objective is to present these methodologies in a more generalized, comprehensible, and applicable manner.
 
-### Abstracted and Generalized Methods (with Rationale for Improvement)
+## Abstracted and Generalized Methods (with Rationale for Improvement)
 
 Enhanced handling of combinatorics and prompt schema:
 Currently, we have Entities, Grants, and Catechisms, and are concatenating them in a single way. We need to handle a broader range of elements, select combinations/orderings of them, sub-sample/filter them, and use different prompt schemas (e.g., Grant_Summary+Entity to assess Relevance, Full_Grant_Call to summarize a grant, Entity and review flexibility) while maintaining interpretability in a more efficient manner than long file names, and continually exporting to detailed text files.
@@ -29,3 +29,4 @@ Currently, we have Entities, Grants, and Catechisms, and are concatenating them 
 - Include access to and incorporation of external knowledge bases, such as scientific papers or API calls, especially for specific and technical information.
 - Support for various input/output formats, including visual and auditory.
 - Comprehensive FAQ, Q&A, methods documentation, and accessibility features.
+-

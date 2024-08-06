@@ -1,4 +1,5 @@
 # Guest Experience
+
 Definition: The guest experience encompasses all interactions and impressions a guest has with a hospitality establishment from pre-arrival to post-departure.
 Example: A luxury hotel creates a seamless guest experience through personalized check-in, attentive service, and follow-up communication after the stay.
 Example: An all-inclusive resort offers a comprehensive guest experience by providing accommodations, dining, activities, and entertainment in one package.
@@ -81,7 +82,8 @@ Example: A boutique hotel offers curated city guides and exclusive local partner
 Example: A ski resort provides personalized ski lessons and equipment fittings to cater to individual guest needs.
 Example: A vineyard offers private tours and tastings with the winemaker to create a unique guest experience.
 
-# Service Delivery
+## Service Delivery
+
 Definition: Service delivery in hospitality refers to the process of providing services to guests, encompassing all touchpoints and interactions.
 Example: A concierge service at a luxury hotel delivers personalized recommendations and reservations for guests.
 Example: A cruise ship's dining service includes multiple restaurants, buffets, and room service options to cater to diverse guest preferences.
@@ -164,7 +166,8 @@ Example: A luxury hotel offers a pillow menu to cater to individual guest prefer
 Example: A restaurant chain uses a loyalty program to provide personalized offers and rewards to frequent diners.
 Example: A theme park provides VIP tours and exclusive access to attractions for premium guests.
 
-# Hospitality Management
+## Hospitality Management
+
 Definition: Hospitality management encompasses the administration and oversight of businesses in the hospitality industry, including hotels, restaurants, events, and tourism.
 Example: A hotel general manager oversees all aspects of hotel operations, from front office and housekeeping to food and beverage services.
 Example: A restaurant manager coordinates kitchen and dining room staff, manages inventory, and ensures compliance with health and safety regulations.

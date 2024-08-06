@@ -87,7 +87,7 @@ Example: Fortnite's battle royale mode and live service model reshaped multiplay
 Example: The Walking Dead by Telltale Games revitalized the adventure game genre with its focus on narrative choices, influencing story-driven games like Life is Strange and Detroit: Become Human.
 Example: Dota, originally a Warcraft III mod, gave birth to the MOBA genre, leading to hugely popular games like League of Legends and Heroes of the Storm.
 
-# Gaming Technology
+## Gaming Technology
 
 Definition: Gaming technology encompasses the hardware and software systems used to create, run, and enhance video game experiences.
 Example: The PlayStation 5's SSD allows for near-instantaneous loading times, significantly reducing wait times between gameplay sections and enabling new game design possibilities.
@@ -197,7 +197,7 @@ Example: Dark Souls' challenging gameplay and interconnected world design influe
 Example: Fortnite's battle royale mode and live service model reshaped multiplayer gaming and in-game events.
 Example: The Walking Dead by Telltale Games revitalized the adventure game genre with its focus on narrative choices.
 
-# Gaming Technology
+## Gaming Technologies
 
 Definition: Gaming technology encompasses the hardware and software systems used to create, run, and enhance video game experiences.
 Example: The PlayStation 5's SSD allows for near-instantaneous loading times, significantly reducing wait times between gameplay sections.
@@ -274,7 +274,7 @@ Example: The adoption of free-to-play models, pioneered by games like League of 
 Example: The development of photogrammetry techniques has allowed for the creation of highly detailed, realistic game environments based on real-world scans.
 Example: The integration of Twitch streaming directly into consoles has made broadcasting gameplay more accessible to the average player.
 
-# Gaming Culture and Industry
+## Gaming Culture and Industry
 
 Definition: Gaming culture encompasses the shared experiences, communities, and social phenomena that arise from video game engagement.
 Example: Cosplay, the practice of dressing up as video game characters, has become a significant aspect of gaming conventions and fan expression.
