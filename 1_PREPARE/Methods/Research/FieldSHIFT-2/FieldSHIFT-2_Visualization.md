@@ -1,7 +1,7 @@
 # Visualization
 
 The following ASCII art illustrates the flow of the FieldSHIFT-2 framework:
-```
+
    Input Domain
         │
         ▼
@@ -41,7 +41,7 @@ The following ASCII art illustrates the flow of the FieldSHIFT-2 framework:
         │
         ▼
 ┌───────────────────┐
-│   dissertation_   │
+│   dissertation_│
 │    improver.py    │
 └───────────────────┘
         │
@@ -65,6 +65,5 @@ Translated Dissertation
         │
         ▼
   Analysis Results
-```
 
 This visualization demonstrates the sequential flow of data through the various components of the FieldSHIFT-2 framework, from the initial input domain to the final analysis results.

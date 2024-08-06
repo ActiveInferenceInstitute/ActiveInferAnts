@@ -1,4 +1,5 @@
 # Cuisine
+
 Definition: A cuisine is a characteristic style of cooking practices and traditions, often associated with a specific culture or geographic region.
 Example: French cuisine is known for its rich sauces, delicate herbs, and emphasis on technique.
 Example: Japanese cuisine focuses on seasonal ingredients, minimalist presentation, and umami flavors.
@@ -100,6 +101,7 @@ Example: Spanish paella is a traditional dish that combines rice, saffron, and a
 Example: Ethiopian injera is a sourdough flatbread that serves as both a utensil and a base for various stews and dishes.
 
 # Ingredient
+
 Definition: An ingredient is a substance used in cooking to prepare a dish or beverage.
 Example: Salt is a fundamental ingredient used for seasoning and preservation in many cuisines.
 Example: Eggs serve multiple functions in cooking, acting as binders, leaveners, or emulsifiers in various recipes.
@@ -200,6 +202,7 @@ Example: Sumac, a Middle Eastern spice, adds a tangy, lemony flavor to dishes.
 Example: Harissa, a North African chili paste, adds heat and depth to stews and sauces.
 
 # Technique
+
 Definition: A culinary technique is a specific method or procedure used in food preparation and cooking.
 Example: Braising involves first searing meat at high heat, then cooking it slowly in liquid to tenderize tough cuts.
 Example: Emulsification is the technique of combining two immiscible liquids, such as oil and vinegar, to create a stable mixture like mayonnaise.
@@ -260,6 +263,7 @@ Example: The Italian technique of pulling mozzarella by hand ensures the proper 
 Example: Pressure cooking uses steam under pressure to cook foods quickly while retaining moisture and flavor, ideal for tough cuts of meat or dried beans.
 
 # Recipe
+
 Definition: A recipe is a set of instructions for preparing a particular dish, including ingredients, quantities, and cooking methods.
 Example: A classic French baguette recipe includes flour, water, yeast, and salt, with specific instructions for kneading, proofing, and baking.
 Example: A Thai green curry recipe lists ingredients like coconut milk, green chilies, and kaffir lime leaves, with steps for making the curry paste and cooking the dish.
@@ -288,4 +292,3 @@ Example: Step-by-step instructions in recipes are typically written in a clear, 
 Explanation: Recipe adaptation involves modifying existing recipes to accommodate dietary restrictions, ingredient availability, or personal preferences.
 Example: Adapting a traditional wheat-based pasta recipe to use gluten-free flours requires adjustments in liquid ratios and binding agents.
 Example: Veganizing a classic beef stew recipe might involve substituting plant-based proteins and developing umami flavors through other ingredients.
-

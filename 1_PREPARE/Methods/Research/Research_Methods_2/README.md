@@ -24,6 +24,7 @@ Currently, we have Entities, Grants, and Catechisms, and are concatenating them 
     - Rationale: Supporting various document schemas and formats will increase the flexibility and applicability of the research methodologies, allowing them to be used with a wider range of input data and generating outputs tailored to specific requirements.
 
 ### Feature Extensions
+
 - Incorporate flexible linguistic features abstracted from the LLM substrate, such as: Extend_Length, Professionalize, Review, Translate, Summarize, Make_Into_Table, Make_Section/Paper_Outline, Write_From_Outline, etc.
 - Include access to and incorporation of external knowledge bases, such as scientific papers or API calls, especially for specific and technical information.
 - Support for various input/output formats, including visual and auditory.

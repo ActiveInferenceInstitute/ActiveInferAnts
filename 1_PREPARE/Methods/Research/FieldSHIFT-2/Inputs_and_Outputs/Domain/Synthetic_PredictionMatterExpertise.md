@@ -1,4 +1,5 @@
 # Prediction Matter Expertise
+
 Definition: Prediction Matter Expertise (PME) involves the ability to switch, infer, and act across various subjects, integrating knowledge from multiple domains to make informed predictions and decisions.
 Example: A data scientist uses PME to analyze trends across different industries, predicting market shifts and advising on strategic investments.
 Example: A healthcare professional applies PME to integrate patient data, medical research, and treatment protocols, optimizing patient care.
@@ -95,14 +96,16 @@ Example: By supporting sustainable growth and development.
 Example: By enhancing employee engagement and professional development.
 Example: By building stronger relationships with stakeholders through comprehensive insights.
 
-# Key Questions
+## Key Questions
+
 Question: How can PME be developed and enhanced through education and training?
 Question: What are the challenges and opportunities in applying PME in various industries?
 Question: How does PME contribute to organizational success and resilience?
 Question: What role does cross-disciplinary synthesis play in effective PME?
 Question: How can continuous learning and adaptation be fostered in PME practitioners?
 
-# Memes, Jokes, and Phrases
+## Memes, Jokes, and Phrases
+
 Example: "Switching gears like a PME pro!"
 Example: "When in doubt, synthesize it out."
 Example: "Predicting the future, one cross-disciplinary insight at a time."
@@ -153,11 +156,10 @@ Example: "PME: The art of turning data into destiny."
 Example: "PME: The ultimate skill for the modern professional."
 Example: "PME: The art of making informed predictions."
 Example: "PME: The ultimate tool for navigating uncertainty."
-
-# Final Call
 Example: "The future belongs to those who can predict it." — Inspired by Peter Drucker
 
-# Push and Pull: A Priming Sequence
+## Push and Pull: A Priming Sequence
+
 Definition: The document explores the decoupling of cognitive (covert, attentional) and bodily (overt) behaviors.
 Example: It provides a sequence of hands-on computer exercises to understand how attention interacts with computer use movements.
 
@@ -171,6 +173,7 @@ Example: Semantic Chunking/Buffering are techniques to enhance cognitive efficie
 Example: Embodied and Mental Coordination involves the integration of physical and cognitive actions.
 
 # Exercise Sequence
+
 Example: Baseline Movement: Move the computer mouse or attention between two points (A and B).
 Example: Moving with Awareness: Intentionally move between points A and B, noticing the difference between Push and Pull.
 Example: Moving with Bodily Awareness: Move the mouse while pursing lips to engage motor behavior and repress speech preparation.
@@ -209,5 +212,5 @@ Example: Second mode: Canal jumping to higher epistemic optionality.
 Definition: Development of Knowledge occurs through conversations with different patterns and media.
 Definition: Language is gap-respecting in its essence.
 Example: May your reading illuminate the lights and darks of language.
-Question: What does it mean for PME and SME to be gripper-and-gripped? 
+Question: What does it mean for PME and SME to be gripper-and-gripped?
 Question: What does it mean that "Unity is plural and at minimum two"?
