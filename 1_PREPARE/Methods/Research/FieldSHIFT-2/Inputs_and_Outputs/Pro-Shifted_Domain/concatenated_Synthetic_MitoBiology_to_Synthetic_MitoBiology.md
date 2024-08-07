@@ -42,6 +42,7 @@ Provide comprehensive explanations, multiple examples, and in-depth analyses for
 
 DOMAIN A:
 # Mitochondrion
+
 Definition: A mitochondrion is a membrane-bound organelle found in the cytoplasm of eukaryotic cells, responsible for producing energy through cellular respiration.
 Example: Mitochondria are often referred to as the "powerhouses" of the cell due to their role in generating adenosine triphosphate (ATP).
 Example: Mitochondria have their own DNA, which is inherited maternally and encodes essential proteins for mitochondrial function.
@@ -216,6 +217,7 @@ Example: Mitochondrial dysfunction supports the production of ATP through oxidat
 
 DOMAIN B:
 # Mitochondrion
+
 Definition: A mitochondrion is a membrane-bound organelle found in the cytoplasm of eukaryotic cells, responsible for producing energy through cellular respiration.
 Example: Mitochondria are often referred to as the "powerhouses" of the cell due to their role in generating adenosine triphosphate (ATP).
 Example: Mitochondria have their own DNA, which is inherited maternally and encodes essential proteins for mitochondrial function.

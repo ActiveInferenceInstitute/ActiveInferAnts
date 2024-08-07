@@ -13,7 +13,7 @@ logger = logging.getLogger('FieldSHIFT-2')
 
 # List of target audiences
 TARGET_AUDIENCES = [
-    "curious 5-year-old",  "well-studied & highly motivated skeptical PhD student", "high school senior undecided on whether or where to go to college", "advanced technical professional"
+    "curious 5-year-old",  "well-studied & highly motivated skeptical PhD student", "high school senior undecided on whether or where to go to college", "possible private donor", "advanced technical professional"
 ]
 
 def get_api_key():

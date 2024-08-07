@@ -215,7 +215,7 @@ Example: Pull Movements are goal-oriented, temporally thicker strategies.
 Example: Semantic Chunking/Buffering are techniques to enhance cognitive efficiency.
 Example: Embodied and Mental Coordination involves the integration of physical and cognitive actions.
 
-# Exercise Sequence
+## Push and Pull attention Exercise Sequence
 
 Example: Baseline Movement: Move the computer mouse or attention between two points (A and B).
 Example: Moving with Awareness: Intentionally move between points A and B, noticing the difference between Push and Pull.
@@ -261,6 +261,7 @@ Question: What does it mean that "Unity is plural and at minimum two"?
 
 DOMAIN B:
 # Mitochondrion
+
 Definition: A mitochondrion is a membrane-bound organelle found in the cytoplasm of eukaryotic cells, responsible for producing energy through cellular respiration.
 Example: Mitochondria are often referred to as the "powerhouses" of the cell due to their role in generating adenosine triphosphate (ATP).
 Example: Mitochondria have their own DNA, which is inherited maternally and encodes essential proteins for mitochondrial function.
