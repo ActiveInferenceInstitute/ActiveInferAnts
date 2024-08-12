@@ -67,6 +67,7 @@ CLONE_HOLOCHAIN = False
 CLONE_EBPF = False
 CLONE_KAFKA = False
 CLONE_SUMO = False
+CLONE_STRUCTURED_OUTPUTS = False
 
 # Repositories to clone
 repos_to_clone = {
@@ -219,6 +220,14 @@ repos_to_clone = {
         "https://github.com/ontologyportal/JavaRes",
         "https://github.com/ontologyportal/TPTP-ANTLR",
         "https://github.com/ontologyportal/semconcor"
+    ],
+    "Structured_Outputs": [
+        "https://github.com/jxnl/instructor",
+        "https://github.com/instructor-ai/instructor-js",
+        "https://github.com/steve-practicalai/structured-output-schema-generator",
+        "https://github.com/ryoppippi/openai-with-typia",
+        "https://github.com/sourceduty/Topology_Optimize",
+        "https://github.com/SeanPlusPlus/openaijson"
     ]
 }
 
@@ -285,3 +294,11 @@ if __name__ == "__main__":
     if CLONE_KAFKA:
         print("Cloning Kafka repositories...")
         clone_repos(repos_to_clone["Kafka"], os.path.join(target_dir, "Kafka"))
+    
+    if CLONE_SUMO:
+        print("Cloning SUMO repositories...")
+        clone_repos(repos_to_clone["SUMO"], os.path.join(target_dir, "SUMO"))
+    
+    if CLONE_STRUCTURED_OUTPUTS:
+        print("Cloning Structured Outputs repositories...")
+        clone_repos(repos_to_clone["Structured_Outputs"], os.path.join(target_dir, "Structured_Outputs"))

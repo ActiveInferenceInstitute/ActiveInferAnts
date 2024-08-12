@@ -14,12 +14,9 @@ Currently, we have Entities, Grants, and Catechisms, and are concatenating them 
 2. **Enhanced and Flexible LLM Interactions**:
     - Current State: The OpenAI API call method is implemented separately in the Pro-Grant writing and review scripts.
     - Improvement Goal: Create a single script that can process a directory of text files (prompts) and produce a directory with the LLM-processed text files. This will provide clearer and more flexible LLM interactions, improving usability and consistency.
+    - Use https://github.com/openai/openai-python  https://openai.com/index/introducing-structured-outputs-in-the-api/n
 
-3. **Implement the FieldSHIFT Paper Method from Scratch**:
-    - Goal: Develop a script that implements the FieldSHIFT methodology as described in the `FieldSHIFT_prompt.md` file. This script should take a neuroscience text as input and translate it into developmental biology terminology, maintaining the underlying concepts and relationships.
-    - Rationale: Implementing the FieldSHIFT method will enable the exploration of cross-disciplinary analogies and the generation of novel hypotheses in developmental biology based on neuroscience research.
-
-4. **Support for Various Document Schemas and Formats**:
+3. . **Support for Various Document Schemas and Formats**:
     - Goal: Extend the existing scripts to handle different types of document schemas and formats, such as single paragraphs, single pages, sub-sections, etc. This will involve developing methods to parse and process these different formats consistently.
     - Rationale: Supporting various document schemas and formats will increase the flexibility and applicability of the research methodologies, allowing them to be used with a wider range of input data and generating outputs tailored to specific requirements.
 
