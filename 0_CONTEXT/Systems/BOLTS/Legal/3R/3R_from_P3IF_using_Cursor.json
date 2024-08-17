@@ -1,0 +1,44 @@
+{
+  "Energy Management": [
+    {"Setting": "Grid Congestion Management", "Sub-domain": "Utilities", "Recognize": "Congestion data", "Remember": "Historical congestion patterns", "Respond": "Adjust power flow"},
+    {"Setting": "Advanced Metering Infrastructure", "Sub-domain": "Utilities", "Recognize": "Meter data", "Remember": "Consumption history", "Respond": "Optimize billing"},
+    {"Setting": "Distributed Energy Resources", "Sub-domain": "Utilities", "Recognize": "DER status", "Remember": "Resource capacity", "Respond": "Balance supply and demand"},
+    {"Setting": "Power System Protection", "Sub-domain": "Utilities", "Recognize": "Fault signals", "Remember": "Protection schemes", "Respond": "Isolate fault"},
+    {"Setting": "Grid Optimization", "Sub-domain": "Utilities", "Recognize": "Operational data", "Remember": "Optimization algorithms", "Respond": "Enhance efficiency"}
+  ],
+  "Immigration Management": [
+    {"Setting": "Visa Processing", "Sub-domain": "Government", "Recognize": "Applicant data", "Remember": "Visa history", "Respond": "Approve or deny visa"},
+    {"Setting": "Asylum Management", "Sub-domain": "Government", "Recognize": "Asylum request", "Remember": "Case history", "Respond": "Grant or deny asylum"},
+    {"Setting": "Labor Market Impact", "Sub-domain": "Government", "Recognize": "Employment data", "Remember": "Labor statistics", "Respond": "Adjust immigration policy"},
+    {"Setting": "Cultural Diversity", "Sub-domain": "Government", "Recognize": "Demographic data", "Remember": "Cultural programs", "Respond": "Promote integration"},
+    {"Setting": "National Security", "Sub-domain": "Government", "Recognize": "Security threats", "Remember": "Threat intelligence", "Respond": "Enhance border control"}
+  ],
+  "Math Education": [
+    {"Setting": "Conceptual Understanding", "Sub-domain": "Education", "Recognize": "Student responses", "Remember": "Learning progress", "Respond": "Adjust teaching methods"},
+    {"Setting": "Problem-Solving Skills", "Sub-domain": "Education", "Recognize": "Student performance", "Remember": "Problem-solving techniques", "Respond": "Provide feedback"},
+    {"Setting": "Mathematical Reasoning", "Sub-domain": "Education", "Recognize": "Reasoning patterns", "Remember": "Reasoning frameworks", "Respond": "Guide reasoning development"},
+    {"Setting": "Technology Integration", "Sub-domain": "Education", "Recognize": "Tech usage", "Remember": "Tech tools", "Respond": "Enhance learning experience"},
+    {"Setting": "Student Engagement", "Sub-domain": "Education", "Recognize": "Engagement levels", "Remember": "Engagement strategies", "Respond": "Increase participation"}
+  ],
+  "Government Accessibility": [
+    {"Setting": "Physical Accessibility", "Sub-domain": "Public Services", "Recognize": "Accessibility needs", "Remember": "Facility layouts", "Respond": "Implement accommodations"},
+    {"Setting": "Digital Accessibility", "Sub-domain": "Public Services", "Recognize": "User feedback", "Remember": "Accessibility standards", "Respond": "Improve digital platforms"},
+    {"Setting": "Language Accessibility", "Sub-domain": "Public Services", "Recognize": "Language preferences", "Remember": "Translation resources", "Respond": "Provide translations"},
+    {"Setting": "Service Availability", "Sub-domain": "Public Services", "Recognize": "Service demand", "Remember": "Service schedules", "Respond": "Adjust availability"},
+    {"Setting": "Emergency Preparedness", "Sub-domain": "Public Services", "Recognize": "Risk assessments", "Remember": "Preparedness plans", "Respond": "Enhance readiness"}
+  ],
+  "Artificial Intelligence": [
+    {"Setting": "Machine Learning", "Sub-domain": "AI", "Recognize": "Training data", "Remember": "Model parameters", "Respond": "Update model"},
+    {"Setting": "Natural Language Processing", "Sub-domain": "AI", "Recognize": "Text data", "Remember": "Language models", "Respond": "Generate text"},
+    {"Setting": "Computer Vision", "Sub-domain": "AI", "Recognize": "Image data", "Remember": "Image features", "Respond": "Classify images"},
+    {"Setting": "Robotics", "Sub-domain": "AI", "Recognize": "Sensor data", "Remember": "Movement patterns", "Respond": "Control movements"},
+    {"Setting": "AI Ethics", "Sub-domain": "AI", "Recognize": "Ethical concerns", "Remember": "Ethical guidelines", "Respond": "Ensure compliance"}
+  ],
+  "Quantum Computing": [
+    {"Setting": "Quantum Algorithms", "Sub-domain": "Quantum Computing", "Recognize": "Problem requirements", "Remember": "Algorithm designs", "Respond": "Execute algorithms"},
+    {"Setting": "Quantum Cryptography", "Sub-domain": "Quantum Computing", "Recognize": "Security needs", "Remember": "Cryptographic protocols", "Respond": "Secure communication"},
+    {"Setting": "Quantum Simulation", "Sub-domain": "Quantum Computing", "Recognize": "Simulation parameters", "Remember": "Simulation models", "Respond": "Run simulations"},
+    {"Setting": "Quantum Machine Learning", "Sub-domain": "Quantum Computing", "Recognize": "Training data", "Remember": "Quantum models", "Respond": "Train models"},
+    {"Setting": "Quantum Hardware", "Sub-domain": "Quantum Computing", "Recognize": "Hardware specifications", "Remember": "Hardware configurations", "Respond": "Optimize hardware"}
+  ]
+}

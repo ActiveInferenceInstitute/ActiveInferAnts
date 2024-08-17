@@ -1,0 +1,1154 @@
+{
+    "HealthCare": [
+        {
+            "Setting": "Preventive Care",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Organ Transplantation",
+            "Remember": "Physical Therapist",
+            "Respond": "Handle preventive care with organ transplantation by physical therapist"
+        },
+        {
+            "Setting": "Patient Satisfaction",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Speech Therapy",
+            "Remember": "Physical Therapist",
+            "Respond": "Handle patient satisfaction with speech therapy by physical therapist"
+        },
+        {
+            "Setting": "Care Coordination",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Occupational Therapy",
+            "Remember": "Epidemiologist",
+            "Respond": "Handle care coordination with occupational therapy by epidemiologist"
+        },
+        {
+            "Setting": "Diagnostic Precision",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Respiratory Therapy",
+            "Remember": "Technician",
+            "Respond": "Handle diagnostic precision with respiratory therapy by technician"
+        },
+        {
+            "Setting": "Chronic Disease Management",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Radiation Therapy",
+            "Remember": "Geneticist",
+            "Respond": "Handle chronic disease management with radiation therapy by geneticist"
+        },
+        {
+            "Setting": "Community Outreach",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Laboratory Testing",
+            "Remember": "Legal Counsel",
+            "Respond": "Handle community outreach with laboratory testing by legal counsel"
+        },
+        {
+            "Setting": "Accessibility",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Consent Obtaining",
+            "Remember": "Health Economist",
+            "Respond": "Handle accessibility with consent obtaining by health economist"
+        },
+        {
+            "Setting": "Equipment Reliability",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Consent Obtaining",
+            "Remember": "Geneticist",
+            "Respond": "Handle equipment reliability with consent obtaining by geneticist"
+        },
+        {
+            "Setting": "Diagnostic Precision",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Consent Obtaining",
+            "Remember": "Financial Analyst",
+            "Respond": "Handle diagnostic precision with consent obtaining by financial analyst"
+        },
+        {
+            "Setting": "Genetic Testing",
+            "Sub-domain": "HealthCare",
+            "Recognize": "Occupational Therapy",
+            "Remember": "Anesthesiologist",
+            "Respond": "Handle genetic testing with occupational therapy by anesthesiologist"
+        }
+    ],
+    "Blockchain": [
+        {
+            "Setting": "Data Integrity",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Block Creation",
+            "Remember": "Blockchain Journalist",
+            "Respond": "Handle data integrity with block creation by blockchain journalist"
+        },
+        {
+            "Setting": "Anonymity",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Chain Reorganization",
+            "Remember": "NFT Artist",
+            "Respond": "Handle anonymity with chain reorganization by nft artist"
+        },
+        {
+            "Setting": "Transaction Speed",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Address Generation",
+            "Remember": "Blockchain Consultant",
+            "Respond": "Handle transaction speed with address generation by blockchain consultant"
+        },
+        {
+            "Setting": "Reversibility",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Governance Voting",
+            "Remember": "Blockchain UI/UX Designer",
+            "Respond": "Handle reversibility with governance voting by blockchain ui/ux designer"
+        },
+        {
+            "Setting": "Staking",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Liquidity Provision",
+            "Remember": "Token Holder",
+            "Respond": "Handle staking with liquidity provision by token holder"
+        },
+        {
+            "Setting": "Accessibility",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Chain Reorganization",
+            "Remember": "Protocol Designer",
+            "Respond": "Handle accessibility with chain reorganization by protocol designer"
+        },
+        {
+            "Setting": "Cryptography",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Key Generation",
+            "Remember": "Miner",
+            "Respond": "Handle cryptography with key generation by miner"
+        },
+        {
+            "Setting": "Cryptography",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Wallet Management",
+            "Remember": "User Experience Designer",
+            "Respond": "Handle cryptography with wallet management by user experience designer"
+        },
+        {
+            "Setting": "Reversibility",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Mining",
+            "Remember": "Blockchain Marketing Specialist",
+            "Respond": "Handle reversibility with mining by blockchain marketing specialist"
+        },
+        {
+            "Setting": "Liquidity",
+            "Sub-domain": "Blockchain",
+            "Recognize": "Staking",
+            "Remember": "Blockchain Data Scientist",
+            "Respond": "Handle liquidity with staking by blockchain data scientist"
+        }
+    ],
+    "VideoChat": [
+        {
+            "Setting": "Recording Capability",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Data Compression",
+            "Remember": "Ophthalmologist",
+            "Respond": "Handle recording capability with data compression by ophthalmologist"
+        },
+        {
+            "Setting": "Host Controls",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Echo Cancellation",
+            "Remember": "User Experience Designer",
+            "Respond": "Handle host controls with echo cancellation by user experience designer"
+        },
+        {
+            "Setting": "Bandwidth Efficiency",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Language Detection",
+            "Remember": "IT Administrator",
+            "Respond": "Handle bandwidth efficiency with language detection by it administrator"
+        },
+        {
+            "Setting": "Accessibility",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Jitter Buffer Management",
+            "Remember": "Journalist",
+            "Respond": "Handle accessibility with jitter buffer management by journalist"
+        },
+        {
+            "Setting": "Cross-Platform Compatibility",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Video Filtering",
+            "Remember": "Web Developer",
+            "Respond": "Handle cross-platform compatibility with video filtering by web developer"
+        },
+        {
+            "Setting": "Encryption",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Error Concealment",
+            "Remember": "Mobile Developer",
+            "Respond": "Handle encryption with error concealment by mobile developer"
+        },
+        {
+            "Setting": "Whiteboard Feature",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Error Concealment",
+            "Remember": "Training Coordinator",
+            "Respond": "Handle whiteboard feature with error concealment by training coordinator"
+        },
+        {
+            "Setting": "Scalability",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Transcoding",
+            "Remember": "Entrepreneur",
+            "Respond": "Handle scalability with transcoding by entrepreneur"
+        },
+        {
+            "Setting": "Device Compatibility",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Error Concealment",
+            "Remember": "Data Scientist",
+            "Respond": "Handle device compatibility with error concealment by data scientist"
+        },
+        {
+            "Setting": "Gesture Recognition",
+            "Sub-domain": "VideoChat",
+            "Recognize": "Audio Mixing",
+            "Remember": "Data Scientist",
+            "Respond": "Handle gesture recognition with audio mixing by data scientist"
+        }
+    ],
+    "ActiveInferenceGrantProposal": [
+        {
+            "Setting": "Qualitative Insights",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Feedback Incorporation",
+            "Remember": "Data Scientist",
+            "Respond": "Handle qualitative insights with feedback incorporation by data scientist"
+        },
+        {
+            "Setting": "Industry Partnership Opportunities",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Resource Allocation",
+            "Remember": "Grant Administrator",
+            "Respond": "Handle industry partnership opportunities with resource allocation by grant administrator"
+        },
+        {
+            "Setting": "Potential for Paradigm Shift",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Data Preprocessing",
+            "Remember": "Institutional Review Board Member",
+            "Respond": "Handle potential for paradigm shift with data preprocessing by institutional review board member"
+        },
+        {
+            "Setting": "Short-term Deliverables",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Literature Review",
+            "Remember": "Philosopher",
+            "Respond": "Handle short-term deliverables with literature review by philosopher"
+        },
+        {
+            "Setting": "Industry Partnership Opportunities",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Public Communication",
+            "Remember": "Science Communicator",
+            "Respond": "Handle industry partnership opportunities with public communication by science communicator"
+        },
+        {
+            "Setting": "Generalizability",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Knowledge Transfer",
+            "Remember": "Mathematician",
+            "Respond": "Handle generalizability with knowledge transfer by mathematician"
+        },
+        {
+            "Setting": "Quantitative Metrics",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Data Visualization",
+            "Remember": "Developmental Psychologist",
+            "Respond": "Handle quantitative metrics with data visualization by developmental psychologist"
+        },
+        {
+            "Setting": "Economic Viability",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Hyperparameter Optimization",
+            "Remember": "Anthropologist",
+            "Respond": "Handle economic viability with hyperparameter optimization by anthropologist"
+        },
+        {
+            "Setting": "Robustness",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Intellectual Property Protection",
+            "Remember": "Institutional Review Board Member",
+            "Respond": "Handle robustness with intellectual property protection by institutional review board member"
+        },
+        {
+            "Setting": "Interdepartmental Synergies",
+            "Sub-domain": "ActiveInferenceGrantProposal",
+            "Recognize": "Empirical Testing",
+            "Remember": "Computational Neuroscientist",
+            "Respond": "Handle interdepartmental synergies with empirical testing by computational neuroscientist"
+        }
+    ],
+    "NationalSecurity": [
+        {
+            "Setting": "Economic Security",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Military Training",
+            "Remember": "Cybersecurity Expert",
+            "Respond": "Handle economic security with military training by cybersecurity expert"
+        },
+        {
+            "Setting": "Homeland Defense",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Energy Resource Protection",
+            "Remember": "Insider Threat Investigator",
+            "Respond": "Handle homeland defense with energy resource protection by insider threat investigator"
+        },
+        {
+            "Setting": "Biosecurity",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Counter-terrorism Operations",
+            "Remember": "Border Control Officer",
+            "Respond": "Handle biosecurity with counter-terrorism operations by border control officer"
+        },
+        {
+            "Setting": "Environmental Security",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Infrastructure Hardening",
+            "Remember": "Surveillance Technician",
+            "Respond": "Handle environmental security with infrastructure hardening by surveillance technician"
+        },
+        {
+            "Setting": "Refugee Management",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Border Patrol",
+            "Remember": "Refugee Coordinator",
+            "Respond": "Handle refugee management with border patrol by refugee coordinator"
+        },
+        {
+            "Setting": "Intelligence Gathering",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Technology Development",
+            "Remember": "AI Ethics Officer",
+            "Respond": "Handle intelligence gathering with technology development by ai ethics officer"
+        },
+        {
+            "Setting": "Non-Proliferation",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Maritime Patrols",
+            "Remember": "Psychological Operations Specialist",
+            "Respond": "Handle non-proliferation with maritime patrols by psychological operations specialist"
+        },
+        {
+            "Setting": "Military Readiness",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Economic Sanctions",
+            "Remember": "Chemical Security Inspector",
+            "Respond": "Handle military readiness with economic sanctions by chemical security inspector"
+        },
+        {
+            "Setting": "Radiological Security",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Crisis Management",
+            "Remember": "Technology Development Officer",
+            "Respond": "Handle radiological security with crisis management by technology development officer"
+        },
+        {
+            "Setting": "Supply Chain Security",
+            "Sub-domain": "NationalSecurity",
+            "Recognize": "Threat Monitoring",
+            "Remember": "Intelligence Analyst",
+            "Respond": "Handle supply chain security with threat monitoring by intelligence analyst"
+        }
+    ],
+    "PowerGrid": [
+        {
+            "Setting": "Grid Code Compliance",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Load Forecasting",
+            "Remember": "Power Market Analyst",
+            "Respond": "Handle grid code compliance with load forecasting by power market analyst"
+        },
+        {
+            "Setting": "Cross-Border Power Trading",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Power Generation",
+            "Remember": "Regulatory Compliance Officer",
+            "Respond": "Handle cross-border power trading with power generation by regulatory compliance officer"
+        },
+        {
+            "Setting": "Demand Forecasting",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Protection System Coordination",
+            "Remember": "Regulatory Compliance Officer",
+            "Respond": "Handle demand forecasting with protection system coordination by regulatory compliance officer"
+        },
+        {
+            "Setting": "Voltage Regulation",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Anti-Islanding Control",
+            "Remember": "Harmonics Mitigation Expert",
+            "Respond": "Handle voltage regulation with anti-islanding control by harmonics mitigation expert"
+        },
+        {
+            "Setting": "Fault Tolerance",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Outage Response",
+            "Remember": "Frequency Regulation Specialist",
+            "Respond": "Handle fault tolerance with outage response by frequency regulation specialist"
+        },
+        {
+            "Setting": "Distributed Energy Resources",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Congestion Management",
+            "Remember": "Power Plant Manager",
+            "Respond": "Handle distributed energy resources with congestion management by power plant manager"
+        },
+        {
+            "Setting": "Grid Inertia Management",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Transmission Capacity Planning",
+            "Remember": "Harmonics Mitigation Expert",
+            "Respond": "Handle grid inertia management with transmission capacity planning by harmonics mitigation expert"
+        },
+        {
+            "Setting": "Regulatory Compliance",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Frequency Regulation",
+            "Remember": "System Integration Engineer",
+            "Respond": "Handle regulatory compliance with frequency regulation by system integration engineer"
+        },
+        {
+            "Setting": "Cybersecurity",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "System Integration",
+            "Remember": "SCADA Engineer",
+            "Respond": "Handle cybersecurity with system integration by scada engineer"
+        },
+        {
+            "Setting": "Cross-Border Power Trading",
+            "Sub-domain": "PowerGrid",
+            "Recognize": "Reliability Analysis",
+            "Remember": "Resilience Planner",
+            "Respond": "Handle cross-border power trading with reliability analysis by resilience planner"
+        }
+    ],
+    "Immigration": [
+        {
+            "Setting": "Immigrant Health Care",
+            "Sub-domain": "Immigration",
+            "Recognize": "Labor Market Analysis",
+            "Remember": "Security Screener",
+            "Respond": "Handle immigrant health care with labor market analysis by security screener"
+        },
+        {
+            "Setting": "Immigrant Education Programs",
+            "Sub-domain": "Immigration",
+            "Recognize": "Immigrant Healthcare Provision",
+            "Remember": "Border Patrol Agent",
+            "Respond": "Handle immigrant education programs with immigrant healthcare provision by border patrol agent"
+        },
+        {
+            "Setting": "Health Screening",
+            "Sub-domain": "Immigration",
+            "Recognize": "Illegal Immigration Enforcement",
+            "Remember": "Immigration Quota Analyst",
+            "Respond": "Handle health screening with illegal immigration enforcement by immigration quota analyst"
+        },
+        {
+            "Setting": "National Security",
+            "Sub-domain": "Immigration",
+            "Recognize": "Labor Market Analysis",
+            "Remember": "Second Generation Integration Specialist",
+            "Respond": "Handle national security with labor market analysis by second generation integration specialist"
+        },
+        {
+            "Setting": "Deportation Procedures",
+            "Sub-domain": "Immigration",
+            "Recognize": "Temporary Work Visa Issuance",
+            "Remember": "Language Interpreter",
+            "Respond": "Handle deportation procedures with temporary work visa issuance by language interpreter"
+        },
+        {
+            "Setting": "Immigration Court System",
+            "Sub-domain": "Immigration",
+            "Recognize": "Economic Impact Assessment",
+            "Remember": "Immigration Researcher",
+            "Respond": "Handle immigration court system with economic impact assessment by immigration researcher"
+        },
+        {
+            "Setting": "Seasonal Worker Programs",
+            "Sub-domain": "Immigration",
+            "Recognize": "Health Screening Procedures",
+            "Remember": "Dual Citizenship Processor",
+            "Respond": "Handle seasonal worker programs with health screening procedures by dual citizenship processor"
+        },
+        {
+            "Setting": "Sanctuary Cities",
+            "Sub-domain": "Immigration",
+            "Recognize": "Remittance Tracking",
+            "Remember": "Integration Program Coordinator",
+            "Respond": "Handle sanctuary cities with remittance tracking by integration program coordinator"
+        },
+        {
+            "Setting": "Dual Citizenship",
+            "Sub-domain": "Immigration",
+            "Recognize": "Cultural Assimilation Programs",
+            "Remember": "Immigration Data Analyst",
+            "Respond": "Handle dual citizenship with cultural assimilation programs by immigration data analyst"
+        },
+        {
+            "Setting": "Health Screening",
+            "Sub-domain": "Immigration",
+            "Recognize": "Detention Center Management",
+            "Remember": "Health Screening Technician",
+            "Respond": "Handle health screening with detention center management by health screening technician"
+        }
+    ],
+    "ScienceResearch": [
+        {
+            "Setting": "Talent Development",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Conference Organization",
+            "Remember": "Statistician",
+            "Respond": "Handle talent development with conference organization by statistician"
+        },
+        {
+            "Setting": "Peer Review",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Technology Transfer",
+            "Remember": "Grant Writer",
+            "Respond": "Handle peer review with technology transfer by grant writer"
+        },
+        {
+            "Setting": "Open Access",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Big Data Analysis",
+            "Remember": "Scientific Advisory Board Member",
+            "Respond": "Handle open access with big data analysis by scientific advisory board member"
+        },
+        {
+            "Setting": "Interdisciplinary Collaboration",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Citizen Science Project Coordination",
+            "Remember": "Curriculum Developer",
+            "Respond": "Handle interdisciplinary collaboration with citizen science project coordination by curriculum developer"
+        },
+        {
+            "Setting": "Research Impact Assessment",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Research Network Building",
+            "Remember": "Scientific Publisher",
+            "Respond": "Handle research impact assessment with research network building by scientific publisher"
+        },
+        {
+            "Setting": "Long-term Viability",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Equipment Calibration",
+            "Remember": "Scientific Publisher",
+            "Respond": "Handle long-term viability with equipment calibration by scientific publisher"
+        },
+        {
+            "Setting": "Scientific Method Application",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Ethics Committee Review",
+            "Remember": "Research Policy Maker",
+            "Respond": "Handle scientific method application with ethics committee review by research policy maker"
+        },
+        {
+            "Setting": "Scientific Instrumentation",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Impact Measurement",
+            "Remember": "Peer Reviewer",
+            "Respond": "Handle scientific instrumentation with impact measurement by peer reviewer"
+        },
+        {
+            "Setting": "Research Impact Assessment",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Sustainability Analysis",
+            "Remember": "Collaboration Tool Developer",
+            "Respond": "Handle research impact assessment with sustainability analysis by collaboration tool developer"
+        },
+        {
+            "Setting": "Research Networking",
+            "Sub-domain": "ScienceResearch",
+            "Recognize": "Laboratory Safety Training",
+            "Remember": "Graduate Student Mentor",
+            "Respond": "Handle research networking with laboratory safety training by graduate student mentor"
+        }
+    ],
+    "MathEducation": [
+        {
+            "Setting": "Math Teacher Professional Development",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Argumentation Skill Development",
+            "Remember": "Math Communication Coach",
+            "Respond": "Handle math teacher professional development with argumentation skill development by math communication coach"
+        },
+        {
+            "Setting": "Differentiated Instruction",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Problem Set Design",
+            "Remember": "Homework Strategy Specialist",
+            "Respond": "Handle differentiated instruction with problem set design by homework strategy specialist"
+        },
+        {
+            "Setting": "Differentiated Instruction",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Advanced Topic Introduction",
+            "Remember": "Textbook Selection Committee Member",
+            "Respond": "Handle differentiated instruction with advanced topic introduction by textbook selection committee member"
+        },
+        {
+            "Setting": "Interdisciplinary Connections",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Assessment Creation",
+            "Remember": "Portfolio Assessment Specialist",
+            "Respond": "Handle interdisciplinary connections with assessment creation by portfolio assessment specialist"
+        },
+        {
+            "Setting": "Procedural Fluency",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Proof Writing Instruction",
+            "Remember": "STEM Coordinator",
+            "Respond": "Handle procedural fluency with proof writing instruction by stem coordinator"
+        },
+        {
+            "Setting": "Algebraic Thinking",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Homework Design and Review",
+            "Remember": "Differentiated Instruction Specialist",
+            "Respond": "Handle algebraic thinking with homework design and review by differentiated instruction specialist"
+        },
+        {
+            "Setting": "Collaborative Learning",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Reasoning Exercises",
+            "Remember": "Mental Math Coach",
+            "Respond": "Handle collaborative learning with reasoning exercises by mental math coach"
+        },
+        {
+            "Setting": "Math Games and Puzzles",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Reasoning Exercises",
+            "Remember": "Math Education Researcher",
+            "Respond": "Handle math games and puzzles with reasoning exercises by math education researcher"
+        },
+        {
+            "Setting": "Math Remediation",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Study Skill Instruction",
+            "Remember": "Project-Based Learning Facilitator",
+            "Respond": "Handle math remediation with study skill instruction by project-based learning facilitator"
+        },
+        {
+            "Setting": "Computational Thinking",
+            "Sub-domain": "MathEducation",
+            "Recognize": "Computational Thinking Exercises",
+            "Remember": "Geometry Teacher",
+            "Respond": "Handle computational thinking with computational thinking exercises by geometry teacher"
+        }
+    ],
+    "GovernmentAccessibility": [
+        {
+            "Setting": "Accessible Recreational Facilities",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Language Line Services",
+            "Remember": "Inclusive HR Specialist",
+            "Respond": "Handle accessible recreational facilities with language line services by inclusive hr specialist"
+        },
+        {
+            "Setting": "Accessible Recreational Facilities",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Sign Language Interpreter Scheduling",
+            "Remember": "Web Accessibility Specialist",
+            "Respond": "Handle accessible recreational facilities with sign language interpreter scheduling by web accessibility specialist"
+        },
+        {
+            "Setting": "Audio Description",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Universal Design Consultation",
+            "Remember": "Inclusive HR Specialist",
+            "Respond": "Handle audio description with universal design consultation by inclusive hr specialist"
+        },
+        {
+            "Setting": "Accessible Emergency Alerts",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Public Information Campaigns",
+            "Remember": "Public Transit Accessibility Specialist",
+            "Respond": "Handle accessible emergency alerts with public information campaigns by public transit accessibility specialist"
+        },
+        {
+            "Setting": "Braille Services",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Housing Accessibility Information Compilation",
+            "Remember": "Accessibility Consultant",
+            "Respond": "Handle braille services with housing accessibility information compilation by accessibility consultant"
+        },
+        {
+            "Setting": "Feedback Mechanisms",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Complaint Procedure Simplification",
+            "Remember": "Sensory Integration Specialist",
+            "Respond": "Handle feedback mechanisms with complaint procedure simplification by sensory integration specialist"
+        },
+        {
+            "Setting": "Healthcare Access",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Compliance Reporting",
+            "Remember": "Feedback Analysis Specialist",
+            "Respond": "Handle healthcare access with compliance reporting by feedback analysis specialist"
+        },
+        {
+            "Setting": "Reasonable Accommodations",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Job Placement Assistance",
+            "Remember": "Plain Language Expert",
+            "Respond": "Handle reasonable accommodations with job placement assistance by plain language expert"
+        },
+        {
+            "Setting": "Accessible Transportation",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Public Transit Accessibility Improvement",
+            "Remember": "Outreach Coordinator",
+            "Respond": "Handle accessible transportation with public transit accessibility improvement by outreach coordinator"
+        },
+        {
+            "Setting": "Cultural Sensitivity",
+            "Sub-domain": "GovernmentAccessibility",
+            "Recognize": "Voting Machine Accessibility Testing",
+            "Remember": "Event Accessibility Planner",
+            "Respond": "Handle cultural sensitivity with voting machine accessibility testing by event accessibility planner"
+        }
+    ],
+    "ATM_withdrawal": [
+        {
+            "Setting": "Service Availability",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Software Patch Installation",
+            "Remember": "Software Developer",
+            "Respond": "Handle service availability with software patch installation by software developer"
+        },
+        {
+            "Setting": "Maintenance Scheduling",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Account Verification",
+            "Remember": "Authentication Expert",
+            "Respond": "Handle maintenance scheduling with account verification by authentication expert"
+        },
+        {
+            "Setting": "Diagnostic Capabilities",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Network Troubleshooting",
+            "Remember": "Power Systems Engineer",
+            "Respond": "Handle diagnostic capabilities with network troubleshooting by power systems engineer"
+        },
+        {
+            "Setting": "Network Latency",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "EMV Chip Reading",
+            "Remember": "Queue Management Specialist",
+            "Respond": "Handle network latency with emv chip reading by queue management specialist"
+        },
+        {
+            "Setting": "Network Connectivity",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Transaction Cancellation",
+            "Remember": "Localization Specialist",
+            "Respond": "Handle network connectivity with transaction cancellation by localization specialist"
+        },
+        {
+            "Setting": "Camera Surveillance",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Account Verification",
+            "Remember": "Display Technology Expert",
+            "Respond": "Handle camera surveillance with account verification by display technology expert"
+        },
+        {
+            "Setting": "Noise Level",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Software Diagnostics",
+            "Remember": "User",
+            "Respond": "Handle noise level with software diagnostics by user"
+        },
+        {
+            "Setting": "Software Update Mechanism",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Hardware Inspection",
+            "Remember": "Network Administrator",
+            "Respond": "Handle software update mechanism with hardware inspection by network administrator"
+        },
+        {
+            "Setting": "Multi-Factor Authentication",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Temperature Monitoring",
+            "Remember": "Software Update Manager",
+            "Respond": "Handle multi-factor authentication with temperature monitoring by software update manager"
+        },
+        {
+            "Setting": "EMV Chip Technology",
+            "Sub-domain": "ATM_withdrawal",
+            "Recognize": "Noise Level Testing",
+            "Remember": "Audio Systems Engineer",
+            "Respond": "Handle emv chip technology with noise level testing by audio systems engineer"
+        }
+    ],
+    "ClimateChange": [
+        {
+            "Setting": "Climate Education",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Ecosystem Services Valuation",
+            "Remember": "Climate Risk Analyst",
+            "Respond": "Handle climate education with ecosystem services valuation by climate risk analyst"
+        },
+        {
+            "Setting": "Coral Reef Bleaching",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Ocean Current Mapping",
+            "Remember": "Carbon Market Analyst",
+            "Respond": "Handle coral reef bleaching with ocean current mapping by carbon market analyst"
+        },
+        {
+            "Setting": "Biodiversity Hotspots",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Disease Vector Control",
+            "Remember": "Renewable Energy Developer",
+            "Respond": "Handle biodiversity hotspots with disease vector control by renewable energy developer"
+        },
+        {
+            "Setting": "Indigenous Knowledge",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Wildfire Management",
+            "Remember": "Biodiversity Researcher",
+            "Respond": "Handle indigenous knowledge with wildfire management by biodiversity researcher"
+        },
+        {
+            "Setting": "Tipping Points",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Permafrost Monitoring",
+            "Remember": "Indigenous Knowledge Expert",
+            "Respond": "Handle tipping points with permafrost monitoring by indigenous knowledge expert"
+        },
+        {
+            "Setting": "Albedo Effect",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Crop Yield Forecasting",
+            "Remember": "International Negotiator",
+            "Respond": "Handle albedo effect with crop yield forecasting by international negotiator"
+        },
+        {
+            "Setting": "Climate Refugees",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Methane Capture",
+            "Remember": "Climate Educator",
+            "Respond": "Handle climate refugees with methane capture by climate educator"
+        },
+        {
+            "Setting": "Public Awareness",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Circular Economy Transition",
+            "Remember": "Glaciologist",
+            "Respond": "Handle public awareness with circular economy transition by glaciologist"
+        },
+        {
+            "Setting": "Climate Feedback Loops",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Carbon Capture and Storage",
+            "Remember": "Environmental Activist",
+            "Respond": "Handle climate feedback loops with carbon capture and storage by environmental activist"
+        },
+        {
+            "Setting": "Circular Economy",
+            "Sub-domain": "ClimateChange",
+            "Recognize": "Ecosystem Restoration",
+            "Remember": "Carbon Capture Technologist",
+            "Respond": "Handle circular economy with ecosystem restoration by carbon capture technologist"
+        }
+    ],
+    "ArtificialIntelligence": [
+        {
+            "Setting": "AI for Scientific Discovery",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Safety Testing",
+            "Remember": "AI Ethicist",
+            "Respond": "Handle ai for scientific discovery with safety testing by ai ethicist"
+        },
+        {
+            "Setting": "Natural Language Processing",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Error Analysis",
+            "Remember": "AI Ethicist",
+            "Respond": "Handle natural language processing with error analysis by ai ethicist"
+        },
+        {
+            "Setting": "Cognitive Computing",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Documentation",
+            "Remember": "AI Rights Advocate",
+            "Respond": "Handle cognitive computing with documentation by ai rights advocate"
+        },
+        {
+            "Setting": "Automated Reasoning",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Edge Deployment",
+            "Remember": "End User",
+            "Respond": "Handle automated reasoning with edge deployment by end user"
+        },
+        {
+            "Setting": "AI Energy Efficiency",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Cross-Validation",
+            "Remember": "AI Entrepreneur",
+            "Respond": "Handle ai energy efficiency with cross-validation by ai entrepreneur"
+        },
+        {
+            "Setting": "Generative AI",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Deployment",
+            "Remember": "Domain Expert",
+            "Respond": "Handle generative ai with deployment by domain expert"
+        },
+        {
+            "Setting": "AI in Finance",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Compliance Checking",
+            "Remember": "Data Scientist",
+            "Respond": "Handle ai in finance with compliance checking by data scientist"
+        },
+        {
+            "Setting": "Fuzzy Logic",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Ensemble Learning",
+            "Remember": "AI Entrepreneur",
+            "Respond": "Handle fuzzy logic with ensemble learning by ai entrepreneur"
+        },
+        {
+            "Setting": "Speech Recognition",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Hyperparameter Tuning",
+            "Remember": "AI Researcher",
+            "Respond": "Handle speech recognition with hyperparameter tuning by ai researcher"
+        },
+        {
+            "Setting": "Knowledge Representation",
+            "Sub-domain": "ArtificialIntelligence",
+            "Recognize": "Monitoring",
+            "Remember": "AI Policy Maker",
+            "Respond": "Handle knowledge representation with monitoring by ai policy maker"
+        }
+    ],
+    "QuantumComputing": [
+        {
+            "Setting": "Quantum Cryptography",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum-Classical Interfacing",
+            "Remember": "Quantum Entrepreneur",
+            "Respond": "Handle quantum cryptography with quantum-classical interfacing by quantum entrepreneur"
+        },
+        {
+            "Setting": "Quantum Algorithms",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Measurement",
+            "Remember": "Quantum Entrepreneur",
+            "Respond": "Handle quantum algorithms with quantum measurement by quantum entrepreneur"
+        },
+        {
+            "Setting": "Quantum Cryptography",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Memory Management",
+            "Remember": "Quantum Applications Researcher",
+            "Respond": "Handle quantum cryptography with quantum memory management by quantum applications researcher"
+        },
+        {
+            "Setting": "Quantum Hardware",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Error Mitigation",
+            "Remember": "Quantum Applications Researcher",
+            "Respond": "Handle quantum hardware with quantum error mitigation by quantum applications researcher"
+        },
+        {
+            "Setting": "Quantum Software",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Measurement",
+            "Remember": "Quantum Error Correction Specialist",
+            "Respond": "Handle quantum software with quantum measurement by quantum error correction specialist"
+        },
+        {
+            "Setting": "Quantum Simulation",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Teleportation",
+            "Remember": "Quantum Applications Researcher",
+            "Respond": "Handle quantum simulation with quantum teleportation by quantum applications researcher"
+        },
+        {
+            "Setting": "Quantum Simulation",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Algorithm Implementation",
+            "Remember": "Quantum Ethics Specialist",
+            "Respond": "Handle quantum simulation with quantum algorithm implementation by quantum ethics specialist"
+        },
+        {
+            "Setting": "Quantum Algorithms",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Network Protocol",
+            "Remember": "Quantum Algorithm Designer",
+            "Respond": "Handle quantum algorithms with quantum network protocol by quantum algorithm designer"
+        },
+        {
+            "Setting": "Entanglement",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum Error Mitigation",
+            "Remember": "Quantum Physicist",
+            "Respond": "Handle entanglement with quantum error mitigation by quantum physicist"
+        },
+        {
+            "Setting": "Quantum Internet",
+            "Sub-domain": "QuantumComputing",
+            "Recognize": "Quantum-Classical Interfacing",
+            "Remember": "Quantum Cryptographer",
+            "Respond": "Handle quantum internet with quantum-classical interfacing by quantum cryptographer"
+        }
+    ],
+    "Pipette_Use_In_Wet_Lab": [
+        {
+            "Setting": "Maintenance Requirements",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Sample Incubation",
+            "Remember": "Environmental Scientist",
+            "Respond": "Handle maintenance requirements with sample incubation by environmental scientist"
+        },
+        {
+            "Setting": "Liquid Retention",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "DNA Extraction",
+            "Remember": "Forensic Scientist",
+            "Respond": "Handle liquid retention with dna extraction by forensic scientist"
+        },
+        {
+            "Setting": "Autoclavability",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Cell Culture",
+            "Remember": "Undergraduate Student",
+            "Respond": "Handle autoclavability with cell culture by undergraduate student"
+        },
+        {
+            "Setting": "Grip Comfort",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Sample Incubation",
+            "Remember": "Immunologist",
+            "Respond": "Handle grip comfort with sample incubation by immunologist"
+        },
+        {
+            "Setting": "Multi-Channel",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Assay Development",
+            "Remember": "Pharmaceutical Scientist",
+            "Respond": "Handle multi-channel with assay development by pharmaceutical scientist"
+        },
+        {
+            "Setting": "Liquid Retention",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Liquid Handling",
+            "Remember": "Regulatory Affairs Specialist",
+            "Respond": "Handle liquid retention with liquid handling by regulatory affairs specialist"
+        },
+        {
+            "Setting": "Accuracy",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Cell Viability Assay",
+            "Remember": "Veterinary Scientist",
+            "Respond": "Handle accuracy with cell viability assay by veterinary scientist"
+        },
+        {
+            "Setting": "Tip Ejection Force",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Sample Transport",
+            "Remember": "Microbiologist",
+            "Respond": "Handle tip ejection force with sample transport by microbiologist"
+        },
+        {
+            "Setting": "Fixed Volume",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "DNA Extraction",
+            "Remember": "Geneticist",
+            "Respond": "Handle fixed volume with dna extraction by geneticist"
+        },
+        {
+            "Setting": "Pipetting Speed",
+            "Sub-domain": "Pipette_Use_In_Wet_Lab",
+            "Recognize": "Buffer Preparation",
+            "Remember": "Lab Equipment Sales Representative",
+            "Respond": "Handle pipetting speed with buffer preparation by lab equipment sales representative"
+        }
+    ],
+    "William_Blake_Poetry_and_Life": [
+        {
+            "Setting": "Symbolism",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Historical Research",
+            "Remember": "Color Symbolism Expert",
+            "Respond": "Handle symbolism with historical research by color symbolism expert"
+        },
+        {
+            "Setting": "Illuminated Printing",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Thematic Development",
+            "Remember": "Theologian",
+            "Respond": "Handle illuminated printing with thematic development by theologian"
+        },
+        {
+            "Setting": "Mythological References",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Artistic Interpretation",
+            "Remember": "Poet",
+            "Respond": "Handle mythological references with artistic interpretation by poet"
+        },
+        {
+            "Setting": "Industrial Revolution Critique",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Illuminated Book Creation",
+            "Remember": "Spiritual Rebellion Historian",
+            "Respond": "Handle industrial revolution critique with illuminated book creation by spiritual rebellion historian"
+        },
+        {
+            "Setting": "Psychological Insight",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Literary Analysis",
+            "Remember": "Illuminated Book Historian",
+            "Respond": "Handle psychological insight with literary analysis by illuminated book historian"
+        },
+        {
+            "Setting": "Poetic Language",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Lyrical Composition",
+            "Remember": "Psychologist",
+            "Respond": "Handle poetic language with lyrical composition by psychologist"
+        },
+        {
+            "Setting": "Cultural Impact",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Artistic Cross-Pollination",
+            "Remember": "Poetic Innovation Theorist",
+            "Respond": "Handle cultural impact with artistic cross-pollination by poetic innovation theorist"
+        },
+        {
+            "Setting": "Visionary Imagination",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Visionary Art Creation",
+            "Remember": "Industrial Revolution Historian",
+            "Respond": "Handle visionary imagination with visionary art creation by industrial revolution historian"
+        },
+        {
+            "Setting": "Dualistic Themes",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Literary Analysis",
+            "Remember": "Allegorical Narrative Specialist",
+            "Respond": "Handle dualistic themes with literary analysis by allegorical narrative specialist"
+        },
+        {
+            "Setting": "Illuminated Printing",
+            "Sub-domain": "William_Blake_Poetry_and_Life",
+            "Recognize": "Cosmological Theorizing",
+            "Remember": "Artistic Integrity Advocate",
+            "Respond": "Handle illuminated printing with cosmological theorizing by artistic integrity advocate"
+        }
+    ]
+}
