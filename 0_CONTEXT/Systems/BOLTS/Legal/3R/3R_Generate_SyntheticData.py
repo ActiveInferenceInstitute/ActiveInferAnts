@@ -13,7 +13,7 @@ with open('3R_Domains.json', 'r') as f:
     domains = json.load(f)
 
 # List of chosen domains (Education section)
-CHOSEN_DOMAINS = ['Education', 'Hospitality']
+CHOSEN_DOMAINS = ['Education', 'Hospitality', 'Environmental Monitoring', 'Chess Game']
 
 def generate_synthetic_data(num_records: int) -> list:
     # Generates a synthetic dataset based on domains from JSON file.

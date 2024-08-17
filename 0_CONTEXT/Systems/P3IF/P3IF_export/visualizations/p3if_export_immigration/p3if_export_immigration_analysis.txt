@@ -3,8 +3,8 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 47
-Number of unique processes: 42
+Number of unique properties: 44
+Number of unique processes: 45
 Number of unique perspectives: 40
 
 2. Pattern Type Distribution:
@@ -14,61 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.463053
-std        0.274410
-min        0.005100
-25%        0.267675
-50%        0.457650
-75%        0.620675
-max        0.992600
+mean       0.503460
+std        0.286001
+min        0.026300
+25%        0.289875
+50%        0.473550
+75%        0.759050
+max        0.993200
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9926):
-Property: Sanctuary Cities
-Process: Asylum Claim Evaluation
-Perspective: Immigration Lawyer
+Strongest relationship (strength = 0.9932):
+Property: Deportation Procedures
+Process: Mental Health Service Provision
+Perspective: Integration Program Coordinator
 
-Weakest relationship (strength = 0.0051):
-Property: Unaccompanied Minor Management
-Process: Immigration Research Studies
-Perspective: Language Interpreter
+Weakest relationship (strength = 0.0263):
+Property: Skilled Migration
+Process: Cultural Assimilation Programs
+Perspective: Cross-Border Cooperation Officer
 
 4. Network Analysis:
-Number of nodes: 128
-Number of edges: 283
-Average clustering coefficient: 0.4893
-Average shortest path length: 3.6634
-Diameter of the graph: 7
+Number of nodes: 127
+Number of edges: 274
+Average clustering coefficient: 0.5094
+Average shortest path length: 3.8069
+Diameter of the graph: 8
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Human Rights Advocate: 0.0945
-Cultural Liaison: 0.0866
-Labor Market Analysis: 0.0787
-Detention Facility Manager: 0.0787
-Immigrant Rights: 0.0709
+Detention Center Management: 0.0873
+Second Generation Integration Specialist: 0.0794
+Border Patrol Agent: 0.0794
+Immigration Fraud Investigator: 0.0794
+Cross-Border Cooperation: 0.0794
 
 Betweenness Centrality:
-Human Rights Advocate: 0.1363
-Detention Facility Manager: 0.1010
-Cultural Liaison: 0.0908
-Labor Market Analysis: 0.0905
-Immigrant Rights: 0.0887
+Asylum Claim Evaluation: 0.1157
+Detention Center Management: 0.1152
+Immigration Fraud Investigator: 0.1046
+Education Placement: 0.0917
+Temporary Worker Programs: 0.0902
 
 Eigenvector Centrality:
-Labor Market Analysis: 0.2698
-Human Rights Advocate: 0.2622
-Skilled Migration: 0.2382
-Policy Development: 0.2260
-Legal Aid Services: 0.2180
+Immigration Fraud Investigator: 0.2412
+Detention Center Management: 0.2405
+Asylum Claim Evaluation: 0.2160
+Skilled Migration Recruiter: 0.2062
+Cross-Border Cooperation: 0.1896
 
 Closeness Centrality:
-Human Rights Advocate: 0.3791
-Policy Development: 0.3598
-Labor Market Analysis: 0.3588
-Skilled Migration: 0.3547
-Immigration Judge: 0.3479
+Asylum Claim Evaluation: 0.3539
+Immigration Fraud Investigator: 0.3452
+Immigration Research Studies: 0.3424
+Detention Center Management: 0.3424
+Temporary Worker Programs: 0.3387
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ citizenship: 6
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-0    50
-2    28
-1    22
+2    39
+0    36
+1    25
 Name: cluster, dtype: int64

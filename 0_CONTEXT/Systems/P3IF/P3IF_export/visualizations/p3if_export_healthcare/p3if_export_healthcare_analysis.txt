@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 40
-Number of unique processes: 42
-Number of unique perspectives: 43
+Number of unique properties: 45
+Number of unique processes: 47
+Number of unique perspectives: 44
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,60 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.498398
-std        0.314190
-min        0.019000
-25%        0.187450
-50%        0.482800
-75%        0.786450
-max        0.991400
+mean       0.488601
+std        0.286821
+min        0.009000
+25%        0.208225
+50%        0.527450
+75%        0.724450
+max        1.000000
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9914):
-Property: Technology Integration
-Process: Organ Transplantation
-Perspective: IT Specialist
+Strongest relationship (strength = 1.0000):
+Property: Staff Efficiency
+Process: Staff Training
+Perspective: Anesthesiologist
 
-Weakest relationship (strength = 0.0190):
-Property: Regulatory Compliance
-Process: Genetic Counseling
-Perspective: Cardiologist
+Weakest relationship (strength = 0.0090):
+Property: Staff Competency
+Process: Risk Assessment
+Perspective: Financial Analyst
 
 4. Network Analysis:
-Number of nodes: 124
-Number of edges: 270
-Average clustering coefficient: 0.5280
-Graph is not connected.
+Number of nodes: 135
+Number of edges: 275
+Average clustering coefficient: 0.5614
+Average shortest path length: 4.1412
+Diameter of the graph: 9
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Follow-up Care: 0.0976
-Laboratory Technician: 0.0976
-Speech Therapist: 0.0813
-Genetic Testing: 0.0813
-Anesthesia Administration: 0.0813
+Waste Disposal: 0.0746
+Geriatrician: 0.0746
+Sterilization: 0.0746
+Neurologist: 0.0746
+Emergency Response: 0.0746
 
 Betweenness Centrality:
-Laboratory Technician: 0.1834
-Anesthesia Administration: 0.1153
-Follow-up Care: 0.0969
-Treatment Efficacy: 0.0885
-Patient Transport: 0.0861
+Neurologist: 0.1369
+End-of-Life Care: 0.1233
+Emergency Response: 0.1179
+Waste Disposal: 0.0948
+Geriatrician: 0.0929
 
 Eigenvector Centrality:
-Laboratory Technician: 0.2592
-Follow-up Care: 0.2587
-Speech Therapist: 0.2214
-Surgery: 0.2094
-Environmental Safety: 0.2019
+Emergency Response: 0.2363
+Waste Disposal: 0.2228
+Neurologist: 0.2065
+Sterilization: 0.1761
+Dermatologist: 0.1743
 
 Closeness Centrality:
-Laboratory Technician: 0.3752
-Follow-up Care: 0.3464
-Anesthesia Administration: 0.3355
-Environmental Safety: 0.3335
-Resource Allocation: 0.3307
+Emergency Response: 0.3160
+Waste Disposal: 0.3146
+Neurologist: 0.3131
+Epidemiologist: 0.3052
+Biostatistician: 0.3045
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -92,7 +93,7 @@ emergency: 3
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-1    35
-2    34
-0    31
+2    36
+0    32
+1    32
 Name: cluster, dtype: int64

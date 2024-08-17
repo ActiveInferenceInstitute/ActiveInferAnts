@@ -4,8 +4,8 @@
 Total number of patterns: 150
 Total number of relationships: 100
 Number of unique properties: 45
-Number of unique processes: 40
-Number of unique perspectives: 44
+Number of unique processes: 41
+Number of unique perspectives: 45
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,61 +14,60 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.494193
-std        0.276024
-min        0.006900
-25%        0.238000
-50%        0.531200
-75%        0.712200
-max        0.981100
+mean       0.495888
+std        0.275633
+min        0.025800
+25%        0.254275
+50%        0.503650
+75%        0.722475
+max        0.983200
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9811):
-Property: Food Security
-Process: Counter-terrorism Operations
-Perspective: Geopolitical Risk Analyst
+Strongest relationship (strength = 0.9832):
+Property: Nuclear Deterrence
+Process: EMP Hardening
+Perspective: Chemical Security Inspector
 
-Weakest relationship (strength = 0.0069):
-Property: Diplomatic Relations
-Process: Intelligence Analysis
-Perspective: Economic Advisor
+Weakest relationship (strength = 0.0258):
+Property: Threat Assessment
+Process: Arms Reduction Negotiations
+Perspective: Transportation Security Manager
 
 4. Network Analysis:
-Number of nodes: 129
-Number of edges: 284
-Average clustering coefficient: 0.5276
-Average shortest path length: 3.6919
-Diameter of the graph: 7
+Number of nodes: 128
+Number of edges: 273
+Average clustering coefficient: 0.5227
+Graph is not connected.
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Financial System Regulator: 0.0859
-Climate Change Security Advisor: 0.0859
-Homeland Defense: 0.0781
-Military Readiness: 0.0781
-Military Commander: 0.0781
+Arms Reduction Negotiations: 0.0945
+EMP Hardening: 0.0945
+Emergency Response: 0.0709
+Homeland Defense: 0.0630
+Disaster Response Drills: 0.0630
 
 Betweenness Centrality:
-Anti-Drone Systems Deployment: 0.1106
-Homeland Defense: 0.1093
-Financial System Regulator: 0.1009
-Counter-terrorism Specialist: 0.0848
-Climate Change Security Advisor: 0.0840
+Arms Reduction Negotiations: 0.1399
+EMP Hardening: 0.1327
+Pandemic Response Planner: 0.0922
+Energy Security: 0.0751
+Homeland Defense: 0.0750
 
 Eigenvector Centrality:
-Financial System Regulator: 0.2748
-Financial System Monitoring: 0.2731
-Climate Change Security Advisor: 0.2446
-Environmental Threat Assessment: 0.2154
-Military Readiness: 0.2017
+EMP Hardening: 0.2956
+Arms Reduction Negotiations: 0.2545
+Military Commander: 0.2471
+Military Readiness: 0.2187
+Emergency Response: 0.1937
 
 Closeness Centrality:
-Financial System Regulator: 0.3546
-Financial System Monitoring: 0.3546
-Climate Change Security Advisor: 0.3441
-Military Commander: 0.3386
-Financial System Stability: 0.3333
+EMP Hardening: 0.3479
+Arms Reduction Negotiations: 0.3290
+Military Commander: 0.3220
+Homeland Defense: 0.3211
+Emergency Response: 0.3161
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +92,7 @@ arms: 6
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-2    37
-1    34
-0    29
+0    44
+1    29
+2    27
 Name: cluster, dtype: int64

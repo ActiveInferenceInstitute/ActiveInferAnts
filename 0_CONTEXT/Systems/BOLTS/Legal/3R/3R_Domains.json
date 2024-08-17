@@ -100,18 +100,8 @@
     {"Setting": "Maritime navigation", "Sub-domain": "Transport", "Recognize": "Ship AIS", "Remember": "Nautical charts", "Respond": "Provide route guidance"},
     {"Setting": "Toll collection", "Sub-domain": "Transport", "Recognize": "Vehicle transponder", "Remember": "Account balance", "Respond": "Charge toll"}
   ],
-  "Environmental Monitoring": [ Parking lot       | Key               | Lock                  | Correct key opens lock         |
-  | Retail store      | Credit card       | Bank record           | Access to credit given         |
-  | Factory/office    | Key card          | Employee ID registry  | Unlock door                    |
-  | Computer login    | Password/biometric| Authorization registry| Grant access to system         |
-  | Law office        | Law school diploma| Law school records    | Admission to practice          |
-  | Banking withdrawal| Debit card PIN    | ATM/bank records      | Dispense cash                  |
-  | Loan security     | UCC-1             | Central filing location| Perfect security interest      |
-  | Online interactions| Username         | Cookies               | Custom content/ads             |
-  | HOV tolling       | License plate     | DMV registry          | Send toll bill to driver       |
-  | Grocery store     | Trademark         | Consumer recalls ads  | Purchase trusted brand         |
-  | Work for hire     | Role-based access | Permission structure  | Adopt employee output          |
-  | USCIS Form I-9    | Passport          | Archive form I-9      | Hire                           |ironmental", "Recognize": "GPS tags", "Remember": "Migration patterns", "Respond": "Adjust conservation efforts"},
+  "Environmental Monitoring": [
+    {"Setting": "Wildlife tracking", "Sub-domain": "Environmental", "Recognize": "GPS tags", "Remember": "Migration patterns", "Respond": "Adjust conservation efforts"},
     {"Setting": "Deforestation monitoring", "Sub-domain": "Environmental", "Recognize": "Satellite images", "Remember": "Forest cover data", "Respond": "Initiate reforestation"},
     {"Setting": "Noise pollution monitoring", "Sub-domain": "Environmental", "Recognize": "Decibel levels", "Remember": "Noise regulations", "Respond": "Issue fines"},
     {"Setting": "Waste management", "Sub-domain": "Environmental", "Recognize": "Waste type", "Remember": "Disposal guidelines", "Respond": "Schedule pickup"},
@@ -209,4 +199,16 @@
     {"Setting": "Hotel room service", "Sub-domain": "Hospitality", "Recognize": "Room number", "Remember": "Guest preferences", "Respond": "Deliver order"},
     {"Setting": "Theme park entry", "Sub-domain": "Hospitality", "Recognize": "Ticket QR code", "Remember": "Park capacity", "Respond": "Allow entry and track crowd flow"},
     {"Setting": "Cruise ship embarkation", "Sub-domain": "Hospitality", "Recognize": "Passenger manifest", "Remember": "Cabin assignments", "Respond": "Direct passengers to cabins"}
+  ],
+  "Chess Game": [
+    {"Setting": "Opening phase", "Sub-domain": "Chess", "Recognize": "Initial moves", "Remember": "Opening theory", "Respond": "Develop pieces"},
+    {"Setting": "Middle game", "Sub-domain": "Chess", "Recognize": "Board position", "Remember": "Tactical patterns", "Respond": "Execute strategy"},
+    {"Setting": "Endgame", "Sub-domain": "Chess", "Recognize": "Piece count", "Remember": "Endgame principles", "Respond": "Optimize piece activity"},
+    {"Setting": "Blitz game", "Sub-domain": "Chess", "Recognize": "Time control", "Remember": "Quick decision-making", "Respond": "Play fast moves"},
+    {"Setting": "Tournament play", "Sub-domain": "Chess", "Recognize": "Opponent rating", "Remember": "Previous encounters", "Respond": "Prepare specific lines"},
+    {"Setting": "Online match", "Sub-domain": "Chess", "Recognize": "Player handle", "Remember": "Game history", "Respond": "Adjust strategy"},
+    {"Setting": "Simul exhibition", "Sub-domain": "Chess", "Recognize": "Multiple boards", "Remember": "Simul techniques", "Respond": "Manage time effectively"},
+    {"Setting": "Chess puzzle", "Sub-domain": "Chess", "Recognize": "Puzzle position", "Remember": "Solution patterns", "Respond": "Find best move"},
+    {"Setting": "Chess coaching", "Sub-domain": "Chess", "Recognize": "Student level", "Remember": "Learning progress", "Respond": "Tailor lessons"},
+    {"Setting": "Chess commentary", "Sub-domain": "Chess", "Recognize": "Live game", "Remember": "Player styles", "Respond": "Provide insights"}
   ]}

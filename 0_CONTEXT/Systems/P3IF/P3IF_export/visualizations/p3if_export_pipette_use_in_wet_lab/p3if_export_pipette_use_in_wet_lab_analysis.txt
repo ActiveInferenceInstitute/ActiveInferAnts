@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 115
 Total number of relationships: 100
-Number of unique properties: 30
-Number of unique processes: 43
-Number of unique perspectives: 33
+Number of unique properties: 29
+Number of unique processes: 46
+Number of unique perspectives: 31
 
 2. Pattern Type Distribution:
 Process: 50 (43.48%)
@@ -14,61 +14,61 @@ Property: 30 (26.09%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.472267
-std        0.306005
-min        0.002200
-25%        0.207175
-50%        0.417900
-75%        0.762700
-max        0.985800
+mean       0.465645
+std        0.284365
+min        0.001400
+25%        0.223450
+50%        0.448400
+75%        0.698875
+max        0.976500
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9858):
-Property: Autoclavability
-Process: Protein Purification
-Perspective: Technical Support Specialist
+Strongest relationship (strength = 0.9765):
+Property: Ergonomics
+Process: Sample Storage
+Perspective: Environmental Scientist
 
-Weakest relationship (strength = 0.0022):
-Property: Reproducibility
-Process: Assay Development
-Perspective: Biomedical Engineer
+Weakest relationship (strength = 0.0014):
+Property: Single Channel
+Process: High-Throughput Screening
+Perspective: Chemical Engineer
 
 4. Network Analysis:
-Number of nodes: 105
-Number of edges: 271
-Average clustering coefficient: 0.4969
-Average shortest path length: 3.1522
-Diameter of the graph: 7
+Number of nodes: 106
+Number of edges: 279
+Average clustering coefficient: 0.4621
+Average shortest path length: 3.0311
+Diameter of the graph: 6
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Cell Biologist: 0.1635
-Electronic: 0.1442
-Lab Assistant: 0.1154
-Digital Display: 0.1154
-Immunologist: 0.1154
+Fixed Volume: 0.1333
+Lab Manager: 0.1333
+Ergonomics: 0.1238
+Chemical Resistance: 0.1143
+Lab Equipment Sales Representative: 0.1143
 
 Betweenness Centrality:
-Cell Biologist: 0.1302
-Electronic: 0.1153
-Biochemist: 0.0866
-Contamination Prevention: 0.0812
-Lab Assistant: 0.0808
+Fixed Volume: 0.1125
+Lab Manager: 0.1122
+Ergonomics: 0.1003
+Chemical Resistance: 0.0739
+Accuracy: 0.0650
 
 Eigenvector Centrality:
-Cell Biologist: 0.2996
-Digital Display: 0.2526
-Contamination Prevention: 0.2224
-Lab Assistant: 0.2216
-Mass Spectrometry: 0.1912
+Ergonomics: 0.2277
+Fixed Volume: 0.2120
+Lab Manager: 0.2096
+Immunologist: 0.1884
+Chemical Resistance: 0.1843
 
 Closeness Centrality:
-Contamination Prevention: 0.4211
-Cell Biologist: 0.4211
-Digital Display: 0.4160
-Mass Spectrometry: 0.4160
-Lab Assistant: 0.4078
+Lab Manager: 0.4234
+Ergonomics: 0.4200
+Fixed Volume: 0.4134
+Immunologist: 0.3962
+Accuracy: 0.3918
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ tip: 2
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-2    35
-1    33
-0    32
+1    38
+0    36
+2    26
 Name: cluster, dtype: int64

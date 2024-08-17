@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 155
 Total number of relationships: 100
-Number of unique properties: 47
-Number of unique processes: 44
-Number of unique perspectives: 42
+Number of unique properties: 41
+Number of unique processes: 41
+Number of unique perspectives: 45
 
 2. Pattern Type Distribution:
 Process: 55 (35.48%)
@@ -14,61 +14,61 @@ Perspective: 50 (32.26%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.557042
-std        0.291131
-min        0.010800
-25%        0.319825
-50%        0.601700
-75%        0.793950
-max        0.990800
+mean       0.469727
+std        0.292097
+min        0.000700
+25%        0.214475
+50%        0.466350
+75%        0.710550
+max        0.986500
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9908):
-Property: Intellectual Property
-Process: Stakeholder Engagement
-Perspective: Graduate Student
+Strongest relationship (strength = 0.9865):
+Property: Scalability
+Process: Hyperparameter Optimization
+Perspective: University Dean
 
-Weakest relationship (strength = 0.0108):
-Property: Theoretical Soundness
-Process: Theoretical Framework Development
-Perspective: Research Participant
+Weakest relationship (strength = 0.0007):
+Property: Potential for Collaboration
+Process: Data Management
+Perspective: Principal Investigator
 
 4. Network Analysis:
-Number of nodes: 131
-Number of edges: 278
-Average clustering coefficient: 0.5560
-Average shortest path length: 3.8065
-Diameter of the graph: 9
+Number of nodes: 125
+Number of edges: 272
+Average clustering coefficient: 0.5159
+Average shortest path length: 3.6831
+Diameter of the graph: 7
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Timeline Management: 0.1077
-Public Engagement: 0.0846
-Roboticist: 0.0769
-Biological Validation: 0.0769
-Iterative Refinement: 0.0692
+Generalizability: 0.0968
+Short-term Deliverables: 0.0968
+Intellectual Property Lawyer: 0.0968
+Data Collection: 0.0806
+Risk Mitigation: 0.0806
 
 Betweenness Centrality:
-Timeline Management: 0.1737
-Biological Validation: 0.0973
-Public Engagement: 0.0969
-Budget Planning: 0.0929
-Roboticist: 0.0817
+Intellectual Property Lawyer: 0.2280
+Generalizability: 0.1743
+Short-term Deliverables: 0.1392
+Error Analysis: 0.0971
+Equipment Procurement: 0.0752
 
 Eigenvector Centrality:
-Public Engagement: 0.2775
-Timeline Management: 0.2352
-Research Participant: 0.2298
-Biological Validation: 0.2186
-Theoretical Soundness: 0.2171
+Intellectual Property Lawyer: 0.2870
+Generalizability: 0.2653
+Short-term Deliverables: 0.1960
+Knowledge Transfer: 0.1866
+Integration with Existing Theories: 0.1813
 
 Closeness Centrality:
-Timeline Management: 0.3552
-Theoretical Soundness: 0.3476
-Public Engagement: 0.3467
-Philosopher: 0.3351
-Research Participant: 0.3342
+Intellectual Property Lawyer: 0.3887
+Generalizability: 0.3780
+Error Analysis: 0.3513
+Short-term Deliverables: 0.3435
+Knowledge Transfer: 0.3316
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ model: 3
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-0    40
-2    31
-1    29
+1    36
+2    34
+0    30
 Name: cluster, dtype: int64

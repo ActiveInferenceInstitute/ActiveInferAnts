@@ -3,8 +3,8 @@
 1. Basic Statistics:
 Total number of patterns: 120
 Total number of relationships: 100
-Number of unique properties: 47
-Number of unique processes: 42
+Number of unique properties: 46
+Number of unique processes: 44
 Number of unique perspectives: 15
 
 2. Pattern Type Distribution:
@@ -14,61 +14,61 @@ Perspective: 15 (12.50%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.465241
-std        0.302096
-min        0.022800
-25%        0.177450
-50%        0.389900
-75%        0.699675
-max        0.994700
+mean       0.487321
+std        0.293262
+min        0.002000
+25%        0.216425
+50%        0.496950
+75%        0.755250
+max        0.992000
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9947):
-Property: Transfer Learning
-Process: Safety Testing
-Perspective: Not found
+Strongest relationship (strength = 0.9920):
+Property: Quantum AI
+Process: Cross-Validation
+Perspective: AI Rights Advocate
 
-Weakest relationship (strength = 0.0228):
-Property: Reinforcement Learning
-Process: Generative Model Training
-Perspective: End User
+Weakest relationship (strength = 0.0020):
+Property: AI Energy Efficiency
+Process: Interpretability Analysis
+Perspective: AI Safety Specialist
 
 4. Network Analysis:
 Number of nodes: 102
-Number of edges: 265
-Average clustering coefficient: 0.4721
-Average shortest path length: 2.8888
+Number of edges: 264
+Average clustering coefficient: 0.4978
+Average shortest path length: 2.9594
 Diameter of the graph: 5
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-End User: 0.2475
-AI Investor: 0.1980
-AI Rights Advocate: 0.1584
-AI Ethicist: 0.1485
-AI Researcher: 0.1386
+AI Investor: 0.2079
+AI Rights Advocate: 0.1782
+AI Governance Expert: 0.1485
+AI Safety Specialist: 0.1386
+Data Scientist: 0.1287
 
 Betweenness Centrality:
-End User: 0.2272
-AI Investor: 0.1649
-AI Rights Advocate: 0.1255
-AI Ethicist: 0.0960
-AI Researcher: 0.0813
+AI Investor: 0.1769
+AI Rights Advocate: 0.1287
+AI Safety Specialist: 0.1025
+AI Ethicist: 0.0927
+AI Governance Expert: 0.0885
 
 Eigenvector Centrality:
-End User: 0.3606
-AI Investor: 0.2730
-Model Training: 0.2127
-AI Ethicist: 0.2087
-AI Ethics: 0.2026
+AI Investor: 0.3258
+AI Rights Advocate: 0.2497
+Active Learning: 0.2070
+AI Governance Expert: 0.2060
+AI Robustness: 0.1993
 
 Closeness Centrality:
-End User: 0.4654
-AI Investor: 0.4391
-AI Ethics: 0.4335
-Model Training: 0.4316
-AI Ethicist: 0.4262
+AI Investor: 0.4489
+AI Rights Advocate: 0.4191
+AI Robustness: 0.4174
+Data Visualization: 0.4156
+A/B Testing: 0.4139
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ safety: 3
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-1    39
-2    31
-0    30
+1    35
+0    33
+2    32
 Name: cluster, dtype: int64

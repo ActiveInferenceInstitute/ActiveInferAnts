@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 44
-Number of unique processes: 44
-Number of unique perspectives: 48
+Number of unique properties: 43
+Number of unique processes: 39
+Number of unique perspectives: 40
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,61 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.508278
-std        0.291429
-min        0.032000
-25%        0.244650
-50%        0.478300
-75%        0.809000
-max        0.991800
+mean       0.490445
+std        0.305515
+min        0.008800
+25%        0.241175
+50%        0.446850
+75%        0.770275
+max        0.994100
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9918):
-Property: Noise Cancellation
-Process: Encryption/Decryption
-Perspective: Politician
+Strongest relationship (strength = 0.9941):
+Property: Low-Light Enhancement
+Process: Bandwidth Allocation
+Perspective: Audiologist
 
-Weakest relationship (strength = 0.0320):
-Property: Gesture Recognition
-Process: Audio Routing
-Perspective: Product Manager
+Weakest relationship (strength = 0.0088):
+Property: Host Controls
+Process: Transcoding
+Perspective: IT Administrator
 
 4. Network Analysis:
-Number of nodes: 136
-Number of edges: 276
-Average clustering coefficient: 0.5667
-Average shortest path length: 3.9381
-Diameter of the graph: 8
+Number of nodes: 118
+Number of edges: 271
+Average clustering coefficient: 0.4774
+Average shortest path length: 3.5351
+Diameter of the graph: 7
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Breakout Rooms: 0.0741
-Compliance (GDPR, HIPAA): 0.0741
-Firewall Traversal: 0.0741
-Low-Light Enhancement: 0.0667
-Video Mixing: 0.0593
+Device Enumeration: 0.0855
+Waiting Room: 0.0855
+Content Creator: 0.0769
+Facial Detection: 0.0769
+Bandwidth Allocation: 0.0769
 
 Betweenness Centrality:
-Firewall Traversal: 0.1197
-Recording: 0.1160
-Customer: 0.1097
-Breakout Rooms: 0.1047
-Compliance (GDPR, HIPAA): 0.0938
+Device Enumeration: 0.1047
+Waiting Room: 0.0872
+Audiologist: 0.0860
+Firewall Traversal: 0.0854
+Content Creator: 0.0785
 
 Eigenvector Centrality:
-Compliance (GDPR, HIPAA): 0.2570
-API Request Handling: 0.2250
-Customer: 0.2223
-Noise Cancellation: 0.2075
-User Experience Designer: 0.2047
+Bandwidth Allocation: 0.2389
+Audiologist: 0.2299
+Waiting Room: 0.2242
+Device Enumeration: 0.1967
+Adaptive Bitrate Streaming: 0.1901
 
 Closeness Centrality:
-Customer: 0.3375
-Compliance (GDPR, HIPAA): 0.3358
-Firewall Traversal: 0.3253
-Video Mixing: 0.3230
-Low-Light Enhancement: 0.3191
+Device Enumeration: 0.3656
+Bandwidth Allocation: 0.3578
+Audiologist: 0.3578
+Waiting Room: 0.3535
+Firewall Traversal: 0.3535
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ support: 3
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-2    35
-1    35
+1    39
+2    31
 0    30
 Name: cluster, dtype: int64

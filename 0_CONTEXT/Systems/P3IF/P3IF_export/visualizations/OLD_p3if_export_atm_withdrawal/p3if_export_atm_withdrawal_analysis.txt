@@ -1,0 +1,99 @@
+=== P3IF Data Analysis for p3if_export_atm_withdrawal ===
+
+1. Basic Statistics:
+Total number of patterns: 156
+Total number of relationships: 100
+Number of unique properties: 42
+Number of unique processes: 45
+Number of unique perspectives: 46
+
+2. Pattern Type Distribution:
+Process: 55 (35.26%)
+Perspective: 51 (32.69%)
+Property: 50 (32.05%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.488338
+std        0.311395
+min        0.004300
+25%        0.210350
+50%        0.463500
+75%        0.774375
+max        0.999000
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9990):
+Property: Noise Level
+Process: Cash Replenishment
+Perspective: Cash Management Specialist
+
+Weakest relationship (strength = 0.0043):
+Property: User Interface
+Process: Mini Statement Printing
+Perspective: NFC Technology Expert
+
+4. Network Analysis:
+Number of nodes: 131
+Number of edges: 267
+Average clustering coefficient: 0.5441
+Average shortest path length: 4.0889
+Diameter of the graph: 8
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+PIN Entry: 0.0769
+Cash Availability: 0.0769
+Transaction Logging: 0.0769
+Fraud Detection: 0.0692
+Fraud Investigator: 0.0615
+
+Betweenness Centrality:
+Cash Availability: 0.1569
+Fraud Investigator: 0.1194
+PIN Entry: 0.1150
+Transaction Logging: 0.1089
+Noise Level: 0.1026
+
+Eigenvector Centrality:
+Cash Availability: 0.2608
+PIN Entry: 0.2423
+Transaction Logging: 0.2245
+Fraud Investigator: 0.1971
+Contactless Payment Expert: 0.1923
+
+Closeness Centrality:
+Cash Availability: 0.3291
+Card Insertion: 0.3242
+Fraud Investigator: 0.3218
+Network Connectivity: 0.3066
+Noise Level: 0.3023
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+cash: 14
+specialist: 12
+expert: 10
+transaction: 9
+software: 8
+technology: 8
+network: 6
+support: 6
+monitoring: 6
+security: 5
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+1    35
+2    33
+0    32
+Name: cluster, dtype: int64

@@ -14,24 +14,24 @@ Perspective: 12 (13.95%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.494760
-std        0.281301
-min        0.001454
-25%        0.235581
-50%        0.488991
-75%        0.748094
-max        0.982007
+mean       0.479783
+std        0.290098
+min        0.015504
+25%        0.215735
+50%        0.437833
+75%        0.744960
+max        0.980293
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9820):
+Strongest relationship (strength = 0.9803):
 Property: Not found
-Process: others
-Perspective: care
+Process: process_31
+Perspective: perspective_2
 
-Weakest relationship (strength = 0.0015):
+Weakest relationship (strength = 0.0155):
 Property: Not found
-Process: good
-Perspective: bad
+Process: process_20
+Perspective: perspective_7
 
 4. Network Analysis:
 Number of nodes: 0
@@ -60,21 +60,21 @@ Perspective       NaN      NaN          1.0
 
 7. Pattern Name Analysis:
 Top 10 most common words in pattern names:
-assume: 1
-region: 1
-she: 1
-cost: 1
-their: 1
-government: 1
-begin: 1
-direction: 1
-pay: 1
-reason: 1
+property_0: 1
+property_1: 1
+property_2: 1
+property_3: 1
+property_4: 1
+property_5: 1
+property_6: 1
+property_7: 1
+property_8: 1
+property_9: 1
 
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
 1    35
-2    33
-0    32
+0    34
+2    31
 Name: cluster, dtype: int64

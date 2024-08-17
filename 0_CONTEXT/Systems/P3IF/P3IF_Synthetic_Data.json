@@ -538,6 +538,44 @@
                 "Lab Assistant", "Postdoctoral Researcher", "Graduate Student", "Undergraduate Student", "Lab Coordinator",
                 "Lab Safety Officer", "Lab Automation Specialist", "Lab IT Specialist", "Lab Procurement Officer", "Lab Maintenance Technician"
             ]
+        },
+        "William_Blake_Poetry_and_Life": {
+            "properties": [
+                "Visionary Imagination", "Mysticism", "Symbolism", "Romanticism", "Spirituality",
+                "Social Criticism", "Artistic Innovation", "Poetic Rhythm", "Visual Artistry", "Philosophical Depth",
+                "Biblical Allusions", "Mythological References", "Nature Imagery", "Industrial Revolution Critique", "Psychological Insight",
+                "Prophetic Voice", "Dualistic Themes", "Innocence and Experience", "Revolutionary Spirit", "Artistic Integrity",
+                "Lyrical Beauty", "Metaphysical Concepts", "Allegorical Narratives", "Illuminated Printing", "Artistic Independence",
+                "Visionary Cosmology", "Poetic Craftsmanship", "Symbolic Color Use", "Archetypal Imagery", "Spiritual Rebellion",
+                "Artistic Versatility", "Poetic Innovation", "Mythopoeic Imagination", "Artistic Legacy", "Literary Influence",
+                "Philosophical Originality", "Artistic Technique", "Poetic Language", "Visual Symbolism", "Cultural Impact",
+                "Historical Context", "Artistic Vision", "Poetic Form", "Spiritual Exploration", "Artistic Expression",
+                "Literary Style", "Visionary Artistry", "Poetic Imagery", "Artistic Interpretation", "Philosophical Insight"
+            ],
+            "processes": [
+                "Poetry Writing", "Engraving", "Painting", "Printmaking", "Book Publishing",
+                "Visionary Experience", "Artistic Composition", "Poetic Recitation", "Visual Design", "Philosophical Contemplation",
+                "Biblical Interpretation", "Mythological Adaptation", "Nature Observation", "Social Commentary", "Psychological Analysis",
+                "Prophetic Writing", "Thematic Development", "Artistic Experimentation", "Revolutionary Thinking", "Artistic Self-Expression",
+                "Lyrical Composition", "Metaphysical Exploration", "Allegorical Construction", "Illuminated Book Creation", "Artistic Marketing",
+                "Cosmological Theorizing", "Poetic Revision", "Color Symbolism", "Archetypal Representation", "Spiritual Practice",
+                "Artistic Cross-Pollination", "Poetic Innovation", "Mythopoeic Creation", "Artistic Influence", "Literary Analysis",
+                "Philosophical Writing", "Artistic Technique Development", "Linguistic Experimentation", "Visual Narrative Creation", "Cultural Critique",
+                "Historical Research", "Visionary Articulation", "Poetic Form Experimentation", "Spiritual Inquiry", "Artistic Performance",
+                "Literary Style Development", "Visionary Art Creation", "Poetic Imagery Crafting", "Artistic Interpretation", "Philosophical Discourse"
+            ],
+            "perspectives": [
+                "Poet", "Artist", "Engraver", "Visionary", "Mystic",
+                "Social Critic", "Romantic", "Philosopher", "Literary Scholar", "Art Historian",
+                "Biographer", "Psychologist", "Theologian", "Cultural Historian", "Literary Critic",
+                "Comparative Mythologist", "Revolutionary Thinker", "Artistic Innovator", "Spiritual Seeker", "Symbolist Interpreter",
+                "Romantic Literature Expert", "Visual Arts Curator", "Poetic Form Analyst", "Biblical Scholar", "Mythological Researcher",
+                "Nature Poet Specialist", "Industrial Revolution Historian", "Psychological Theorist", "Prophetic Literature Expert", "Dualism Philosopher",
+                "Innocence and Experience Theorist", "Revolutionary Literature Scholar", "Artistic Integrity Advocate", "Lyrical Poetry Analyst", "Metaphysical Poet Expert",
+                "Allegorical Narrative Specialist", "Illuminated Book Historian", "Artistic Independence Researcher", "Visionary Cosmology Theorist", "Poetic Craftsmanship Analyst",
+                "Color Symbolism Expert", "Archetypal Imagery Interpreter", "Spiritual Rebellion Historian", "Artistic Versatility Researcher", "Poetic Innovation Theorist",
+                "Mythopoeic Imagination Scholar", "Artistic Legacy Curator", "Literary Influence Analyst", "Philosophical Originality Researcher", "Artistic Technique Historian"
+            ]
         }
     }
 }    

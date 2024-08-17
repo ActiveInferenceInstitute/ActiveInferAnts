@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 42
-Number of unique processes: 43
-Number of unique perspectives: 41
+Number of unique properties: 41
+Number of unique processes: 42
+Number of unique perspectives: 45
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,61 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.492004
-std        0.292691
-min        0.019800
-25%        0.227575
-50%        0.512100
-75%        0.734500
-max        0.997900
+mean       0.504622
+std        0.286621
+min        0.007200
+25%        0.249650
+50%        0.518700
+75%        0.778175
+max        0.962800
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9979):
-Property: Math Study Skills
-Process: Problem Set Design
-Perspective: Test Prep Specialist
+Strongest relationship (strength = 0.9628):
+Property: Math Test-Taking Strategies
+Process: Remedial Instruction
+Perspective: Mathematical Argumentation Coach
 
-Weakest relationship (strength = 0.0198):
-Property: Collaborative Learning
-Process: Anxiety Reduction Techniques
-Perspective: Not found
+Weakest relationship (strength = 0.0072):
+Property: Assessment Methods
+Process: Test Preparation
+Perspective: Error Analysis Specialist
 
 4. Network Analysis:
-Number of nodes: 123
-Number of edges: 270
-Average clustering coefficient: 0.4866
-Average shortest path length: 3.8714
+Number of nodes: 128
+Number of edges: 278
+Average clustering coefficient: 0.5052
+Average shortest path length: 3.7803
 Diameter of the graph: 8
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Math History Lesson Integration: 0.0820
-Mental Math Strategies: 0.0820
-Engagement Strategies: 0.0820
-Math Historian: 0.0738
-Math Club Advisor: 0.0738
+Teacher Training: 0.0945
+Differentiated Instruction: 0.0787
+Math Representation Expert: 0.0787
+Math Competition Coach: 0.0787
+Lesson Planning: 0.0709
 
 Betweenness Centrality:
-Engagement Strategies: 0.0985
-Math History Lesson Integration: 0.0949
-Problem Set Design: 0.0895
-Math Test-Taking Strategies: 0.0850
-Mental Math Strategies: 0.0836
+Math Representation Expert: 0.1465
+Teacher Training: 0.1230
+Lesson Planning: 0.0918
+Math Competition Coach: 0.0894
+Error Pattern Identification: 0.0838
 
 Eigenvector Centrality:
-Engagement Strategies: 0.2713
-Mathematical Communication: 0.2321
-Mental Math Strategies: 0.2171
-Ed-Tech Specialist: 0.2115
-Math History Lesson Integration: 0.2014
+Teacher Training: 0.2834
+Math Representation Expert: 0.2516
+Math Games and Puzzles: 0.1870
+Algebra Instructor: 0.1843
+Modeling Activities: 0.1793
 
 Closeness Centrality:
-Engagement Strategies: 0.3486
-Mathematical Communication: 0.3324
-Mental Math Strategies: 0.3324
-Ed-Tech Specialist: 0.3315
-Math History Lesson Integration: 0.3271
+Teacher Training: 0.3432
+Math Representation Expert: 0.3423
+Math History Integration: 0.3423
+Algebra Instructor: 0.3396
+Math History Lesson Integration: 0.3360
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ integration: 6
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-0    47
-2    32
-1    21
+0    37
+1    36
+2    27
 Name: cluster, dtype: int64

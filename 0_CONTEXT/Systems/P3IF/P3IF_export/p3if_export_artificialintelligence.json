@@ -724,703 +724,703 @@
   "relationships": [
     {
       "id": 1,
-      "property_id": 5,
-      "process_id": 100,
-      "perspective_id": 119,
-      "strength": 0.6115
+      "property_id": 44,
+      "process_id": 83,
+      "perspective_id": null,
+      "strength": 0.3031
     },
     {
       "id": 2,
-      "property_id": 14,
-      "process_id": 86,
-      "perspective_id": 114,
-      "strength": 0.2822
+      "property_id": 23,
+      "process_id": 91,
+      "perspective_id": 115,
+      "strength": 0.0363
     },
     {
       "id": 3,
       "property_id": 42,
-      "process_id": 64,
-      "perspective_id": 118,
-      "strength": 0.5083
+      "process_id": 98,
+      "perspective_id": 111,
+      "strength": 0.6785
     },
     {
       "id": 4,
-      "property_id": 17,
-      "process_id": 70,
-      "perspective_id": null,
-      "strength": 0.9947
+      "property_id": 4,
+      "process_id": 95,
+      "perspective_id": 118,
+      "strength": 0.2869
     },
     {
       "id": 5,
-      "property_id": 48,
-      "process_id": 64,
-      "perspective_id": 112,
-      "strength": 0.1014
+      "property_id": 46,
+      "process_id": 74,
+      "perspective_id": 115,
+      "strength": 0.0278
     },
     {
       "id": 6,
-      "property_id": 29,
-      "process_id": 59,
-      "perspective_id": 106,
-      "strength": 0.8825
+      "property_id": 25,
+      "process_id": 77,
+      "perspective_id": 108,
+      "strength": 0.8348
     },
     {
       "id": 7,
-      "property_id": 35,
-      "process_id": 91,
-      "perspective_id": 118,
-      "strength": 0.1596
+      "property_id": 27,
+      "process_id": 82,
+      "perspective_id": 120,
+      "strength": 0.8852
     },
     {
       "id": 8,
-      "property_id": 1,
-      "process_id": 84,
-      "perspective_id": null,
-      "strength": 0.5271
+      "property_id": 34,
+      "process_id": 104,
+      "perspective_id": 120,
+      "strength": 0.4962
     },
     {
       "id": 9,
-      "property_id": 23,
-      "process_id": 104,
+      "property_id": 9,
+      "process_id": 85,
       "perspective_id": 117,
-      "strength": 0.6944
+      "strength": 0.5985
     },
     {
       "id": 10,
-      "property_id": 34,
-      "process_id": 63,
-      "perspective_id": 113,
-      "strength": 0.1632
+      "property_id": 51,
+      "process_id": 105,
+      "perspective_id": 120,
+      "strength": 0.6314
     },
     {
       "id": 11,
-      "property_id": 10,
-      "process_id": 78,
-      "perspective_id": 120,
-      "strength": 0.8522
+      "property_id": 49,
+      "process_id": 96,
+      "perspective_id": 118,
+      "strength": 0.2896
     },
     {
       "id": 12,
-      "property_id": 50,
-      "process_id": 80,
-      "perspective_id": 120,
-      "strength": 0.61
+      "property_id": 7,
+      "process_id": 70,
+      "perspective_id": 116,
+      "strength": 0.5077
     },
     {
       "id": 13,
-      "property_id": 44,
-      "process_id": 77,
+      "property_id": 17,
+      "process_id": 93,
       "perspective_id": 117,
-      "strength": 0.391
+      "strength": 0.7532
     },
     {
       "id": 14,
-      "property_id": 8,
-      "process_id": 92,
-      "perspective_id": 119,
-      "strength": 0.2596
-    },
-    {
-      "id": 15,
-      "property_id": 7,
-      "process_id": 102,
-      "perspective_id": 112,
-      "strength": 0.0228
-    },
-    {
-      "id": 16,
-      "property_id": 35,
-      "process_id": 102,
-      "perspective_id": 113,
-      "strength": 0.1125
-    },
-    {
-      "id": 17,
-      "property_id": 34,
+      "property_id": 27,
       "process_id": 99,
-      "perspective_id": 110,
-      "strength": 0.8929
-    },
-    {
-      "id": 18,
-      "property_id": 36,
-      "process_id": 91,
-      "perspective_id": 112,
-      "strength": 0.1676
-    },
-    {
-      "id": 19,
-      "property_id": 8,
-      "process_id": 90,
-      "perspective_id": 112,
-      "strength": 0.6864
-    },
-    {
-      "id": 20,
-      "property_id": 19,
-      "process_id": null,
-      "perspective_id": 110,
-      "strength": 0.457
-    },
-    {
-      "id": 21,
-      "property_id": 38,
-      "process_id": 79,
-      "perspective_id": 117,
-      "strength": 0.0316
-    },
-    {
-      "id": 22,
-      "property_id": 20,
-      "process_id": 71,
-      "perspective_id": 118,
-      "strength": 0.4867
-    },
-    {
-      "id": 23,
-      "property_id": 50,
-      "process_id": 56,
-      "perspective_id": 106,
-      "strength": 0.5612
-    },
-    {
-      "id": 24,
-      "property_id": 29,
-      "process_id": 96,
-      "perspective_id": 110,
-      "strength": 0.6012
-    },
-    {
-      "id": 25,
-      "property_id": 13,
-      "process_id": 77,
       "perspective_id": 107,
-      "strength": 0.5646
-    },
-    {
-      "id": 26,
-      "property_id": 5,
-      "process_id": 60,
-      "perspective_id": null,
-      "strength": 0.8889
-    },
-    {
-      "id": 27,
-      "property_id": 24,
-      "process_id": 88,
-      "perspective_id": 111,
-      "strength": 0.9323
-    },
-    {
-      "id": 28,
-      "property_id": 8,
-      "process_id": 100,
-      "perspective_id": 115,
-      "strength": 0.6666
-    },
-    {
-      "id": 29,
-      "property_id": 12,
-      "process_id": 70,
-      "perspective_id": 120,
-      "strength": 0.1692
-    },
-    {
-      "id": 30,
-      "property_id": 22,
-      "process_id": 56,
-      "perspective_id": 106,
-      "strength": 0.796
-    },
-    {
-      "id": 31,
-      "property_id": 36,
-      "process_id": 92,
-      "perspective_id": 116,
-      "strength": 0.3849
-    },
-    {
-      "id": 32,
-      "property_id": 23,
-      "process_id": 93,
-      "perspective_id": 106,
-      "strength": 0.0791
-    },
-    {
-      "id": 33,
-      "property_id": 52,
-      "process_id": 91,
-      "perspective_id": 120,
-      "strength": 0.9853
-    },
-    {
-      "id": 34,
-      "property_id": 49,
-      "process_id": 103,
-      "perspective_id": 115,
-      "strength": 0.3025
-    },
-    {
-      "id": 35,
-      "property_id": 30,
-      "process_id": 76,
-      "perspective_id": 106,
-      "strength": 0.2644
-    },
-    {
-      "id": 36,
-      "property_id": 44,
-      "process_id": 100,
-      "perspective_id": 107,
-      "strength": 0.3354
-    },
-    {
-      "id": 37,
-      "property_id": 3,
-      "process_id": 101,
-      "perspective_id": 109,
-      "strength": 0.1274
-    },
-    {
-      "id": 38,
-      "property_id": 53,
-      "process_id": 94,
-      "perspective_id": 112,
-      "strength": 0.1416
-    },
-    {
-      "id": 39,
-      "property_id": 6,
-      "process_id": 73,
-      "perspective_id": 118,
-      "strength": 0.0269
-    },
-    {
-      "id": 40,
-      "property_id": 35,
-      "process_id": 90,
-      "perspective_id": 117,
-      "strength": 0.9522
-    },
-    {
-      "id": 41,
-      "property_id": 1,
-      "process_id": 73,
-      "perspective_id": 107,
-      "strength": 0.3476
-    },
-    {
-      "id": 42,
-      "property_id": 46,
-      "process_id": 78,
-      "perspective_id": 109,
-      "strength": 0.4336
-    },
-    {
-      "id": 43,
-      "property_id": 51,
-      "process_id": 77,
-      "perspective_id": 112,
-      "strength": 0.3112
-    },
-    {
-      "id": 44,
-      "property_id": 30,
-      "process_id": 97,
-      "perspective_id": 112,
-      "strength": 0.8966
-    },
-    {
-      "id": 45,
-      "property_id": 43,
-      "process_id": 58,
-      "perspective_id": 113,
-      "strength": 0.0457
-    },
-    {
-      "id": 46,
-      "property_id": 20,
-      "process_id": 76,
-      "perspective_id": 120,
-      "strength": 0.3707
-    },
-    {
-      "id": 47,
-      "property_id": 26,
-      "process_id": 95,
-      "perspective_id": 119,
-      "strength": 0.2473
-    },
-    {
-      "id": 48,
-      "property_id": 11,
-      "process_id": 101,
-      "perspective_id": 112,
-      "strength": 0.6439
-    },
-    {
-      "id": 49,
-      "property_id": 17,
-      "process_id": 103,
-      "perspective_id": 117,
-      "strength": 0.8041
-    },
-    {
-      "id": 50,
-      "property_id": 37,
-      "process_id": 78,
-      "perspective_id": 114,
-      "strength": 0.8344
-    },
-    {
-      "id": 51,
-      "property_id": 45,
-      "process_id": 58,
-      "perspective_id": 107,
-      "strength": 0.3316
-    },
-    {
-      "id": 52,
-      "property_id": 9,
-      "process_id": 99,
-      "perspective_id": 118,
-      "strength": 0.0313
-    },
-    {
-      "id": 53,
-      "property_id": 49,
-      "process_id": 74,
-      "perspective_id": 120,
-      "strength": 0.6805
-    },
-    {
-      "id": 54,
-      "property_id": 14,
-      "process_id": 67,
-      "perspective_id": 112,
       "strength": 0.6437
     },
     {
-      "id": 55,
+      "id": 15,
+      "property_id": 13,
+      "process_id": 61,
+      "perspective_id": 109,
+      "strength": 0.8313
+    },
+    {
+      "id": 16,
+      "property_id": 44,
+      "process_id": 69,
+      "perspective_id": 112,
+      "strength": 0.0352
+    },
+    {
+      "id": 17,
+      "property_id": 3,
+      "process_id": 103,
+      "perspective_id": 109,
+      "strength": 0.391
+    },
+    {
+      "id": 18,
+      "property_id": 35,
+      "process_id": null,
+      "perspective_id": 109,
+      "strength": 0.7267
+    },
+    {
+      "id": 19,
+      "property_id": 49,
+      "process_id": 78,
+      "perspective_id": 118,
+      "strength": 0.3017
+    },
+    {
+      "id": 20,
+      "property_id": 55,
+      "process_id": 100,
+      "perspective_id": 110,
+      "strength": 0.0093
+    },
+    {
+      "id": 21,
+      "property_id": 7,
+      "process_id": 59,
+      "perspective_id": 114,
+      "strength": 0.9297
+    },
+    {
+      "id": 22,
+      "property_id": 55,
+      "process_id": 104,
+      "perspective_id": 111,
+      "strength": 0.5799
+    },
+    {
+      "id": 23,
+      "property_id": 22,
+      "process_id": 103,
+      "perspective_id": 109,
+      "strength": 0.8188
+    },
+    {
+      "id": 24,
+      "property_id": 6,
+      "process_id": 93,
+      "perspective_id": 111,
+      "strength": 0.9707
+    },
+    {
+      "id": 25,
+      "property_id": 51,
+      "process_id": 85,
+      "perspective_id": 112,
+      "strength": 0.2338
+    },
+    {
+      "id": 26,
+      "property_id": 6,
+      "process_id": 64,
+      "perspective_id": 120,
+      "strength": 0.0073
+    },
+    {
+      "id": 27,
+      "property_id": 8,
+      "process_id": 56,
+      "perspective_id": 109,
+      "strength": 0.9064
+    },
+    {
+      "id": 28,
+      "property_id": 30,
+      "process_id": 64,
+      "perspective_id": 118,
+      "strength": 0.4931
+    },
+    {
+      "id": 29,
       "property_id": 46,
-      "process_id": 60,
+      "process_id": 94,
+      "perspective_id": 120,
+      "strength": 0.0263
+    },
+    {
+      "id": 30,
+      "property_id": 17,
+      "process_id": 88,
+      "perspective_id": 110,
+      "strength": 0.6292
+    },
+    {
+      "id": 31,
+      "property_id": 28,
+      "process_id": 98,
+      "perspective_id": 120,
+      "strength": 0.4098
+    },
+    {
+      "id": 32,
+      "property_id": 12,
+      "process_id": 86,
+      "perspective_id": 106,
+      "strength": 0.6793
+    },
+    {
+      "id": 33,
+      "property_id": 51,
+      "process_id": 91,
+      "perspective_id": 118,
+      "strength": 0.0696
+    },
+    {
+      "id": 34,
+      "property_id": 36,
+      "process_id": 87,
+      "perspective_id": 120,
+      "strength": 0.7705
+    },
+    {
+      "id": 35,
+      "property_id": 55,
+      "process_id": 94,
+      "perspective_id": 110,
+      "strength": 0.1959
+    },
+    {
+      "id": 36,
+      "property_id": 14,
+      "process_id": 77,
+      "perspective_id": 120,
+      "strength": 0.992
+    },
+    {
+      "id": 37,
+      "property_id": 52,
+      "process_id": 97,
+      "perspective_id": 117,
+      "strength": 0.447
+    },
+    {
+      "id": 38,
+      "property_id": 44,
+      "process_id": 72,
+      "perspective_id": 107,
+      "strength": 0.1152
+    },
+    {
+      "id": 39,
+      "property_id": 5,
+      "process_id": 104,
+      "perspective_id": 114,
+      "strength": 0.4764
+    },
+    {
+      "id": 40,
+      "property_id": 44,
+      "process_id": 58,
+      "perspective_id": 108,
+      "strength": 0.9655
+    },
+    {
+      "id": 41,
+      "property_id": 25,
+      "process_id": 70,
       "perspective_id": null,
-      "strength": 0.7095
+      "strength": 0.8509
+    },
+    {
+      "id": 42,
+      "property_id": 20,
+      "process_id": 94,
+      "perspective_id": 114,
+      "strength": 0.896
+    },
+    {
+      "id": 43,
+      "property_id": 12,
+      "process_id": 62,
+      "perspective_id": 118,
+      "strength": 0.5442
+    },
+    {
+      "id": 44,
+      "property_id": 9,
+      "process_id": 80,
+      "perspective_id": 115,
+      "strength": 0.4977
+    },
+    {
+      "id": 45,
+      "property_id": 32,
+      "process_id": 89,
+      "perspective_id": 118,
+      "strength": 0.4154
+    },
+    {
+      "id": 46,
+      "property_id": 12,
+      "process_id": 84,
+      "perspective_id": 111,
+      "strength": 0.4686
+    },
+    {
+      "id": 47,
+      "property_id": 10,
+      "process_id": 101,
+      "perspective_id": 108,
+      "strength": 0.8332
+    },
+    {
+      "id": 48,
+      "property_id": 19,
+      "process_id": 85,
+      "perspective_id": 109,
+      "strength": 0.184
+    },
+    {
+      "id": 49,
+      "property_id": 52,
+      "process_id": 105,
+      "perspective_id": 106,
+      "strength": 0.7484
+    },
+    {
+      "id": 50,
+      "property_id": 14,
+      "process_id": 66,
+      "perspective_id": 115,
+      "strength": 0.3698
+    },
+    {
+      "id": 51,
+      "property_id": 49,
+      "process_id": 60,
+      "perspective_id": 114,
+      "strength": 0.0349
+    },
+    {
+      "id": 52,
+      "property_id": 36,
+      "process_id": 91,
+      "perspective_id": 106,
+      "strength": 0.5375
+    },
+    {
+      "id": 53,
+      "property_id": 3,
+      "process_id": 91,
+      "perspective_id": 116,
+      "strength": 0.151
+    },
+    {
+      "id": 54,
+      "property_id": 37,
+      "process_id": 105,
+      "perspective_id": 118,
+      "strength": 0.889
+    },
+    {
+      "id": 55,
+      "property_id": 1,
+      "process_id": 74,
+      "perspective_id": 112,
+      "strength": 0.3371
     },
     {
       "id": 56,
-      "property_id": 43,
-      "process_id": 77,
-      "perspective_id": 113,
-      "strength": 0.6287
+      "property_id": 45,
+      "process_id": 87,
+      "perspective_id": 107,
+      "strength": 0.198
     },
     {
       "id": 57,
-      "property_id": 44,
-      "process_id": 74,
-      "perspective_id": 109,
-      "strength": 0.3806
+      "property_id": 8,
+      "process_id": 83,
+      "perspective_id": 112,
+      "strength": 0.3805
     },
     {
       "id": 58,
-      "property_id": 48,
-      "process_id": 65,
-      "perspective_id": 112,
-      "strength": 0.3191
+      "property_id": 25,
+      "process_id": 85,
+      "perspective_id": 118,
+      "strength": 0.2432
     },
     {
       "id": 59,
-      "property_id": 40,
-      "process_id": 87,
-      "perspective_id": 111,
-      "strength": 0.0291
+      "property_id": 18,
+      "process_id": null,
+      "perspective_id": 108,
+      "strength": 0.1591
     },
     {
       "id": 60,
-      "property_id": 55,
-      "process_id": 58,
-      "perspective_id": 112,
-      "strength": 0.2975
+      "property_id": 40,
+      "process_id": 63,
+      "perspective_id": 118,
+      "strength": 0.4706
     },
     {
       "id": 61,
-      "property_id": 10,
-      "process_id": 87,
-      "perspective_id": null,
-      "strength": 0.1362
+      "property_id": 36,
+      "process_id": 103,
+      "perspective_id": 117,
+      "strength": 0.8888
     },
     {
       "id": 62,
-      "property_id": 41,
-      "process_id": 101,
-      "perspective_id": 108,
-      "strength": 0.6453
+      "property_id": 47,
+      "process_id": 74,
+      "perspective_id": 113,
+      "strength": 0.6267
     },
     {
       "id": 63,
-      "property_id": 10,
-      "process_id": 78,
-      "perspective_id": 111,
-      "strength": 0.337
+      "property_id": 48,
+      "process_id": 81,
+      "perspective_id": 109,
+      "strength": 0.2799
     },
     {
       "id": 64,
-      "property_id": 27,
-      "process_id": 70,
-      "perspective_id": 116,
-      "strength": 0.0966
+      "property_id": 23,
+      "process_id": 84,
+      "perspective_id": 107,
+      "strength": 0.7768
     },
     {
       "id": 65,
-      "property_id": 4,
-      "process_id": 78,
-      "perspective_id": 118,
-      "strength": 0.1222
+      "property_id": 8,
+      "process_id": 63,
+      "perspective_id": 113,
+      "strength": 0.53
     },
     {
       "id": 66,
       "property_id": 24,
-      "process_id": 58,
-      "perspective_id": 114,
-      "strength": 0.5068
+      "process_id": 66,
+      "perspective_id": 112,
+      "strength": 0.6948
     },
     {
       "id": 67,
-      "property_id": 47,
-      "process_id": 79,
-      "perspective_id": 120,
-      "strength": 0.1047
+      "property_id": 46,
+      "process_id": 78,
+      "perspective_id": 107,
+      "strength": 0.5741
     },
     {
       "id": 68,
-      "property_id": 38,
-      "process_id": 66,
+      "property_id": 3,
+      "process_id": 88,
       "perspective_id": 116,
-      "strength": 0.9771
+      "strength": 0.3894
     },
     {
       "id": 69,
-      "property_id": 24,
-      "process_id": 71,
-      "perspective_id": null,
-      "strength": 0.9521
+      "property_id": 49,
+      "process_id": 97,
+      "perspective_id": 114,
+      "strength": 0.9144
     },
     {
       "id": 70,
-      "property_id": 19,
-      "process_id": 98,
+      "property_id": 50,
+      "process_id": 103,
       "perspective_id": 114,
-      "strength": 0.1781
+      "strength": 0.7902
     },
     {
       "id": 71,
-      "property_id": 23,
-      "process_id": 56,
-      "perspective_id": 111,
-      "strength": 0.9335
+      "property_id": 7,
+      "process_id": 67,
+      "perspective_id": null,
+      "strength": 0.1937
     },
     {
       "id": 72,
-      "property_id": 2,
-      "process_id": 105,
-      "perspective_id": 118,
-      "strength": 0.3888
+      "property_id": 10,
+      "process_id": 103,
+      "perspective_id": 119,
+      "strength": 0.5521
     },
     {
       "id": 73,
-      "property_id": 21,
-      "process_id": 90,
-      "perspective_id": null,
-      "strength": 0.5021
+      "property_id": 24,
+      "process_id": 96,
+      "perspective_id": 107,
+      "strength": 0.9084
     },
     {
       "id": 74,
-      "property_id": 6,
-      "process_id": 87,
-      "perspective_id": 107,
-      "strength": 0.8994
+      "property_id": 31,
+      "process_id": 82,
+      "perspective_id": null,
+      "strength": 0.8713
     },
     {
       "id": 75,
       "property_id": 17,
-      "process_id": 56,
+      "process_id": 67,
       "perspective_id": 109,
-      "strength": 0.1245
+      "strength": 0.4385
     },
     {
       "id": 76,
-      "property_id": 21,
-      "process_id": 93,
-      "perspective_id": 107,
-      "strength": 0.205
+      "property_id": 9,
+      "process_id": 97,
+      "perspective_id": 114,
+      "strength": 0.2016
     },
     {
       "id": 77,
       "property_id": 46,
-      "process_id": 58,
+      "process_id": 99,
       "perspective_id": 118,
-      "strength": 0.3316
+      "strength": 0.7614
     },
     {
       "id": 78,
-      "property_id": 50,
-      "process_id": 62,
-      "perspective_id": 106,
-      "strength": 0.1755
+      "property_id": 14,
+      "process_id": 66,
+      "perspective_id": 112,
+      "strength": 0.1552
     },
     {
       "id": 79,
-      "property_id": 51,
-      "process_id": 74,
-      "perspective_id": 115,
-      "strength": 0.2292
+      "property_id": 5,
+      "process_id": 61,
+      "perspective_id": 119,
+      "strength": 0.5064
     },
     {
       "id": 80,
-      "property_id": 18,
-      "process_id": null,
-      "perspective_id": 120,
-      "strength": 0.3569
+      "property_id": 51,
+      "process_id": 82,
+      "perspective_id": 113,
+      "strength": 0.1514
     },
     {
       "id": 81,
-      "property_id": 22,
-      "process_id": 71,
-      "perspective_id": 110,
-      "strength": 0.6964
+      "property_id": 53,
+      "process_id": 92,
+      "perspective_id": 114,
+      "strength": 0.002
     },
     {
       "id": 82,
-      "property_id": 29,
-      "process_id": 72,
-      "perspective_id": 118,
-      "strength": 0.5645
+      "property_id": 24,
+      "process_id": 73,
+      "perspective_id": 120,
+      "strength": 0.8784
     },
     {
       "id": 83,
-      "property_id": 19,
-      "process_id": 68,
-      "perspective_id": 115,
-      "strength": 0.1306
+      "property_id": 37,
+      "process_id": 69,
+      "perspective_id": 106,
+      "strength": 0.6216
     },
     {
       "id": 84,
-      "property_id": 24,
-      "process_id": 102,
-      "perspective_id": 106,
-      "strength": 0.7718
+      "property_id": 47,
+      "process_id": 96,
+      "perspective_id": 107,
+      "strength": 0.3227
     },
     {
       "id": 85,
-      "property_id": 26,
-      "process_id": 96,
-      "perspective_id": 120,
-      "strength": 0.7533
+      "property_id": 13,
+      "process_id": 84,
+      "perspective_id": 115,
+      "strength": 0.1357
     },
     {
       "id": 86,
-      "property_id": 32,
-      "process_id": 60,
-      "perspective_id": 109,
-      "strength": 0.9061
+      "property_id": 54,
+      "process_id": 100,
+      "perspective_id": 116,
+      "strength": 0.5025
     },
     {
       "id": 87,
-      "property_id": 19,
-      "process_id": 103,
-      "perspective_id": 114,
-      "strength": 0.2386
+      "property_id": 20,
+      "process_id": 88,
+      "perspective_id": 115,
+      "strength": 0.8882
     },
     {
       "id": 88,
-      "property_id": 22,
-      "process_id": 99,
-      "perspective_id": 109,
-      "strength": 0.1957
+      "property_id": 6,
+      "process_id": 89,
+      "perspective_id": 111,
+      "strength": 0.4992
     },
     {
       "id": 89,
-      "property_id": 3,
-      "process_id": 98,
-      "perspective_id": 118,
-      "strength": 0.2966
+      "property_id": 15,
+      "process_id": 79,
+      "perspective_id": 106,
+      "strength": 0.276
     },
     {
       "id": 90,
-      "property_id": 32,
-      "process_id": 64,
-      "perspective_id": 113,
-      "strength": 0.8749
+      "property_id": 38,
+      "process_id": 88,
+      "perspective_id": 115,
+      "strength": 0.2207
     },
     {
       "id": 91,
-      "property_id": 50,
-      "process_id": 65,
-      "perspective_id": 108,
-      "strength": 0.6948
+      "property_id": 42,
+      "process_id": 72,
+      "perspective_id": 111,
+      "strength": 0.4089
     },
     {
       "id": 92,
-      "property_id": 46,
-      "process_id": 59,
-      "perspective_id": 112,
-      "strength": 0.6834
+      "property_id": 32,
+      "process_id": 75,
+      "perspective_id": 116,
+      "strength": 0.2036
     },
     {
       "id": 93,
-      "property_id": 49,
-      "process_id": 72,
-      "perspective_id": 113,
-      "strength": 0.9163
+      "property_id": 23,
+      "process_id": 80,
+      "perspective_id": 106,
+      "strength": 0.7688
     },
     {
       "id": 94,
-      "property_id": 47,
-      "process_id": 59,
-      "perspective_id": 108,
-      "strength": 0.3726
+      "property_id": 49,
+      "process_id": 105,
+      "perspective_id": 106,
+      "strength": 0.1999
     },
     {
       "id": 95,
-      "property_id": 46,
-      "process_id": 67,
-      "perspective_id": 109,
-      "strength": 0.0843
+      "property_id": 32,
+      "process_id": 65,
+      "perspective_id": 112,
+      "strength": 0.8928
     },
     {
       "id": 96,
-      "property_id": 42,
-      "process_id": 68,
-      "perspective_id": 116,
-      "strength": 0.0559
+      "property_id": 5,
+      "process_id": 63,
+      "perspective_id": 113,
+      "strength": 0.099
     },
     {
       "id": 97,
-      "property_id": 34,
-      "process_id": 66,
-      "perspective_id": 112,
-      "strength": 0.7607
+      "property_id": 7,
+      "process_id": 59,
+      "perspective_id": 111,
+      "strength": 0.018
     },
     {
       "id": 98,
-      "property_id": 38,
-      "process_id": 61,
-      "perspective_id": 109,
-      "strength": 0.0257
+      "property_id": 33,
+      "process_id": 105,
+      "perspective_id": 117,
+      "strength": 0.6067
     },
     {
       "id": 99,
-      "property_id": 41,
-      "process_id": 95,
-      "perspective_id": 106,
-      "strength": 0.8177
+      "property_id": 7,
+      "process_id": 56,
+      "perspective_id": 115,
+      "strength": 0.6888
     },
     {
       "id": 100,
-      "property_id": 21,
-      "process_id": 67,
-      "perspective_id": 107,
-      "strength": 0.82
+      "property_id": 50,
+      "process_id": null,
+      "perspective_id": 112,
+      "strength": 0.0999
     }
   ]
 }

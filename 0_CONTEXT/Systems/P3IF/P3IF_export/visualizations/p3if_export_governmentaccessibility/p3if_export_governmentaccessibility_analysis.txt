@@ -3,8 +3,8 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 44
-Number of unique processes: 48
+Number of unique properties: 43
+Number of unique processes: 43
 Number of unique perspectives: 44
 
 2. Pattern Type Distribution:
@@ -14,61 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.456985
-std        0.292445
-min        0.016100
-25%        0.238250
-50%        0.417850
-75%        0.706925
-max        0.970400
+mean       0.525438
+std        0.269130
+min        0.000400
+25%        0.339200
+50%        0.513500
+75%        0.755700
+max        0.978800
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9704):
-Property: Feedback Mechanisms
-Process: Complaint Procedure Simplification
-Perspective: Event Accessibility Planner
+Strongest relationship (strength = 0.9788):
+Property: Accessible Housing Information
+Process: Voting Machine Accessibility Testing
+Perspective: Web Developer
 
-Weakest relationship (strength = 0.0161):
-Property: Accessible Websites
-Process: Audio Description Creation
-Perspective: Sensory Integration Specialist
+Weakest relationship (strength = 0.0004):
+Property: Accessible Recreational Facilities
+Process: Voting System Design
+Perspective: Public Transit Accessibility Specialist
 
 4. Network Analysis:
-Number of nodes: 134
-Number of edges: 267
-Average clustering coefficient: 0.5523
-Average shortest path length: 4.0949
+Number of nodes: 126
+Number of edges: 273
+Average clustering coefficient: 0.5349
+Average shortest path length: 3.6583
 Diameter of the graph: 8
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Accommodation Request Processing: 0.0752
-Language Accessibility: 0.0752
-Captioning Services: 0.0752
-Remote Services Technician: 0.0677
-Feedback Analysis Specialist: 0.0602
+Accessible Housing Information: 0.1040
+Accessible Public Transportation: 0.0960
+Multilingual Services: 0.0960
+Remote Access Services: 0.0800
+Web Accessibility Testing: 0.0800
 
 Betweenness Centrality:
-Training Coordinator: 0.1466
-Accommodation Request Processing: 0.1272
-Language Accessibility: 0.1176
-Captioning Services: 0.0942
-Feedback Analysis Specialist: 0.0935
+Accessible Housing Information: 0.1712
+Multilingual Services: 0.1129
+Accessible Public Transportation: 0.1127
+Facilities Manager: 0.1126
+Web Accessibility Testing: 0.0856
 
 Eigenvector Centrality:
-Captioning Services: 0.2618
-Accommodation Request Processing: 0.2584
-Feedback Mechanisms: 0.1910
-Complaint Procedure Simplification: 0.1820
-Education Support Services: 0.1819
+Accessible Housing Information: 0.3007
+Multilingual Services: 0.2543
+Translation Services: 0.2275
+Accessible Public Transportation: 0.2050
+Remote Access Services: 0.1941
 
 Closeness Centrality:
-Accommodation Request Processing: 0.3122
-Training Coordinator: 0.3107
-Feedback Analysis Specialist: 0.3100
-Captioning Services: 0.3086
-Public Information Campaigns: 0.3043
+Accessible Housing Information: 0.3788
+Facilities Manager: 0.3571
+Translation Services: 0.3501
+Inclusive Civic Engagement: 0.3453
+Accessible Public Transportation: 0.3425
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,7 +93,7 @@ assistive: 6
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-0    40
-2    30
-1    30
+0    44
+1    29
+2    27
 Name: cluster, dtype: int64
