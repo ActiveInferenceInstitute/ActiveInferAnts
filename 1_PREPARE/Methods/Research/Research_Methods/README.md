@@ -18,7 +18,8 @@ We currently handle Entities, Grants, and Catechisms by concatenating them in a 
 ### Enhanced and Flexible LLM Interactions
 2. **Current State**: The OpenAI API call method is implemented separately in the Pro-Grant writing and review scripts.
    **Improvement Goal**: Create a single script to process a directory of text files (prompts) and produce a directory with the LLM-processed text files. This will provide clearer and more flexible LLM interactions, improving usability and consistency.
-   **Reference**: Use https://github.com/openai/openai-python and https://openai.com/index/introducing-structured-outputs-in-the-api/
+   **Structure**: Use https://github.com/openai/openai-python and https://openai.com/index/introducing-structured-outputs-in-the-api/
+   Can we use https://github.com/mumu-lhl/duckduckgo-ai-chat for free GPT-4o-mini? 
 
 ### Linguistic Meta-Analysis Across a Directory
 3. **Current State**: Distinct scripts exist for the meta-analysis of Pre-Pro-Grants, Pro-Grants, and Pro-Grant reviews.

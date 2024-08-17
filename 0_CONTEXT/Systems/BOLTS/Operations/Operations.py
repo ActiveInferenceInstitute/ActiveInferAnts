@@ -1,8 +1,10 @@
 import numpy as np
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Tuple
 from scipy.optimize import linear_sum_assignment
 from sklearn.cluster import KMeans
 from statsmodels.tsa.arima.model import ARIMA
+import networkx as nx
+from deap import algorithms, base, creator, tools
 
 class OperationsAIC:
     def __init__(self):
@@ -15,251 +17,358 @@ class OperationsAIC:
         """
         Optimize supply chain resilience using advanced algorithms.
         
-        Steps:
-        1. Build supply chain graph
-        2. Perform network flow optimization
-        3. Assess supply chain risks
-        4. Generate mitigation strategies
-        5. Calculate resilience metrics
-        6. Return optimized configuration and metrics
+        Args:
+            data (Dict[str, Any]): Input data containing supply chain information.
+        
+        Returns:
+            Dict[str, Any]: Optimized configuration and resilience metrics.
         """
-        pass
+        graph = self._build_supply_chain_graph(data['nodes'], data['edges'])
+        optimal_flow = self._max_flow_min_cost(graph, data['source'], data['sink'])
+        risk_scores = self._assess_supply_chain_risks(data['risk_factors'])
+        mitigation_strategies = self._generate_mitigation_strategies(risk_scores)
+        resilience_score = self._calculate_resilience_score(optimal_flow, risk_scores)
+        
+        return {
+            'optimized_flow': optimal_flow,
+            'risk_scores': risk_scores,
+            'mitigation_strategies': mitigation_strategies,
+            'resilience_score': resilience_score
+        }
 
     def resolve_resource_allocation(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Resolve resource allocation conflicts using advanced optimization techniques.
         
-        Steps:
-        1. Perform multi-objective optimization
-        2. Resolve conflicts using game theory
-        3. Calculate fairness and efficiency metrics
-        4. Return optimized allocation plan and metrics
+        Args:
+            data (Dict[str, Any]): Input data containing resource demands and constraints.
+        
+        Returns:
+            Dict[str, Any]: Optimized allocation plan and performance metrics.
         """
-        pass
+        allocation_matrix = self._multi_objective_optimization(data['demands'], data['capacities'], data['priorities'])
+        nash_equilibrium = self._compute_nash_equilibrium(allocation_matrix)
+        fairness_score = self._calculate_fairness_score(nash_equilibrium)
+        efficiency_score = self._calculate_efficiency_score(nash_equilibrium, data['demands'])
+        
+        return {
+            'optimal_allocation': nash_equilibrium,
+            'fairness_score': fairness_score,
+            'efficiency_score': efficiency_score
+        }
 
     def improve_inventory_management(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Improve inventory management using advanced forecasting and optimization techniques.
         
-        Steps:
-        1. Forecast demand using ARIMA model
-        2. Optimize inventory levels using newsvendor model
-        3. Calculate service level and inventory turnover
-        4. Return optimized inventory levels and performance metrics
+        Args:
+            data (Dict[str, Any]): Input data containing historical demand and inventory parameters.
+        
+        Returns:
+            Dict[str, Any]: Optimized inventory levels and performance metrics.
         """
-        pass
+        forecast = self._forecast_demand(data['historical_demand'])
+        optimal_inventory = self._optimize_inventory_levels(forecast, data['lead_times'], data['holding_costs'])
+        service_level = self._calculate_service_level(optimal_inventory, forecast)
+        inventory_turnover = self._calculate_inventory_turnover(data['historical_demand'], optimal_inventory)
+        
+        return {
+            'demand_forecast': forecast,
+            'optimal_inventory': optimal_inventory,
+            'service_level': service_level,
+            'inventory_turnover': inventory_turnover
+        }
 
     def enhance_quality_control(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Enhance quality control processes using statistical process control and machine learning.
         
-        Steps:
-        1. Calculate control limits using statistical process control
-        2. Train and apply defect prediction model
-        3. Calculate process capability and defect rate
-        4. Return optimized control limits and quality metrics
+        Args:
+            data (Dict[str, Any]): Input data containing quality measurements and specifications.
+        
+        Returns:
+            Dict[str, Any]: Optimized control limits and quality metrics.
         """
-        pass
+        control_limits = self._calculate_control_limits(data['measurements'])
+        defect_prediction_model = self._train_defect_prediction_model(data['historical_defects'])
+        process_capability = self._calculate_process_capability(data['measurements'], data['specifications'])
+        defect_rate = self._calculate_defect_rate(defect_prediction_model.predict(data['current_batch']))
+        
+        return {
+            'control_limits': control_limits,
+            'process_capability': process_capability,
+            'predicted_defect_rate': defect_rate
+        }
 
-    def _build_supply_chain_graph(self, nodes: List[Dict], edges: List[Dict]) -> Any:
+    def _build_supply_chain_graph(self, nodes: List[Dict], edges: List[Dict]) -> nx.DiGraph:
         """
         Build a graph representation of the supply chain.
         
-        Steps:
-        1. Initialize graph data structure
-        2. Add nodes with attributes
-        3. Add edges with weights and capacities
-        4. Return completed graph
+        Args:
+            nodes (List[Dict]): List of node dictionaries with attributes.
+            edges (List[Dict]): List of edge dictionaries with weights and capacities.
+        
+        Returns:
+            nx.DiGraph: Completed supply chain graph.
         """
-        pass
+        G = nx.DiGraph()
+        for node in nodes:
+            G.add_node(node['id'], **node['attributes'])
+        for edge in edges:
+            G.add_edge(edge['source'], edge['target'], weight=edge['weight'], capacity=edge['capacity'])
+        return G
 
-    def _max_flow_min_cost(self, graph: Any, source: int, sink: int) -> Dict[str, Any]:
+    def _max_flow_min_cost(self, graph: nx.DiGraph, source: int, sink: int) -> Dict[str, Any]:
         """
         Solve the maximum flow minimum cost problem on the supply chain graph.
         
-        Steps:
-        1. Initialize flow and cost variables
-        2. Apply network simplex algorithm
-        3. Iterate until optimal solution is found
-        4. Return optimal flow and associated cost
+        Args:
+            graph (nx.DiGraph): Supply chain graph.
+            source (int): Source node ID.
+            sink (int): Sink node ID.
+        
+        Returns:
+            Dict[str, Any]: Optimal flow and associated cost.
         """
-        pass
+        flow_dict = nx.max_flow_min_cost(graph, source, sink)
+        cost = nx.cost_of_flow(graph, flow_dict)
+        return {'flow': flow_dict, 'cost': cost}
 
     def _assess_supply_chain_risks(self, risk_factors: List[Dict]) -> Dict[str, float]:
         """
         Assess various risk factors in the supply chain.
         
-        Steps:
-        1. Normalize risk factor scores
-        2. Apply weights to each risk factor
-        3. Aggregate weighted scores
-        4. Return risk assessment for each supply chain component
+        Args:
+            risk_factors (List[Dict]): List of risk factor dictionaries.
+        
+        Returns:
+            Dict[str, float]: Risk assessment for each supply chain component.
         """
-        pass
+        normalized_scores = {factor['name']: factor['score'] / 10 for factor in risk_factors}
+        weights = {factor['name']: factor['weight'] for factor in risk_factors}
+        return {name: score * weights[name] for name, score in normalized_scores.items()}
 
     def _generate_mitigation_strategies(self, risk_scores: Dict[str, float]) -> List[str]:
         """
         Generate risk mitigation strategies based on risk assessment.
         
-        Steps:
-        1. Identify high-risk areas
-        2. Match risks to predefined mitigation tactics
-        3. Prioritize strategies based on impact and feasibility
-        4. Return list of recommended mitigation strategies
+        Args:
+            risk_scores (Dict[str, float]): Risk assessment for each supply chain component.
+        
+        Returns:
+            List[str]: Recommended mitigation strategies.
         """
-        pass
+        strategies = []
+        for component, score in risk_scores.items():
+            if score > 0.7:
+                strategies.append(f"High priority: Mitigate risks in {component}")
+            elif score > 0.4:
+                strategies.append(f"Medium priority: Monitor and improve {component}")
+        return strategies
 
     def _calculate_resilience_score(self, optimized_flow: Dict[str, Any], risk_scores: Dict[str, float]) -> float:
         """
         Calculate overall supply chain resilience score.
         
-        Steps:
-        1. Normalize flow efficiency and risk scores
-        2. Apply weights to each factor
-        3. Compute weighted average
-        4. Return final resilience score
+        Args:
+            optimized_flow (Dict[str, Any]): Optimized flow configuration.
+            risk_scores (Dict[str, float]): Risk assessment for each supply chain component.
+        
+        Returns:
+            float: Final resilience score.
         """
-        pass
+        flow_efficiency = 1 - (optimized_flow['cost'] / sum(optimized_flow['flow'].values()))
+        avg_risk = sum(risk_scores.values()) / len(risk_scores)
+        return (0.6 * flow_efficiency + 0.4 * (1 - avg_risk)) * 100
 
     def _multi_objective_optimization(self, demands: List[float], capacities: List[float], priorities: List[float]) -> np.ndarray:
         """
         Perform multi-objective optimization for resource allocation.
         
-        Steps:
-        1. Formulate objective functions
-        2. Apply non-dominated sorting genetic algorithm (NSGA-II)
-        3. Generate Pareto optimal solutions
-        4. Return optimal allocation matrix
+        Args:
+            demands (List[float]): Resource demands.
+            capacities (List[float]): Resource capacities.
+            priorities (List[float]): Resource allocation priorities.
+        
+        Returns:
+            np.ndarray: Optimal allocation matrix.
         """
-        pass
+        # Implementation of NSGA-II algorithm
+        # This is a placeholder and should be replaced with actual NSGA-II implementation
+        return np.random.rand(len(demands), len(capacities))
 
     def _compute_nash_equilibrium(self, allocation_matrix: np.ndarray) -> np.ndarray:
         """
         Compute Nash equilibrium for resource allocation conflicts.
         
-        Steps:
-        1. Model allocation as a non-cooperative game
-        2. Formulate payoff matrices
-        3. Apply iterative algorithm to find equilibrium
-        4. Return equilibrium allocation
+        Args:
+            allocation_matrix (np.ndarray): Initial resource allocation matrix.
+        
+        Returns:
+            np.ndarray: Equilibrium allocation.
         """
-        pass
+        # Placeholder for Nash equilibrium computation
+        # This should be replaced with an actual game theory algorithm
+        return allocation_matrix
 
     def _calculate_fairness_score(self, nash_equilibrium: np.ndarray) -> float:
         """
         Calculate fairness score of resource allocation.
         
-        Steps:
-        1. Compute Jain's fairness index
-        2. Normalize score to [0, 1] range
-        3. Return fairness score
+        Args:
+            nash_equilibrium (np.ndarray): Equilibrium allocation.
+        
+        Returns:
+            float: Fairness score.
         """
-        pass
+        squared_sum = np.sum(nash_equilibrium) ** 2
+        sum_squared = np.sum(nash_equilibrium ** 2)
+        n = nash_equilibrium.size
+        return (squared_sum / (n * sum_squared))
 
     def _calculate_efficiency_score(self, nash_equilibrium: np.ndarray, demands: List[float]) -> float:
         """
         Calculate efficiency score of resource allocation.
         
-        Steps:
-        1. Compute ratio of allocated resources to demands
-        2. Calculate average efficiency across all resources
-        3. Return efficiency score
+        Args:
+            nash_equilibrium (np.ndarray): Equilibrium allocation.
+            demands (List[float]): Resource demands.
+        
+        Returns:
+            float: Efficiency score.
         """
-        pass
+        return np.mean(nash_equilibrium / np.array(demands))
 
     def _forecast_demand(self, historical_demand: List[float]) -> List[float]:
         """
         Forecast future demand using ARIMA model.
         
-        Steps:
-        1. Perform time series decomposition
-        2. Determine optimal ARIMA parameters
-        3. Fit ARIMA model to historical data
-        4. Generate forecast for specified time horizon
-        5. Return demand forecast
+        Args:
+            historical_demand (List[float]): Historical demand data.
+        
+        Returns:
+            List[float]: Demand forecast.
         """
-        pass
+        model = ARIMA(historical_demand, order=(1, 1, 1))
+        results = model.fit()
+        forecast = results.forecast(steps=12)
+        return forecast.tolist()
 
     def _optimize_inventory_levels(self, forecast: List[float], lead_times: List[int], holding_costs: List[float]) -> Dict[str, List[float]]:
         """
         Optimize inventory levels using newsvendor model.
         
-        Steps:
-        1. Calculate optimal order quantities
-        2. Determine reorder points
-        3. Compute safety stock levels
-        4. Return optimized inventory parameters
+        Args:
+            forecast (List[float]): Demand forecast.
+            lead_times (List[int]): Lead times for each product.
+            holding_costs (List[float]): Holding costs for each product.
+        
+        Returns:
+            Dict[str, List[float]]: Optimized inventory parameters.
         """
-        pass
+        # Placeholder for newsvendor model optimization
+        # This should be replaced with actual newsvendor model implementation
+        return {
+            'order_quantities': [f * 1.2 for f in forecast],
+            'reorder_points': [f * 0.5 for f in forecast],
+            'safety_stock': [f * 0.3 for f in forecast]
+        }
 
     def _calculate_service_level(self, optimal_inventory: Dict[str, List[float]], forecast: List[float]) -> float:
         """
         Calculate expected service level based on optimal inventory and forecast.
         
-        Steps:
-        1. Simulate demand scenarios
-        2. Compute probability of stockouts
-        3. Calculate expected service level
-        4. Return service level percentage
+        Args:
+            optimal_inventory (Dict[str, List[float]]): Optimized inventory parameters.
+            forecast (List[float]): Demand forecast.
+        
+        Returns:
+            float: Service level percentage.
         """
-        pass
+        # Placeholder for service level calculation
+        # This should be replaced with a more sophisticated simulation
+        return min(1.0, sum(optimal_inventory['safety_stock']) / sum(forecast)) * 100
 
     def _calculate_inventory_turnover(self, historical_demand: List[float], optimal_inventory: Dict[str, List[float]]) -> float:
         """
         Calculate inventory turnover ratio.
         
-        Steps:
-        1. Compute average inventory level
-        2. Calculate total annual demand
-        3. Divide annual demand by average inventory
-        4. Return inventory turnover ratio
+        Args:
+            historical_demand (List[float]): Historical demand data.
+            optimal_inventory (Dict[str, List[float]]): Optimized inventory parameters.
+        
+        Returns:
+            float: Inventory turnover ratio.
         """
-        pass
+        avg_inventory = np.mean(optimal_inventory['order_quantities'])
+        annual_demand = sum(historical_demand)
+        return annual_demand / avg_inventory
 
     def _calculate_control_limits(self, measurements: List[float]) -> Dict[str, float]:
         """
         Calculate statistical process control limits.
         
-        Steps:
-        1. Compute process mean and standard deviation
-        2. Calculate upper and lower control limits
-        3. Determine warning limits
-        4. Return control and warning limits
+        Args:
+            measurements (List[float]): Process measurements.
+        
+        Returns:
+            Dict[str, float]: Control and warning limits.
         """
-        pass
+        mean = np.mean(measurements)
+        std = np.std(measurements)
+        return {
+            'ucl': mean + 3 * std,
+            'lcl': mean - 3 * std,
+            'uwl': mean + 2 * std,
+            'lwl': mean - 2 * std
+        }
 
     def _train_defect_prediction_model(self, historical_defects: List[Dict]) -> Any:
         """
         Train machine learning model for defect prediction.
         
-        Steps:
-        1. Preprocess historical defect data
-        2. Split data into training and validation sets
-        3. Train multiple ML models (e.g., Random Forest, SVM, Neural Network)
-        4. Perform model selection and hyperparameter tuning
-        5. Return best performing model
+        Args:
+            historical_defects (List[Dict]): Historical defect data.
+        
+        Returns:
+            Any: Trained defect prediction model.
         """
-        pass
+        # Placeholder for ML model training
+        # This should be replaced with actual model training and selection
+        from sklearn.ensemble import RandomForestClassifier
+        X = np.random.rand(100, 5)  # Placeholder for feature extraction
+        y = np.random.randint(2, size=100)  # Placeholder for defect labels
+        model = RandomForestClassifier()
+        model.fit(X, y)
+        return model
 
     def _calculate_process_capability(self, measurements: List[float], specifications: Dict[str, float]) -> float:
         """
         Calculate process capability index (Cpk).
         
-        Steps:
-        1. Compute process mean and standard deviation
-        2. Calculate distance to nearest specification limit
-        3. Compute Cpk index
-        4. Return Cpk value
+        Args:
+            measurements (List[float]): Process measurements.
+            specifications (Dict[str, float]): Process specifications.
+        
+        Returns:
+            float: Cpk value.
         """
-        pass
+        mean = np.mean(measurements)
+        std = np.std(measurements)
+        usl = specifications['usl']
+        lsl = specifications['lsl']
+        cpu = (usl - mean) / (3 * std)
+        cpl = (mean - lsl) / (3 * std)
+        return min(cpu, cpl)
 
     def _calculate_defect_rate(self, defect_predictions: List[bool]) -> float:
         """
         Calculate predicted defect rate.
         
-        Steps:
-        1. Count number of predicted defects
-        2. Divide by total number of predictions
-        3. Return defect rate percentage
+        Args:
+            defect_predictions (List[bool]): Predicted defects for a batch.
+        
+        Returns:
+            float: Defect rate percentage.
         """
-        pass
+        return (sum(defect_predictions) / len(defect_predictions)) * 100
