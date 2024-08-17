@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from typing import List, Dict, Any, Optional, Union, Tuple
 from dataclasses import dataclass, field
-from faker import Faker
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, DateTime, func, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship, Session
@@ -84,7 +83,6 @@ class P3IF:
         self.logger = self._setup_logger(log_level)
         self._recreate_database()
         self.Session = sessionmaker(bind=self.engine)
-        self.faker = Faker()
         self.export_folder = 'P3IF_export'
         if not os.path.exists(self.export_folder):
             os.makedirs(self.export_folder)
@@ -110,9 +108,9 @@ class P3IF:
     def generate_synthetic_data(self, num_properties: int, num_processes: int, num_perspectives: int, num_relationships: int):
         try:
             session = self.Session()
-            properties = [Property(name=self.faker.unique.word(), description=self.faker.sentence(), type='property') for _ in range(num_properties)]
-            processes = [Process(name=self.faker.unique.word(), description=self.faker.sentence(), type='process') for _ in range(num_processes)]
-            perspectives = [Perspective(name=self.faker.unique.word(), description=self.faker.sentence(), type='perspective') for _ in range(num_perspectives)]
+            properties = [Property(name=f"property_{i}", description=f"Description for property {i}", type='property') for i in range(num_properties)]
+            processes = [Process(name=f"process_{i}", description=f"Description for process {i}", type='process') for i in range(num_processes)]
+            perspectives = [Perspective(name=f"perspective_{i}", description=f"Description for perspective {i}", type='perspective') for i in range(num_perspectives)]
 
             session.add_all(properties + processes + perspectives)
             session.commit()
