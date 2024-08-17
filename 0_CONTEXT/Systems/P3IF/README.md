@@ -22,6 +22,8 @@ The Pattern, Process, Perspective Integration Framework (P3IF) is a sophisticate
 - Generates synthetic data across multiple domains
 - Visualizes data relationships and patterns
 - Exports data in various formats (JSON, DB)
+- Performs in-depth analysis of P3IF data
+- Conducts meta-analysis across multiple domains
 
 ## Prerequisites
 
@@ -38,7 +40,7 @@ Before running the P3IF system, ensure you have the following:
    ```
 ## Usage
 
-The P3IF system consists of three main scripts that should be run in sequence:
+The P3IF system consists of five main scripts that should be run in sequence:
 
 1. Set up the initial schema and database:
    ```
@@ -58,11 +60,25 @@ The P3IF system consists of three main scripts that should be run in sequence:
    ```
    This script visualizes the data from the synthetic data generation across DOMAINS, outputting visualization scripts into the `/P3IF/visualizations/` directory.
 
+4. Analyze the P3IF data:
+   ```
+   python3 Analysis_P3IF.py
+   ```
+   This script performs comprehensive analysis of the P3IF data, including basic statistics, pattern type distribution, relationship strength analysis, network analysis, and more.
+
+5. Conduct meta-analysis:
+   ```
+   python3 Meta-Analysis_P3IF.py
+   ```
+   This script performs meta-analysis across multiple domains, generating comparative visualizations and insights.
+
 ## File Descriptions
 
 - `P3IF.py`: Sets up the initial schema and database
 - `SyntheticData_P3IF.py`: Generates synthetic data across domains
 - `Visualize_P3IF.py`: Creates visualizations of the generated data
+- `Analysis_P3IF.py`: Performs in-depth analysis of P3IF data
+- `Meta-Analysis_P3IF.py`: Conducts meta-analysis across multiple domains
 
 ## Contributing
 
