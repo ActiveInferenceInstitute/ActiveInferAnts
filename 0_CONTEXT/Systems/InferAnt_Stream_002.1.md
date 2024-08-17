@@ -1,5 +1,7 @@
 [Top Part To Be Deleted During Stream]
 
+Big Picture -- Towards a more-structured Active InferAnts 
+
 August 17, 2024 
 
 InferAnt Stream 002.1 - P3IF and 3R Systems Development
@@ -57,7 +59,8 @@ InferAnt Stream 002.1 - P3IF and 3R Systems Development
 
 
 
-
+Category Theory work 
+Structured API calls 
 
 
 
