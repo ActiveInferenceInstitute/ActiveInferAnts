@@ -1,0 +1,99 @@
+=== P3IF Data Analysis for p3if_export_videochat ===
+
+1. Basic Statistics:
+Total number of patterns: 150
+Total number of relationships: 100
+Number of unique properties: 44
+Number of unique processes: 44
+Number of unique perspectives: 48
+
+2. Pattern Type Distribution:
+Property: 50 (33.33%)
+Process: 50 (33.33%)
+Perspective: 50 (33.33%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.508278
+std        0.291429
+min        0.032000
+25%        0.244650
+50%        0.478300
+75%        0.809000
+max        0.991800
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9918):
+Property: Noise Cancellation
+Process: Encryption/Decryption
+Perspective: Politician
+
+Weakest relationship (strength = 0.0320):
+Property: Gesture Recognition
+Process: Audio Routing
+Perspective: Product Manager
+
+4. Network Analysis:
+Number of nodes: 136
+Number of edges: 276
+Average clustering coefficient: 0.5667
+Average shortest path length: 3.9381
+Diameter of the graph: 8
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Breakout Rooms: 0.0741
+Compliance (GDPR, HIPAA): 0.0741
+Firewall Traversal: 0.0741
+Low-Light Enhancement: 0.0667
+Video Mixing: 0.0593
+
+Betweenness Centrality:
+Firewall Traversal: 0.1197
+Recording: 0.1160
+Customer: 0.1097
+Breakout Rooms: 0.1047
+Compliance (GDPR, HIPAA): 0.0938
+
+Eigenvector Centrality:
+Compliance (GDPR, HIPAA): 0.2570
+API Request Handling: 0.2250
+Customer: 0.2223
+Noise Cancellation: 0.2075
+User Experience Designer: 0.2047
+
+Closeness Centrality:
+Customer: 0.3375
+Compliance (GDPR, HIPAA): 0.3358
+Firewall Traversal: 0.3253
+Video Mixing: 0.3230
+Low-Light Enhancement: 0.3191
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+video: 7
+audio: 6
+quality: 5
+specialist: 5
+user: 4
+rendering: 4
+bandwidth: 3
+cancellation: 3
+background: 3
+support: 3
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+2    35
+1    35
+0    30
+Name: cluster, dtype: int64

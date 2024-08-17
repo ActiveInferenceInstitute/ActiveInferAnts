@@ -1,0 +1,99 @@
+=== P3IF Data Analysis for p3if_export_activeinferencegrantproposal ===
+
+1. Basic Statistics:
+Total number of patterns: 155
+Total number of relationships: 100
+Number of unique properties: 47
+Number of unique processes: 44
+Number of unique perspectives: 42
+
+2. Pattern Type Distribution:
+Process: 55 (35.48%)
+Property: 50 (32.26%)
+Perspective: 50 (32.26%)
+
+3. Relationship Strength Analysis:
+count    100.000000
+mean       0.557042
+std        0.291131
+min        0.010800
+25%        0.319825
+50%        0.601700
+75%        0.793950
+max        0.990800
+Name: strength, dtype: float64
+
+Strongest relationship (strength = 0.9908):
+Property: Intellectual Property
+Process: Stakeholder Engagement
+Perspective: Graduate Student
+
+Weakest relationship (strength = 0.0108):
+Property: Theoretical Soundness
+Process: Theoretical Framework Development
+Perspective: Research Participant
+
+4. Network Analysis:
+Number of nodes: 131
+Number of edges: 278
+Average clustering coefficient: 0.5560
+Average shortest path length: 3.8065
+Diameter of the graph: 9
+
+5. Top 5 Patterns by Centrality Measures:
+
+Degree Centrality:
+Timeline Management: 0.1077
+Public Engagement: 0.0846
+Roboticist: 0.0769
+Biological Validation: 0.0769
+Iterative Refinement: 0.0692
+
+Betweenness Centrality:
+Timeline Management: 0.1737
+Biological Validation: 0.0973
+Public Engagement: 0.0969
+Budget Planning: 0.0929
+Roboticist: 0.0817
+
+Eigenvector Centrality:
+Public Engagement: 0.2775
+Timeline Management: 0.2352
+Research Participant: 0.2298
+Biological Validation: 0.2186
+Theoretical Soundness: 0.2171
+
+Closeness Centrality:
+Timeline Management: 0.3552
+Theoretical Soundness: 0.3476
+Public Engagement: 0.3467
+Philosopher: 0.3351
+Research Participant: 0.3342
+
+6. Correlation Analysis:
+Correlation matrix of average strengths:
+             Property  Process  Perspective
+Property          1.0      NaN          NaN
+Process           NaN      1.0          NaN
+Perspective       NaN      NaN          1.0
+
+7. Pattern Name Analysis:
+Top 10 most common words in pattern names:
+data: 6
+potential: 6
+computational: 4
+funding: 4
+research: 4
+policy: 4
+development: 4
+scientist: 4
+theoretical: 3
+model: 3
+
+8. Cluster Analysis:
+Performed k-means clustering with 3 clusters.
+Cluster sizes:
+0    40
+2    31
+1    29
+Name: cluster, dtype: int64

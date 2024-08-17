@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 156
 Total number of relationships: 100
-Number of unique properties: 45
-Number of unique processes: 48
-Number of unique perspectives: 42
+Number of unique properties: 42
+Number of unique processes: 49
+Number of unique perspectives: 44
 
 2. Pattern Type Distribution:
 Process: 55 (35.26%)
@@ -14,61 +14,61 @@ Property: 50 (32.05%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.465810
-std        0.277769
-min        0.002700
-25%        0.203750
-50%        0.463450
-75%        0.660025
-max        0.994600
+mean       0.484318
+std        0.294533
+min        0.005600
+25%        0.216350
+50%        0.524800
+75%        0.712750
+max        0.993100
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9946):
-Property: Noise Level
-Process: User Authentication
-Perspective: Cash Forecasting Analyst
+Strongest relationship (strength = 0.9931):
+Property: Cash Forecasting
+Process: Video Feed Recording
+Perspective: Encryption Expert
 
-Weakest relationship (strength = 0.0027):
-Property: NFC Capability
-Process: Biometric Data Capture
-Perspective: NFC Technology Expert
+Weakest relationship (strength = 0.0056):
+Property: Card Reader Functionality
+Process: Environmental Adaptation
+Perspective: Transaction Auditor
 
 4. Network Analysis:
 Number of nodes: 135
-Number of edges: 293
-Average clustering coefficient: 0.5448
-Average shortest path length: 3.7794
+Number of edges: 285
+Average clustering coefficient: 0.5520
+Average shortest path length: 3.7738
 Diameter of the graph: 8
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Camera Adjustment: 0.0896
-Power Backup: 0.0821
-Card Reader Functionality: 0.0746
-Audit Trail: 0.0746
-Security Seal Verification: 0.0746
+Braille Technology Expert: 0.1119
+Mobile Integration Specialist: 0.0896
+Network Performance Analyst: 0.0821
+Journal Printing: 0.0821
+Fraud Detection: 0.0746
 
 Betweenness Centrality:
-Card Reader Functionality: 0.1750
-Anti-Fraud Technology Expert: 0.1149
-EMV Technology Specialist: 0.0958
-Power Backup: 0.0929
-Camera Adjustment: 0.0865
+Mobile Integration Specialist: 0.1710
+Braille Technology Expert: 0.1708
+Journal Printing: 0.1107
+Network Performance Analyst: 0.1060
+Fraud Detection: 0.0779
 
 Eigenvector Centrality:
-Audit Trail: 0.2654
-Authentication Expert: 0.2180
-Power Backup: 0.1956
-Physical Security Check: 0.1955
-EMV Technology Specialist: 0.1949
+Braille Technology Expert: 0.2828
+Journal Printing: 0.2551
+Mobile Integration Specialist: 0.2534
+Network Performance Analyst: 0.1952
+Service Availability: 0.1842
 
 Closeness Centrality:
-Card Reader Functionality: 0.3583
-Audit Trail: 0.3481
-Cash Counting: 0.3454
-Cash Recycling Technician: 0.3436
-Power Backup: 0.3342
+Braille Technology Expert: 0.3622
+Mobile Integration Specialist: 0.3612
+Journal Printing: 0.3592
+Network Performance Analyst: 0.3410
+Service Availability: 0.3367
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,8 +93,7 @@ security: 5
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-cluster
-0    36
-2    34
-1    30
-Name: count, dtype: int64
+1    44
+2    33
+0    23
+Name: cluster, dtype: int64

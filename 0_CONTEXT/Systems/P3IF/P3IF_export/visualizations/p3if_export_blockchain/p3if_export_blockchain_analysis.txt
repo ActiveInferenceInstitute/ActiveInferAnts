@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 41
-Number of unique processes: 43
-Number of unique perspectives: 39
+Number of unique properties: 44
+Number of unique processes: 41
+Number of unique perspectives: 43
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,61 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.484369
-std        0.288745
-min        0.011800
-25%        0.236575
-50%        0.502400
-75%        0.712700
-max        1.000000
+mean       0.490584
+std        0.299469
+min        0.000200
+25%        0.230950
+50%        0.444350
+75%        0.744175
+max        0.995700
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 1.0000):
-Property: Mining Efficiency
-Process: Address Generation
-Perspective: NFT Artist
+Strongest relationship (strength = 0.9957):
+Property: Quantum Resistance
+Process: Hard Fork Implementation
+Perspective: Compliance Officer
 
-Weakest relationship (strength = 0.0118):
-Property: Sustainability
-Process: Node Synchronization
-Perspective: Investor
+Weakest relationship (strength = 0.0002):
+Property: Decentralization
+Process: Smart Contract Execution
+Perspective: Not found
 
 4. Network Analysis:
-Number of nodes: 122
-Number of edges: 288
-Average clustering coefficient: 0.4660
-Average shortest path length: 3.4300
+Number of nodes: 128
+Number of edges: 275
+Average clustering coefficient: 0.5180
+Average shortest path length: 3.7655
 Diameter of the graph: 7
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Verifiability: 0.1157
-Trustlessness: 0.0992
-Blockchain Product Manager: 0.0992
-Privacy: 0.0992
-Blockchain Scalability Researcher: 0.0826
+Fault Tolerance: 0.0866
+Chain Analysis: 0.0787
+Cross-Chain Transfer: 0.0709
+Signature Verification: 0.0630
+Sharding: 0.0630
 
 Betweenness Centrality:
-Verifiability: 0.1261
-Privacy: 0.1162
-Blockchain Product Manager: 0.0985
-Trustlessness: 0.0863
-Blockchain Scalability Researcher: 0.0729
+Chain Analysis: 0.1353
+Fault Tolerance: 0.1188
+Sharding: 0.0908
+Compliance Officer: 0.0861
+Blockchain Product Manager: 0.0857
 
 Eigenvector Centrality:
-Blockchain Educator: 0.2400
-Trustlessness: 0.2370
-Privacy: 0.2366
-Token Minting: 0.2327
-Blockchain Product Manager: 0.1904
+Chain Analysis: 0.2934
+Fault Tolerance: 0.2868
+Blockchain Product Manager: 0.2371
+Compliance Officer: 0.1673
+Sharding: 0.1670
 
 Closeness Centrality:
-Privacy: 0.3793
-Trustlessness: 0.3746
-Token Minting: 0.3735
-Verifiability: 0.3712
-Node Synchronization: 0.3667
+Chain Analysis: 0.3671
+Blockchain Product Manager: 0.3499
+Fault Tolerance: 0.3442
+Compliance Officer: 0.3378
+Sharding: 0.3333
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,8 +93,7 @@ security: 3
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-cluster
-0    36
-1    32
-2    32
-Name: count, dtype: int64
+1    35
+0    35
+2    30
+Name: cluster, dtype: int64

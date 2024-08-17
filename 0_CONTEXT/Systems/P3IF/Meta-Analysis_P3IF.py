@@ -75,7 +75,7 @@ def meta_analysis_p3if():
     
     logging.info("Starting visualizations")
     # Visualizations
-    fig, axes = plt.subplots(2, 2, figsize=(20, 15))
+    fig, axes = plt.subplots(4, 2, figsize=(20, 30))
     
     logging.info("Creating Pattern Type Distribution heatmap")
     # 1. Pattern Type Distribution across domains
@@ -128,6 +128,49 @@ def meta_analysis_p3if():
     axes[1, 1].set_xticklabels(axes[1, 1].get_xticklabels(), rotation=45, ha='right')
     axes[1, 1].legend(title='Metric', title_fontsize='12', fontsize='10')
     
+    logging.info("Creating Unique Patterns scatter plot")
+    # 5. Unique Patterns scatter plot
+    unique_patterns = df[['Number of unique properties', 'Number of unique processes', 'Number of unique perspectives']]
+    unique_patterns.plot(kind='scatter', x='Number of unique properties', y='Number of unique processes', s=unique_patterns['Number of unique perspectives']*10, alpha=0.7, ax=axes[2, 0])
+    axes[2, 0].set_title('Unique Patterns Across Domains', fontsize=16, fontweight='bold')
+    axes[2, 0].set_xlabel('Number of Unique Properties', fontsize=12)
+    axes[2, 0].set_ylabel('Number of Unique Processes', fontsize=12)
+    
+    logging.info("Creating Network Metrics bar plot")
+    # 6. Network Metrics bar plot
+    network_metrics = ['Average clustering coefficient', 'Number of nodes', 'Number of edges']
+    available_network_metrics = [m for m in network_metrics if m in df.columns]
+
+    if available_network_metrics:
+        network_data = df[available_network_metrics]
+        network_data.plot(kind='bar', ax=axes[2, 1])
+        axes[2, 1].set_title('Network Metrics Across Domains', fontsize=16, fontweight='bold')
+        axes[2, 1].set_xlabel('Domains', fontsize=12)
+        axes[2, 1].set_ylabel('Value', fontsize=12)
+        axes[2, 1].set_xticklabels(axes[2, 1].get_xticklabels(), rotation=45, ha='right')
+        axes[2, 1].legend(title='Metric', title_fontsize='12', fontsize='10')
+    else:
+        logging.warning("Network metrics not available for some domains")
+        axes[2, 1].text(0.5, 0.5, "No data available for network metrics", ha='center', va='center', fontsize=14)
+    
+    logging.info("Creating Relationship Strength Distribution histogram")
+    # 7. Relationship Strength Distribution
+    strength_data = df['strength_mean']
+    sns.histplot(strength_data, kde=True, ax=axes[3, 0])
+    axes[3, 0].set_title('Relationship Strength Distribution Across Domains', fontsize=16, fontweight='bold')
+    axes[3, 0].set_xlabel('Mean Strength', fontsize=12)
+    axes[3, 0].set_ylabel('Count', fontsize=12)
+
+    logging.info("Creating Unique Patterns stacked bar plot")
+    # 8. Unique Patterns stacked bar plot
+    unique_patterns_data = df[['Number of unique properties', 'Number of unique processes', 'Number of unique perspectives']]
+    unique_patterns_data.plot(kind='bar', stacked=True, ax=axes[3, 1])
+    axes[3, 1].set_title('Unique Patterns Across Domains', fontsize=16, fontweight='bold')
+    axes[3, 1].set_xlabel('Domains', fontsize=12)
+    axes[3, 1].set_ylabel('Count', fontsize=12)
+    axes[3, 1].set_xticklabels(axes[3, 1].get_xticklabels(), rotation=45, ha='right')
+    axes[3, 1].legend(title='Pattern Type', title_fontsize='12', fontsize='10')
+
     plt.tight_layout()
     output_path = os.path.join('P3IF_export', 'visualizations', 'P3IF_meta_analysis.png')
     logging.info(f"Saving meta-analysis visualizations to {output_path}")

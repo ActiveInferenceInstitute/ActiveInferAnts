@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 39
-Number of unique processes: 44
-Number of unique perspectives: 45
+Number of unique properties: 40
+Number of unique processes: 42
+Number of unique perspectives: 43
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,61 +14,60 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.489806
-std        0.280658
-min        0.004000
-25%        0.235125
-50%        0.482650
-75%        0.703375
-max        0.979700
+mean       0.498398
+std        0.314190
+min        0.019000
+25%        0.187450
+50%        0.482800
+75%        0.786450
+max        0.991400
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9797):
-Property: Treatment Efficacy
-Process: Surgery
-Perspective: Regulator
+Strongest relationship (strength = 0.9914):
+Property: Technology Integration
+Process: Organ Transplantation
+Perspective: IT Specialist
 
-Weakest relationship (strength = 0.0040):
-Property: Infection Control
+Weakest relationship (strength = 0.0190):
+Property: Regulatory Compliance
 Process: Genetic Counseling
-Perspective: Pharmacist
+Perspective: Cardiologist
 
 4. Network Analysis:
-Number of nodes: 123
-Number of edges: 271
-Average clustering coefficient: 0.5368
-Average shortest path length: 3.6532
-Diameter of the graph: 8
+Number of nodes: 124
+Number of edges: 270
+Average clustering coefficient: 0.5280
+Graph is not connected.
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Medical Records Management: 0.0984
-Emergency Medical Technician: 0.0984
-Cultural Competence: 0.0984
-Telemedicine Capability: 0.0820
-Treatment Efficacy: 0.0820
+Follow-up Care: 0.0976
+Laboratory Technician: 0.0976
+Speech Therapist: 0.0813
+Genetic Testing: 0.0813
+Anesthesia Administration: 0.0813
 
 Betweenness Centrality:
-Cultural Competence: 0.1800
-Emergency Medical Technician: 0.1159
-Medication Administration: 0.1118
-Medical Records Management: 0.0999
-Telemedicine Capability: 0.0887
+Laboratory Technician: 0.1834
+Anesthesia Administration: 0.1153
+Follow-up Care: 0.0969
+Treatment Efficacy: 0.0885
+Patient Transport: 0.0861
 
 Eigenvector Centrality:
-Emergency Medical Technician: 0.2374
-Medication Administration: 0.2277
-Pharmacist: 0.2238
-Patient Satisfaction: 0.2059
-Cultural Competence: 0.2054
+Laboratory Technician: 0.2592
+Follow-up Care: 0.2587
+Speech Therapist: 0.2214
+Surgery: 0.2094
+Environmental Safety: 0.2019
 
 Closeness Centrality:
-Cultural Competence: 0.3765
-Medication Administration: 0.3686
-Emergency Medical Technician: 0.3476
-Surgery: 0.3446
-Personalized Medicine: 0.3437
+Laboratory Technician: 0.3752
+Follow-up Care: 0.3464
+Anesthesia Administration: 0.3355
+Environmental Safety: 0.3335
+Resource Allocation: 0.3307
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,8 +92,7 @@ emergency: 3
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-cluster
-0    35
-2    35
-1    30
-Name: count, dtype: int64
+1    35
+2    34
+0    31
+Name: cluster, dtype: int64

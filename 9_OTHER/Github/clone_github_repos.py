@@ -54,7 +54,7 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
 CLONE_THEBRAIN = False
 CLONE_GTD = False
 CLONE_GANTT = False
-CLONE_NOSTR = True
+CLONE_NOSTR = False
 CLONE_SYNERGETICS = False
 CLONE_ANTS = False
 CLONE_ACTIVE_INFERENCE = False
@@ -68,6 +68,7 @@ CLONE_EBPF = False
 CLONE_KAFKA = False
 CLONE_SUMO = False
 CLONE_STRUCTURED_OUTPUTS = False
+CLONE_DESCI = True  
 
 # Repositories to clone
 repos_to_clone = {
@@ -228,6 +229,9 @@ repos_to_clone = {
         "https://github.com/ryoppippi/openai-with-typia",
         "https://github.com/sourceduty/Topology_Optimize",
         "https://github.com/SeanPlusPlus/openaijson"
+    ],
+    "DESCI": [
+        "https://github.com/SakanaAI/AI-Scientist"
     ]
 }
 
@@ -302,3 +306,7 @@ if __name__ == "__main__":
     if CLONE_STRUCTURED_OUTPUTS:
         print("Cloning Structured Outputs repositories...")
         clone_repos(repos_to_clone["Structured_Outputs"], os.path.join(target_dir, "Structured_Outputs"))
+    
+    if CLONE_DESCI:
+        print("Cloning DESCI repositories...")
+        clone_repos(repos_to_clone["DESCI"], os.path.join(target_dir, "DESCI"))

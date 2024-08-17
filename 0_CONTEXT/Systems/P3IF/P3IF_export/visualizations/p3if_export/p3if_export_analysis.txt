@@ -74,8 +74,7 @@ reason: 1
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-cluster
 1    35
-0    33
-2    32
-Name: count, dtype: int64
+2    33
+0    32
+Name: cluster, dtype: int64

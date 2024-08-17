@@ -239,13 +239,16 @@ def analyze_p3if_data(data: Dict[str, Any], output_dir: str, filename: str):
         print(relationships_df['cluster'].value_counts())
 
         # Visualize clusters
-        plt.figure(figsize=(10, 6))
-        sns.scatterplot(data=relationships_df, x='property_id', y='process_id', hue='cluster', palette='deep')
-        plt.title(f'Clusters of Relationships - {filename}')
-        plt.xlabel('Property ID')
-        plt.ylabel('Process ID')
-        plt.savefig(os.path.join(domain_output_dir, f"{filename}_relationship_clusters.png"))
-        plt.close()
+        if not relationships_df.empty:
+            plt.figure(figsize=(10, 6))
+            sns.scatterplot(data=relationships_df, x='property_id', y='process_id', hue='cluster', palette='deep')
+            plt.title(f'Clusters of Relationships - {filename}')
+            plt.xlabel('Property ID')
+            plt.ylabel('Process ID')
+            plt.savefig(os.path.join(domain_output_dir, f"{filename}_relationship_clusters.png"))
+            plt.close()
+        else:
+            print("No relationships found, cannot visualize clusters.")
 
     # Reset stdout
     sys.stdout = original_stdout

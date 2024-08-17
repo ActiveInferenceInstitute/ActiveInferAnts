@@ -1,0 +1,212 @@
+{
+  "Physical Security": [
+    {"Setting": "Parking lot", "Sub-domain": "Public", "Recognize": "Key", "Remember": "Lock", "Respond": "Correct key opens lock"},
+    {"Setting": "Factory/office", "Sub-domain": "Corporate", "Recognize": "Key card", "Remember": "Employee ID registry", "Respond": "Unlock door"},
+    {"Setting": "Warehouse", "Sub-domain": "Logistics", "Recognize": "RFID tag", "Remember": "Inventory system", "Respond": "Track item"},
+    {"Setting": "Gym access", "Sub-domain": "Recreational", "Recognize": "Membership card", "Remember": "Member database", "Respond": "Grant entry"},
+    {"Setting": "Event entry", "Sub-domain": "Entertainment", "Recognize": "Ticket", "Remember": "Event attendee list", "Respond": "Allow entry"},
+    {"Setting": "Voting booth", "Sub-domain": "Government", "Recognize": "Voter ID", "Remember": "Voter registry", "Respond": "Allow voting"},
+    {"Setting": "University exam", "Sub-domain": "Education", "Recognize": "Student ID", "Remember": "Enrollment records", "Respond": "Permit exam participation"},
+    {"Setting": "Hotel check-in", "Sub-domain": "Hospitality", "Recognize": "Reservation number", "Remember": "Booking system", "Respond": "Assign room"},
+    {"Setting": "Public transportation", "Sub-domain": "Transport", "Recognize": "Transit card", "Remember": "Travel history", "Respond": "Allow ride"},
+    {"Setting": "HOV tolling", "Sub-domain": "Transport", "Recognize": "License plate", "Remember": "DMV registry", "Respond": "Send toll bill to driver"},
+    {"Setting": "Library", "Sub-domain": "Public", "Recognize": "Library card", "Remember": "Borrower records", "Respond": "Lend book"},
+    {"Setting": "Airport security", "Sub-domain": "Transport", "Recognize": "Boarding pass and ID", "Remember": "Passenger manifest", "Respond": "Allow access to gate"}
+  ],
+  "Smart Technology": [
+    {"Setting": "Smart home", "Sub-domain": "Residential", "Recognize": "Voice command", "Remember": "Device settings", "Respond": "Execute command"},
+    {"Setting": "Smart lighting", "Sub-domain": "Residential", "Recognize": "Motion sensor", "Remember": "Lighting preferences", "Respond": "Adjust lighting"},
+    {"Setting": "Smart thermostat", "Sub-domain": "Residential", "Recognize": "Temperature preference", "Remember": "Usage patterns", "Respond": "Adjust temperature"},
+    {"Setting": "Smart fridge", "Sub-domain": "Residential", "Recognize": "Barcode", "Remember": "Inventory", "Respond": "Suggest recipes"},
+    {"Setting": "Smart agriculture", "Sub-domain": "Agriculture", "Recognize": "Soil moisture level", "Remember": "Crop type", "Respond": "Adjust irrigation"},
+    {"Setting": "Autonomous vehicle", "Sub-domain": "Transport", "Recognize": "Traffic signal", "Remember": "Route map", "Respond": "Adjust speed"},
+    {"Setting": "Smart manufacturing", "Sub-domain": "Industrial", "Recognize": "Machine status", "Remember": "Maintenance schedule", "Respond": "Schedule repair"},
+    {"Setting": "Smart energy", "Sub-domain": "Utilities", "Recognize": "Energy consumption", "Remember": "Usage patterns", "Respond": "Optimize energy distribution"},
+    {"Setting": "Smart city", "Sub-domain": "Urban", "Recognize": "Sensor data", "Remember": "City management system", "Respond": "Optimize resources"},
+    {"Setting": "Smart tourism", "Sub-domain": "Tourism", "Recognize": "Visitor preferences", "Remember": "Tour history", "Respond": "Customized tour suggestions"},
+    {"Setting": "Smart logistics", "Sub-domain": "Logistics", "Recognize": "Package ID", "Remember": "Delivery route", "Respond": "Optimize delivery schedule"},
+    {"Setting": "Smart retail", "Sub-domain": "Retail", "Recognize": "Customer face", "Remember": "Purchase history", "Respond": "Personalized offers"},
+    {"Setting": "Smart healthcare", "Sub-domain": "Healthcare", "Recognize": "Wearable device data", "Remember": "Patient history", "Respond": "Health alerts"},
+    {"Setting": "Smart parking", "Sub-domain": "Urban", "Recognize": "Vehicle presence", "Remember": "Parking space availability", "Respond": "Guide drivers to open spots"}
+  ],
+  "Digital Security": [
+    {"Setting": "Computer login", "Sub-domain": "Corporate", "Recognize": "Password/biometric", "Remember": "Authorization registry", "Respond": "Grant access to system"},
+    {"Setting": "Online interactions", "Sub-domain": "Social", "Recognize": "Username", "Remember": "Cookies", "Respond": "Custom content/ads"},
+    {"Setting": "Online banking", "Sub-domain": "Finance", "Recognize": "OTP", "Remember": "Transaction history", "Respond": "Authorize transaction"},
+    {"Setting": "Social media login", "Sub-domain": "Social", "Recognize": "Email/phone", "Remember": "User profile", "Respond": "Access account"},
+    {"Setting": "E-commerce checkout", "Sub-domain": "Retail", "Recognize": "Payment method", "Remember": "Order history", "Respond": "Process payment"},
+    {"Setting": "Online subscription", "Sub-domain": "Entertainment", "Recognize": "Subscription ID", "Remember": "Subscription records", "Respond": "Grant access to content"},
+    {"Setting": "Online forum", "Sub-domain": "Social", "Recognize": "Username", "Remember": "Post history", "Respond": "Allow posting"},
+    {"Setting": "Online gaming", "Sub-domain": "Entertainment", "Recognize": "Gamer tag", "Remember": "Game profile", "Respond": "Access game features"},
+    {"Setting": "Online auction", "Sub-domain": "Retail", "Recognize": "Bidder ID", "Remember": "Bid history", "Respond": "Place bid"},
+    {"Setting": "Online dating", "Sub-domain": "Social", "Recognize": "Profile", "Remember": "Match history", "Respond": "Suggest matches"},
+    {"Setting": "Streaming service", "Sub-domain": "Entertainment", "Recognize": "Account login", "Remember": "Watch history", "Respond": "Recommend content"},
+    {"Setting": "Online marketplace", "Sub-domain": "Retail", "Recognize": "Seller ID", "Remember": "Sales history", "Respond": "Process sale"},
+    {"Setting": "E-learning platform", "Sub-domain": "Education", "Recognize": "Student login", "Remember": "Course records", "Respond": "Access course materials"},
+    {"Setting": "Virtual assistant", "Sub-domain": "Residential", "Recognize": "Voice", "Remember": "User preferences", "Respond": "Perform tasks"},
+    {"Setting": "Customer support", "Sub-domain": "Corporate", "Recognize": "Ticket number", "Remember": "Support history", "Respond": "Resolve issue"},
+    {"Setting": "Corporate network", "Sub-domain": "Corporate", "Recognize": "VPN credentials", "Remember": "Access logs", "Respond": "Grant network access"},
+    {"Setting": "Cognitive security - Email", "Sub-domain": "Corporate", "Recognize": "Suspicious email", "Remember": "Known phishing patterns", "Respond": "Block email"},
+    {"Setting": "Cognitive security - Web browsing", "Sub-domain": "Corporate", "Recognize": "Malicious URL", "Remember": "Blacklist", "Respond": "Block access"},
+    {"Setting": "Cognitive security - Network", "Sub-domain": "Corporate", "Recognize": "Unusual traffic", "Remember": "Baseline behavior", "Respond": "Alert admin"},
+    {"Setting": "Two-factor authentication", "Sub-domain": "Finance", "Recognize": "Login attempt", "Remember": "Registered devices", "Respond": "Send verification code"}
+  ],
+  "Financial Transactions": [
+    {"Setting": "Retail store", "Sub-domain": "Retail", "Recognize": "Credit card", "Remember": "Bank record", "Respond": "Access to credit given"},
+    {"Setting": "Banking withdrawal", "Sub-domain": "Finance", "Recognize": "Debit card PIN", "Remember": "ATM/bank records", "Respond": "Dispense cash"},
+    {"Setting": "Loan security", "Sub-domain": "Finance", "Recognize": "UCC-1", "Remember": "Central filing location", "Respond": "Perfect security interest"},
+    {"Setting": "Smart finance", "Sub-domain": "Finance", "Recognize": "Transaction pattern", "Remember": "Account history", "Respond": "Fraud detection"},
+    {"Setting": "Stock trading", "Sub-domain": "Finance", "Recognize": "Trade order", "Remember": "Market conditions", "Respond": "Execute trade"},
+    {"Setting": "Cryptocurrency exchange", "Sub-domain": "Finance", "Recognize": "Wallet address", "Remember": "Blockchain ledger", "Respond": "Process transaction"}
+  ],
+  "Legal and Professional": [
+    {"Setting": "Law office", "Sub-domain": "Legal", "Recognize": "Law school diploma", "Remember": "Law school records", "Respond": "Admission to practice"},
+    {"Setting": "Work for hire", "Sub-domain": "Corporate", "Recognize": "Role-based access", "Remember": "Permission structure", "Respond": "Adopt employee output"},
+    {"Setting": "USCIS Form I-9", "Sub-domain": "Government", "Recognize": "Passport", "Remember": "Archive form I-9", "Respond": "Hire"},
+    {"Setting": "Job application", "Sub-domain": "Corporate", "Recognize": "Resume", "Remember": "Applicant tracking system", "Respond": "Schedule interview"},
+    {"Setting": "Court hearing", "Sub-domain": "Legal", "Recognize": "Case number", "Remember": "Court records", "Respond": "Schedule hearing"},
+    {"Setting": "Patent filing", "Sub-domain": "Legal", "Recognize": "Patent application", "Remember": "Patent database", "Respond": "Grant patent"},
+    {"Setting": "Contract signing", "Sub-domain": "Legal", "Recognize": "Digital signature", "Remember": "Contract terms", "Respond": "Execute agreement"}
+  ],
+  "Healthcare": [
+    {"Setting": "Medical appointment", "Sub-domain": "Healthcare", "Recognize": "Insurance card", "Remember": "Patient records", "Respond": "Provide treatment"},
+    {"Setting": "Healthcare system", "Sub-domain": "Healthcare", "Recognize": "Medical ID", "Remember": "Health records", "Respond": "Provide care"},
+    {"Setting": "Telemedicine", "Sub-domain": "Healthcare", "Recognize": "Patient ID", "Remember": "Medical history", "Respond": "Conduct consultation"},
+    {"Setting": "Health security - Hospital", "Sub-domain": "Healthcare", "Recognize": "Patient wristband", "Remember": "Patient records", "Respond": "Provide treatment"},
+    {"Setting": "Health security - Pharmacy", "Sub-domain": "Healthcare", "Recognize": "Prescription", "Remember": "Doctor's orders", "Respond": "Dispense medication"},
+    {"Setting": "Health security - Telehealth", "Sub-domain": "Healthcare", "Recognize": "Patient login", "Remember": "Medical history", "Respond": "Start consultation"},
+    {"Setting": "Health security - Emergency", "Sub-domain": "Healthcare", "Recognize": "Emergency ID", "Remember": "Emergency contact info", "Respond": "Notify contacts"},
+    {"Setting": "Health security - Fitness app", "Sub-domain": "Healthcare", "Recognize": "User profile", "Remember": "Health data", "Respond": "Provide workout plan"},
+    {"Setting": "Fitness tracker", "Sub-domain": "Healthcare", "Recognize": "User profile", "Remember": "Activity data", "Respond": "Provide feedback"},
+    {"Setting": "Surgery scheduling", "Sub-domain": "Healthcare", "Recognize": "Patient ID", "Remember": "Surgery records", "Respond": "Schedule surgery"},
+    {"Setting": "Medical billing", "Sub-domain": "Healthcare", "Recognize": "Insurance ID", "Remember": "Billing records", "Respond": "Process payment"},
+    {"Setting": "Mental health therapy", "Sub-domain": "Healthcare", "Recognize": "Patient symptoms", "Remember": "Treatment history", "Respond": "Adjust therapy plan"},
+    {"Setting": "Vaccine administration", "Sub-domain": "Healthcare", "Recognize": "Patient age/risk group", "Remember": "Immunization records", "Respond": "Administer vaccine"},
+    {"Setting": "Electronic Health Records", "Sub-domain": "Healthcare", "Recognize": "Patient name/DOB", "Remember": "Comprehensive health history", "Respond": "Update medical information"}
+  ],
+  "Transportation": [
+    {"Setting": "Ride-sharing", "Sub-domain": "Transport", "Recognize": "Driver ID", "Remember": "Ride history", "Respond": "Assign ride"},
+    {"Setting": "Traffic management", "Sub-domain": "Transport", "Recognize": "Traffic cameras", "Remember": "Traffic patterns", "Respond": "Adjust signals"},
+    {"Setting": "Railway control", "Sub-domain": "Transport", "Recognize": "Train ID", "Remember": "Schedule", "Respond": "Manage track usage"},
+    {"Setting": "Airport security", "Sub-domain": "Transport", "Recognize": "Boarding pass", "Remember": "Flight manifest", "Respond": "Allow boarding"},
+    {"Setting": "Fleet management", "Sub-domain": "Transport", "Recognize": "Vehicle ID", "Remember": "Maintenance logs", "Respond": "Schedule service"},
+    {"Setting": "Public transit", "Sub-domain": "Transport", "Recognize": "Transit card", "Remember": "Usage patterns", "Respond": "Optimize routes"},
+    {"Setting": "Cargo shipping", "Sub-domain": "Transport", "Recognize": "Container ID", "Remember": "Shipping manifest", "Respond": "Track location"},
+    {"Setting": "Electric vehicle charging", "Sub-domain": "Transport", "Recognize": "Vehicle ID", "Remember": "Charging history", "Respond": "Initiate charging session"},
+    {"Setting": "Autonomous vehicles", "Sub-domain": "Transport", "Recognize": "Sensor data", "Remember": "Road conditions", "Respond": "Navigate safely"},
+    {"Setting": "Bike-sharing", "Sub-domain": "Transport", "Recognize": "User ID", "Remember": "Bike availability", "Respond": "Unlock bike"},
+    {"Setting": "Parking management", "Sub-domain": "Transport", "Recognize": "License plate", "Remember": "Parking space availability", "Respond": "Guide to open spot"},
+    {"Setting": "Air traffic control", "Sub-domain": "Transport", "Recognize": "Aircraft transponder", "Remember": "Flight plans", "Respond": "Direct air traffic"},
+    {"Setting": "Maritime navigation", "Sub-domain": "Transport", "Recognize": "Ship AIS", "Remember": "Nautical charts", "Respond": "Provide route guidance"},
+    {"Setting": "Toll collection", "Sub-domain": "Transport", "Recognize": "Vehicle transponder", "Remember": "Account balance", "Respond": "Charge toll"}
+  ],
+  "Environmental Monitoring": [ Parking lot       | Key               | Lock                  | Correct key opens lock         |
+  | Retail store      | Credit card       | Bank record           | Access to credit given         |
+  | Factory/office    | Key card          | Employee ID registry  | Unlock door                    |
+  | Computer login    | Password/biometric| Authorization registry| Grant access to system         |
+  | Law office        | Law school diploma| Law school records    | Admission to practice          |
+  | Banking withdrawal| Debit card PIN    | ATM/bank records      | Dispense cash                  |
+  | Loan security     | UCC-1             | Central filing location| Perfect security interest      |
+  | Online interactions| Username         | Cookies               | Custom content/ads             |
+  | HOV tolling       | License plate     | DMV registry          | Send toll bill to driver       |
+  | Grocery store     | Trademark         | Consumer recalls ads  | Purchase trusted brand         |
+  | Work for hire     | Role-based access | Permission structure  | Adopt employee output          |
+  | USCIS Form I-9    | Passport          | Archive form I-9      | Hire                           |ironmental", "Recognize": "GPS tags", "Remember": "Migration patterns", "Respond": "Adjust conservation efforts"},
+    {"Setting": "Deforestation monitoring", "Sub-domain": "Environmental", "Recognize": "Satellite images", "Remember": "Forest cover data", "Respond": "Initiate reforestation"},
+    {"Setting": "Noise pollution monitoring", "Sub-domain": "Environmental", "Recognize": "Decibel levels", "Remember": "Noise regulations", "Respond": "Issue fines"},
+    {"Setting": "Waste management", "Sub-domain": "Environmental", "Recognize": "Waste type", "Remember": "Disposal guidelines", "Respond": "Schedule pickup"},
+    {"Setting": "Ocean plastic monitoring", "Sub-domain": "Environmental", "Recognize": "Drone imagery", "Remember": "Plastic concentration data", "Respond": "Deploy cleanup efforts"},
+    {"Setting": "Soil quality monitoring", "Sub-domain": "Environmental", "Recognize": "Soil sample data", "Remember": "Soil health standards", "Respond": "Recommend treatments"},
+    {"Setting": "Carbon emission tracking", "Sub-domain": "Environmental", "Recognize": "Emission source data", "Remember": "Emission standards", "Respond": "Implement reduction strategies"},
+    {"Setting": "Biodiversity monitoring", "Sub-domain": "Environmental", "Recognize": "Species identification", "Remember": "Ecosystem data", "Respond": "Update conservation plans"},
+    {"Setting": "Glacier melt tracking", "Sub-domain": "Environmental", "Recognize": "Satellite imagery", "Remember": "Historical ice coverage", "Respond": "Predict sea level rise"},
+    {"Setting": "Urban heat island monitoring", "Sub-domain": "Environmental", "Recognize": "Temperature sensors", "Remember": "City layout", "Respond": "Implement cooling strategies"},
+    {"Setting": "Invasive species detection", "Sub-domain": "Environmental", "Recognize": "Species characteristics", "Remember": "Native ecosystem data", "Respond": "Initiate removal efforts"},
+    {"Setting": "Renewable energy optimization", "Sub-domain": "Environmental", "Recognize": "Weather patterns", "Remember": "Energy production data", "Respond": "Adjust energy distribution"}
+  ],
+  "Sports and Recreation": [
+    {"Setting": "Sports event", "Sub-domain": "Recreational", "Recognize": "Ticket", "Remember": "Attendee list", "Respond": "Grant entry"},
+    {"Setting": "Fitness class", "Sub-domain": "Recreational", "Recognize": "Membership card", "Remember": "Class schedule", "Respond": "Allow participation"},
+    {"Setting": "Online gaming tournament", "Sub-domain": "Entertainment", "Recognize": "Gamer tag", "Remember": "Tournament history", "Respond": "Match players"},
+    {"Setting": "Golf course", "Sub-domain": "Recreational", "Recognize": "Tee time reservation", "Remember": "Player handicap", "Respond": "Assign starting hole"},
+    {"Setting": "Swimming pool", "Sub-domain": "Recreational", "Recognize": "Membership ID", "Remember": "Swimming level", "Respond": "Allow access to appropriate areas"},
+    {"Setting": "Ski resort", "Sub-domain": "Recreational", "Recognize": "Lift pass", "Remember": "Skier ability", "Respond": "Recommend suitable slopes"},
+    {"Setting": "Rock climbing gym", "Sub-domain": "Recreational", "Recognize": "Climber certification", "Remember": "Climbing history", "Respond": "Allow access to routes"},
+    {"Setting": "Tennis court booking", "Sub-domain": "Recreational", "Recognize": "Player ID", "Remember": "Court availability", "Respond": "Confirm reservation"},
+    {"Setting": "Marathon event", "Sub-domain": "Recreational", "Recognize": "Runner bib number", "Remember": "Race checkpoints", "Respond": "Track progress"},
+    {"Setting": "Yoga studio", "Sub-domain": "Recreational", "Recognize": "Student profile", "Remember": "Class history", "Respond": "Suggest appropriate classes"}
+  ],
+  "Arts and Culture": [
+    {"Setting": "Museum entry", "Sub-domain": "Cultural", "Recognize": "Ticket", "Remember": "Visitor records", "Respond": "Grant access"},
+    {"Setting": "Art gallery", "Sub-domain": "Cultural", "Recognize": "Membership card", "Remember": "Member database", "Respond": "Allow entry"},
+    {"Setting": "Theater performance", "Sub-domain": "Cultural", "Recognize": "Ticket", "Remember": "Seating chart", "Respond": "Assign seat"},
+    {"Setting": "Music concert", "Sub-domain": "Cultural", "Recognize": "Ticket QR code", "Remember": "Venue capacity", "Respond": "Control crowd flow"},
+    {"Setting": "Cultural festival", "Sub-domain": "Cultural", "Recognize": "Event wristband", "Remember": "Attendance data", "Respond": "Manage event logistics"},
+    {"Setting": "Historical site tour", "Sub-domain": "Cultural", "Recognize": "Tour group ID", "Remember": "Site capacity", "Respond": "Schedule tour times"},
+    {"Setting": "Art auction", "Sub-domain": "Cultural", "Recognize": "Bidder paddle", "Remember": "Auction catalog", "Respond": "Record bids"},
+    {"Setting": "Film screening", "Sub-domain": "Cultural", "Recognize": "Ticket barcode", "Remember": "Theater occupancy", "Respond": "Manage seating"},
+    {"Setting": "Book signing event", "Sub-domain": "Cultural", "Recognize": "Event ticket", "Remember": "Author schedule", "Respond": "Organize queue"},
+    {"Setting": "Dance performance", "Sub-domain": "Cultural", "Recognize": "Audience member ID", "Remember": "Performance program", "Respond": "Guide to seats"}
+  ],
+  "Agriculture": [
+    {"Setting": "Crop monitoring", "Sub-domain": "Agriculture", "Recognize": "Drone imagery", "Remember": "Growth patterns", "Respond": "Adjust irrigation"},
+    {"Setting": "Livestock tracking", "Sub-domain": "Agriculture", "Recognize": "RFID tags", "Remember": "Health records", "Respond": "Administer treatment"},
+    {"Setting": "Farm equipment", "Sub-domain": "Agriculture", "Recognize": "Machine status", "Remember": "Maintenance logs", "Respond": "Schedule service"},
+    {"Setting": "Precision farming", "Sub-domain": "Agriculture", "Recognize": "Soil sensor data", "Remember": "Crop yield history", "Respond": "Optimize fertilizer application"},
+    {"Setting": "Greenhouse management", "Sub-domain": "Agriculture", "Recognize": "Climate sensors", "Remember": "Optimal growth conditions", "Respond": "Adjust temperature/humidity"},
+    {"Setting": "Harvest prediction", "Sub-domain": "Agriculture", "Recognize": "Crop maturity data", "Remember": "Weather forecasts", "Respond": "Schedule harvest"},
+    {"Setting": "Pest control", "Sub-domain": "Agriculture", "Recognize": "Insect population", "Remember": "Treatment thresholds", "Respond": "Apply pesticides"},
+    {"Setting": "Dairy farm management", "Sub-domain": "Agriculture", "Recognize": "Milk production data", "Remember": "Feeding schedules", "Respond": "Optimize nutrition"},
+    {"Setting": "Aquaculture monitoring", "Sub-domain": "Agriculture", "Recognize": "Water quality sensors", "Remember": "Fish growth rates", "Respond": "Adjust feeding"},
+    {"Setting": "Orchard management", "Sub-domain": "Agriculture", "Recognize": "Fruit ripeness", "Remember": "Pruning history", "Respond": "Plan harvesting"}
+  ],
+  "Space Exploration": [
+    {"Setting": "Satellite control", "Sub-domain": "Space", "Recognize": "Telemetry data", "Remember": "Mission parameters", "Respond": "Adjust orbit"},
+    {"Setting": "Mars rover", "Sub-domain": "Space", "Recognize": "Terrain data", "Remember": "Navigation maps", "Respond": "Plot course"},
+    {"Setting": "Space station", "Sub-domain": "Space", "Recognize": "Crew ID", "Remember": "Mission logs", "Respond": "Grant access to modules"},
+    {"Setting": "Asteroid mining", "Sub-domain": "Space", "Recognize": "Spectral analysis", "Remember": "Mineral composition database", "Respond": "Select mining targets"},
+    {"Setting": "Exoplanet detection", "Sub-domain": "Space", "Recognize": "Light curve data", "Remember": "Known exoplanet characteristics", "Respond": "Identify potential habitable planets"},
+    {"Setting": "Deep space communication", "Sub-domain": "Space", "Recognize": "Signal strength", "Remember": "Transmission protocols", "Respond": "Adjust antenna"},
+    {"Setting": "Space debris tracking", "Sub-domain": "Space", "Recognize": "Radar data", "Remember": "Orbital paths", "Respond": "Issue collision warnings"},
+    {"Setting": "Lunar base operations", "Sub-domain": "Space", "Recognize": "Resource levels", "Remember": "Consumption rates", "Respond": "Manage supplies"},
+    {"Setting": "Interstellar probe", "Sub-domain": "Space", "Recognize": "Cosmic ray data", "Remember": "Solar system model", "Respond": "Update trajectory"},
+    {"Setting": "Space tourism", "Sub-domain": "Space", "Recognize": "Passenger biometrics", "Remember": "Training completion", "Respond": "Authorize flight"}
+  ],
+  "Disaster Management": [
+    {"Setting": "Earthquake response", "Sub-domain": "Disaster", "Recognize": "Seismic data", "Remember": "Historical events", "Respond": "Issue warnings"},
+    {"Setting": "Flood monitoring", "Sub-domain": "Disaster", "Recognize": "Water levels", "Remember": "Flood maps", "Respond": "Initiate evacuation"},
+    {"Setting": "Wildfire detection", "Sub-domain": "Disaster", "Recognize": "Smoke sensors", "Remember": "Fire history", "Respond": "Deploy firefighting resources"},
+    {"Setting": "Hurricane tracking", "Sub-domain": "Disaster", "Recognize": "Satellite imagery", "Remember": "Storm path models", "Respond": "Issue evacuation orders"},
+    {"Setting": "Tsunami warning system", "Sub-domain": "Disaster", "Recognize": "Seabed sensors", "Remember": "Coastal population data", "Respond": "Activate warning sirens"},
+    {"Setting": "Volcanic eruption monitoring", "Sub-domain": "Disaster", "Recognize": "Gas emissions", "Remember": "Eruption patterns", "Respond": "Update hazard zones"},
+    {"Setting": "Landslide risk assessment", "Sub-domain": "Disaster", "Recognize": "Soil moisture", "Remember": "Geological data", "Respond": "Implement preventive measures"},
+    {"Setting": "Drought management", "Sub-domain": "Disaster", "Recognize": "Precipitation levels", "Remember": "Water reserves", "Respond": "Implement water restrictions"},
+    {"Setting": "Avalanche prediction", "Sub-domain": "Disaster", "Recognize": "Snow pack data", "Remember": "Terrain analysis", "Respond": "Close dangerous slopes"},
+    {"Setting": "Nuclear incident response", "Sub-domain": "Disaster", "Recognize": "Radiation levels", "Remember": "Evacuation routes", "Respond": "Coordinate decontamination efforts"}
+  ],
+  "Retail": [
+    {"Setting": "In-store shopping", "Sub-domain": "Retail", "Recognize": "Loyalty card", "Remember": "Purchase history", "Respond": "Offer discounts"},
+    {"Setting": "Self-checkout", "Sub-domain": "Retail", "Recognize": "Barcode", "Remember": "Inventory", "Respond": "Process payment"},
+    {"Setting": "Online order", "Sub-domain": "Retail", "Recognize": "Order number", "Remember": "Customer profile", "Respond": "Track shipment"},
+    {"Setting": "Virtual fitting room", "Sub-domain": "Retail", "Recognize": "Body measurements", "Remember": "Style preferences", "Respond": "Suggest clothing items"},
+    {"Setting": "Inventory management", "Sub-domain": "Retail", "Recognize": "RFID tags", "Remember": "Stock levels", "Respond": "Reorder products"},
+    {"Setting": "Personalized marketing", "Sub-domain": "Retail", "Recognize": "Browsing behavior", "Remember": "Customer segments", "Respond": "Send targeted promotions"},
+    {"Setting": "Dynamic pricing", "Sub-domain": "Retail", "Recognize": "Market demand", "Remember": "Competitor prices", "Respond": "Adjust product prices"},
+    {"Setting": "Customer service chatbot", "Sub-domain": "Retail", "Recognize": "Customer query", "Remember": "Product information", "Respond": "Provide assistance"},
+    {"Setting": "In-store navigation", "Sub-domain": "Retail", "Recognize": "Customer location", "Remember": "Store layout", "Respond": "Guide to desired products"},
+    {"Setting": "Product recommendation", "Sub-domain": "Retail", "Recognize": "Viewed items", "Remember": "Similar product data", "Respond": "Suggest related items"}
+  ],
+  "Education": [
+    {"Setting": "Classroom attendance", "Sub-domain": "Education", "Recognize": "Student ID", "Remember": "Attendance records", "Respond": "Mark present"},
+    {"Setting": "Online exam", "Sub-domain": "Education", "Recognize": "Login credentials", "Remember": "Exam schedule", "Respond": "Grant access"},
+    {"Setting": "Library book return", "Sub-domain": "Education", "Recognize": "Book ID", "Remember": "Borrower records", "Respond": "Update inventory"},
+    {"Setting": "Adaptive learning platform", "Sub-domain": "Education", "Recognize": "Student performance", "Remember": "Learning style", "Respond": "Adjust difficulty level"},
+    {"Setting": "Virtual laboratory", "Sub-domain": "Education", "Recognize": "Experiment setup", "Remember": "Safety protocols", "Respond": "Guide experiment procedure"}
+  ],
+  "Hospitality": [
+    {"Setting": "Restaurant reservation", "Sub-domain": "Hospitality", "Recognize": "Reservation ID", "Remember": "Booking system", "Respond": "Confirm table"},
+    {"Setting": "Spa appointment", "Sub-domain": "Hospitality", "Recognize": "Client ID", "Remember": "Appointment schedule", "Respond": "Provide service"},
+    {"Setting": "Hotel room service", "Sub-domain": "Hospitality", "Recognize": "Room number", "Remember": "Guest preferences", "Respond": "Deliver order"},
+    {"Setting": "Theme park entry", "Sub-domain": "Hospitality", "Recognize": "Ticket QR code", "Remember": "Park capacity", "Respond": "Allow entry and track crowd flow"},
+    {"Setting": "Cruise ship embarkation", "Sub-domain": "Hospitality", "Recognize": "Passenger manifest", "Remember": "Cabin assignments", "Respond": "Direct passengers to cabins"}
+  ]}

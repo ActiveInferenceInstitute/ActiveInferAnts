@@ -1,0 +1,101 @@
+Setting,Sub-domain,Recognize,Remember,Respond,UTC Timestamp,Recognizing Party,Remembering Party,Responding Party,Risk Score
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Theme park entry,Hospitality,Ticket QR code,Park capacity,Allow entry and track crowd flow,2024-08-17T19:56:26.733750+00:00,Party_42,Party_4,Party_36,26
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Library book return,Education,Book ID,Borrower records,Update inventory,2024-08-17T19:56:26.733759+00:00,Party_71,Party_89,Party_65,17
+Cruise ship embarkation,Hospitality,Passenger manifest,Cabin assignments,Direct passengers to cabins,2024-08-17T19:56:26.733762+00:00,Party_1,Party_32,Party_12,73
+Adaptive learning platform,Education,Student performance,Learning style,Adjust difficulty level,2024-08-17T19:56:26.733765+00:00,Party_85,Party_35,Party_45,13
+Spa appointment,Hospitality,Client ID,Appointment schedule,Provide service,2024-08-17T19:56:26.733768+00:00,Party_72,Party_14,Party_16,19
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Restaurant reservation,Hospitality,Reservation ID,Booking system,Confirm table,2024-08-17T19:56:26.733774+00:00,Party_43,Party_39,Party_6,39
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Classroom attendance,Education,Student ID,Attendance records,Mark present,2024-08-17T19:56:26.733786+00:00,Party_96,Party_13,Party_70,34
+Online exam,Education,Login credentials,Exam schedule,Grant access,2024-08-17T19:56:26.733789+00:00,Party_34,Party_42,Party_49,34
+Hotel room service,Hospitality,Room number,Guest preferences,Deliver order,2024-08-17T19:56:26.733792+00:00,Party_72,Party_76,Party_98,93
+Virtual laboratory,Education,Experiment setup,Safety protocols,Guide experiment procedure,2024-08-17T19:56:26.733795+00:00,Party_71,Party_46,Party_51,10

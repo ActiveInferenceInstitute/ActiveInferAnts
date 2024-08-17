@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 145
 Total number of relationships: 100
-Number of unique properties: 41
+Number of unique properties: 44
 Number of unique processes: 43
-Number of unique perspectives: 37
+Number of unique perspectives: 45
 
 2. Pattern Type Distribution:
 Property: 50 (34.48%)
@@ -14,61 +14,61 @@ Perspective: 45 (31.03%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.501191
-std        0.309075
-min        0.022800
-25%        0.219950
-50%        0.461000
-75%        0.780475
-max        0.988200
+mean       0.487915
+std        0.295358
+min        0.008600
+25%        0.243625
+50%        0.499700
+75%        0.713975
+max        0.998200
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9882):
-Property: Talent Development
-Process: Advisory Board Meetings
-Perspective: Outreach Coordinator
+Strongest relationship (strength = 0.9982):
+Property: Research Career Development
+Process: Laboratory Safety Training
+Perspective: Science Policy Advisor
 
-Weakest relationship (strength = 0.0228):
-Property: Scientific Advisory Boards
-Process: Research Network Building
-Perspective: Research Design Consultant
+Weakest relationship (strength = 0.0086):
+Property: Grant Writing
+Process: Conference Presentations
+Perspective: Research Network Administrator
 
 4. Network Analysis:
-Number of nodes: 121
-Number of edges: 291
-Average clustering coefficient: 0.4464
-Average shortest path length: 3.3875
-Diameter of the graph: 7
+Number of nodes: 128
+Number of edges: 281
+Average clustering coefficient: 0.5113
+Average shortest path length: 3.7458
+Diameter of the graph: 8
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Science Educator: 0.1167
-Scientific Collaboration Tools: 0.0833
-Peer Network Facilitator: 0.0833
-Data Collection: 0.0833
-Project Timeline Management: 0.0833
+Laboratory Safety Training: 0.0787
+Journal Submission: 0.0787
+Bibliometrician: 0.0787
+Literature Review: 0.0787
+Data Collection: 0.0787
 
 Betweenness Centrality:
-Science Educator: 0.1448
-Scientific Collaboration Tools: 0.0925
-Peer Network Facilitator: 0.0778
-Data Collection: 0.0752
-Data Repository Manager: 0.0645
+Laboratory Safety Training: 0.1422
+Journal Submission: 0.1106
+Graduate Student Mentor: 0.0986
+Literature Review: 0.0952
+Curriculum Developer: 0.0904
 
 Eigenvector Centrality:
-Project Timeline Management: 0.2344
-Science Educator: 0.2167
-Scientific Collaboration Tools: 0.1949
-Knowledge Dissemination: 0.1909
-Outreach Coordinator: 0.1833
+Bibliometrician: 0.2660
+Scientific Advisory Board Member: 0.2352
+Research Network Building: 0.2122
+Journal Submission: 0.2109
+Intellectual Property: 0.2022
 
 Closeness Centrality:
-Science Educator: 0.3810
-Scientific Collaboration Tools: 0.3704
-Project Timeline Management: 0.3681
-Knowledge Dissemination: 0.3571
-Data Collection: 0.3550
+Journal Submission: 0.3588
+Funding Diversity Specialist: 0.3508
+Literature Review: 0.3499
+Bibliometrician: 0.3479
+Scientific Advisory Board Member: 0.3405
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,8 +93,7 @@ analysis: 5
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-cluster
-1    50
-0    25
-2    25
-Name: count, dtype: int64
+2    39
+0    34
+1    27
+Name: cluster, dtype: int64

@@ -3,9 +3,9 @@
 1. Basic Statistics:
 Total number of patterns: 150
 Total number of relationships: 100
-Number of unique properties: 44
-Number of unique processes: 44
-Number of unique perspectives: 42
+Number of unique properties: 47
+Number of unique processes: 42
+Number of unique perspectives: 40
 
 2. Pattern Type Distribution:
 Property: 50 (33.33%)
@@ -14,61 +14,61 @@ Perspective: 50 (33.33%)
 
 3. Relationship Strength Analysis:
 count    100.000000
-mean       0.501258
-std        0.274594
-min        0.012100
-25%        0.283800
-50%        0.475650
-75%        0.733300
-max        0.987300
+mean       0.463053
+std        0.274410
+min        0.005100
+25%        0.267675
+50%        0.457650
+75%        0.620675
+max        0.992600
 Name: strength, dtype: float64
 
-Strongest relationship (strength = 0.9873):
-Property: Citizenship Pathways
-Process: Education Placement
-Perspective: Visa Processor
+Strongest relationship (strength = 0.9926):
+Property: Sanctuary Cities
+Process: Asylum Claim Evaluation
+Perspective: Immigration Lawyer
 
-Weakest relationship (strength = 0.0121):
-Property: Language Interpretation Services
-Process: Immigrant Healthcare Provision
-Perspective: Deportation Officer
+Weakest relationship (strength = 0.0051):
+Property: Unaccompanied Minor Management
+Process: Immigration Research Studies
+Perspective: Language Interpreter
 
 4. Network Analysis:
-Number of nodes: 127
+Number of nodes: 128
 Number of edges: 283
-Average clustering coefficient: 0.4915
-Average shortest path length: 3.6173
+Average clustering coefficient: 0.4893
+Average shortest path length: 3.6634
 Diameter of the graph: 7
 
 5. Top 5 Patterns by Centrality Measures:
 
 Degree Centrality:
-Immigrant Mental Health Counselor: 0.1032
-Language Interpretation Services: 0.0952
-Immigration Policy: 0.0873
-Refugee Resettlement Coordinator: 0.0794
-Visa Application Processing: 0.0794
+Human Rights Advocate: 0.0945
+Cultural Liaison: 0.0866
+Labor Market Analysis: 0.0787
+Detention Facility Manager: 0.0787
+Immigrant Rights: 0.0709
 
 Betweenness Centrality:
-Immigrant Mental Health Counselor: 0.1536
-Language Interpretation Services: 0.1303
-Immigration Policy: 0.1248
-Immigrant Healthcare Provision: 0.1188
-Cultural Orientation: 0.1004
+Human Rights Advocate: 0.1363
+Detention Facility Manager: 0.1010
+Cultural Liaison: 0.0908
+Labor Market Analysis: 0.0905
+Immigrant Rights: 0.0887
 
 Eigenvector Centrality:
-Immigrant Mental Health Counselor: 0.2983
-Immigrant Healthcare Provision: 0.2620
-Visa Application Processing: 0.2400
-Integration Programs: 0.2285
-Language Interpretation Services: 0.2222
+Labor Market Analysis: 0.2698
+Human Rights Advocate: 0.2622
+Skilled Migration: 0.2382
+Policy Development: 0.2260
+Legal Aid Services: 0.2180
 
 Closeness Centrality:
-Immigrant Mental Health Counselor: 0.3772
-Immigrant Healthcare Provision: 0.3728
-Cultural Orientation: 0.3580
-Integration Programs: 0.3559
-Refugee Resettlement Coordinator: 0.3549
+Human Rights Advocate: 0.3791
+Policy Development: 0.3598
+Labor Market Analysis: 0.3588
+Skilled Migration: 0.3547
+Immigration Judge: 0.3479
 
 6. Correlation Analysis:
 Correlation matrix of average strengths:
@@ -93,8 +93,7 @@ citizenship: 6
 8. Cluster Analysis:
 Performed k-means clustering with 3 clusters.
 Cluster sizes:
-cluster
-2    35
-0    35
-1    30
-Name: count, dtype: int64
+0    50
+2    28
+1    22
+Name: cluster, dtype: int64
