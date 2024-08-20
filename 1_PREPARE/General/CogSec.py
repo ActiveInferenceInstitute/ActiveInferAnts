@@ -47,7 +47,8 @@ class CognitiveSecurity:
         """
         Initializes the Cognitive Security system with a reference to the ant colony.
         
-        :param colony: A list of ActiveColony instances representing the entire ant colony.
+        Args:
+            colony (List[ActiveColony]): A list of ActiveColony instances representing the entire ant colony.
         """
         self.colony = colony
         self.threat_levels = {level: level.value for level in ThreatLevel}
@@ -67,7 +68,8 @@ class CognitiveSecurity:
         """
         Initializes an advanced model for assessing threats based on various parameters.
         
-        :return: A dictionary representing the threat assessment model with callable assessments.
+        Returns:
+            Dict[str, Callable[[Any], ThreatLevel]]: A dictionary representing the threat assessment model with callable assessments.
         """
         return {
             "predator_proximity": lambda x: ThreatLevel.CATASTROPHIC if x < metaconfig.PREDATOR_PROXIMITY_CATASTROPHIC else
@@ -99,18 +101,27 @@ class CognitiveSecurity:
     def _initialize_threat_recognition_model(self) -> RandomForestClassifier:
         """
         Initializes and returns a more sophisticated threat recognition model.
+
+        Returns:
+            RandomForestClassifier: An initialized RandomForestClassifier for threat recognition.
         """
         return RandomForestClassifier(n_estimators=200, max_depth=15, min_samples_split=5, min_samples_leaf=2, random_state=42)
     
     def _initialize_anomaly_detection_model(self) -> IsolationForest:
         """
         Initializes and returns an advanced anomaly detection model.
+
+        Returns:
+            IsolationForest: An initialized IsolationForest for anomaly detection.
         """
         return IsolationForest(n_estimators=100, contamination=0.1, random_state=42)
     
     def _generate_encryption_key(self) -> bytes:
         """
         Generates a secure encryption key using PBKDF2HMAC.
+
+        Returns:
+            bytes: A secure encryption key.
         """
         password = config.ENCRYPTION_PASSWORD.encode()
         salt = config.ENCRYPTION_SALT.encode()
@@ -126,6 +137,9 @@ class CognitiveSecurity:
     def _generate_asymmetric_keys(self) -> Tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]:
         """
         Generates asymmetric key pair for secure communication.
+
+        Returns:
+            Tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]: A tuple containing the public and private keys.
         """
         private_key = rsa.generate_private_key(
             public_exponent=65537,
@@ -138,6 +152,9 @@ class CognitiveSecurity:
     def _setup_logger(self) -> logging.Logger:
         """
         Sets up and returns a sophisticated logger for the CognitiveSecurity module.
+
+        Returns:
+            logging.Logger: A configured logger for the CognitiveSecurity module.
         """
         logger = logging.getLogger('CognitiveSecurity')
         logger.setLevel(logging.DEBUG)
@@ -178,7 +195,8 @@ class CognitiveSecurity:
         """
         Initiates an advanced threat analysis when an anomaly is detected.
         
-        :param metrics: Current colony metrics
+        Args:
+            metrics (Dict[str, float]): Current colony metrics
         """
         self.logger.info("Initiating advanced threat analysis...")
         # Implement advanced threat analysis logic here
@@ -189,7 +207,8 @@ class CognitiveSecurity:
         """
         Consults external intelligence sources for additional threat information.
         
-        :param metrics: Current colony metrics
+        Args:
+            metrics (Dict[str, float]): Current colony metrics
         """
         self.logger.info("Consulting external intelligence sources...")
         # Simulate API call to external intelligence service
@@ -206,7 +225,8 @@ class CognitiveSecurity:
         """
         Integrates external intelligence data into the threat assessment process.
         
-        :param external_threat_data: Threat data from external sources
+        Args:
+            external_threat_data (Dict[str, Any]): Threat data from external sources
         """
         self.logger.info("Integrating external intelligence into threat assessment...")
         # Implement logic to incorporate external threat data into the current threat assessment
@@ -217,14 +237,32 @@ class CognitiveSecurity:
             await self.execute_security_protocols()
     
     async def _get_predator_proximity(self) -> float:
+        """
+        Implements advanced predator detection logic.
+
+        Returns:
+            float: A value representing the proximity of predators.
+        """
         # Implement advanced predator detection logic here
         return np.random.uniform(*metaconfig.PREDATOR_PROXIMITY_RANGE)
     
     async def _get_rival_colony_activity(self) -> float:
+        """
+        Implements sophisticated rival colony activity detection.
+
+        Returns:
+            float: A value representing the level of rival colony activity.
+        """
         # Implement sophisticated rival colony activity detection here
         return np.random.uniform(*metaconfig.RIVAL_ACTIVITY_RANGE)
     
     async def _get_internal_conflicts(self) -> float:
+        """
+        Implements nuanced internal conflict detection.
+
+        Returns:
+            float: A value representing the level of internal conflicts.
+        """
         # Implement nuanced internal conflict detection here
         return np.random.uniform(*metaconfig.INTERNAL_CONFLICT_RANGE)
     
@@ -251,7 +289,8 @@ class CognitiveSecurity:
         """
         Determines the appropriate security protocol based on the current threat level.
         
-        :return: The current SecurityProtocol
+        Returns:
+            SecurityProtocol: The current SecurityProtocol
         """
         if self.current_threat_level in [ThreatLevel.CATASTROPHIC, ThreatLevel.CRITICAL]:
             return SecurityProtocol.EVACUATION
