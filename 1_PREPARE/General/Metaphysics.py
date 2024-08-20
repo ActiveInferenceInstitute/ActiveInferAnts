@@ -8,12 +8,12 @@ from collections import defaultdict
 class MetaphysicsSpecGenerator:
     """
     A sophisticated class to meta-specify all possible metaphysics and narratives based on categorization principles.
-    Enhanced to include serialization, improved combination generation, and advanced visualization capabilities.
+    Includes serialization, combination generation, advanced visualization, and analysis capabilities.
     """
     
     def __init__(self):
         self.metaphysics: Dict[str, Dict[str, Any]] = {}
-        self.narratives: Dict[str, List[Tuple[str, Callable[[Any], Any]]]] = {}
+        self.narratives: Dict[str, List[Tuple[str, Callable[[Dict[str, Any]], Dict[str, Any]]]]] = {}
         self.combinations: List[Dict[str, Any]] = []
 
     def add_metaphysical_concept(self, concept_name: str, properties: Dict[str, Any]) -> None:
@@ -26,13 +26,13 @@ class MetaphysicsSpecGenerator:
         """
         self.metaphysics[concept_name] = properties
 
-    def add_narrative(self, narrative_name: str, sequence: List[Tuple[str, Callable[[Any], Any]]]) -> None:
+    def add_narrative(self, narrative_name: str, sequence: List[Tuple[str, Callable[[Dict[str, Any]], Dict[str, Any]]]]) -> None:
         """
         Add a narrative composed of a sequence of metaphysical transformations.
 
         Args:
             narrative_name (str): The name of the narrative.
-            sequence (List[Tuple[str, Callable[[Any], Any]]]): A list of tuples, each containing a step name and a transformation function.
+            sequence (List[Tuple[str, Callable[[Dict[str, Any]], Dict[str, Any]]]]): A list of tuples, each containing a step name and a transformation function.
         """
         self.narratives[narrative_name] = sequence
 
@@ -44,25 +44,25 @@ class MetaphysicsSpecGenerator:
         Returns:
             List[Dict[str, Any]]: A list of dictionaries, each representing a combination of concept, narrative, and result.
         """
-        self.combinations = []
-        for concept_name, properties in self.metaphysics.items():
-            for narrative_name, sequence in self.narratives.items():
-                result = self._apply_narrative_to_concept(concept_name, narrative_name, sequence)
-                self.combinations.append({
-                    "concept": concept_name,
-                    "narrative": narrative_name,
-                    "result": result
-                })
+        self.combinations = [
+            {
+                "concept": concept_name,
+                "narrative": narrative_name,
+                "result": self._apply_narrative_to_concept(concept_name, narrative_name, sequence)
+            }
+            for concept_name, properties in self.metaphysics.items()
+            for narrative_name, sequence in self.narratives.items()
+        ]
         return self.combinations
 
-    def _apply_narrative_to_concept(self, concept_name: str, narrative_name: str, sequence: List[Tuple[str, Callable[[Any], Any]]]) -> Dict[str, Any]:
+    def _apply_narrative_to_concept(self, concept_name: str, narrative_name: str, sequence: List[Tuple[str, Callable[[Dict[str, Any]], Dict[str, Any]]]]) -> Dict[str, Any]:
         """
         Apply a narrative sequence to a metaphysical concept, returning the final state.
 
         Args:
             concept_name (str): The name of the metaphysical concept.
             narrative_name (str): The name of the narrative.
-            sequence (List[Tuple[str, Callable[[Any], Any]]]): The sequence of transformations to apply.
+            sequence (List[Tuple[str, Callable[[Dict[str, Any]], Dict[str, Any]]]]): The sequence of transformations to apply.
 
         Returns:
             Dict[str, Any]: The final state after applying the narrative.
@@ -102,25 +102,17 @@ class MetaphysicsSpecGenerator:
             G.add_edge(combo["concept"], combo["narrative"])
             G.add_edge(combo["narrative"], f"{combo['concept']}_{combo['narrative']}_result")
 
-        # Set up node colors
-        color_map = []
-        for node in G:
-            if G.nodes[node]["node_type"] == "concept":
-                color_map.append('skyblue')
-            elif G.nodes[node]["node_type"] == "narrative":
-                color_map.append('lightgreen')
-            else:
-                color_map.append('salmon')
+        # Set up node colors and shapes
+        color_map = {'concept': 'skyblue', 'narrative': 'lightgreen', 'result': 'salmon'}
+        node_colors = [color_map[G.nodes[node]['node_type']] if 'node_type' in G.nodes[node] else color_map['result'] for node in G]
 
         # Create the visualization
         plt.figure(figsize=(12, 8))
-        pos = nx.spring_layout(G)
-        nx.draw(G, pos, node_color=color_map, with_labels=True, node_size=3000, node_shape="o", alpha=0.8, font_size=8)
+        pos = nx.spring_layout(G, k=0.9, iterations=50)
+        nx.draw(G, pos, node_color=node_colors, with_labels=True, node_size=3000, alpha=0.8, font_size=8)
         
         # Add a legend
-        legend_elements = [plt.Line2D([0], [0], marker='o', color='w', label='Concept', markerfacecolor='skyblue', markersize=15),
-                           plt.Line2D([0], [0], marker='o', color='w', label='Narrative', markerfacecolor='lightgreen', markersize=15),
-                           plt.Line2D([0], [0], marker='o', color='w', label='Result', markerfacecolor='salmon', markersize=15)]
+        legend_elements = [plt.Line2D([0], [0], marker='o', color='w', label=key.capitalize(), markerfacecolor=value, markersize=15) for key, value in color_map.items()]
         plt.legend(handles=legend_elements, loc='upper left')
 
         plt.title("Metaphysics and Narratives Visualization")
@@ -138,7 +130,7 @@ class MetaphysicsSpecGenerator:
         """
         serializable_data = {
             "metaphysics": self.metaphysics,
-            "narratives": {name: [(step, str(func)) for step, func in sequence] for name, sequence in self.narratives.items()},
+            "narratives": {name: [(step, self._serialize_function(func)) for step, func in sequence] for name, sequence in self.narratives.items()},
             "combinations": self.combinations
         }
         with open(filename, 'w') as file:
@@ -147,7 +139,6 @@ class MetaphysicsSpecGenerator:
     def load_from_file(self, filename: str) -> None:
         """
         Load metaphysics and narratives from a JSON file.
-        Note: Custom narrative functions are stored as strings and need to be reconstructed.
 
         Args:
             filename (str): The name of the file to load the data from.
@@ -157,8 +148,8 @@ class MetaphysicsSpecGenerator:
             self.metaphysics = data.get("metaphysics", {})
             self.combinations = data.get("combinations", [])
             
-            # Reconstruct narratives (functions will need to be manually redefined)
-            self.narratives = {name: [(step, eval(f"lambda x: {func_str}")) for step, func_str in sequence] 
+            # Reconstruct narratives
+            self.narratives = {name: [(step, self._deserialize_function(func_str)) for step, func_str in sequence] 
                                for name, sequence in data.get("narratives", {}).items()}
 
     def analyze_combinations(self) -> Dict[str, Any]:
@@ -193,6 +184,17 @@ class MetaphysicsSpecGenerator:
 
         return analysis
 
+    @staticmethod
+    def _serialize_function(func: Callable) -> str:
+        """Serialize a function to a string representation."""
+        return func.__name__
+
+    @staticmethod
+    def _deserialize_function(func_str: str) -> Callable:
+        """Deserialize a function from its string representation."""
+        # This is a simplified approach. In a real-world scenario, you might want to use a more robust method.
+        return globals()[func_str]
+
 # Example usage
 if __name__ == "__main__":
     generator = MetaphysicsSpecGenerator()
@@ -202,25 +204,45 @@ if __name__ == "__main__":
     generator.add_metaphysical_concept("Time", {"properties": ["flow", "duration", "change"]})
     generator.add_metaphysical_concept("Space", {"properties": ["dimension", "extension", "locality"]})
     
+    # Define transformation functions
+    def expand(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**x, "properties": x["properties"] + ["expansion"]}
+
+    def contract(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**x, "properties": [prop for prop in x["properties"] if prop != "expansion"]}
+
+    def transcend(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**x, "properties": x["properties"] + ["transcendence"]}
+
+    def begin(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**x, "properties": x["properties"] + ["origin"]}
+
+    def develop(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**x, "properties": x["properties"] + ["growth"]}
+
+    def end(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**x, "properties": [prop for prop in x["properties"] if prop not in ["origin", "growth"]]}
+
     # Adding narratives
     generator.add_narrative("Transformation", [
-        ("Expand", lambda x: {**x, "properties": x["properties"] + ["expansion"]}),
-        ("Contract", lambda x: {**x, "properties": [prop for prop in x["properties"] if prop != "expansion"]}),
-        ("Transcend", lambda x: {**x, "properties": x["properties"] + ["transcendence"]})
+        ("Expand", expand),
+        ("Contract", contract),
+        ("Transcend", transcend)
     ])
     generator.add_narrative("Cyclical", [
-        ("Begin", lambda x: {**x, "properties": x["properties"] + ["origin"]}),
-        ("Develop", lambda x: {**x, "properties": x["properties"] + ["growth"]}),
-        ("End", lambda x: {**x, "properties": [prop for prop in x["properties"] if prop not in ["origin", "growth"]]})
+        ("Begin", begin),
+        ("Develop", develop),
+        ("End", end)
     ])
     
     # Generate combinations
     results = generator.generate_combinations()
-    print("Generated Combinations:", len(results))
+    print(f"Generated Combinations: {len(results)}")
     
     # Analyze combinations
     analysis = generator.analyze_combinations()
-    print("Analysis Results:", json.dumps(analysis, indent=2))
+    print("Analysis Results:")
+    print(json.dumps(analysis, indent=2))
     
     # Visualize metaphysics
     generator.visualize_metaphysics()
@@ -231,5 +253,5 @@ if __name__ == "__main__":
     # Load from file (for demonstration)
     new_generator = MetaphysicsSpecGenerator()
     new_generator.load_from_file("metaphysics_spec.json")
-    print("Loaded Metaphysics:", len(new_generator.metaphysics))
-    print("Loaded Narratives:", len(new_generator.narratives))
+    print(f"Loaded Metaphysics: {len(new_generator.metaphysics)}")
+    print(f"Loaded Narratives: {len(new_generator.narratives)}")

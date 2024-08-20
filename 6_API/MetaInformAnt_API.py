@@ -1,4 +1,5 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException, Query, Depends
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Query, Depends, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, HttpUrl, validator
 from typing import Optional, Dict, List, Union, Any
 from sqlalchemy.orm import Session
@@ -8,10 +9,15 @@ from ActiveInferAnts.utils import DataValidator, SimulationDataProcessor, create
 from ActiveInferAnts.models import User
 from ActiveInferAnts.logging import setup_logger
 from ActiveInferAnts.config import Settings
+from ActiveInferAnts.exceptions import ValidationError, ProcessingError
+from ActiveInferAnts.metrics import MetricsCollector
+from ActiveInferAnts.caching import cache
+from ActiveInferAnts.rate_limiting import rate_limit
+import asyncio
 
 app = FastAPI(
     title="MetaInformAnt API",
-    version="1.0.0",
+    version="1.1.0",
     description="Advanced API for decentralized, federated, and secure computation with the MetaInformAnt package",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
@@ -20,6 +26,7 @@ app = FastAPI(
 
 logger = setup_logger(__name__)
 settings = Settings()
+metrics = MetricsCollector()
 
 class AdvancedInferenceRequest(BaseModel):
     data: Dict[str, List[float]] = Field(..., example={"feature1": [0.1, 0.2], "feature2": [0.3, 0.4]})
@@ -65,6 +72,7 @@ class ErrorResponse(BaseModel):
     details: Optional[Dict[str, Any]] = None
 
 @app.post("/api/v1/advanced_infer/", response_model=InferenceResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@rate_limit(max_calls=100, time_frame=60)
 async def perform_advanced_inference(
     request: AdvancedInferenceRequest,
     background_tasks: BackgroundTasks,
@@ -91,6 +99,7 @@ async def perform_advanced_inference(
         )
         
         logger.info(f"Advanced inference task {task_id} started for user {current_user.username}")
+        metrics.increment('advanced_inference_requests')
         
         return InferenceResponse(
             task_id=task_id,
@@ -102,14 +111,21 @@ async def perform_advanced_inference(
             niche_params=request.niche_params,
             callback_url=request.callback_url
         )
-    except ValueError as ve:
-        logger.error(f"Value Error in advanced inference: {str(ve)}")
+    except ValidationError as ve:
+        logger.error(f"Validation Error in advanced inference: {str(ve)}")
+        metrics.increment('advanced_inference_validation_errors')
         raise HTTPException(status_code=400, detail={"error": "Invalid input", "details": str(ve)})
+    except ProcessingError as pe:
+        logger.error(f"Processing Error in advanced inference: {str(pe)}")
+        metrics.increment('advanced_inference_processing_errors')
+        raise HTTPException(status_code=500, detail={"error": "Processing error", "details": str(pe)})
     except Exception as e:
         logger.exception(f"Unexpected error in advanced inference: {str(e)}")
+        metrics.increment('advanced_inference_unexpected_errors')
         raise HTTPException(status_code=500, detail={"error": "Internal server error", "details": str(e)})
 
 @app.post("/api/v1/federated_learn/", response_model=InferenceResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@rate_limit(max_calls=50, time_frame=60)
 async def perform_federated_learning(
     request: FederatedLearningRequest,
     background_tasks: BackgroundTasks,
@@ -134,6 +150,7 @@ async def perform_federated_learning(
         )
         
         logger.info(f"Federated learning task {task_id} initiated for user {current_user.username}")
+        metrics.increment('federated_learning_requests')
         
         return InferenceResponse(
             task_id=task_id,
@@ -144,14 +161,21 @@ async def perform_federated_learning(
             agent_params={"learning_rate": request.learning_rate},
             callback_url=request.callback_url
         )
-    except ValueError as ve:
-        logger.error(f"Value Error in federated learning: {str(ve)}")
+    except ValidationError as ve:
+        logger.error(f"Validation Error in federated learning: {str(ve)}")
+        metrics.increment('federated_learning_validation_errors')
         raise HTTPException(status_code=400, detail={"error": "Invalid input", "details": str(ve)})
+    except ProcessingError as pe:
+        logger.error(f"Processing Error in federated learning: {str(pe)}")
+        metrics.increment('federated_learning_processing_errors')
+        raise HTTPException(status_code=500, detail={"error": "Processing error", "details": str(pe)})
     except Exception as e:
         logger.exception(f"Unexpected error in federated learning: {str(e)}")
+        metrics.increment('federated_learning_unexpected_errors')
         raise HTTPException(status_code=500, detail={"error": "Internal server error", "details": str(e)})
 
 @app.get("/api/v1/status/", response_model=Dict[str, Union[str, Dict[str, str]]])
+@cache(expire=60)
 async def check_detailed_status(
     simulation_id: Optional[str] = Query(None, description="Simulation ID to fetch detailed status for"),
     db: Session = Depends(create_session),
@@ -176,3 +200,32 @@ async def check_detailed_status(
 @app.get("/api/v1/health")
 async def health_check():
     return {"status": "healthy", "version": app.version}
+
+@app.get("/api/v1/metrics")
+async def get_metrics(current_user: User = Depends(get_current_active_user)):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Not authorized to access metrics")
+    return metrics.get_all()
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = asyncio.get_event_loop().time()
+    response = await call_next(request)
+    process_time = asyncio.get_event_loop().time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    return response
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": exc.detail},
+    )
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    logger.exception(f"Unhandled exception: {str(exc)}")
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Internal server error", "details": str(exc)},
+    )

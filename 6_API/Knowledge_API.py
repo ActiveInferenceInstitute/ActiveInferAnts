@@ -23,11 +23,17 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.responses import RedirectResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.responses import JSONResponse as StarletteJSONResponse
+from fastapi.security import APIKeyHeader
+from starlette.status import HTTP_403_FORBIDDEN
+from motor.motor_asyncio import AsyncIOMotorClient
+from aioredis import from_url as redis_from_url
+from elasticsearch import AsyncElasticsearch
+from neo4j import AsyncGraphDatabase
 
 app = FastAPI(
     title="Knowledge API",
     description="Advanced API for managing knowledge across multiple databases",
-    version="2.1.0",
+    version="3.0.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
     openapi_url="/api/openapi.json"
@@ -76,20 +82,19 @@ class KnowledgeItem(Base):
 
 Base.metadata.create_all(bind=engine)
 
-# MongoDB setup
-mongo_client = MongoClient(config.MONGODB_URL)
+# Async MongoDB setup
+mongo_client = AsyncIOMotorClient(config.MONGODB_URL)
 mongo_db = mongo_client["knowledge_db"]
 mongo_collection = mongo_db["knowledge_items"]
-mongo_collection.create_index([("source", pymongo.ASCENDING)], unique=True)
 
-# Redis setup
-redis_client = redis.from_url(config.REDIS_URL)
+# Async Redis setup
+redis_client = None
 
-# Elasticsearch setup
-es_client = Elasticsearch([config.ELASTICSEARCH_URL])
+# Async Elasticsearch setup
+es_client = AsyncElasticsearch([config.ELASTICSEARCH_URL])
 
-# Neo4j setup
-neo4j_driver = GraphDatabase.driver(config.NEO4J_URL, auth=(config.NEO4J_USER, config.NEO4J_PASSWORD))
+# Async Neo4j setup
+neo4j_driver = AsyncGraphDatabase.driver(config.NEO4J_URL, auth=(config.NEO4J_USER, config.NEO4J_PASSWORD))
 
 # Dependency
 async def get_db():
@@ -100,10 +105,15 @@ async def get_db():
         await db.close()
 
 # API Key authentication
-def api_key_auth(api_key: str = Query(..., description="API Key for authentication")):
-    if api_key != config.API_KEY:
-        raise HTTPException(status_code=401, detail="Invalid API Key")
-    return api_key
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+async def get_api_key(api_key_header: str = Depends(api_key_header)):
+    if api_key_header == config.API_KEY:
+        return api_key_header
+    else:
+        raise HTTPException(
+            status_code=HTTP_403_FORBIDDEN, detail="Could not validate API key"
+        )
 
 class KnowledgeBase(BaseModel):
     source: str = Field(..., description="Unique identifier for the knowledge item")
@@ -128,7 +138,7 @@ async def create_knowledge(
     knowledge: KnowledgeBase,
     background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
-    api_key: str = Depends(api_key_auth)
+    api_key: str = Depends(get_api_key)
 ):
     try:
         # SQLite
@@ -149,13 +159,13 @@ async def create_knowledge(
 async def update_other_databases(knowledge: KnowledgeBase):
     try:
         # MongoDB
-        await asyncio.to_thread(mongo_collection.insert_one, knowledge.dict())
+        await mongo_collection.insert_one(knowledge.dict())
         
         # Redis
-        await asyncio.to_thread(redis_client.set, f"knowledge:{knowledge.source}", json.dumps(knowledge.dict()))
+        await redis_client.set(f"knowledge:{knowledge.source}", json.dumps(knowledge.dict()))
         
         # Elasticsearch
-        await asyncio.to_thread(es_client.index, index="knowledge", id=knowledge.source, body=knowledge.dict())
+        await es_client.index(index="knowledge", id=knowledge.source, body=knowledge.dict())
         
         # Neo4j
         async with neo4j_driver.session() as session:
@@ -169,7 +179,7 @@ async def update_other_databases(knowledge: KnowledgeBase):
 async def read_knowledge(
     source: str,
     db: Session = Depends(get_db),
-    api_key: str = Depends(api_key_auth)
+    api_key: str = Depends(get_api_key)
 ):
     results = {}
     
@@ -202,16 +212,19 @@ async def read_knowledge(
         raise HTTPException(status_code=500, detail="Error retrieving knowledge")
 
 async def fetch_from_mongodb(source):
-    mongo_item = await asyncio.to_thread(mongo_collection.find_one, {"source": source})
+    mongo_item = await mongo_collection.find_one({"source": source})
     return ("mongodb", mongo_item["content"]) if mongo_item else None
 
 async def fetch_from_redis(source):
-    redis_item = await asyncio.to_thread(redis_client.get, f"knowledge:{source}")
+    redis_item = await redis_client.get(f"knowledge:{source}")
     return ("redis", json.loads(redis_item)["content"]) if redis_item else None
 
 async def fetch_from_elasticsearch(source):
-    es_result = await asyncio.to_thread(es_client.get, index="knowledge", id=source, ignore=[404])
-    return ("elasticsearch", es_result["_source"]["content"]) if es_result.get('found') else None
+    try:
+        es_result = await es_client.get(index="knowledge", id=source)
+        return ("elasticsearch", es_result["_source"]["content"])
+    except Exception:
+        return None
 
 async def fetch_from_neo4j(source):
     async with neo4j_driver.session() as session:
@@ -225,7 +238,7 @@ async def update_knowledge(
     knowledge: KnowledgeBase,
     background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
-    api_key: str = Depends(api_key_auth)
+    api_key: str = Depends(get_api_key)
 ):
     try:
         # SQLite
@@ -251,13 +264,13 @@ async def update_knowledge(
 async def update_other_databases_on_put(source: str, knowledge: KnowledgeBase):
     try:
         # MongoDB
-        await asyncio.to_thread(mongo_collection.update_one, {"source": source}, {"$set": knowledge.dict()})
+        await mongo_collection.update_one({"source": source}, {"$set": knowledge.dict()})
         
         # Redis
-        await asyncio.to_thread(redis_client.set, f"knowledge:{source}", json.dumps(knowledge.dict()))
+        await redis_client.set(f"knowledge:{source}", json.dumps(knowledge.dict()))
         
         # Elasticsearch
-        await asyncio.to_thread(es_client.update, index="knowledge", id=source, body={"doc": knowledge.dict()})
+        await es_client.update(index="knowledge", id=source, body={"doc": knowledge.dict()})
         
         # Neo4j
         async with neo4j_driver.session() as session:
@@ -271,7 +284,7 @@ async def delete_knowledge(
     source: str,
     background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
-    api_key: str = Depends(api_key_auth)
+    api_key: str = Depends(get_api_key)
 ):
     try:
         # SQLite
@@ -295,13 +308,13 @@ async def delete_knowledge(
 async def delete_from_other_databases(source: str):
     try:
         # MongoDB
-        await asyncio.to_thread(mongo_collection.delete_one, {"source": source})
+        await mongo_collection.delete_one({"source": source})
         
         # Redis
-        await asyncio.to_thread(redis_client.delete, f"knowledge:{source}")
+        await redis_client.delete(f"knowledge:{source}")
         
         # Elasticsearch
-        await asyncio.to_thread(es_client.delete, index="knowledge", id=source, ignore=[404])
+        await es_client.delete(index="knowledge", id=source, ignore=[404])
         
         # Neo4j
         async with neo4j_driver.session() as session:
@@ -314,7 +327,7 @@ async def list_knowledge(
     skip: int = Query(0, description="Number of items to skip"),
     limit: int = Query(10, description="Number of items to return"),
     db: Session = Depends(get_db),
-    api_key: str = Depends(api_key_auth)
+    api_key: str = Depends(get_api_key)
 ):
     try:
         query = KnowledgeItem.__table__.select().offset(skip).limit(limit)
@@ -328,13 +341,13 @@ async def list_knowledge(
 @app.on_event("startup")
 async def startup_event():
     logger.info("Starting up Knowledge API")
-    # Perform any necessary startup tasks (e.g., ensuring indexes, checking connections)
+    global redis_client
+    redis_client = await redis_from_url(config.REDIS_URL)
     await check_database_connections()
 
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Shutting down Knowledge API")
-    # Perform any necessary cleanup tasks
     await close_database_connections()
 
 async def check_database_connections():
@@ -344,13 +357,13 @@ async def check_database_connections():
             await conn.execute("SELECT 1")
         
         # Check MongoDB connection
-        await asyncio.to_thread(mongo_client.server_info)
+        await mongo_client.server_info()
         
         # Check Redis connection
-        await asyncio.to_thread(redis_client.ping)
+        await redis_client.ping()
         
         # Check Elasticsearch connection
-        await asyncio.to_thread(es_client.ping)
+        await es_client.ping()
         
         # Check Neo4j connection
         async with neo4j_driver.session() as session:
@@ -364,9 +377,9 @@ async def check_database_connections():
 async def close_database_connections():
     try:
         await engine.dispose()
-        mongo_client.close()
-        await asyncio.to_thread(redis_client.close)
-        await asyncio.to_thread(es_client.close)
+        await mongo_client.close()
+        await redis_client.close()
+        await es_client.close()
         await neo4j_driver.close()
         logger.info("All database connections closed successfully")
     except Exception as e:
@@ -381,6 +394,8 @@ async def http_exception_handler(request, exc):
     )
 
 # Root redirect
+@app.get("/", include_in_schema=False)
+async def root_redirect():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000, workers=4)

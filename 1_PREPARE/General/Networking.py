@@ -6,11 +6,13 @@ import netifaces
 import usb.core
 import usb.util
 import json
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 import logging
 from concurrent.futures import ThreadPoolExecutor
 import nmap
 import scapy.all as scapy
+import psutil
+from scapy.layers.inet import IP, ICMP
 
 class NetworkUtils:
     """
@@ -231,7 +233,7 @@ class NetworkUtils:
             traceroute_result = []
             for i in range(1, max_hops + 1):
                 pkt = IP(dst=destination, ttl=i) / ICMP()
-                reply = sr1(pkt, verbose=0, timeout=5)
+                reply = scapy.sr1(pkt, verbose=0, timeout=5)
                 if reply is None:
                     traceroute_result.append({'hop': i, 'ip': '*', 'rtt': '*'})
                 elif reply.type == 3:

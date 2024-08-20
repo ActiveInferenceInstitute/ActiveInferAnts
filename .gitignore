@@ -1,4 +1,9 @@
+# Git
 *.git
+.gitattributes
+.gitmodules
+
+# Project specific
 /9_OTHER/Github/repo/*
 
 # Security and privacy protection
@@ -8,15 +13,108 @@
 *.crt
 *.pfx
 *.p12
+.env.local
+.env.*.local
+secrets.yaml
+config.ini
+
+# Logs and databases
 *.log
+*.sql
+*.sqlite
+*.db
+
+# OS generated files
+.DS_Store
+Thumbs.db
+.directory
+desktop.ini
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+.python-version
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.out
+
+# Temporary files
 *.bak
 *.swp
 *~
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.tmp
+*.temp
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Miscellaneous
+*.cache
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/

@@ -2,14 +2,14 @@ import hashlib
 import hmac
 import base64
 import os
-from typing import Tuple, Union
+from typing import Tuple, Union, Optional
 
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding, utils
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
-from cryptography.exceptions import InvalidSignature
+from cryptography.exceptions import InvalidSignature, InvalidKey
 
 class CryptographyUtils:
     """
@@ -20,13 +20,16 @@ class CryptographyUtils:
     - HMAC generation and verification
     - Key derivation functions
     - Base64 encoding and decoding
+
+    This class provides a robust set of cryptographic tools designed for secure communication,
+    data protection, and integrity verification in various applications.
     """
 
-    RSA_KEY_SIZE = 2048
+    RSA_KEY_SIZE = 4096  # Increased for better security
     RSA_PUBLIC_EXPONENT = 65537
     HASH_ALGORITHM = hashes.SHA256()
-    SALT_SIZE = 16
-    ITERATIONS = 100000
+    SALT_SIZE = 32  # Increased for better security
+    ITERATIONS = 200000  # Increased for better security
 
     @classmethod
     def generate_rsa_keys(cls) -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
@@ -55,15 +58,21 @@ class CryptographyUtils:
 
         Returns:
             bytes: The encrypted message.
+
+        Raises:
+            ValueError: If the message is too long for the RSA key size.
         """
-        return public_key.encrypt(
-            message,
-            padding.OAEP(
-                mgf=padding.MGF1(algorithm=CryptographyUtils.HASH_ALGORITHM),
-                algorithm=CryptographyUtils.HASH_ALGORITHM,
-                label=None
+        try:
+            return public_key.encrypt(
+                message,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=CryptographyUtils.HASH_ALGORITHM),
+                    algorithm=CryptographyUtils.HASH_ALGORITHM,
+                    label=None
+                )
             )
-        )
+        except ValueError as e:
+            raise ValueError(f"Message too long for RSA key size: {str(e)}")
 
     @staticmethod
     def rsa_decrypt(private_key: rsa.RSAPrivateKey, encrypted_message: bytes) -> bytes:
@@ -76,15 +85,21 @@ class CryptographyUtils:
 
         Returns:
             bytes: The decrypted message.
+
+        Raises:
+            ValueError: If the decryption fails due to invalid padding or key.
         """
-        return private_key.decrypt(
-            encrypted_message,
-            padding.OAEP(
-                mgf=padding.MGF1(algorithm=CryptographyUtils.HASH_ALGORITHM),
-                algorithm=CryptographyUtils.HASH_ALGORITHM,
-                label=None
+        try:
+            return private_key.decrypt(
+                encrypted_message,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=CryptographyUtils.HASH_ALGORITHM),
+                    algorithm=CryptographyUtils.HASH_ALGORITHM,
+                    label=None
+                )
             )
-        )
+        except ValueError as e:
+            raise ValueError(f"Decryption failed: {str(e)}")
 
     @staticmethod
     def rsa_sign(private_key: rsa.RSAPrivateKey, message: bytes) -> bytes:
@@ -155,9 +170,15 @@ class CryptographyUtils:
 
         Returns:
             bytes: The encrypted message.
+
+        Raises:
+            InvalidKey: If the provided key is invalid.
         """
-        f = Fernet(key)
-        return f.encrypt(message)
+        try:
+            f = Fernet(key)
+            return f.encrypt(message)
+        except InvalidKey:
+            raise InvalidKey("Invalid Fernet key provided")
 
     @staticmethod
     def fernet_decrypt(key: bytes, encrypted_message: bytes) -> bytes:
@@ -170,9 +191,18 @@ class CryptographyUtils:
 
         Returns:
             bytes: The decrypted message.
+
+        Raises:
+            InvalidKey: If the provided key is invalid.
+            InvalidToken: If the encrypted message is invalid or tampered with.
         """
-        f = Fernet(key)
-        return f.decrypt(encrypted_message)
+        try:
+            f = Fernet(key)
+            return f.decrypt(encrypted_message)
+        except InvalidKey:
+            raise InvalidKey("Invalid Fernet key provided")
+        except InvalidToken:
+            raise InvalidToken("Invalid or tampered encrypted message")
 
     @staticmethod
     def hash_message(message: Union[str, bytes]) -> bytes:
@@ -226,13 +256,13 @@ class CryptographyUtils:
         return hmac.compare_digest(expected_hmac, hmac_value)
 
     @classmethod
-    def derive_key(cls, password: str, salt: bytes = None) -> Tuple[bytes, bytes]:
+    def derive_key(cls, password: str, salt: Optional[bytes] = None) -> Tuple[bytes, bytes]:
         """
         Derives a key from a password using PBKDF2.
 
         Args:
             password (str): The password to derive the key from.
-            salt (bytes, optional): The salt for key derivation. If not provided, a random salt will be generated.
+            salt (Optional[bytes]): The salt for key derivation. If not provided, a random salt will be generated.
 
         Returns:
             Tuple[bytes, bytes]: A tuple containing the derived key and the salt used.
@@ -260,7 +290,7 @@ class CryptographyUtils:
         Returns:
             str: The base64 encoded string.
         """
-        return base64.b64encode(data).decode()
+        return base64.urlsafe_b64encode(data).decode()
 
     @staticmethod
     def base64_decode(data: str) -> bytes:
@@ -272,5 +302,11 @@ class CryptographyUtils:
 
         Returns:
             bytes: The decoded data.
+
+        Raises:
+            ValueError: If the input is not valid base64-encoded data.
         """
-        return base64.b64decode(data)
+        try:
+            return base64.urlsafe_b64decode(data)
+        except ValueError:
+            raise ValueError("Invalid base64-encoded data")

@@ -14,14 +14,14 @@ class PheromoneType(Enum):
 
 class PheromoneOntology:
     def __init__(self):
-        self.ontology = {
+        self.ontology: Dict[str, Dict[str, set]] = {
             "is_a": {},
             "part_of": {},
             "has_property": {},
             "interacts_with": {}
         }
 
-    def add_relation(self, relation_type: str, subject: str, object: str):
+    def add_relation(self, relation_type: str, subject: str, object: str) -> None:
         if relation_type not in self.ontology:
             self.ontology[relation_type] = {}
         if subject not in self.ontology[relation_type]:
@@ -41,7 +41,7 @@ class Pheromone:
     position: Tuple[float, float]
     decay_rate: float = 0.01
 
-    def decay(self, time_step: float):
+    def decay(self, time_step: float) -> None:
         self.intensity *= (1 - self.decay_rate) ** time_step
 
     def get_quantum_state(self) -> QuantumCircuit:
@@ -60,7 +60,7 @@ class PheromoneEnvironment:
         self.pheromone_grid = np.zeros(grid_size + (len(PheromoneType),))
         self.ontology = PheromoneOntology()
 
-    def add_pheromone(self, pheromone: Pheromone):
+    def add_pheromone(self, pheromone: Pheromone) -> None:
         x, y = pheromone.position
         self.pheromone_grid[int(x), int(y), pheromone.type.value - 1] += pheromone.intensity
 
@@ -68,7 +68,7 @@ class PheromoneEnvironment:
         x, y = position
         return self.pheromone_grid[int(x), int(y), pheromone_type.value - 1]
 
-    def diffuse_pheromones(self, diffusion_rate: float):
+    def diffuse_pheromones(self, diffusion_rate: float) -> None:
         for i in range(len(PheromoneType)):
             self.pheromone_grid[:,:,i] = self._diffuse_layer(self.pheromone_grid[:,:,i], diffusion_rate)
 
@@ -78,7 +78,7 @@ class PheromoneEnvironment:
             np.roll(layer, 1, axis=1) + np.roll(layer, -1, axis=1) - 4 * layer
         )
 
-    def decay_pheromones(self, decay_rate: float):
+    def decay_pheromones(self, decay_rate: float) -> None:
         self.pheromone_grid *= (1 - decay_rate)
 
     def get_pheromone_gradient(self, position: Tuple[float, float], pheromone_type: PheromoneType) -> Tuple[float, float]:
@@ -119,13 +119,12 @@ class QuantumPheromoneProcessor:
         simulator = Aer.get_backend('qasm_simulator')
         job = execute(qc, simulator, shots=1000)
         result = job.result()
-        counts = result.get_counts(qc)
-        return counts
+        return result.get_counts(qc)
 
 class PheromoneStrategy(ABC):
     @abstractmethod
     def release_pheromone(self, ant_position: Tuple[float, float], pheromone_type: PheromoneType, 
-                          rate: float, environment: PheromoneEnvironment):
+                          rate: float, environment: PheromoneEnvironment) -> None:
         pass
 
     @abstractmethod
@@ -140,7 +139,7 @@ class PheromoneStrategy(ABC):
 
 class StandardPheromoneStrategy(PheromoneStrategy):
     def release_pheromone(self, ant_position: Tuple[float, float], pheromone_type: PheromoneType, 
-                          rate: float, environment: PheromoneEnvironment):
+                          rate: float, environment: PheromoneEnvironment) -> None:
         new_pheromone = Pheromone(pheromone_type, rate, ant_position)
         environment.add_pheromone(new_pheromone)
         environment.ontology.add_relation("is_a", f"pheromone_{ant_position}", pheromone_type.name)
@@ -165,7 +164,7 @@ class QuantumPheromoneStrategy(PheromoneStrategy):
         self.quantum_processor = quantum_processor
 
     def release_pheromone(self, ant_position: Tuple[float, float], pheromone_type: PheromoneType, 
-                          rate: float, environment: PheromoneEnvironment):
+                          rate: float, environment: PheromoneEnvironment) -> None:
         new_pheromone = Pheromone(pheromone_type, rate, ant_position)
         environment.add_pheromone(new_pheromone)
         environment.ontology.add_relation("is_a", f"quantum_pheromone_{ant_position}", pheromone_type.name)
@@ -199,5 +198,4 @@ class QuantumPheromoneStrategy(PheromoneStrategy):
 
 def process_quantum_pheromones(pheromones: List[Pheromone], processor: QuantumPheromoneProcessor) -> Dict[str, int]:
     quantum_circuit = processor.create_superposition(pheromones)
-    measurement_results = processor.measure_quantum_state(quantum_circuit)
-    return measurement_results
+    return processor.measure_quantum_state(quantum_circuit)
