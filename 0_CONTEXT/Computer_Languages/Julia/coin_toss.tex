@@ -1,0 +1,72 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{amsmath}
+\usepackage{bm}
+\newcommand\ns{10mm} %% define node (minimum) size
+\newcommand\nr{.5*\ns} %% define node radius
+\newcommand\ar{.4*\ns} %% define arc radius
+\newcommand\br{.19*\ns} %% define bead radius
+\DeclareUnicodeCharacter{03B8}{\theta}
+\DeclareUnicodeCharacter{03B3}{\gamma}
+\DeclareUnicodeCharacter{209C}{\0}
+\DeclareUnicodeCharacter{208B}{\0}
+\DeclareUnicodeCharacter{2081}{\0}
+\begin{document}
+\begin{tikzpicture}[
+    scale=1, 
+    draw=black, 
+    fac/.style={rectangle, draw=black!100, fill=black!0, minimum size=\ns, inner sep=0pt},
+    dlt/.style={rectangle, draw=black!100, fill=black!100, minimum size=.2*\ns},
+    var/.style={circle, draw=gray!100, fill=gray!100, minimum size=1mm, inner sep=0pt},
+    bus/.style={rectangle, draw=black!100, fill=black!100, minimum width=30mm, minimum height=.5mm, inner sep=0pt},
+    eql/.style={rectangle, draw=black!100, fill=black!0, minimum size=.5*\ns},
+    text=black,
+    ]
+\node[font=\Large] at (4,29) {\textbf{Coin Toss}};
+%% --------------------------- NODES ---------------------------
+\node(Bernoulli_6)[fac] at (6.0, 27) {$Bernoulli\_6$};
+\draw (Bernoulli_6)++(\ar,0mm) arc[start angle=0, end angle=-180, radius=\ar];
+\node(Bernoulli_8)[fac] at (12.0, 27) {$\mathcal{B}er$};
+\draw (Bernoulli_8)++(\ar,0mm) arc[start angle=0, end angle=-180, radius=\ar];
+\node(Bernoulli_10)[fac] at (18.0, 27) {$\mathcal{B}er$};
+\draw (Bernoulli_10)++(\ar,0mm) arc[start angle=0, end angle=-180, radius=\ar];
+\node(y_5)[var] at (6.0, 25.5) {};
+\node[above right] at (y_5) {$y\_5$};
+\node(y_5)[dlt] at ($ (y_5.center) + (0, -.4*\ns) $) {};
+\node(y_7)[var] at (12.0, 25.5) {};
+\node[above right] at (y_7) {$y_1$};
+\node(y_7)[dlt] at ($ (y_7.center) + (0, -.4*\ns) $) {};
+\node(y_9)[var] at (18.0, 25.5) {};
+\node[above right] at (y_9) {$y_2$};
+\node(y_9)[dlt] at ($ (y_9.center) + (0, -.4*\ns) $) {};
+\node(Beta_4)[fac] at (0.0, 24) {$Beta\_4$};
+\node(constvar_2)[var] at ($ (Beta_4.south west) + (-.5*\ns, 0.3333333333333333*\ns) $) {};
+\node[above] at (constvar_2) {$constvar\_2$};
+\node(constvar_2)[dlt] at ($ (constvar_2.center) + (-.4*\ns, 0) $) {};
+\node(constvar_3)[var] at ($ (Beta_4.south west) + (-.5*\ns, 0.6666666666666666*\ns) $) {};
+\node[above] at (constvar_3) {$constvar\_3$};
+\node(constvar_3)[dlt] at ($ (constvar_3.center) + (-.4*\ns, 0) $) {};
+\node(θ_1)[eql] at (2.0, 24) {$=$};
+\node[xshift=.4*\ns, yshift=.4*\ns] at (θ_1) {$\theta$};
+%% --------------------------- LINKS ---------------------------
+\draw (Bernoulli_6) -- (y_5);
+\draw (Bernoulli_8) -- (y_7);
+\draw (Bernoulli_10) -- (y_9);
+\draw (constvar_2) -- ([shift={(0, 0.3333333333333333*\ns)}]Beta_4.south west);
+\draw (constvar_3) -- ([shift={(0, 0.6666666666666666*\ns)}]Beta_4.south west);
+\draw (Beta_4) -| (θ_1);
+\draw (θ_1) -| ([shift={(-\nr,0)}]Bernoulli_6.west) -- ([shift={(-\ar,0)}]Bernoulli_6.center);
+\draw (θ_1) -| ([shift={(-\nr,0)}]Bernoulli_8.west) -- ([shift={(-\ar,0)}]Bernoulli_8.center);
+\draw (θ_1) -| ([shift={(-\nr,0)}]Bernoulli_10.west) -- ([shift={(-\ar,0)}]Bernoulli_10.center);
+\node(θ_1)[eql] at (θ_1) {$=$};
+\draw (Beta_4.east) circle(\br)[fill=white];
+\draw (Bernoulli_6.north) circle(\br)[fill=white];
+\draw (Bernoulli_6.south)++(-1*\br,-1*\br) rectangle([shift={(\br,\br)}]Bernoulli_6.south)[fill=white];
+\draw (Bernoulli_8.north) circle(\br)[fill=white];
+\draw (Bernoulli_8.south)++(-1*\br,-1*\br) rectangle([shift={(\br,\br)}]Bernoulli_8.south)[fill=white];
+\draw (Bernoulli_10.north) circle(\br)[fill=white];
+\draw (Bernoulli_10.south)++(-1*\br,-1*\br) rectangle([shift={(\br,\br)}]Bernoulli_10.south)[fill=white];
+\path[use as bounding box] ([xshift=-1cm, yshift=-1cm]current bounding box.south west) rectangle ([xshift=1cm, yshift=2cm]current bounding box.north east);
+\end{tikzpicture}
+\end{document}
