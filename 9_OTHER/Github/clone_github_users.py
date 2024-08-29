@@ -69,6 +69,9 @@ if __name__ == "__main__":
         # Users for Active Inference code
         # ["biaslab", "infer-actively", "ago109", "daphnedemekas", "conorheins", "ChampiB", "zfountas", "alec-tschantz", "schwartenbeckph", "tejparr", "rssmith33", "HMCL-UNIST", "AP6YC", "fabio-deep", "BerenMillidge" , "fgregoretti", "cpezzato", "edluyuan", "djcrw", "spm", "wmkouw", "tomekkorbak", "ActiveInferenceInstitute"]
         
+        # Users for Cognitive Security
+        # "CognitiveSecurity": ["deepfates"],
+        
         # Users for Synergetics & Quadrays code
         # "Synergetics": ["4dsolutions"],
         

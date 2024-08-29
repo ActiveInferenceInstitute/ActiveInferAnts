@@ -65,7 +65,7 @@ type ActiveInferenceAgent struct {
 // NewActiveInferenceAgent initializes a new agent with a specified initial state, ensuring it's valid.
 func NewActiveInferenceAgent(initialState string) (*ActiveInferenceAgent, error) {
 	if _, exists := agentGraphs[initialState]; !exists {
-		return nil, errors.New("invalid initial state: " + initialState)
+		return nil, fmt.Errorf("invalid initial state: %s", initialState)
 	}
 	return &ActiveInferenceAgent{currentState: initialState}, nil
 }

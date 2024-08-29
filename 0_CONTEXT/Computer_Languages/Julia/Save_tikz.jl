@@ -4,6 +4,8 @@ using TikzPictures
 import Cairo
 using Rsvg
 
+
+
 # Function to convert .tex file to multiple formats
 function convert_tex_to_formats(tex_file::String, output_folder::String)
     # Read the .tex file content

@@ -5,7 +5,7 @@ versioninfo()
 import Pkg
 
 # Add RxInfer package with specified version
-Pkg.add(Pkg.PackageSpec(name="RxInfer", version="3.5.1"))
+Pkg.add(Pkg.PackageSpec(name="RxInfer", version="3.6.0"))
 
 # Use RxInfer package
 using RxInfer

@@ -231,7 +231,8 @@ repos_to_clone = {
         "https://github.com/SeanPlusPlus/openaijson"
     ],
     "DESCI": [
-        "https://github.com/SakanaAI/AI-Scientist"
+        "https://github.com/SakanaAI/AI-Scientist",
+        "https://github.com/deepfates/bookwyrm"
     ]
 }
 
