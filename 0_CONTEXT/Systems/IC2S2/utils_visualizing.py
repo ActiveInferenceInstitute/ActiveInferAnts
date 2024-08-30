@@ -3,12 +3,14 @@ import pandas as pd
 import random
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
-from utils_math import create_nk_landscape, find_local_optima
+from utils_math import create_nk_landscape, find_local_optima, string_to_bitstring
 import logging
 import os
+import seaborn as sns
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 # Ensure the output directory exists
 output_dir = './Output/Visualizations/'
@@ -118,64 +120,41 @@ def plot_single_agent_inference_trial(T, prob_improve_self_list=None, prob_impro
             learning_indicator_counter = 1
         else:
             ax3.scatter(i, dot_y_pos, color=color, s=50)
-    ax3.set_ylabel('Learn', fontweight='bold', fontsize=ylabel_size)
+    ax3.set_ylabel('Learning', fontweight='bold', fontsize=ylabel_size)
     ax3.set_yticks([])  # Remove y-axis ticks
     ax3.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
     # Fourth subplot (ax4)
     if min_G_list is not None:
-        ax4.plot(range(T), min_G_list, color='purple', marker='o', linestyle='-', markersize=4, alpha=0.8, label='G')
+        ax4.plot(range(T), min_G_list, color='pink', marker='o', linestyle='-', linewidth=7, alpha=0.8, markersize=4, label='G')
     if explore_G_list is not None:
-        ax4.plot(range(T), explore_G_list, color='blue', marker='o', linestyle='-', markersize=4, alpha=0.8, label='G_explore')
+        ax4.plot(range(T), explore_G_list, color='blue', marker='o', linestyle='-', linewidth=4, markersize=4, alpha=0.8, label='G_explore')
     if exploit_G_list is not None:
-        ax4.plot(range(T), exploit_G_list, color='r', marker='o', linestyle='-', markersize=6, alpha=0.8, label='G_exploit')
+        ax4.plot(range(T), exploit_G_list, color='r', marker='o', linestyle='-', markersize=4, alpha=0.8, label='G_exploit')
     ax4.set_ylabel('G_t', fontweight='bold', fontsize=ylabel_size)
     ax4.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
     # Fifth subplot (ax5)
-    ax5.plot(range(T), prob_improve_self_list, color='brown', marker='o', linestyle='-', markersize=4, linewidth=4, alpha=0.7, label='P(o=improvement|s=self)')
-    if prob_improve_neighbor_list is not None:
-        ax5.plot(range(T), prob_improve_neighbor_list, color='darkorange', marker='o', linestyle='-', markersize=4, linewidth=4, alpha=0.7, label='P(o=improvement|s=neighbor)')
     if q_pi_explore_list is not None:
-        ax5.plot(range(T), q_pi_explore_list, color='blue', marker='o', linestyle='-', markersize=4, alpha=0.7, label='q_pi Explore')
+        ax5.plot(range(T), q_pi_explore_list, color='blue', marker='o', linestyle='-', linewidth=4, markersize=4, alpha=0.8, label='q_pi_explore')
     if q_pi_exploit_list is not None:
-        ax5.plot(range(T), q_pi_exploit_list, color='red', marker='o', linestyle='-', markersize=4, alpha=0.7, label='q_pi Exploit')
-    ax5.set_ylabel('Probability', fontweight='bold', fontsize=ylabel_size)
+        ax5.plot(range(T), q_pi_exploit_list, color='r', marker='o', linestyle='-', markersize=4, alpha=0.8, label='q_pi_exploit')
+    ax5.set_ylabel('q_pi', fontweight='bold', fontsize=ylabel_size)
     ax5.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
     # Sixth subplot (ax6)
-    explore_counter = 0
-    exploit_counter = 0
-    dot_y_pos = 0
-    for i, value in enumerate(action_sampled_id_list):
-        if value == 0:
-            color = 'blue'
-        elif value == 1:
-            color = 'red'
-        elif value > 1:
-            color = 'black'
-        if explore_counter == 0 and value == 0:
-            ax6.scatter(i, dot_y_pos, color=color, s=50, label='Choose Explore for t+1')
-            explore_counter = 1
-        elif exploit_counter == 0 and value == 1:
-            ax6.scatter(i, dot_y_pos, color=color, s=50, label='Choose Exploit for t+1')
-            exploit_counter = 1
-        else:
-            ax6.scatter(i, dot_y_pos, color=color, s=50)
-    ax6.set_ylabel('a_t+1', fontweight='bold', fontsize=ylabel_size)
-    ax6.set_yticks([])  # Remove y-axis ticks
+    if prob_improve_self_list is not None:
+        ax6.plot(range(T), prob_improve_self_list, color='blue', marker='o', linestyle='-', linewidth=4, markersize=4, alpha=0.8, label='P(o=improvement|s=self)')
+    if prob_improve_neighbor_list is not None:
+        ax6.plot(range(T), prob_improve_neighbor_list, color='r', marker='o', linestyle='-', markersize=4, alpha=0.8, label='P(o=improvement|s=neighbor)')
+    ax6.set_ylabel('P(o|s)', fontweight='bold', fontsize=ylabel_size)
     ax6.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
-    for ax in (ax1, ax2, ax3, ax4, ax5, ax6):
-        ax.grid(axis='y', linestyle='--', alpha=0.7)
-        ax.axvline(x=T*0.0, color='black', linestyle='-', label='Context=neighbor')
-        if force_neighbor_context_at_t is not None and force_neighbor_context:
-            ax.axvline(x=force_neighbor_context_at_t, color='black', linestyle='-', label='Context=neighbor')
-        ax.axvline(x=int(T*0.25), color='purple', linestyle=':', label='Context=self')
-        ax.axvline(x=int(T*0.5), color='black', linestyle='-')
-        ax.axvline(x=int(T*0.75), color='purple', linestyle=':')
-        for t in range(T):
-            ax.axvline(x=t, color='black', linestyle=':', alpha=0.1)
+    # Add vertical lines for context changes and learning events
+    for t in range(T):
+        if t % 5 == 0:
+            for ax in [ax1, ax2, ax3, ax4, ax5, ax6]:
+                ax.axvline(x=t, color='black', linestyle=':', alpha=0.1)
     if is_learning == 'on':
         ax1.set_title(f'Free Energy Minimization with Likelihood (A) Learning every {learn_A_after_every_X_timesteps} steps', fontweight='bold', fontsize=12)
     elif is_force_learn != 'off':
@@ -190,9 +169,6 @@ def plot_single_agent_inference_trial(T, prob_improve_self_list=None, prob_impro
     output_path = os.path.join(output_dir, 'single_agent_inference_trial.png')
     plt.savefig(output_path)
     logging.info(f"Completed plot_single_agent_inference_trial function, saved to {output_path}")
-    
-    
-    
 
 def plot_nk_landscape(fitness_df, N, K, fitness_initial_df=None, local_optima_df=None, agents_list=None):
     logging.info("Starting plot_nk_landscape function")
@@ -227,139 +203,222 @@ def create_and_plot_landscape(N=10, K=5, max_fitness=100, seed=0):
     logging.info("Completed create_and_plot_landscape function")
     return fitness_df, fitness_initial_df, local_optima_df
 
-def plot_results_stacked(results, fontsize=10):
-    logging.info("Starting plot_results_stacked function")
-    max_fitness_idx_1 = results[results['stage'] == 'First']['max_fitness'].idxmax()
-    max_fitness_idx_2 = results[results['stage'] == 'Second']['max_fitness'].idxmax()
-    # Find the row index where stage changes from 'First' to 'Second'
-    stage_change_idx = results[results['stage'] == 'Second'].index[0]
-    # Create a figure with 1 row and 5  columns of subplots
-    fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 6))
+def plot_single_agent_results(T, results, learning, force_learn_at_t, force_neighbor_context, force_neighbor_context_at_t, output_dir):
+    """
+    Plot comprehensive results for a single agent's performance.
 
-    axes[0,0].plot(results['avg_all_agent_actions'])
-    axes[0,0].set_title("Explore-Exploit Action \nRatio", fontsize=fontsize)
-    axes[0,0].set_xlabel('Timestep')
-    axes[0,0].set_ylabel('Explore-Exploit \n(explore=0, exploit=1)')
-    axes[0,0].axvline(x=max_fitness_idx_1, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_1}')
-    axes[0,0].axvline(x=max_fitness_idx_2, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_2}')
-    axes[0,0].axvline(x=stage_change_idx, color='black', linewidth=3, label=f'Stage 2 at t={stage_change_idx}')
-    axes[0,0].grid()
+    Args:
+    T (int): Total number of timesteps
+    results (dict): Dictionary containing various result metrics
+    learning (str): Learning mode ('on', 'off', or 'force')
+    force_learn_at_t (int): Timestep at which forced learning occurs
+    force_neighbor_context (bool): Whether neighbor context is forced
+    force_neighbor_context_at_t (int): Timestep at which neighbor context is forced
+    output_dir (str): Directory to save the output plot
+    """
+    logger.info("Starting plot_single_agent_results function")
+    
+    # Check if results is empty or not a DataFrame
+    if results is None or not isinstance(results, pd.DataFrame) or results.empty:
+        logger.warning("Results are empty or not in the expected format. Skipping plot generation.")
+        return
+    
+    # Check if required columns exist
+    required_columns = ['action_sampled_id', 'fitness', 'solution']
+    if not all(col in results.columns for col in required_columns):
+        logger.warning(f"Results DataFrame is missing one or more required columns: {required_columns}")
+        logger.warning("Skipping plot generation.")
+        return
 
-    axes[0,1].plot(results['number_of_unique_solutions'])
-    axes[0,1].set_title("Number of \nunique solutions", fontsize=fontsize)
-    axes[0,1].set_xlabel('Timestep')
-    axes[0,1].set_ylabel('Count')
-    axes[0,1].axvline(x=max_fitness_idx_1, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_1}')
-    axes[0,1].axvline(x=max_fitness_idx_2, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_2}')
-    axes[0,1].axvline(x=stage_change_idx, color='g', linewidth=3, label=f'Stage 2 at t={stage_change_idx}')
-    axes[0,1].grid()
+    fig, axes = plt.subplots(4, 2, figsize=(20, 24))
+    fig.suptitle("Single Agent Performance Over Time", fontsize=16)
 
-    axes[0,2].plot(results['min_fitness'], color='purple', label='min')
-    axes[0,2].plot(results['max_fitness'], color='orange', label='max')
-    axes[0,2].plot(results['avg_bottom_50_fitness'], color = 'grey', label='Bottom 50%')
-    axes[0,2].plot(results['avg_top_50_fitness'], color = 'grey', label='Top 50%')
-    axes[0,2].plot(results['average_fitness'], color = 'blue', label='Average')
-    axes[0,2].set_title("Fitness", fontsize=fontsize)
-    axes[0,2].set_xlabel('Timestep')
-    axes[0,2].set_ylabel('fitness')
-    axes[0,2].legend()
-    axes[0,2].grid()
-    axes[0,2].set_title("Min and Max \nFitness", fontsize=fontsize)
-    axes[0,2].set_xlabel('Timestep')
-    axes[0,2].set_ylabel('Fitness')
-    axes[0,2].axvline(x=max_fitness_idx_1, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_1}')
-    axes[0,2].axvline(x=max_fitness_idx_2, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_2}')
-    axes[0,2].axvline(x=stage_change_idx, color='black', linewidth=3, label=f'Stage 2 at t={stage_change_idx}')
-    #axes[0,2].legend(loc='lower right')
-    axes[0,2].legend(loc=(1.1,0.1))  #17/30, 300/600
-    axes[0,2].grid()
+    # Plot 1: Action Selection
+    if 'action_sampled_id' in results:
+        axes[0, 0].plot(results['action_sampled_id'], marker='o')
+        axes[0, 0].set_ylabel('Action')
+        axes[0, 0].set_title('Action Selection (0: Explore, 1: Exploit)')
+        axes[0, 0].set_ylim(-0.1, 1.1)
+        axes[0, 0].set_yticks([0, 1])
+        axes[0, 0].set_yticklabels(['Explore', 'Exploit'])
+    else:
+        logger.warning("'action_sampled_id' not found in results")
+        axes[0, 0].text(0.5, 0.5, 'Data not available', ha='center', va='center')
 
-    axes[1,0].plot(results['all_agents_A_explore_beliefs'])
-    axes[1,0].set_title("Average belief in \nexplore-improve", fontsize=fontsize)
-    axes[1,0].set_xlabel('Timestep')
-    axes[1,0].set_ylabel('Probability')
-    axes[1,0].axvline(x=max_fitness_idx_1, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_1}')
-    axes[1,0].axvline(x=max_fitness_idx_2, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_2}')
-    axes[1,0].axvline(x=stage_change_idx, color='black', linewidth=3, label=f'Stage 2 at t={stage_change_idx}')
-    axes[1,0].grid()
+    # Plot 2: Fitness over time
+    axes[0, 1].plot(results['fitness'], marker='o')
+    axes[0, 1].set_ylabel('Fitness')
+    axes[0, 1].set_title('Fitness Over Time')
 
-    axes[1,1].plot(results['avg_all_agent_errors'])
-    axes[1,1].set_title("Average number \nof errors", fontsize=fontsize)
-    axes[1,1].set_xlabel('Timestep')
-    axes[1,1].set_ylabel('Count')
-    axes[1,1].axvline(x=max_fitness_idx_1, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_1}')
-    axes[1,1].axvline(x=max_fitness_idx_2, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_2}')
-    axes[1,1].axvline(x=stage_change_idx, color='black', linewidth=3, label=f'Stage 2 at t={stage_change_idx}')
-    axes[1,1].grid()
+    # Plot 3: Probability of improvement (self vs neighbor)
+    axes[1, 0].plot(results['prob_improve_self'], label='Self', marker='o')
+    axes[1, 0].plot(results['prob_improve_neighbor'], label='Neighbor', marker='o')
+    axes[1, 0].set_ylabel('Probability')
+    axes[1, 0].set_title('Probability of Improvement')
+    axes[1, 0].legend()
 
-    axes[1,2].plot(results['avg_efe'], color = 'orange', label = 'EFE_explore')
-    axes[1,2].plot(results['avg_vfe'], color = 'purple', label = 'VFE_min')
-    axes[1,2].set_title("Free Energy", fontsize=fontsize)
-    axes[1,2].set_xlabel('Timestep')
-    axes[1,2].set_ylabel('free energy')
-    axes[1,2].axvline(x=max_fitness_idx_1, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_1}')
-    axes[1,2].axvline(x=max_fitness_idx_2, color='r', linestyle='--', label=f'Max at t={max_fitness_idx_2}')
-    axes[1,2].axvline(x=stage_change_idx, color='black', linewidth=3, label=f'Stage 2 at t={stage_change_idx}')
-    axes[1,2].legend(loc=(1.1,0.4))  #17/30, 300/600
-    axes[1,2].grid()
+    # Plot 4: Free Energy
+    axes[1, 1].plot(results['vfe'], label='VFE', marker='o')
+    axes[1, 1].plot(results['efe'], label='EFE', marker='o')
+    axes[1, 1].set_ylabel('Free Energy')
+    axes[1, 1].set_title('Variational and Expected Free Energy')
+    axes[1, 1].legend()
 
-    #if annotation_text:
-    fig.suptitle(f"""
-    Trial {results.iloc[0]['trial']}
-    Network Type '{results.iloc[0]['network_type']}'
-    p = {results.iloc[0]['p']}, e = {results.loc[0]['error_rate']},
-    C_improvement_prefs = {results.loc[0]['C_improvement_prefs']},
-    Average Explore Belief
-    Start-End Difference = {round(results.iloc[len(results)-1]['all_agents_A_explore_beliefs'] - results.iloc[0]['all_agents_A_explore_beliefs'], 2)}
-    Learn A every X timesteps = {results.iloc[0]['learn_A_after_every_X_timesteps']}""",
-                 fontsize=11, x=0.9, y=0.2, ha='left')
-    # fig.suptitle(f"Trial {results.iloc[0]['trial']}", fontsize=14, x=0.1, y=0.5, ha='left')
-    plt.subplots_adjust(wspace=0.3, hspace=0.5) # Adjust the spacing between subplots
+    # Plot 5: Learning indicator
+    axes[2, 0].plot(results['learning_indicator'], marker='o')
+    axes[2, 0].set_ylabel('Learning')
+    axes[2, 0].set_title('Learning Indicator (0: No Learning, 1: Learning)')
+    axes[2, 0].set_ylim(-0.1, 1.1)
+    axes[2, 0].set_yticks([0, 1])
 
+    # Plot 6: Observation (improvement or not)
+    axes[2, 1].plot(results['obs'], marker='o')
+    axes[2, 1].set_ylabel('Observation')
+    axes[2, 1].set_title('Observation (0: No Improvement, 1: Improvement)')
+    axes[2, 1].set_ylim(-0.1, 1.1)
+    axes[2, 1].set_yticks([0, 1])
 
-def process_results_all_trials(results_all_trials):
-    for trial in results_all_trials['trial'].unique():
-        print(f"Trial {trial} results -------------------------------------------------")
-        plot_results_stacked(results_all_trials[results_all_trials['trial'] == trial].reset_index(drop=True))
+    # Plot 7: Q-values for explore and exploit
+    axes[3, 0].plot(results['q_pi_explore'], label='Explore', marker='o')
+    axes[3, 0].plot(results['q_pi_exploit'], label='Exploit', marker='o')
+    axes[3, 0].set_ylabel('Q-value')
+    axes[3, 0].set_title('Q-values for Explore and Exploit')
+    axes[3, 0].legend()
+
+    # Plot 8: G values (min, explore, exploit)
+    axes[3, 1].plot(results['min_G'], label='Min G', marker='o')
+    axes[3, 1].plot(results['explore_G'], label='Explore G', marker='o')
+    axes[3, 1].plot(results['exploit_G'], label='Exploit G', marker='o')
+    axes[3, 1].set_ylabel('G Value')
+    axes[3, 1].set_title('G Values (Min, Explore, Exploit)')
+    axes[3, 1].legend()
+
+    # Add vertical lines for context changes and learning events
+    for ax in axes.flatten():
+        ax.axvline(x=T*0.25, color='purple', linestyle=':', label='Context change')
+        ax.axvline(x=T*0.5, color='black', linestyle='-', label='Major context change')
+        ax.axvline(x=T*0.75, color='purple', linestyle=':', label='Context change')
         
-        # Plot results per subnetwork
-        for trial in range(len(subnetwork_dict_all_trials)):
-            for subnetwork_i in range(len(subnetwork_dict_all_trials[trial])):
-                print(f"Trial {trial}: subnetwork {subnetwork_i}")
-                plot_results_stacked(pd.DataFrame(subnetwork_dict_all_trials[trial][subnetwork_i]))
-                print(f"--------------------------------------------------------------")
+        if force_neighbor_context and force_neighbor_context_at_t is not None:
+            ax.axvline(x=force_neighbor_context_at_t, color='green', linestyle='--', label='Forced neighbor context')
         
-        print(len(subnetwork_dict_all_trials))
+        if learning == 'force' and force_learn_at_t is not None:
+            ax.axvline(x=force_learn_at_t, color='red', linestyle='--', label='Forced learning')
+        
+        ax.set_xlabel('Timestep')
+        ax.grid(True, which='both', linestyle='--', linewidth=0.5)
 
-def plot_dist_animation(results, col):
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import matplotlib.animation as animation
-    from matplotlib import rc
-    from IPython.display import HTML
+    # Remove duplicate labels
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    fig.legend(by_label.values(), by_label.keys(), loc='upper right')
 
-    rc('animation', html='jshtml')
-    all_data = []
-    for i in range(len(results)):
-        all_data.append(results.reset_index(drop=True)[col][i])
-    fig, ax = plt.subplots()
-    nbins = 15
-
-    def animate(i):
-        ax.clear()
-        ax.hist(all_data[i], bins=nbins, density=False, range=(0,1))
-        ax.set_title(f'Timestep: {i}')
-        ax.set_ylabel('Count of agents')
-        ax.set_xlabel(f'P(o=improvement|s=self) - {nbins} bins')
-        ax.set_xlim(0,1)
-        ax.set_ylim(0,len(all_data[i]))
-        ax.set_xticks(np.arange(0,1.1,0.1))
-        for x_val in np.arange(0,1.1,0.1):
-          ax.axvline(x=x_val,color='gray', linestyle=':', alpha=0.3, zorder=0)
-
-    ani = animation.FuncAnimation(fig, animate, frames=len(all_data), repeat=False, interval=200)
-
-    # Convert the animation to HTML
-    html_animation = HTML(ani.to_html5_video())
+    plt.tight_layout()
+    output_path = os.path.join(output_dir, 'single_agent_results.png')
+    plt.savefig(output_path)
     plt.close()
-    return html_animation
+
+    logger.info(f"Completed plot_single_agent_results function, saved to {output_path}")
+
+def visualize_agent_variables(agent, output_dir):
+    """
+    Visualize the A, B, C, D, E, F, G variables of the agent and save the plots.
+    
+    Args:
+    agent (CustomAgent): The agent object containing the variables to visualize
+    output_dir (str): Directory to save the output plots
+    """
+    logger.info("Visualizing agent variables")
+    
+    variables = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    
+    for var_name in variables:
+        if hasattr(agent, var_name):
+            var = getattr(agent, var_name)
+            
+            if isinstance(var, np.ndarray):
+                if var.dtype == object:  # Handle nested arrays
+                    for i, sub_array in enumerate(var):
+                        visualize_array(sub_array, f'Agent {var_name} Slice {i+1}', output_dir, f'agent_{var_name.lower()}_{i+1}')
+                else:
+                    visualize_array(var, f'Agent {var_name}', output_dir, f'agent_{var_name.lower()}')
+            else:
+                logger.warning(f"Cannot visualize {var_name}: not a numpy array")
+    
+    logger.info("Completed agent variable visualization")
+
+def visualize_array(arr, title, output_dir, filename):
+    plt.figure(figsize=(10, 8))
+    
+    if arr.ndim == 1:
+        # For 1D arrays, use bar plot
+        plt.bar(range(len(arr)), arr)
+        plt.title(f'{title} Vector')
+        plt.xlabel('Index')
+        plt.ylabel('Value')
+    elif arr.ndim == 2:
+        # For 2D arrays, use heatmap
+        sns.heatmap(arr, annot=True, cmap='viridis', fmt='.2f')
+        plt.title(f'{title} Matrix')
+    elif arr.ndim == 3:
+        # For 3D arrays, plot each 2D slice
+        n_slices = arr.shape[0]
+        fig, axes = plt.subplots(1, n_slices, figsize=(5*n_slices, 4))
+        if n_slices == 1:
+            axes = [axes]
+        for i, ax in enumerate(axes):
+            sns.heatmap(arr[i], annot=True, cmap='viridis', fmt='.2f', ax=ax)
+            ax.set_title(f'{title} Slice {i+1}')
+    else:
+        logger.warning(f"Cannot visualize array: unexpected shape {arr.shape}")
+        return
+
+    plt.tight_layout()
+    output_path = os.path.join(output_dir, f'{filename}.png')
+    plt.savefig(output_path)
+    plt.close()
+    
+    logger.info(f"Saved visualization to {output_path}")
+
+def plot_variable_dynamics(agent, T, output_dir):
+    """
+    Plot the dynamics of the A, B, C, D, E, F, G variables of the agent over time.
+    
+    Args:
+    agent (CustomAgent): The agent object containing the variables to plot
+    T (int): Total number of timesteps
+    output_dir (str): Directory to save the output plots
+    """
+    logger.info("Plotting variable dynamics")
+    
+    variables = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    
+    for var_name in variables:
+        if hasattr(agent, var_name):
+            var = getattr(agent, var_name)
+            
+            if var_name in ['A', 'B', 'C', 'D']:
+                # For matrices, plot each row as a separate line
+                plt.figure(figsize=(10, 8))
+                for i in range(var.shape[0]):
+                    plt.plot(range(T), var[:, i], label=f'Row {i+1}')
+                plt.title(f'Agent {var_name} Matrix Dynamics')
+                plt.xlabel('Timestep')
+                plt.ylabel('Value')
+                plt.legend()
+            elif var_name in ['E', 'F', 'G']:
+                # For vectors, plot the values over time
+                plt.figure(figsize=(10, 8))
+                plt.plot(range(T), var)
+                plt.title(f'Agent {var_name} Vector Dynamics')
+                plt.xlabel('Timestep')
+                plt.ylabel('Value')
+            
+            plt.tight_layout()
+            output_path = os.path.join(output_dir, f'agent_{var_name.lower()}_dynamics.png')
+            plt.savefig(output_path)
+            plt.close()
+            
+            logger.info(f"Saved dynamics plot of agent {var_name} to {output_path}")
+    
+    logger.info("Completed variable dynamics plotting")
