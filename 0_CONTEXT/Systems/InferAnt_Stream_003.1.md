@@ -1,4 +1,5 @@
-InferAnt_Stream_003.1
+
+    InferAnt_Stream_003.1
 "Systems Within Systems" – William Blake, FOIA, Cognitive Sovereignty, and PyMDP social learning
 
 I. Opening 
