@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 from dotenv import load_dotenv
-from FOIA_utils import save_json_response, save_json_response_in_subfolder, get_agency_components, get_specific_component, get_component_request_form, get_annual_report_xml
+from FOIA_utils import save_json_response, fetch_and_save_annual_reports, save_json_response_in_subfolder, get_agency_components, get_specific_component, get_component_request_form, get_annual_report_xml
 import logging
 
 # Load API key from .env file
@@ -57,6 +57,24 @@ additional_agencies = [
     "OST", "OSMRE", "OSD", "USTR", "PFPA", "RFA", "RFE/RL", "SRNL", "TSA", "WAPA"
 ]
 
+# Additional agencies not previously included
+more_agencies = [
+    "ACHP", "AFRH", "CEA", "CIGIE", "CSOSA", "DNDO", "EXIM", "FCSC", "FFIEC",
+    "FRTIB", "IRSOB", "JMMFL", "MKUF", "MMC", "MWAA", "NCCB", "NCPC", "NIOSH",
+    "NMIC", "NPS", "NRCS", "NTIA", "ONHIR", "OSTP", "PCLOB", "PRFOMB", "RATB",
+    "SJI", "TRMC", "USADF", "USAGM", "USCAAF", "USCCR", "USCP", "USDA/AMS",
+    "USDA/APHIS", "USDA/FNS", "USDA/FS", "USDA/FSIS", "USDA/NRCS", "USDA/RD",
+    "USIBWC", "USNRC", "USTDA"
+]
+
+# Combine all agency lists
+all_agencies = list(set(major_departments + independent_agencies + 
+                        smaller_agencies_commissions + additional_agencies + 
+                        more_agencies))
+
+# Sort the combined list alphabetically
+all_agencies.sort()
+
 # Convert agency lists to dictionaries with 'abbreviation' key
 def convert_to_dict(agency_list):
     return [{"abbreviation": agency} for agency in agency_list]
@@ -72,22 +90,7 @@ agencies += convert_to_dict(major_departments)
 
 logging.info(f"Total number of agencies to process: {len(agencies)}")
 
-def fetch_and_save_annual_reports(agencies, start_year, end_year):
-    """Fetch and save annual reports for given agencies and year range."""
-    for agency in agencies:
-        agency_abbr = agency['abbreviation']
-        directory = f"FOIA_Responses/{agency_abbr}"
-        
-        # Ensure the directory exists
-        os.makedirs(directory, exist_ok=True)
-        
-        for year in range(start_year, end_year + 1):
-            filename_prefix = f"{agency_abbr}_{year}_annual_report"
-            existing_files = [f for f in os.listdir(directory) if f.startswith(filename_prefix)]
-            
-            if not existing_files:
-                report_xml = get_annual_report_xml(agency_abbr, year)
-                save_json_response_in_subfolder(report_xml, agency_abbr, filename_prefix)
+
 
 def main():
     # Get and save agency components

@@ -90,3 +90,21 @@ def setup_logging():
         format='%(asctime)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
+    
+def fetch_and_save_annual_reports(agencies, start_year, end_year):
+    logging.info(f"Fetching annual reports for {len(agencies)} agencies from {start_year} to {end_year}")
+    for agency in agencies:
+        agency_abbr = agency['abbreviation']
+        for year in range(start_year, end_year + 1):
+            try:
+                xml_data = get_annual_report_xml(agency_abbr, year)
+                if xml_data:
+                    save_path = os.path.join('data', 'annual_reports', agency_abbr, f"{year}_annual_report.xml")
+                    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+                    with open(save_path, 'w', encoding='utf-8') as f:
+                        f.write(xml_data)
+                    logging.info(f"Saved annual report for {agency_abbr} - {year}")
+                else:
+                    logging.warning(f"No annual report data for {agency_abbr} - {year}")
+            except Exception as e:
+                logging.error(f"Error fetching annual report for {agency_abbr} - {year}: {str(e)}")
