@@ -3,6 +3,27 @@ import sys
 import os
 from typing import Union, List, Dict, Any
 
+# Flags to determine which categories of repos to clone
+CLONE_THEBRAIN = False
+CLONE_GTD = False
+CLONE_GANTT = False
+CLONE_NOSTR = False
+CLONE_SYNERGETICS = False
+CLONE_ANTS = False
+CLONE_ACTIVE_INFERENCE = False
+CLONE_MULTIAGENT_LLM = False
+CLONE_TASK_EXECUTION_AI_AGI = False
+CLONE_MULTIAGENT_AI = False
+CLONE_GENERAL_LLM_RESOURCES = False
+CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
+CLONE_HOLOCHAIN = False
+CLONE_EBPF = False
+CLONE_KAFKA = False
+CLONE_SUMO = False
+CLONE_STRUCTURED_OUTPUTS = False
+CLONE_DESCI = False  
+CLONE_CIVIC = False
+
 def execute_command(command: List[str]) -> None:
     """
     Executes a given command using subprocess and handles errors.
@@ -49,26 +70,6 @@ def clone_repos(repo_urls: Union[List[str], Dict[str, str]], target_dir: str = "
     
     for git_url in repo_urls:
         clone_repo(git_url, target_dir)
-
-# Flags to determine which categories to clone
-CLONE_THEBRAIN = False
-CLONE_GTD = False
-CLONE_GANTT = False
-CLONE_NOSTR = False
-CLONE_SYNERGETICS = False
-CLONE_ANTS = False
-CLONE_ACTIVE_INFERENCE = False
-CLONE_MULTIAGENT_LLM = False
-CLONE_TASK_EXECUTION_AI_AGI = False
-CLONE_MULTIAGENT_AI = False
-CLONE_GENERAL_LLM_RESOURCES = False
-CLONE_SOCIAL_MEDIA_INTEROPERABILITY = False
-CLONE_HOLOCHAIN = False
-CLONE_EBPF = False
-CLONE_KAFKA = False
-CLONE_SUMO = False
-CLONE_STRUCTURED_OUTPUTS = False
-CLONE_DESCI = True  
 
 # Repositories to clone
 repos_to_clone = {
@@ -233,6 +234,21 @@ repos_to_clone = {
     "DESCI": [
         "https://github.com/SakanaAI/AI-Scientist",
         "https://github.com/deepfates/bookwyrm"
+        "https://github.com/SakanaAI/AI-Scientist"
+    ],
+    "Civic": [
+        "https://github.com/usdoj/foia-api",
+        "https://github.com/usdoj/foia.gov",
+        "https://github.com/fgregg/periodic-foia",
+        "https://github.com/MuckRock/muckrock",
+        "https://github.com/18F/foia-recommendations",
+        "https://github.com/18F/open-source-policy",
+        "https://github.com/GSA/data.gov",
+        "https://github.com/GSA/us-digital-registry",
+        "https://github.com/GSA/digitalgov.gov",
+        "https://github.com/GSA/punchcard",
+        "https://github.com/GSA/code-gov",
+        "https://github.com/GSA/federal-website-index"
     ]
 }
 
@@ -311,3 +327,7 @@ if __name__ == "__main__":
     if CLONE_DESCI:
         print("Cloning DESCI repositories...")
         clone_repos(repos_to_clone["DESCI"], os.path.join(target_dir, "DESCI"))
+    
+    if CLONE_CIVIC:
+        print("Cloning Civic repositories...")
+        clone_repos(repos_to_clone["Civic"], os.path.join(target_dir, "Civic"))

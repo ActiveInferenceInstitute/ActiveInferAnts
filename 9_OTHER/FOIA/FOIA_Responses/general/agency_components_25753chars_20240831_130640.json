@@ -1,0 +1,856 @@
+{
+  "jsonapi": {
+    "version": "1.0",
+    "meta": {
+      "links": {
+        "self": {
+          "href": "http://jsonapi.org/format/1.0/"
+        }
+      }
+    }
+  },
+  "data": [
+    {
+      "type": "agency_component",
+      "id": "a1896c3c-f038-4ab0-8d1b-4e089e40995a",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/a1896c3c-f038-4ab0-8d1b-4e089e40995a?resourceVersion=id%3A24046"
+        }
+      },
+      "attributes": {
+        "title": "Division of Legal Counsel",
+        "abbreviation": "DLC"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "22ce2255-4e87-47be-9b0c-4e111563a6ac",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/22ce2255-4e87-47be-9b0c-4e111563a6ac?resourceVersion=id%3A24051"
+        }
+      },
+      "attributes": {
+        "title": "National Credit Union Administration",
+        "abbreviation": "NCUA"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "299b2225-ee7f-45ab-b49d-e7ed470d5a26",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/299b2225-ee7f-45ab-b49d-e7ed470d5a26?resourceVersion=id%3A24056"
+        }
+      },
+      "attributes": {
+        "title": "Office of General Counsel (International Law Division):  (Appeals and Litigation Only)",
+        "abbreviation": "OGC"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "62c99d91-1ae7-4226-80a5-99c87c013619",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/62c99d91-1ae7-4226-80a5-99c87c013619?resourceVersion=id%3A24071"
+        }
+      },
+      "attributes": {
+        "title": "Grain Inspection, Packers and Stockyards Administration",
+        "abbreviation": "GIPSA"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "1da71a4b-ffca-4887-af2a-43f9edba2c68",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/1da71a4b-ffca-4887-af2a-43f9edba2c68?resourceVersion=id%3A24076"
+        }
+      },
+      "attributes": {
+        "title": "National Background Investigations Bureau",
+        "abbreviation": "NBIB"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "8f1e09a2-0915-4195-ac0f-efb64d548f96",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/8f1e09a2-0915-4195-ac0f-efb64d548f96?resourceVersion=id%3A24081"
+        }
+      },
+      "attributes": {
+        "title": "OPM Central Office",
+        "abbreviation": "OPM CO"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "fbf6e2b2-8275-4ba8-b98f-ecd88c8da8c0",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/fbf6e2b2-8275-4ba8-b98f-ecd88c8da8c0?resourceVersion=id%3A24131"
+        }
+      },
+      "attributes": {
+        "title": "FOIA/Privacy Act Appeals Office",
+        "abbreviation": "FOIA/PA Appeals"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "6702b252-8f4d-4eb7-af6f-bb65c71512c0",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/6702b252-8f4d-4eb7-af6f-bb65c71512c0?resourceVersion=id%3A24136"
+        }
+      },
+      "attributes": {
+        "title": "Executive Secretariat",
+        "abbreviation": "EXEC SEC"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "4b174cdb-af7f-4fc1-9236-ca70f5839fae",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/4b174cdb-af7f-4fc1-9236-ca70f5839fae?resourceVersion=id%3A24151"
+        }
+      },
+      "attributes": {
+        "title": "Office of Inspector General",
+        "abbreviation": "OIG"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "2764f757-d427-4b4c-adc6-6fd11925b762",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/2764f757-d427-4b4c-adc6-6fd11925b762?resourceVersion=id%3A24166"
+        }
+      },
+      "attributes": {
+        "title": "Office of General Counsel",
+        "abbreviation": "OGC"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "6a10357a-e910-4819-b0a4-54b98e4cc961",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/6a10357a-e910-4819-b0a4-54b98e4cc961?resourceVersion=id%3A24231"
+        }
+      },
+      "attributes": {
+        "title": "Office of the Deputy Assistant Secretary for Intergovernmental Affairs",
+        "abbreviation": "ODASIA"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "11447e15-6597-47af-a659-80ee1cb96999",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/11447e15-6597-47af-a659-80ee1cb96999?resourceVersion=id%3A24241"
+        }
+      },
+      "attributes": {
+        "title": "Office of Policy and Planning",
+        "abbreviation": "P&P"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "ab766395-b4b6-4b6c-87dc-6fc3bffeac2d",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/ab766395-b4b6-4b6c-87dc-6fc3bffeac2d?resourceVersion=id%3A24246"
+        }
+      },
+      "attributes": {
+        "title": "Office of Public Affairs",
+        "abbreviation": "PA"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "80d06a7f-f172-4e76-8684-2ab364e2c4e7",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/80d06a7f-f172-4e76-8684-2ab364e2c4e7?resourceVersion=id%3A24261"
+        }
+      },
+      "attributes": {
+        "title": "Federal Student Aid",
+        "abbreviation": "FSA"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "1a651e98-c3b0-4c27-b38b-fbf7606b67de",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/1a651e98-c3b0-4c27-b38b-fbf7606b67de?resourceVersion=id%3A24266"
+        }
+      },
+      "attributes": {
+        "title": "Institute of Education Sciences",
+        "abbreviation": "IES"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "088aa235-549c-4444-9a67-2db4f83376c8",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/088aa235-549c-4444-9a67-2db4f83376c8?resourceVersion=id%3A24271"
+        }
+      },
+      "attributes": {
+        "title": "Institute of Education Sciences - National Assessment Governing Board",
+        "abbreviation": "IES-NAGB"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "8838c344-d16f-4ac3-b1af-08ce44b8959b",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/8838c344-d16f-4ac3-b1af-08ce44b8959b?resourceVersion=id%3A24336"
+        }
+      },
+      "attributes": {
+        "title": "Multiple Offices Assigned",
+        "abbreviation": "M"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "5f73edc2-7d5e-4d33-b680-e80430c550ee",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/5f73edc2-7d5e-4d33-b680-e80430c550ee?resourceVersion=id%3A24341"
+        }
+      },
+      "attributes": {
+        "title": "Office of Planning, Evaluation, and Policy Development",
+        "abbreviation": "OPEPD"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "104b9d5c-2d2f-410f-87c9-b424df5fb5b8",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/104b9d5c-2d2f-410f-87c9-b424df5fb5b8?resourceVersion=id%3A24351"
+        }
+      },
+      "attributes": {
+        "title": "Office of the Under Secretary",
+        "abbreviation": "OUS"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "136b6b7f-d689-4d55-baba-55f9c15307d6",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/136b6b7f-d689-4d55-baba-55f9c15307d6?resourceVersion=id%3A24356"
+        }
+      },
+      "attributes": {
+        "title": "Officer of Special Education and Rehabilitative Services",
+        "abbreviation": "OSERS"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "ffeeec2a-d2f8-4aff-9aff-07028080c5d8",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/ffeeec2a-d2f8-4aff-9aff-07028080c5d8?resourceVersion=id%3A24361"
+        }
+      },
+      "attributes": {
+        "title": "Office of the Secretary",
+        "abbreviation": "OS"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "acbfdf6d-7882-4003-ac9c-00e06ac608d9",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/acbfdf6d-7882-4003-ac9c-00e06ac608d9?resourceVersion=id%3A24366"
+        }
+      },
+      "attributes": {
+        "title": "Office of Postsecondary Education",
+        "abbreviation": "OPE"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "4608eb55-ee71-4848-b4af-83d2967da65e",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/4608eb55-ee71-4848-b4af-83d2967da65e?resourceVersion=id%3A24386"
+        }
+      },
+      "attributes": {
+        "title": "Office of Legislation and Congressional Affairs",
+        "abbreviation": "OLCA"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "b05f3487-fda7-46b3-b501-a1f40b10fe9d",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/b05f3487-fda7-46b3-b501-a1f40b10fe9d?resourceVersion=id%3A24406"
+        }
+      },
+      "attributes": {
+        "title": "Office of the Chief Information Officer",
+        "abbreviation": "OCIO"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "e1d4c36a-ab52-4264-9142-8a53531e4115",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/e1d4c36a-ab52-4264-9142-8a53531e4115?resourceVersion=id%3A24411"
+        }
+      },
+      "attributes": {
+        "title": "Office of Communications and Outreach",
+        "abbreviation": "OCO"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "b93c3ab0-2671-4d26-a3b5-1867dc08727b",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/b93c3ab0-2671-4d26-a3b5-1867dc08727b?resourceVersion=id%3A24416"
+        }
+      },
+      "attributes": {
+        "title": "Office for Civil Rights (Headquarters)",
+        "abbreviation": "OCR"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "48dc77fb-a692-4e7e-a60d-9376a91320a5",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/48dc77fb-a692-4e7e-a60d-9376a91320a5?resourceVersion=id%3A24421"
+        }
+      },
+      "attributes": {
+        "title": "Office of Career, Technical & Adult Education",
+        "abbreviation": "OCTAE"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "eae4cb0d-458b-4310-bc98-5718e61fdc67",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/eae4cb0d-458b-4310-bc98-5718e61fdc67?resourceVersion=id%3A24426"
+        }
+      },
+      "attributes": {
+        "title": "Office of Elementary and Secondary Education",
+        "abbreviation": "OESE"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "66c371c9-fdce-4c22-bb08-36d00ebdaf45",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/66c371c9-fdce-4c22-bb08-36d00ebdaf45?resourceVersion=id%3A24431"
+        }
+      },
+      "attributes": {
+        "title": "Office of the General Counsel",
+        "abbreviation": "OGC"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "27789bec-dd72-45e7-90b7-c98450190528",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/27789bec-dd72-45e7-90b7-c98450190528?resourceVersion=id%3A27401"
+        }
+      },
+      "attributes": {
+        "title": "Railroad Retirement Board",
+        "abbreviation": "RRB"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "95ed63aa-f328-4ac0-90a1-a430a550fa39",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/95ed63aa-f328-4ac0-90a1-a430a550fa39?resourceVersion=id%3A33981"
+        }
+      },
+      "attributes": {
+        "title": "OCR District of Columbia",
+        "abbreviation": "OCR - Metro D.C."
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "4ab934ac-f611-4bee-95a4-bd70b62e11f9",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/4ab934ac-f611-4bee-95a4-bd70b62e11f9?resourceVersion=id%3A33986"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region IX - San Francisco",
+        "abbreviation": "OCR - 9 San Francisco"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "e716d1f3-3f31-49c9-8008-d5f7733bdd55",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/e716d1f3-3f31-49c9-8008-d5f7733bdd55?resourceVersion=id%3A33991"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region VIII - Denver",
+        "abbreviation": "OCR - 8 Denver"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "fdbb972c-a8e5-445b-b4c5-6bde565c8098",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/fdbb972c-a8e5-445b-b4c5-6bde565c8098?resourceVersion=id%3A33996"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region VII- Kansas City",
+        "abbreviation": "OCR - 7 Kansas City"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "fad02d07-f741-416d-a7fe-d64a36304c1f",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/fad02d07-f741-416d-a7fe-d64a36304c1f?resourceVersion=id%3A34001"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region VI - Dallas",
+        "abbreviation": "OCR - 6 Dallas"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "796edb29-8afe-48ea-8eff-4ae198d91504",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/796edb29-8afe-48ea-8eff-4ae198d91504?resourceVersion=id%3A34006"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region V - Chicago",
+        "abbreviation": "OCR - 5 Chicago"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "0d3cb720-5e08-4d39-b382-6c3016698304",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/0d3cb720-5e08-4d39-b382-6c3016698304?resourceVersion=id%3A34011"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region IV - Atlanta",
+        "abbreviation": "OCR - 4 Atlanta"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "9e887b05-e7b0-40b3-9b71-dddfe371cf2c",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/9e887b05-e7b0-40b3-9b71-dddfe371cf2c?resourceVersion=id%3A34016"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region III - Philadelphia",
+        "abbreviation": "OCR - 3 Philadelphia"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "57c43dfd-5403-4911-bbe9-590ae8c4624d",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/57c43dfd-5403-4911-bbe9-590ae8c4624d?resourceVersion=id%3A34021"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region II - New York",
+        "abbreviation": "OCR - 2 New York"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "2f44a710-d118-4f8c-adcf-0b244ff60b25",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/2f44a710-d118-4f8c-adcf-0b244ff60b25?resourceVersion=id%3A34026"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region XII - Cleveland",
+        "abbreviation": "OCR - 12 Cleveland"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "594e1a00-4698-4c1c-8ec5-1b85d233360e",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/594e1a00-4698-4c1c-8ec5-1b85d233360e?resourceVersion=id%3A34031"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region X - Seattle",
+        "abbreviation": "OCR - 10 Seattle"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "c5ae699c-ae9a-45d1-afbd-d2427a514d11",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/c5ae699c-ae9a-45d1-afbd-d2427a514d11?resourceVersion=id%3A34036"
+        }
+      },
+      "attributes": {
+        "title": "OCR Region I - Boston",
+        "abbreviation": "OCR - 1 Boston"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "cb490e54-e0d8-4cee-bfdb-cb1c694f57b9",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/cb490e54-e0d8-4cee-bfdb-cb1c694f57b9?resourceVersion=id%3A34041"
+        }
+      },
+      "attributes": {
+        "title": "Office of the Executive Secretariat",
+        "abbreviation": "Exec Sec"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "ffc618ba-e01f-4b1e-a938-eae6db8b81ad",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/ffc618ba-e01f-4b1e-a938-eae6db8b81ad?resourceVersion=id%3A34046"
+        }
+      },
+      "attributes": {
+        "title": "Office of Finance and Operations",
+        "abbreviation": "OFO"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "c517f6da-97c6-41eb-b0fa-68c78e1c9a4d",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/c517f6da-97c6-41eb-b0fa-68c78e1c9a4d?resourceVersion=id%3A34051"
+        }
+      },
+      "attributes": {
+        "title": "OFO - Contracts and Acquisitions Management",
+        "abbreviation": "OFO-CAM"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "51355b1c-5329-44fc-a72f-b0462851d3e3",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/51355b1c-5329-44fc-a72f-b0462851d3e3?resourceVersion=id%3A34426"
+        }
+      },
+      "attributes": {
+        "title": "Region 8 (States: CO, MT, ND, SD, UT, WY)",
+        "abbreviation": "Region 08"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "2c7284b3-485a-4c5f-8f2c-cd6f14290df1",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/2c7284b3-485a-4c5f-8f2c-cd6f14290df1?resourceVersion=id%3A36656"
+        }
+      },
+      "attributes": {
+        "title": "Corporate Data Center Operations ",
+        "abbreviation": "CDCO"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "618e0c35-3596-4326-84dc-2bb59c3ed62d",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/618e0c35-3596-4326-84dc-2bb59c3ed62d?resourceVersion=id%3A36661"
+        }
+      },
+      "attributes": {
+        "title": "VA Records Management Center",
+        "abbreviation": "VA-RMC"
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "95e4ae8a-138f-4c69-8ab5-eea254f7be97",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/95e4ae8a-138f-4c69-8ab5-eea254f7be97?resourceVersion=id%3A37461"
+        }
+      },
+      "attributes": {
+        "title": "National Labor Relations Board",
+        "abbreviation": "NLRB "
+      }
+    },
+    {
+      "type": "agency_component",
+      "id": "9cb8a76c-ad3b-48ba-be9a-945972f33502",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency_components/9cb8a76c-ad3b-48ba-be9a-945972f33502?resourceVersion=id%3A37921"
+        }
+      },
+      "attributes": {
+        "title": "Office of the General Manager",
+        "abbreviation": "OGM"
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "agency",
+      "id": "abce1bb6-6d9c-49e9-8e0c-11894fc5a8ab",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/abce1bb6-6d9c-49e9-8e0c-11894fc5a8ab?resourceVersion=id%3A1501"
+        }
+      },
+      "attributes": {
+        "name": "National Labor Relations Board",
+        "abbreviation": "NLRB"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "4b15ff3d-c4cd-4d38-bcca-166bb324c9ce",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/4b15ff3d-c4cd-4d38-bcca-166bb324c9ce?resourceVersion=id%3A1481"
+        }
+      },
+      "attributes": {
+        "name": "National Credit Union Administration",
+        "abbreviation": "NCUA"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "15505805-6876-4fc8-9101-fb45c5ff32d0",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/15505805-6876-4fc8-9101-fb45c5ff32d0?resourceVersion=id%3A1466"
+        }
+      },
+      "attributes": {
+        "name": "National Aeronautics and Space Administration",
+        "abbreviation": "NASA"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "ec80d0c4-4998-45b4-abd8-1b6093ae19c0",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/ec80d0c4-4998-45b4-abd8-1b6093ae19c0?resourceVersion=id%3A1696"
+        }
+      },
+      "attributes": {
+        "name": "Department of Agriculture",
+        "abbreviation": "USDA"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "1229bbf4-957b-47ea-998a-b3308ff26679",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/1229bbf4-957b-47ea-998a-b3308ff26679?resourceVersion=id%3A1561"
+        }
+      },
+      "attributes": {
+        "name": "Office of Personnel Management",
+        "abbreviation": "OPM"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "b303a456-09df-4063-958b-5a713e3b89e2",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/b303a456-09df-4063-958b-5a713e3b89e2?resourceVersion=id%3A1271"
+        }
+      },
+      "attributes": {
+        "name": "Department of the Interior",
+        "abbreviation": "DOI"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "7ff9daec-68c6-467e-8f44-ed7a0522a423",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/7ff9daec-68c6-467e-8f44-ed7a0522a423?resourceVersion=id%3A1666"
+        }
+      },
+      "attributes": {
+        "name": "Department of Labor",
+        "abbreviation": "DOL"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "dc90d802-4001-47c7-9e9c-15375d0586e6",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/dc90d802-4001-47c7-9e9c-15375d0586e6?resourceVersion=id%3A1311"
+        }
+      },
+      "attributes": {
+        "name": "Export-Import Bank of the U.S.",
+        "abbreviation": "EXIM"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "7ca993f9-5bf5-4441-9214-02a7bdc1d17c",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/7ca993f9-5bf5-4441-9214-02a7bdc1d17c?resourceVersion=id%3A1516"
+        }
+      },
+      "attributes": {
+        "name": "National Science Foundation",
+        "abbreviation": "NSF"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "f4f9ea67-f432-4e44-bea9-f804a9705d8e",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/f4f9ea67-f432-4e44-bea9-f804a9705d8e?resourceVersion=id%3A1741"
+        }
+      },
+      "attributes": {
+        "name": "Department of Veterans Affairs",
+        "abbreviation": "VA"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "6b898d81-e4ce-445a-9d68-acde856f17cd",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/6b898d81-e4ce-445a-9d68-acde856f17cd?resourceVersion=id%3A1296"
+        }
+      },
+      "attributes": {
+        "name": "Department of Education",
+        "abbreviation": "ED"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "b17862e5-a6bb-47ca-8de9-00a51506f79e",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/b17862e5-a6bb-47ca-8de9-00a51506f79e?resourceVersion=id%3A1676"
+        }
+      },
+      "attributes": {
+        "name": "U.S. Railroad Retirement Board",
+        "abbreviation": "USRRB"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "c2f1eb45-d4c4-451d-83ca-ab704dee3a04",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/c2f1eb45-d4c4-451d-83ca-ab704dee3a04?resourceVersion=id%3A1306"
+        }
+      },
+      "attributes": {
+        "name": "Environmental Protection Agency",
+        "abbreviation": "EPA"
+      }
+    },
+    {
+      "type": "agency",
+      "id": "a869ef4d-15c2-470e-9998-e95ca2b09fe4",
+      "links": {
+        "self": {
+          "href": "https://api.foia.gov/api/agency/a869ef4d-15c2-470e-9998-e95ca2b09fe4?resourceVersion=id%3A1256"
+        }
+      },
+      "attributes": {
+        "name": "Defense Nuclear Facilities Safety Board",
+        "abbreviation": "DNFSB"
+      }
+    }
+  ],
+  "links": {
+    "next": {
+      "href": "https://api.foia.gov/api/agency_components?fields%5Bagency_component%5D=title%2Cabbreviation&fields%5Bagency%5D=name%2Cabbreviation&include=agency&page%5Boffset%5D=50&page%5Blimit%5D=50"
+    },
+    "self": {
+      "href": "https://api.foia.gov/api/agency_components?fields%5Bagency_component%5D=title%2Cabbreviation&fields%5Bagency%5D=name%2Cabbreviation&include=agency"
+    }
+  }
+}

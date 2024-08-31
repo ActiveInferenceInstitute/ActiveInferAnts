@@ -1,0 +1,218 @@
+# From https://gist.github.com/kinlane/ca85e904c05e1ec28c6d277f62be2f80#file-foia-openapi-draft-yaml-L3 
+
+swagger: "2.0"
+info:
+  title: FOIA.gov API (Draft)
+  description: This is a draft spec for integrating the FOIA.gov portal with existing FOIA case management systems (e.g., FOIAonline) in the federal government. This work stems from the interviews and research that led to our FOIA Portal Discovery Recommendations.
+  version: 1.0.0
+host:  api.data.gov
+basePath: /
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /components/{id}/requests/:
+    post:
+      summary: Submit FOIA Request
+      description: The agency component receiving the FOIA request.
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: id
+          description: The id of the request.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/foia_request'
+      responses:
+        200:
+          description: Confirm that the request was created and return an id that can uniquely identify the request in the case management system. The (optional) status tracking number can be used by a requester to track a request.
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/success_response_200'
+        404:
+          description: The target agency component specified in URI was not found (error payload includes a place for a system-specific message, to make it easier to track down problems)
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/error_response_404'
+        500:
+          description: The case management system encountered an internal error when trying to create the FOIA request (error payload includes a place for a system-specific message, to make it easier to track down problems)
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/error_response_500'
+      tags:
+        - FOIA
+definitions:
+  foia_request:
+    properties:
+      agency_name:
+        description: Name of the tier 1 agency.
+        type: string
+        example: Department of Justice
+      agency_component_name:
+        description: Name of the department, bureau, or office.
+        type: string
+        example: Office of Information Policy
+      requester_name:
+        description: A unique identiefer for the product.
+        type: "object"
+        items:
+          $ref: "#/definitions/requester_name"
+      requester_address:
+        description: Mailing address of the requester.
+        type: "object"
+        items:
+          $ref: "#/definitions/requester_address"
+      description:
+        description: Description of the records the requester is seeking.
+        type: string
+        example: I am seeking records pertaining to ...
+      max_fee:
+        description: TThe requester would like to request that fees associated with the request be waived.
+        type: boolean
+        example: 25.00
+      fee_waiver:
+        description: An image width for the product.
+        type: boolean
+        example: false
+      expedited:
+        description: The requester would like this request to be processed on an expedited basis.
+        type: boolean
+        example: false
+      organization:
+        description: Name of the organization or company on which the requester is making a request on behalf of.
+        type: string
+        example: Newspaper Inc
+      email:
+        description: Email address of the requester.
+        type: string
+        example:  george.washington@example.com
+      phone:
+        description: Phone number of the requester.
+        type: string
+        example: +15551234567
+      fax:
+        description: Fax number of the requester
+        type: string
+        example: +15551234589
+      attachments:
+        description: Documents or attachments supporting the request provided by the requester.
+        type: array
+        items:
+          $ref: "#/definitions/attachments"
+      agency_component_specific_fields:
+        description: Agency component specific request form fields as specified in your agency's metadata file.
+        type: array
+        items:
+          $ref: "#/definitions/agency_component_specific_fields"
+    required:
+      - agency_name  
+      - agency_component_name               
+      - requester_name        
+      - requester_address  
+      - description  
+      - email  
+  requester_name:
+    properties:
+      first:
+        description: The name of the requester.
+        type: string
+      last:
+        description: The name of the requester.
+        type: string
+    required:
+      - first  
+      - last     
+  requester_address:
+    properties:
+      address1:
+        description: The adress1 of the requester.
+        type: string
+      address2:
+        description: The address2 of the requester.
+        type: string
+      city:
+        description: The city of the requester.
+        type: string
+      state:
+        description: The state of the requester.
+        type: string
+      zip:
+        description: The city of the requester.
+        type: string
+    required:
+      - address1  
+      - address2
+      - city
+      - state  
+      - zip
+  attachments:
+    properties:
+      filename:
+        description: The filename of the attachment.
+        type: string
+        example: letter.pdf
+      content_type:
+        description: The content type of the attachment.
+        type: string
+        example: application/pdf
+      filesize:
+        description: The file size of the attachment.
+        type: integer
+        example: 27556
+      filedata:
+        description: The file data of the attachment.
+        type: string
+        example: YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==
+    required:
+      - filename  
+      - content_type
+      - filesize
+      - filedata
+  agency_component_specific_fields:
+    properties:
+      form_460A_case_number:
+        description: The form 460A case number.
+        type: integer
+        example: 3347
+      requester_type:
+        description: The requester type.
+        type: string
+        example: Journalist
+  success_response_200:
+    properties:
+      id:
+        description: The id of the request.
+        type: integer
+      status_tracking_number:
+        description: The status tracking number of the request.
+        type: string
+  error_response_404:
+    properties:
+      code:
+        description: The code of the error.
+        type: string
+      message:
+        description: The message of the error.
+        type: string
+      description:
+        description: The description of the error.
+        type: string
+  error_response_500:
+    properties:
+      code:
+        description: The code of the error.
+        type: string
+      message:
+        description: The message of the error.
+        type: string
+      description:
+        description: The description of the error.
+        type: string

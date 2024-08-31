@@ -60,8 +60,8 @@ class GitHubRepoCloner:
 if __name__ == "__main__":
     users_to_clone = {
 
-        # Example: just bringing the work of Python (pymdp) and Julia (RxInfer) repos.  
-        "ActiveInference": ["biaslab","infer-actively"],
+        # Example: just bringing the work of Python (pymdp) and Julia (RxInfer) repos, see below for more Active Inference usernames.  
+        "ActiveInference_PyMDP_RxInfer": ["biaslab","infer-actively"],
         
         # Uncheck the following lists of users, and/or edit these lists. 
         # Thank you for using reusing/developing context & patterns!
@@ -71,6 +71,8 @@ if __name__ == "__main__":
         
         # Users for Cognitive Security
         # "CognitiveSecurity": ["deepfates"],
+        # Users for Civic code
+        # "Civic": ["datamade", "usdoj", "MuckRock", "18F", "kinlane", "usagov", "usgpo", "GSA"],
         
         # Users for Synergetics & Quadrays code
         # "Synergetics": ["4dsolutions"],
