@@ -1,0 +1,48 @@
+Creating main system...
+
+Adding user data...
+[A_] Added data: A_user = {'name': 'Alice', 'age': 30}
+[B_] Added meta: add_data - {'key': 'user', 'value': {'name': 'Alice', 'age': 30}}
+[C_] Added meta: add_meta - {'layer': 'B_metadata', 'operation': 'add_data', 'key': 'user'}
+[D_] Added meta: add_meta - {'layer': 'C_meta_metadata', 'operation': 'add_meta', 'key': 'user'}
+[E_] Added meta: add_meta - {'layer': 'D_meta_meta_metadata', 'operation': 'add_meta', 'key': 'user'}
+
+Creating subsystem...
+
+Adding preference to subsystem...
+[A_] Added data: A_preference = dark mode
+[B_] Added meta: add_data - {'key': 'preference', 'value': 'dark mode'}
+[C_] Added meta: add_meta - {'layer': 'B_metadata', 'operation': 'add_data', 'key': 'preference'}
+[D_] Added meta: add_meta - {'layer': 'C_meta_metadata', 'operation': 'add_meta', 'key': 'preference'}
+[E_] Added meta: add_meta - {'layer': 'D_meta_meta_metadata', 'operation': 'add_meta', 'key': 'preference'}
+
+Nesting subsystem...
+[A_] Added data: A_user_prefs = <__main__.MetaDataSystem object at 0x7fae2da3fc90>
+[B_] Added meta: nest - {'key': 'user_prefs', 'subsystem': 140386066758800}
+[C_] Added meta: add_meta - {'layer': 'B_metadata', 'operation': 'nest', 'key': 'user_prefs'}
+[D_] Added meta: add_meta - {'layer': 'C_meta_metadata', 'operation': 'add_meta', 'key': 'user_prefs'}
+[E_] Added meta: add_meta - {'layer': 'D_meta_meta_metadata', 'operation': 'add_meta', 'key': 'user_prefs'}
+
+Querying examples:
+
+A_primary layer query:
+[A_] Query result: {'data': {'name': 'Alice', 'age': 30}}
+{'data': {'name': 'Alice', 'age': 30}}
+
+B_metadata layer query:
+[B_] Query result: {'meta': {1725733864.7318416: {'operation': 'add_data', 'details': {'key': 'user', 'value': {'name': 'Alice', 'age': 30}}}}}
+{'meta': {1725733864.7318416: {'operation': 'add_data', 'details': {'key': 'user', 'value': {'name': 'Alice', 'age': 30}}}}}
+
+C_meta_metadata layer query:
+[C_] Query result: {'meta': {}}
+{'meta': {}}
+
+D_meta_meta_metadata layer query:
+[D_] Query result: {'meta': {}}
+{'meta': {}}
+
+E_meta_meta_meta_metadata layer query:
+[E_] Query result: {'meta': {}}
+{'meta': {}}
+
+Logging complete. Check log.txt for the full output.
