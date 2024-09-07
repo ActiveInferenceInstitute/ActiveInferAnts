@@ -1,0 +1,6 @@
+{
+    "input_dir": "output",
+    "output_dir": "output",
+    "before_crisis": 200,
+    "after_crisis": 200
+}

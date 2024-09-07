@@ -1,0 +1,11 @@
+# possibly other requirements for specific systems and methods
+scipy
+seaborn
+matplotlib
+numpy
+jaxtyping
+equinox
+numpyro
+pymdp
+pytest
+networkx

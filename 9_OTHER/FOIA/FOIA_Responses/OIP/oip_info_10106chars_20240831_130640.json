@@ -1,0 +1,197 @@
+{
+  "jsonapi": {
+    "version": "1.0",
+    "meta": {
+      "links": {
+        "self": {
+          "href": "http://jsonapi.org/format/1.0/"
+        }
+      }
+    }
+  },
+  "data": {
+    "type": "agency_component",
+    "id": "8216158f-8089-431d-b866-dc334e8d4758",
+    "links": {
+      "self": {
+        "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758?resourceVersion=id%3A251456"
+      }
+    },
+    "attributes": {
+      "status": true,
+      "title": "Office of Information Policy",
+      "description": {
+        "value": "<p>The mission of the Office of Information Policy (OIP) is to encourage and oversee agency compliance with the Freedom of Information Act (FOIA). OIP is responsible for developing government-wide policy guidance on all aspects of FOIA administration. OIP also provides legal counsel and training to agency personnel. In addition to its policy functions, OIP oversees agency compliance with the FOIA. All agencies are required by law to report to the Department of Justice each year on their FOIA compliance through submission of Annual FOIA Reports and Chief FOIA Officer Reports. OIP develops guidelines for those reports, issues guidance and provides training to agencies to help them complete the reports, and reviews and compiles summaries and assessments of agency progress in administering the law.&nbsp; Those reports, summaries and assessments, as well as OIP guidance and many other resources are made publicly available by OIP on its website.</p>\r\n\r\n<p>OIP also manages the Department of Justice's obligations under the FOIA. This includes adjudicating administrative appeals from the actions of any Department of Justice component arising under the FOIA or the Privacy Act of 1974, and handling initial requests for records of the Offices of the Attorney General, Deputy Attorney General and Associate Attorney General, as well as the Offices of Legislative Affairs, Public Affairs and Legal Policy.&nbsp;</p>\r\n\r\n<p><a href=\"https://www.justice.gov/oip/department-justice-freedom-information-act-reference-guide\">FOIA Reference Guide</a></p>\r\n\r\n<p><a href=\"https://www.ecfr.gov/cgi-bin/text-idx?SID=0793c853161160d5e01f0ff18c51b96a&amp;mc=true&amp;node=sp28.1.16.a&amp;rgn=div6\">FOIA Regulations</a></p>\r\n",
+        "format": "rich_text",
+        "processed": "<p>The mission of the Office of Information Policy (OIP) is to encourage and oversee agency compliance with the Freedom of Information Act (FOIA). OIP is responsible for developing government-wide policy guidance on all aspects of FOIA administration. OIP also provides legal counsel and training to agency personnel. In addition to its policy functions, OIP oversees agency compliance with the FOIA. All agencies are required by law to report to the Department of Justice each year on their FOIA compliance through submission of Annual FOIA Reports and Chief FOIA Officer Reports. OIP develops guidelines for those reports, issues guidance and provides training to agencies to help them complete the reports, and reviews and compiles summaries and assessments of agency progress in administering the law.&nbsp; Those reports, summaries and assessments, as well as OIP guidance and many other resources are made publicly available by OIP on its website.</p>\n\n<p>OIP also manages the Department of Justice's obligations under the FOIA. This includes adjudicating administrative appeals from the actions of any Department of Justice component arising under the FOIA or the Privacy Act of 1974, and handling initial requests for records of the Offices of the Attorney General, Deputy Attorney General and Associate Attorney General, as well as the Offices of Legislative Affairs, Public Affairs and Legal Policy.&nbsp;</p>\n\n<p><a href=\"https://www.justice.gov/oip/department-justice-freedom-information-act-reference-guide\">FOIA Reference Guide</a></p>\n\n<p><a href=\"https://www.ecfr.gov/cgi-bin/text-idx?SID=0793c853161160d5e01f0ff18c51b96a&amp;mc=true&amp;node=sp28.1.16.a&amp;rgn=div6\">FOIA Regulations</a></p>",
+        "summary": ""
+      },
+      "abbreviation": "OIP",
+      "field_rep_start": "2007-10-01",
+      "submission_address": {
+        "langcode": null,
+        "country_code": "US",
+        "administrative_area": "DC",
+        "locality": "Washington",
+        "dependent_locality": null,
+        "postal_code": "20530",
+        "sorting_code": null,
+        "address_line1": "Douglas Hibbard, Chief, Initial Request Staff",
+        "address_line2": "441 G St, NW, 6th Floor "
+      },
+      "submission_fax": "202-514-1009",
+      "website": {
+        "uri": "http://www.justice.gov/oip/oip-foia",
+        "title": "",
+        "options": []
+      },
+      "moderation_state": null,
+      "telephone": "202-514-3642",
+      "commonly_requested_records": null,
+      "request_data_complex_average_days": "669.91",
+      "request_data_complex_highest_days": "1637",
+      "request_data_complex_lowest_days": "1",
+      "request_data_complex_median_days": "802",
+      "email": [],
+      "request_data_expedited_average_days": "675.11",
+      "request_data_expedited_highest_days": "1551",
+      "request_data_expedited_lowest_days": "1",
+      "request_data_expedited_median_days": "710",
+      "is_centralized": false,
+      "portal_submission_format": "api",
+      "reading_rooms": [
+        {
+          "uri": "https://www.justice.gov/oip/foia-library",
+          "title": "",
+          "options": []
+        }
+      ],
+      "request_data_year": "2023",
+      "request_data_simple_average_days": "6.88",
+      "request_data_simple_highest_days": "727",
+      "request_data_simple_lowest_days": "<1",
+      "request_data_simple_median_days": "2",
+      "submission_web": {
+        "uri": "https://foiaonline.regulations.gov/foia/action/public/home",
+        "title": "",
+        "options": []
+      }
+    },
+    "relationships": {
+      "agency": {
+        "data": {
+          "type": "agency",
+          "id": "0f2d33d4-234a-45a1-9655-8f482af498d8",
+          "meta": {
+            "drupal_internal__target_id": 1276
+          }
+        },
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/agency?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/agency?resourceVersion=id%3A251456"
+          }
+        }
+      },
+      "foia_officers": {
+        "data": [],
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/foia_officers?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/foia_officers?resourceVersion=id%3A251456"
+          }
+        }
+      },
+      "public_liaisons": {
+        "data": [
+          {
+            "type": "foia_personnel",
+            "id": "46c13d33-c4e2-4c3b-b778-8d74ecca6e2b",
+            "meta": {
+              "drupal_internal__target_id": 21931
+            }
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/public_liaisons?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/public_liaisons?resourceVersion=id%3A251456"
+          }
+        }
+      },
+      "service_centers": {
+        "data": [
+          {
+            "type": "foia_personnel",
+            "id": "5da176ae-9370-4fec-9abf-c5f72bc40406",
+            "meta": {
+              "drupal_internal__target_id": 18121
+            }
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/service_centers?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/service_centers?resourceVersion=id%3A251456"
+          }
+        }
+      },
+      "field_misc": {
+        "data": [],
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/field_misc?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/field_misc?resourceVersion=id%3A251456"
+          }
+        }
+      },
+      "paper_receiver": {
+        "data": null,
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/paper_receiver?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/paper_receiver?resourceVersion=id%3A251456"
+          }
+        }
+      },
+      "request_form": {
+        "data": {
+          "type": "webform",
+          "id": "083e0f05-5c6c-45cc-a93c-d63f80d602e5",
+          "meta": {
+            "default_data": "",
+            "status": "open",
+            "open": null,
+            "close": null,
+            "drupal_internal__target_id": "doj_oip"
+          }
+        },
+        "links": {
+          "related": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/request_form?resourceVersion=id%3A251456"
+          },
+          "self": {
+            "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/relationships/request_form?resourceVersion=id%3A251456"
+          }
+        }
+      }
+    }
+  },
+  "links": {
+    "self": {
+      "href": "https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758"
+    }
+  }
+}

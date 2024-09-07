@@ -4,6 +4,7 @@ import os
 import json
 import logging
 import time
+import random
 from typing import Any, Dict, List, Tuple
 import openai
 
@@ -249,3 +250,72 @@ def get_api_key() -> str:
     raise ValueError("OPENAI_API_KEY not found in LLM_keys.key file")
 
 # Add any other utility functions that might be needed across multiple modules
+
+def generate_transition_matrix(size: int = 4) -> List[List[float]]:
+    """Generate a random transition matrix with specific constraints."""
+    matrix = [[0.0 for _ in range(size)] for _ in range(size)]
+    
+    # First state (empowered) always transitions to itself
+    matrix[0][0] = 1.0
+    
+    # Generate transitions for states 2-4 (High/Medium/HomoSacer)
+    for i in range(1, size):
+        row = [random.random() for _ in range(1, size)]
+        total = sum(row)
+        for j in range(1, size):
+            matrix[i][j] = row[j-1] / total
+    
+    return matrix
+
+def generate_entity(name: str, entity_type: str) -> Dict[str, Any]:
+    """Generate an entity with its properties."""
+    entity = {
+        "name": name,
+        "type": entity_type,
+        "baseline_transition_matrix": generate_transition_matrix(),
+        "empowered_transition_matrix": generate_transition_matrix(),
+        "subjected_transition_matrix": generate_transition_matrix(),
+    }
+    
+    if entity_type == "narrative":
+        entity["influence"] = random.uniform(0.1, 1.0)
+    elif entity_type == "demos":
+        entity["vulnerability"] = random.uniform(0.1, 1.0)
+    
+    return entity
+
+def generate_entity_library() -> Dict[str, Any]:
+    """Generate the complete entity library."""
+    narratives = [
+        "Narrative_1a",
+        "Narrative_1b",
+        "Narrative_2a",
+        "Narrative_2b",
+        "Narrative_3a",
+        "Narrative_3b",
+    ]
+    
+    demos = [
+        "demo_1a",
+        "demo_1b",
+        "demo_2a",
+        "demo_2b",
+        "demo_3a",
+        "demo_3b",
+    ]
+    
+    library = {
+        "entities": [
+            generate_entity(narrative, "narrative") for narrative in narratives
+        ] + [
+            generate_entity(demo, "demos") for demo in demos
+        ]
+    }
+    return library
+
+def save_entity_library(library: Dict[str, Any], filename: str):
+    """Save the entity library to a JSON file."""
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, 'w') as f:
+        json.dump(library, f, indent=2)
+    logger.info(f"Entity library saved to {filename}")

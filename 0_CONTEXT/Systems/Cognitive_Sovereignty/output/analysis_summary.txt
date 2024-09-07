@@ -1,0 +1,296 @@
+Cognitive Sovereignty Simulation Analysis Summary
+===============================================
+
+1. State Percentages
+-------------------
+
+Corporation2:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 27.00%
+    MEDIUM_POWER: 35.00%
+    LOW_POWER: 38.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 20.50%
+    MEDIUM_POWER: 26.00%
+    LOW_POWER: 32.50%
+    HOMO_SACER: 21.00%
+
+CitizenGroup1:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 11.50%
+    MEDIUM_POWER: 39.00%
+    LOW_POWER: 49.50%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 18.00%
+    MEDIUM_POWER: 20.50%
+    LOW_POWER: 22.50%
+    HOMO_SACER: 39.00%
+
+Corporation3:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 22.00%
+    MEDIUM_POWER: 42.00%
+    LOW_POWER: 36.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 12.50%
+    MEDIUM_POWER: 57.00%
+    LOW_POWER: 12.00%
+    HOMO_SACER: 18.50%
+
+Corporation1:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 21.50%
+    MEDIUM_POWER: 15.50%
+    LOW_POWER: 63.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 14.00%
+    MEDIUM_POWER: 16.00%
+    LOW_POWER: 32.50%
+    HOMO_SACER: 37.50%
+
+Media3:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 36.50%
+    MEDIUM_POWER: 30.50%
+    LOW_POWER: 33.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 34.00%
+    MEDIUM_POWER: 22.50%
+    LOW_POWER: 24.00%
+    HOMO_SACER: 19.50%
+
+CitizenGroup3:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 49.50%
+    MEDIUM_POWER: 33.50%
+    LOW_POWER: 17.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 17.50%
+    MEDIUM_POWER: 27.50%
+    LOW_POWER: 18.50%
+    HOMO_SACER: 36.50%
+
+Media1:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 28.50%
+    MEDIUM_POWER: 43.50%
+    LOW_POWER: 28.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 29.50%
+    MEDIUM_POWER: 27.50%
+    LOW_POWER: 22.00%
+    HOMO_SACER: 21.00%
+
+NGO1:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 33.00%
+    MEDIUM_POWER: 40.50%
+    LOW_POWER: 26.50%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 25.00%
+    MEDIUM_POWER: 17.00%
+    LOW_POWER: 24.50%
+    HOMO_SACER: 33.50%
+
+NGO3:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 14.50%
+    MEDIUM_POWER: 35.00%
+    LOW_POWER: 50.50%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 27.50%
+    MEDIUM_POWER: 16.50%
+    LOW_POWER: 27.50%
+    HOMO_SACER: 28.50%
+
+Government2:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 32.50%
+    MEDIUM_POWER: 39.50%
+    LOW_POWER: 28.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 11.50%
+    MEDIUM_POWER: 32.00%
+    LOW_POWER: 30.50%
+    HOMO_SACER: 26.00%
+
+CitizenGroup2:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 42.50%
+    MEDIUM_POWER: 33.50%
+    LOW_POWER: 24.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 19.00%
+    MEDIUM_POWER: 45.50%
+    LOW_POWER: 23.00%
+    HOMO_SACER: 12.50%
+
+Government3:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 36.00%
+    MEDIUM_POWER: 28.50%
+    LOW_POWER: 35.50%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 29.00%
+    MEDIUM_POWER: 12.00%
+    LOW_POWER: 30.00%
+    HOMO_SACER: 29.00%
+
+NGO2:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 33.00%
+    MEDIUM_POWER: 28.00%
+    LOW_POWER: 39.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 40.50%
+    MEDIUM_POWER: 21.00%
+    LOW_POWER: 17.00%
+    HOMO_SACER: 21.50%
+
+Government1:
+  Before crisis:
+    IN_POWER: 100.00%
+    HIGH_POWER: 0.00%
+    MEDIUM_POWER: 0.00%
+    LOW_POWER: 0.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 27.50%
+    MEDIUM_POWER: 26.00%
+    LOW_POWER: 16.50%
+    HOMO_SACER: 30.00%
+
+Media2:
+  Before crisis:
+    IN_POWER: 0.00%
+    HIGH_POWER: 32.00%
+    MEDIUM_POWER: 20.00%
+    LOW_POWER: 48.00%
+    HOMO_SACER: 0.00%
+  After crisis:
+    IN_POWER: 100.00%
+    HIGH_POWER: 0.00%
+    MEDIUM_POWER: 0.00%
+    LOW_POWER: 0.00%
+    HOMO_SACER: 0.00%
+
+2. Most Common States
+---------------------
+
+Corporation2:
+  Before crisis: LOW_POWER (38.00%)
+  After crisis: LOW_POWER (32.50%)
+
+CitizenGroup1:
+  Before crisis: LOW_POWER (49.50%)
+  After crisis: HOMO_SACER (39.00%)
+
+Corporation3:
+  Before crisis: MEDIUM_POWER (42.00%)
+  After crisis: MEDIUM_POWER (57.00%)
+
+Corporation1:
+  Before crisis: LOW_POWER (63.00%)
+  After crisis: HOMO_SACER (37.50%)
+
+Media3:
+  Before crisis: HIGH_POWER (36.50%)
+  After crisis: HIGH_POWER (34.00%)
+
+CitizenGroup3:
+  Before crisis: HIGH_POWER (49.50%)
+  After crisis: HOMO_SACER (36.50%)
+
+Media1:
+  Before crisis: MEDIUM_POWER (43.50%)
+  After crisis: HIGH_POWER (29.50%)
+
+NGO1:
+  Before crisis: MEDIUM_POWER (40.50%)
+  After crisis: HOMO_SACER (33.50%)
+
+NGO3:
+  Before crisis: LOW_POWER (50.50%)
+  After crisis: HOMO_SACER (28.50%)
+
+Government2:
+  Before crisis: MEDIUM_POWER (39.50%)
+  After crisis: MEDIUM_POWER (32.00%)
+
+CitizenGroup2:
+  Before crisis: HIGH_POWER (42.50%)
+  After crisis: MEDIUM_POWER (45.50%)
+
+Government3:
+  Before crisis: HIGH_POWER (36.00%)
+  After crisis: LOW_POWER (30.00%)
+
+NGO2:
+  Before crisis: LOW_POWER (39.00%)
+  After crisis: HIGH_POWER (40.50%)
+
+Government1:
+  Before crisis: IN_POWER (100.00%)
+  After crisis: HOMO_SACER (30.00%)
+
+Media2:
+  Before crisis: LOW_POWER (48.00%)
+  After crisis: IN_POWER (100.00%)
+
+3. State Volatility
+-------------------
+Government2: 0.70
+Government3: 0.70
+Corporation2: 0.67
+Corporation3: 0.60
+NGO1: 0.80
+NGO2: 0.73
+NGO3: 0.63
+Media1: 0.72
+Media2: 0.30
+Media3: 0.80
+CitizenGroup1: 0.62
+CitizenGroup3: 0.74
+CitizenGroup2: 0.52
+Corporation1: 0.59
+Government1: 0.39
