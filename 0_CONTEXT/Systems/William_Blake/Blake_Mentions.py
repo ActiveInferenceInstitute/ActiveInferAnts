@@ -3,7 +3,7 @@ import os
 import logging
 
 # Target terms to search for
-TARGET_TERMS = ["Mathematical", "Mathematic", "Science", "Time"]
+TARGET_TERMS = ["Gothic", "Goth", "Active", "Inference", "Inferential"]
 
 def extract_term_mentions(input_file, output_dir):
     logging.info(f"Processing file: {input_file}")
