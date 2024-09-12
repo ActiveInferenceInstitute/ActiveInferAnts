@@ -9,3 +9,12 @@ Rather here:
 
 
 Initialize solution function, assigns the solution as attrbitue
+
+
+
+
+First -- get the outputs and simulation working, across files. 
+
+
+
+Write a minimal Julia script that THEN calls SocialScience.py as big python script. 
