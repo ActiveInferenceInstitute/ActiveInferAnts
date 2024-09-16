@@ -1,5 +1,10 @@
-from typing import List, Callable, Any, Dict, Tuple
+from typing import List, Callable, Any, Dict, Tuple, Set
 import math
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 class StrangeLoop:
     def __init__(self, initial_state: Any, levels: int):
@@ -47,6 +52,7 @@ class SelfReferentialSystem:
     def apply_rules(self, statement: Any) -> Any:
         for rule in self.rules:
             if rule.condition(statement):
+                logger.debug(f"Applying rule: {rule.action.__name__} to statement: {statement}")
                 return rule.action(statement)
         return statement
 
@@ -93,9 +99,9 @@ class FormalSystem:
         return self.theorems
 
     def is_consistent(self) -> bool:
-        # A simple consistency check: no theorem and its negation
         for theorem in self.theorems:
             if f"not({theorem})" in self.theorems:
+                logger.warning(f"Inconsistency found: {theorem} and not({theorem})")
                 return False
         return True
 
@@ -157,60 +163,65 @@ class MuPuzzle:
         return results
 
 def main():
-    # Example usage
-    strange_loop = StrangeLoop("Ground", 3)
-    strange_loop.add_transformation(lambda x: x + " Level 1", lambda x: x.replace(" Level 1", ""))
-    strange_loop.add_transformation(lambda x: x + " Level 2", lambda x: x.replace(" Level 2", ""))
-    print(strange_loop)
-    strange_loop.ascend()
-    print(strange_loop)
-    strange_loop.ascend()
-    print(strange_loop)
-    strange_loop.descend()
-    print(strange_loop)
+    try:
+        # Example usage with logging
+        strange_loop = StrangeLoop("Ground", 3)
+        strange_loop.add_transformation(
+            lambda x: x + " Level 1", 
+            lambda x: x.replace(" Level 1", "")
+        )
+        logger.info(str(strange_loop))
+        strange_loop.ascend()
+        logger.info(str(strange_loop))
+        strange_loop.ascend()
+        logger.info(str(strange_loop))
+        strange_loop.descend()
+        logger.info(str(strange_loop))
 
-    print("\nRecursive function example:")
-    result = recursive_function(5, 1, lambda x: x * 2)
-    print(result)
+        print("\nRecursive function example:")
+        result = recursive_function(5, 1, lambda x: x * 2)
+        print(result)
 
-    print("\nSelf-referential system example:")
-    srs = SelfReferentialSystem([
-        Rule(lambda x: x.startswith("This statement"), lambda x: x + " is self-referential"),
-        Rule(lambda x: "not" in x, lambda x: x.replace("not", ""))
-    ])
-    print(srs.apply_rules("This statement"))
-    print(srs.apply_rules("This is not a pipe"))
+        print("\nSelf-referential system example:")
+        srs = SelfReferentialSystem([
+            Rule(lambda x: x.startswith("This statement"), lambda x: x + " is self-referential"),
+            Rule(lambda x: "not" in x, lambda x: x.replace("not", ""))
+        ])
+        print(srs.apply_rules("This statement"))
+        print(srs.apply_rules("This is not a pipe"))
 
-    print("\nIsomorphism example:")
-    source = {"a": 1, "b": 2, "c": 3}
-    target = {"x": 1, "y": 2, "z": 3}
-    print(Isomorphism.map(source, target, {}))
+        print("\nIsomorphism example:")
+        source = {"a": 1, "b": 2, "c": 3}
+        target = {"x": 1, "y": 2, "z": 3}
+        print(Isomorphism.map(source, target, {}))
 
-    print("\nGödel numbering example:")
-    symbols = ["0", "S", "+", "*", "=", "(", ")"]
-    godel_numbering = generate_godel_numbering(symbols)
-    print(godel_numbering)
+        print("\nGödel numbering example:")
+        symbols = ["0", "S", "+", "*", "=", "(", ")"]
+        godel_numbering = generate_godel_numbering(symbols)
+        print(godel_numbering)
 
-    print("\nFormal system example:")
-    axioms = ["A", "B"]
-    inference_rules = [
-        lambda x: {f"{x} and {x}"},
-        lambda x: {f"not({x})"}
-    ]
-    fs = FormalSystem(axioms, inference_rules)
-    print(fs.derive(2))
-    print(f"Consistent: {fs.is_consistent()}")
-    print(f"Complete: {fs.is_complete({'A', 'B', 'C'})}")
+        print("\nFormal system example:")
+        axioms = ["A", "B"]
+        inference_rules = [
+            lambda x: {f"{x} and {x}"},
+            lambda x: {f"not({x})"}
+        ]
+        fs = FormalSystem(axioms, inference_rules)
+        print(fs.derive(2))
+        print(f"Consistent: {fs.is_consistent()}")
+        print(f"Complete: {fs.is_complete({'A', 'B', 'C'})}")
 
-    print("\nTangle hierarchy example:")
-    th = TangleHierarchy()
-    th.add_level([1, 2, 3])
-    th.add_level([3, 4, 5])
-    print(f"Is tangled: {th.is_tangled()}")
+        print("\nTangle hierarchy example:")
+        th = TangleHierarchy()
+        th.add_level([1, 2, 3])
+        th.add_level([3, 4, 5])
+        print(f"Is tangled: {th.is_tangled()}")
 
-    print("\nMU puzzle example:")
-    mu = MuPuzzle("MI")
-    print(mu.apply_rules(3))
+        print("\nMU puzzle example:")
+        mu = MuPuzzle("MI")
+        print(mu.apply_rules(3))
+    except ValueError as e:
+        logger.error(f"Error in StrangeLoop operation: {e}")
 
 if __name__ == "__main__":
     main()

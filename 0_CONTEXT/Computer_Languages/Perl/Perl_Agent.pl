@@ -3,6 +3,22 @@
 use strict;
 use warnings;
 use List::Util qw(sum);
+use Log::Log4perl;
+
+# Initialize logger
+Log::Log4perl->init(\$log_conf);
+my $logger = Log::Log4perl->get_logger();
+
+# Define logging configuration
+my $log_conf = q(
+    log4perl.category                 = INFO, Logfile
+
+    log4perl.appender.Logfile         = Log::Log4perl::Appender::File
+    log4perl.appender.Logfile.filename= agent.log
+    log4perl.appender.Logfile.mode    = append
+    log4perl.appender.Logfile.layout  = PatternLayout
+    log4perl.appender.Logfile.layout.ConversionPattern = %d %p %m %n
+);
 
 # Define agent states, perceptions, and actions
 use constant {
@@ -105,7 +121,7 @@ sub simulate_agent_behavior {
     for (my $i = 0; $i < $num_iterations; $i++) {
         my $perception = $agent->perceive_event();
         my $action = $agent->decide_action();
-        print "Iteration $i: Perception: $perception, Action: $action\n";
+        $logger->info("Iteration $i: Perception: $perception, Action: $action");
         $agent->update_state();
     }
 }

@@ -1,3 +1,4 @@
+// Start of Selection
 package main
 
 import (
@@ -8,119 +9,189 @@ import (
 	"time"
 )
 
-// StateTransition encapsulates the probabilities of transitioning between states and observing events.
-type StateTransition struct {
-	Transitions  map[string]float64 // Probability of transitioning to other states
-	Observations map[string]float64 // Probability of observing certain events in the current state
-}
+// State represents the possible states of the agent.
+type State string
 
-// Agent states and observations are defined as constants for improved type safety and readability.
+// Observation represents the possible observations an agent can make.
+type Observation string
+
+// Constants defining agent states for type safety and clarity.
 const (
-	StateSearching  = "searching"
-	StateForaging   = "foraging"
-	StateReturning  = "returning"
-	ObservationFood = "food_found"
-	ObservationNest = "nest_sighted"
-	ObservationNone = "nothing"
+	StateSearching State = "searching"
+	StateForaging  State = "foraging"
+	StateReturning State = "returning"
+
+	ObservationFood Observation = "food_found"
+	ObservationNest Observation = "nest_sighted"
+	ObservationNone Observation = "nothing"
 )
 
-var (
-	states       = []string{StateSearching, StateForaging, StateReturning}
-	observations = []string{ObservationFood, ObservationNest, ObservationNone}
-
-	// Mapping each state to its corresponding transition and observation probabilities.
-	probabilities = map[string]StateTransition{
-		StateSearching: {
-			Transitions:  map[string]float64{StateForaging: 0.3, StateReturning: 0.1, StateSearching: 0.6},
-			Observations: map[string]float64{ObservationFood: 0.2, ObservationNest: 0.1, ObservationNone: 0.7},
-		},
-		StateForaging: {
-			Transitions:  map[string]float64{StateForaging: 0.5, StateReturning: 0.4, StateSearching: 0.1},
-			Observations: map[string]float64{ObservationFood: 0.6, ObservationNest: 0.1, ObservationNone: 0.3},
-		},
-		StateReturning: {
-			Transitions:  map[string]float64{StateForaging: 0.2, StateReturning: 0.7, StateSearching: 0.1},
-			Observations: map[string]float64{ObservationFood: 0.1, ObservationNest: 0.8, ObservationNone: 0.1},
-		},
-	}
-)
-
-// ActiveInferenceAgent models an agent with a current state and provides methods for state transitions and observations.
-type ActiveInferenceAgent struct {
-	currentState string
+// StateTransition encapsulates the transition and observation probabilities for a state.
+type StateTransition struct {
+	Transitions  map[State]float64
+	Observations map[Observation]float64
 }
 
-// NewActiveInferenceAgent initializes a new agent with a specified initial state, ensuring it's valid.
-func NewActiveInferenceAgent(initialState string) (*ActiveInferenceAgent, error) {
+// Probabilities defines the state transitions and observations for each state.
+var probabilities = map[State]StateTransition{
+	StateSearching: {
+		Transitions: map[State]float64{
+			StateForaging:  0.3,
+			StateReturning: 0.1,
+			StateSearching: 0.6,
+		},
+		Observations: map[Observation]float64{
+			ObservationFood: 0.2,
+			ObservationNest: 0.1,
+			ObservationNone: 0.7,
+		},
+	},
+	StateForaging: {
+		Transitions: map[State]float64{
+			StateForaging:  State(0.5),
+			StateReturning: State(0.4),
+			StateSearching: State(0.1),
+		},
+		Observations: map[Observation]float64{
+			ObservationFood: 0.6,
+			ObservationNest: 0.1,
+			ObservationNone: 0.3,
+		},
+	},
+	StateReturning: {
+		Transitions: map[State]float64{
+			StateForaging:  0.2,
+			StateReturning: 0.7,
+			StateSearching: 0.1,
+		},
+		Observations: map[Observation]float64{
+			ObservationFood: 0.1,
+			ObservationNest: 0.8,
+			ObservationNone: 0.1,
+		},
+	},
+}
+
+// ActiveInferenceAgent represents an agent with a current state.
+type ActiveInferenceAgent struct {
+	currentState State
+}
+
+// NewActiveInferenceAgent initializes an ActiveInferenceAgent with a valid initial state.
+func NewActiveInferenceAgent(initialState State) (*ActiveInferenceAgent, error) {
 	if _, exists := probabilities[initialState]; !exists {
 		return nil, fmt.Errorf("invalid initial state: %s", initialState)
 	}
 	return &ActiveInferenceAgent{currentState: initialState}, nil
 }
 
-// UpdateState transitions the agent to a new state based on the defined probabilities, using a cumulative probability approach.
+// UpdateState transitions the agent to a new state based on transition probabilities.
 func (a *ActiveInferenceAgent) UpdateState() error {
-	transitionProbabilities, ok := probabilities[a.currentState].Transitions
-	if !ok {
+	transitionProbs, exists := probabilities[a.currentState]
+	if !exists {
 		return errors.New("current state not found in probabilities map")
 	}
-	r := rand.Float64()
-	for state, prob := range toCumulative(transitionProbabilities) {
-		if r <= prob {
-			a.currentState = state
-			return nil
-		}
+
+	nextState, err := weightedChoiceState(transitionProbs.Transitions)
+	if err != nil {
+		return fmt.Errorf("failed to update state: %w", err)
 	}
-	return errors.New("failed to update state due to invalid probability distribution")
+
+	a.currentState = nextState
+	return nil
 }
 
-// Observe generates an observation based on the current state and defined probabilities, defaulting to ObservationNone if no match is found.
-func (a *ActiveInferenceAgent) Observe() (string, error) {
-	observationProbabilities, ok := probabilities[a.currentState].Observations
-	if !ok {
-		return "", errors.New("current state not found in observations map")
+// Observe generates an observation based on the current state's observation probabilities.
+func (a *ActiveInferenceAgent) Observe() (Observation, error) {
+	observationProbs, exists := probabilities[a.currentState].Observations
+	if !exists {
+		return ObservationNone, errors.New("current state not found in observations map")
 	}
+
+	observation, err := weightedChoiceObservation(observationProbs)
+	if err != nil {
+		return ObservationNone, fmt.Errorf("failed to generate observation: %w", err)
+	}
+
+	return observation, nil
+}
+
+// weightedChoiceState selects a state based on provided probabilities using a cumulative distribution.
+func weightedChoiceState(probs map[State]float64) (State, error) {
+	cumulative := toCumulative(probs)
 	r := rand.Float64()
-	for observation, prob := range toCumulative(observationProbabilities) {
-		if r <= prob {
-			return observation, nil
+	for _, entry := range cumulative {
+		if r <= entry.CumulativeProb {
+			return entry.State, nil
+		}
+	}
+	return "", errors.New("invalid transition probabilities")
+}
+
+// weightedChoiceObservation selects an observation based on provided probabilities using a cumulative distribution.
+func weightedChoiceObservation(probs map[Observation]float64) (Observation, error) {
+	cumulative := toCumulative(probs)
+	r := rand.Float64()
+	for _, entry := range cumulative {
+		if r <= entry.CumulativeProb {
+			return entry.Observation, nil
 		}
 	}
 	return ObservationNone, nil
 }
 
-// toCumulative transforms a map of probabilities into a cumulative map to facilitate weighted random selection.
-func toCumulative(probabilities map[string]float64) map[string]float64 {
-	cumulative := make(map[string]float64)
+// CumulativeProbability represents a state or observation with its cumulative probability.
+type CumulativeProbability struct {
+	State          State
+	Observation    Observation
+	CumulativeProb float64
+}
+
+// toCumulative converts a probability map to a slice of CumulativeProbability, sorted for selection.
+func toCumulative[T comparable](probs map[T]float64) []CumulativeProbability {
+	var cumulative []CumulativeProbability
 	var sum float64
-	for _, prob := range probabilities {
+	for _, prob := range probs {
 		sum += prob
 	}
-	currentSum := 0.0
-	for key, prob := range probabilities {
-		currentSum += prob / sum
-		cumulative[key] = currentSum
+
+	var runningTotal float64
+	for key, prob := range probs {
+		runningTotal += prob / sum
+		if any, ok := interface{}(key).(State); ok {
+			cumulative = append(cumulative, CumulativeProbability{
+				State:          any,
+				CumulativeProb: runningTotal,
+			})
+		} else if any, ok := interface{}(key).(Observation); ok {
+			cumulative = append(cumulative, CumulativeProbability{
+				Observation:    any,
+				CumulativeProb: runningTotal,
+			})
+		}
 	}
 	return cumulative
 }
 
-// simulateAntBehavior simulates the behavior of an ant agent, observing the environment and updating its state in a loop.
+// simulateAntBehavior simulates the ant's behavior by observing and updating its state in a loop.
 func simulateAntBehavior(behaviorChannel chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
+
 	agent, err := NewActiveInferenceAgent(StateSearching)
 	if err != nil {
 		fmt.Println("Error initializing agent:", err)
 		return
 	}
+
 	for i := 0; i < 10; i++ {
 		behavior, err := agent.Observe()
 		if err != nil {
 			fmt.Println("Error observing environment:", err)
 			return
 		}
-		behaviorChannel <- behavior
-		err = agent.UpdateState()
-		if err != nil {
+		behaviorChannel <- string(behavior)
+
+		if err := agent.UpdateState(); err != nil {
 			fmt.Println("Error updating agent state:", err)
 			return
 		}
@@ -129,6 +200,7 @@ func simulateAntBehavior(behaviorChannel chan<- string, wg *sync.WaitGroup) {
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
+
 	behaviorChannel := make(chan string, 10)
 	var wg sync.WaitGroup
 
@@ -140,6 +212,7 @@ func main() {
 			fmt.Printf("Ant behavior: %s\n", behavior)
 		}
 	}()
+
 	wg.Wait()
 	close(behaviorChannel)
 }
