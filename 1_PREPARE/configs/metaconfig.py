@@ -1,17 +1,21 @@
 import numpy as np
+from typing import Dict, List, Tuple, Union, Any
 
 class MetaConfig:
-    def __init__(self):
+    def __init__(self) -> None:
+        """Initialize the MetaConfig with default configurations."""
         self.config = self._initialize_config()
 
-    def _initialize_config(self):
+    def _initialize_config(self) -> Dict[str, Any]:
+        """Initialize the complete configuration dictionary."""
         return {
             'SIMULATION': self._simulation_config(),
             'ACTIVE_INFERENCE': self._active_inference_config(),
             'ANT_AND_COLONY': self._ant_and_colony_config(),
         }
 
-    def _simulation_config(self):
+    def _simulation_config(self) -> Dict[str, Any]:
+        """Configuration settings for simulation."""
         return {
             'MAX_STEPS_RANGE': (100, 1000),
             'AGENT_COUNT_RANGE': (50, 500),
@@ -22,7 +26,8 @@ class MetaConfig:
             'COMPUTATION': self._computation_config(),
         }
 
-    def _computation_config(self):
+    def _computation_config(self) -> Dict[str, Any]:
+        """Configuration settings for computation."""
         return {
             'GPU_ACCELERATION_OPTIONS': [True, False],
             'GPU_PREFERENCE_OPTIONS': ['high_performance', 'energy_saving'],
@@ -31,9 +36,13 @@ class MetaConfig:
             'COMMUNICATION_PROTOCOLS': ['MPI', 'TCP/IP'],
         }
 
-    def _active_inference_config(self):
+    def _active_inference_config(self) -> Dict[str, Any]:
+        """Configuration settings for active inference."""
         return {
-            'INFERENCE_MODEL_OPTIONS': ['variational', 'predictive_coding', 'bayesian_filtering', 'deep_active_inference', 'ensemble_methods'],
+            'INFERENCE_MODEL_OPTIONS': [
+                'variational', 'predictive_coding', 'bayesian_filtering',
+                'deep_active_inference', 'ensemble_methods'
+            ],
             'PLANNING_HORIZON': self._planning_horizon_config(),
             'ADAPTIVE_LEARNING': self._adaptive_learning_config(),
             'CONTEXT_AWARENESS': self._context_awareness_config(),
@@ -51,14 +60,16 @@ class MetaConfig:
             'EXPECTATION_FREE_ENERGY_OPTIONS': [True, False],
         }
 
-    def _planning_horizon_config(self):
+    def _planning_horizon_config(self) -> Dict[str, Any]:
+        """Configuration settings for planning horizon."""
         return {
             'TYPE_OPTIONS': ['fixed', 'adaptive'],
             'FIXED_RANGE': (5, 30),
             'ADAPTIVE_STRATEGY_OPTIONS': ['contextual_complexity'],
         }
 
-    def _adaptive_learning_config(self):
+    def _adaptive_learning_config(self) -> Dict[str, Any]:
+        """Configuration settings for adaptive learning."""
         return {
             'ENABLED': [True, False],
             'LEARNING_RATE_RANGE': (0.01, 0.5),
@@ -66,7 +77,8 @@ class MetaConfig:
             'MODEL_UPDATING_OPTIONS': ['online', 'batch'],
         }
 
-    def _context_awareness_config(self):
+    def _context_awareness_config(self) -> Dict[str, Any]:
+        """Configuration settings for context awareness."""
         return {
             'ENABLED_OPTIONS': [True, False],
             'DYNAMIC_ADJUSTMENT_OPTIONS': [True, False],
@@ -74,14 +86,16 @@ class MetaConfig:
             'CONTEXT_INTEGRATION_STRATEGIES': ['multimodal', 'unimodal'],
         }
 
-    def _precision_weighting_config(self):
+    def _precision_weighting_config(self) -> Dict[str, Any]:
+        """Configuration settings for precision weighting."""
         return {
             'PERCEPTION_RANGE': (0.1, 1.0),
             'ACTION_RANGE': (0.1, 1.0),
             'ADAPTIVE': [True, False],
         }
 
-    def _ant_and_colony_config(self):
+    def _ant_and_colony_config(self) -> Dict[str, Any]:
+        """Configuration settings for ant and colony."""
         return {
             'MOVEMENT_OPTIONS': [
                 [(-1, -1), (0, -1), (1, -1), (-1, 0), (0, 0), (1, 0), (-1, 1), (0, 1), (1, 1)],
@@ -89,7 +103,10 @@ class MetaConfig:
             ],
             'PHEROMONE_TYPE_RANGE': (1, 10),
             'MAX_PHEROMONE_RELEASE_RATE_RANGE': (1, 10),
-            'SOUND_PRODUCTION_TYPES': [['stridulation', 'sing', 'talk', 'grunt'], ['stridulation', 'sing']],
+            'SOUND_PRODUCTION_TYPES': [
+                ['stridulation', 'sing', 'talk', 'grunt'],
+                ['stridulation', 'sing']
+            ],
             'SOUND_INTENSITY_LEVEL_RANGE': (1, 10),
             'PERCEPTUAL_FIELD_SIZE_RANGE': (1, 7),
             'MEMORY_CAPACITY_RANGE': (50, 200),

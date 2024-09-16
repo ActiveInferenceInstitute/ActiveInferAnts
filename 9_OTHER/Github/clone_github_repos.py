@@ -163,7 +163,8 @@ repos_to_clone = {
         "https://github.com/hwchase17/langchain",
         "https://github.com/Mooler0410/LLMsPracticalGuide",
         "https://github.com/microsoft/LMOps",
-        "https://github.com/ennucore/clippy"
+        "https://github.com/ennucore/clippy",
+        "https://github.com/danielmiessler/fabric"
     ],
     "SocialMediaInteroperability": [
         "https://github.com/42wim/matterbridge"

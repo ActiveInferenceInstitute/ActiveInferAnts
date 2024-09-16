@@ -1,0 +1,2310 @@
+2024-09-15 13:45:13,009 - DEBUG - Running simulation with mode: free, num_steps: 10
+2024-09-15 13:45:13,009 - DEBUG - Initializing sampler.
+2024-09-15 13:45:13,009 - DEBUG - Defined Phi_pi with shape: (2, 2, 3)
+2024-09-15 13:45:13,009 - DEBUG - Defined Sigma_y with shape: (2, 2)
+2024-09-15 13:45:13,009 - DEBUG - Defined Sigma_theta with shape: (2, 2)
+2024-09-15 13:45:13,009 - DEBUG - Defined eta_theta: [0. 0.]
+2024-09-15 13:45:13,009 - DEBUG - Defined C_costs: [1. 2. 5.]
+2024-09-15 13:45:13,009 - DEBUG - Initialized belief_mean: [0. 0.]
+2024-09-15 13:45:13,010 - DEBUG - Initialized belief_cov: 
+[[1. 0.]
+ [0. 1.]]
+2024-09-15 13:45:13,010 - DEBUG - Initialized ActiveDataSampler with parameters:
+2024-09-15 13:45:13,010 - DEBUG - Phi_pi shape: (2, 2, 3)
+2024-09-15 13:45:13,010 - DEBUG - Sigma_y shape: (2, 2)
+2024-09-15 13:45:13,010 - DEBUG - Sigma_theta shape: (2, 2)
+2024-09-15 13:45:13,010 - DEBUG - eta_theta: [0. 0.]
+2024-09-15 13:45:13,010 - DEBUG - policy_len: 1
+2024-09-15 13:45:13,010 - DEBUG - inference_horizon: 3
+2024-09-15 13:45:13,010 - DEBUG - Sampler initialized with C_costs.
+2024-09-15 13:45:13,010 - DEBUG - Sampler initialized in run_simulation.
+2024-09-15 13:45:13,010 - DEBUG - Initialized history lists.
+2024-09-15 13:45:13,010 - DEBUG - Set C_costs to [1.0, 1.0, 1.0] for 'free' mode.
+2024-09-15 13:45:13,010 - DEBUG - Initialized performance tracking variables.
+2024-09-15 13:45:13,010 - DEBUG - Simulation step 1/10
+2024-09-15 13:45:13,010 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,010 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,010 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,010 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,010 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,010 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,010 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,010 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,010 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,010 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,010 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,010 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,010 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,010 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,010 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,010 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,010 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,010 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,011 - DEBUG - Sampled observation y: [-0.47711382  0.47554759]
+2024-09-15 13:45:13,011 - DEBUG - Executed action 0, received observation y: [-0.47711382  0.47554759]
+2024-09-15 13:45:13,011 - DEBUG - Updating beliefs with observation y: [-0.47711382  0.47554759], pi: 0
+2024-09-15 13:45:13,011 - DEBUG - Updated belief_mean: [-0.00062649  0.        ]
+2024-09-15 13:45:13,012 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,012 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,012 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,012 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,012 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,012 - DEBUG - Updated total_info_gain: 0.8047189562170501, total_cost: 1.0
+2024-09-15 13:45:13,012 - DEBUG - Wrote step 1 details to simulation_log.txt
+2024-09-15 13:45:13,012 - DEBUG - Simulation step 2/10
+2024-09-15 13:45:13,012 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,012 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,012 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,012 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,012 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,012 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,012 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,012 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,012 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,012 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,012 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,012 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,012 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,013 - DEBUG - Sampled observation y: [-0.45736244 -0.24104113]
+2024-09-15 13:45:13,013 - DEBUG - Executed action 0, received observation y: [-0.45736244 -0.24104113]
+2024-09-15 13:45:13,013 - DEBUG - Updating beliefs with observation y: [-0.45736244 -0.24104113], pi: 0
+2024-09-15 13:45:13,013 - DEBUG - Updated belief_mean: [-0.27936143  0.        ]
+2024-09-15 13:45:13,013 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,013 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,013 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,013 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,013 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,013 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,013 - DEBUG - Updated total_info_gain: 1.6094379124341003, total_cost: 2.0
+2024-09-15 13:45:13,013 - DEBUG - Wrote step 2 details to simulation_log.txt
+2024-09-15 13:45:13,013 - DEBUG - Simulation step 3/10
+2024-09-15 13:45:13,013 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,013 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,013 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,013 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,014 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,014 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,014 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,014 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,014 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,014 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,014 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,014 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,014 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,014 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,014 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,014 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,014 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,014 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,014 - DEBUG - Sampled observation y: [-0.88036506 -0.35298488]
+2024-09-15 13:45:13,014 - DEBUG - Executed action 0, received observation y: [-0.88036506 -0.35298488]
+2024-09-15 13:45:13,014 - DEBUG - Updating beliefs with observation y: [-0.88036506 -0.35298488], pi: 0
+2024-09-15 13:45:13,014 - DEBUG - Updated belief_mean: [-0.49333998  0.        ]
+2024-09-15 13:45:13,014 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,014 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,015 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,015 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,015 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,015 - DEBUG - Updated total_info_gain: 2.4141568686511503, total_cost: 3.0
+2024-09-15 13:45:13,015 - DEBUG - Wrote step 3 details to simulation_log.txt
+2024-09-15 13:45:13,015 - DEBUG - Simulation step 4/10
+2024-09-15 13:45:13,015 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,015 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,015 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,015 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,015 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,015 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,015 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,015 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,015 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,015 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,015 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,015 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,015 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,015 - DEBUG - Sampled observation y: [-1.42313153  0.68529224]
+2024-09-15 13:45:13,015 - DEBUG - Executed action 0, received observation y: [-1.42313153  0.68529224]
+2024-09-15 13:45:13,015 - DEBUG - Updating beliefs with observation y: [-1.42313153  0.68529224], pi: 0
+2024-09-15 13:45:13,016 - DEBUG - Updated belief_mean: [-0.29513572  0.        ]
+2024-09-15 13:45:13,016 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,016 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,016 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,016 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,016 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,016 - DEBUG - Updated total_info_gain: 3.2188758248682006, total_cost: 4.0
+2024-09-15 13:45:13,016 - DEBUG - Wrote step 4 details to simulation_log.txt
+2024-09-15 13:45:13,016 - DEBUG - Simulation step 5/10
+2024-09-15 13:45:13,016 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,016 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,016 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,016 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,016 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,016 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,016 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,016 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,016 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,016 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,016 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,016 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,016 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,017 - DEBUG - Sampled observation y: [-1.17390619 -0.59192083]
+2024-09-15 13:45:13,017 - DEBUG - Executed action 0, received observation y: [-1.17390619 -0.59192083]
+2024-09-15 13:45:13,017 - DEBUG - Updating beliefs with observation y: [-1.17390619 -0.59192083], pi: 0
+2024-09-15 13:45:13,017 - DEBUG - Updated belief_mean: [-0.70633081  0.        ]
+2024-09-15 13:45:13,017 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,017 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,017 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,017 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,017 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,017 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,017 - DEBUG - Updated total_info_gain: 4.023594781085251, total_cost: 5.0
+2024-09-15 13:45:13,017 - DEBUG - Wrote step 5 details to simulation_log.txt
+2024-09-15 13:45:13,018 - DEBUG - Simulation step 6/10
+2024-09-15 13:45:13,018 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,018 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,018 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,018 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,018 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,018 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,018 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,018 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,018 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,018 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,018 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,018 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,018 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,018 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,018 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,018 - DEBUG - Exploration: randomly selected action 1
+2024-09-15 13:45:13,018 - DEBUG - Selected LLM action: Medium (index 1)
+2024-09-15 13:45:13,018 - DEBUG - Executing action: 1
+2024-09-15 13:45:13,018 - DEBUG - Sampled observation y: [-0.06674057  0.95779456]
+2024-09-15 13:45:13,018 - DEBUG - Executed action 1, received observation y: [-0.06674057  0.95779456]
+2024-09-15 13:45:13,019 - DEBUG - Updating beliefs with observation y: [-0.06674057  0.95779456], pi: 1
+2024-09-15 13:45:13,019 - DEBUG - Updated belief_mean: [0.        0.3564216]
+2024-09-15 13:45:13,019 - DEBUG - Updated belief_cov: 
+[[1.  0. ]
+ [0.  0.2]]
+2024-09-15 13:45:13,019 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,019 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,019 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,019 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,019 - DEBUG - Updated total_info_gain: 4.828313737302301, total_cost: 6.0
+2024-09-15 13:45:13,019 - DEBUG - Wrote step 6 details to simulation_log.txt
+2024-09-15 13:45:13,019 - DEBUG - Simulation step 7/10
+2024-09-15 13:45:13,019 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,019 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,019 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,019 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,019 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,019 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,020 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,020 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,020 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,020 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,020 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,020 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,020 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,020 - DEBUG - Sampled observation y: [-1.31620591  0.21073844]
+2024-09-15 13:45:13,020 - DEBUG - Executed action 0, received observation y: [-1.31620591  0.21073844]
+2024-09-15 13:45:13,020 - DEBUG - Updating beliefs with observation y: [-1.31620591  0.21073844], pi: 0
+2024-09-15 13:45:13,020 - DEBUG - Updated belief_mean: [-0.44218699  0.        ]
+2024-09-15 13:45:13,020 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,020 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,020 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,020 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,021 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,021 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,021 - DEBUG - Updated total_info_gain: 5.63303269351935, total_cost: 7.0
+2024-09-15 13:45:13,021 - DEBUG - Wrote step 7 details to simulation_log.txt
+2024-09-15 13:45:13,021 - DEBUG - Simulation step 8/10
+2024-09-15 13:45:13,021 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,021 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,021 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,021 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,021 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,021 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,021 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,021 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,021 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,021 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,021 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,021 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,021 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,021 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,021 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,021 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,021 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,021 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,021 - DEBUG - Sampled observation y: [-0.04946641  0.07172009]
+2024-09-15 13:45:13,021 - DEBUG - Executed action 0, received observation y: [-0.04946641  0.07172009]
+2024-09-15 13:45:13,022 - DEBUG - Updating beliefs with observation y: [-0.04946641  0.07172009], pi: 0
+2024-09-15 13:45:13,022 - DEBUG - Updated belief_mean: [0.00890147 0.        ]
+2024-09-15 13:45:13,022 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,022 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,022 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,022 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,022 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,022 - DEBUG - Updated total_info_gain: 6.4377516497364, total_cost: 8.0
+2024-09-15 13:45:13,022 - DEBUG - Wrote step 8 details to simulation_log.txt
+2024-09-15 13:45:13,022 - DEBUG - Simulation step 9/10
+2024-09-15 13:45:13,022 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,022 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,022 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,022 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,022 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,022 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,022 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,022 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,022 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,022 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,023 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,023 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,023 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,023 - DEBUG - Sampled observation y: [0.8625256  0.65937317]
+2024-09-15 13:45:13,023 - DEBUG - Executed action 0, received observation y: [0.8625256  0.65937317]
+2024-09-15 13:45:13,023 - DEBUG - Updating beliefs with observation y: [0.8625256  0.65937317], pi: 0
+2024-09-15 13:45:13,023 - DEBUG - Updated belief_mean: [0.60875951 0.        ]
+2024-09-15 13:45:13,023 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,023 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,023 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,023 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,023 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,023 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,023 - DEBUG - Updated total_info_gain: 7.24247060595345, total_cost: 9.0
+2024-09-15 13:45:13,023 - DEBUG - Wrote step 9 details to simulation_log.txt
+2024-09-15 13:45:13,023 - DEBUG - Simulation step 10/10
+2024-09-15 13:45:13,023 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,023 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:45:13,023 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,024 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,024 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,024 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:45:13,024 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,024 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,024 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:45:13,024 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:45:13,024 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,024 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,024 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:45:13,024 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:45:13,024 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,024 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,024 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,024 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,024 - DEBUG - Sampled observation y: [0.40279501 0.85103478]
+2024-09-15 13:45:13,024 - DEBUG - Executed action 0, received observation y: [0.40279501 0.85103478]
+2024-09-15 13:45:13,024 - DEBUG - Updating beliefs with observation y: [0.40279501 0.85103478], pi: 0
+2024-09-15 13:45:13,024 - DEBUG - Updated belief_mean: [0.50153191 0.        ]
+2024-09-15 13:45:13,024 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,024 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,025 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,025 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,025 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,025 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,025 - DEBUG - Updated total_info_gain: 8.0471895621705, total_cost: 10.0
+2024-09-15 13:45:13,025 - DEBUG - Wrote step 10 details to simulation_log.txt
+2024-09-15 13:45:13,025 - DEBUG - Extracted sampled_points with shape: (10, 2)
+2024-09-15 13:45:13,025 - DEBUG - Extracted posterior_means with shape: (10, 2)
+2024-09-15 13:45:13,025 - DEBUG - Extracted posterior_covs with shape: (10, 2, 2)
+2024-09-15 13:45:13,025 - DEBUG - Visualize_sampling called with:
+2024-09-15 13:45:13,025 - DEBUG - posterior_estimates shape: (10, 2)
+2024-09-15 13:45:13,025 - DEBUG - sampled_points shape: (10, 2)
+2024-09-15 13:45:13,025 - DEBUG - posterior_covs shape: (10, 2, 2)
+2024-09-15 13:45:13,025 - DEBUG - actions length: 10
+2024-09-15 13:45:13,025 - DEBUG - data length: 10
+2024-09-15 13:45:13,025 - DEBUG - cost_history length: 10
+2024-09-15 13:45:13,025 - DEBUG - info_gain_list length: 10
+2024-09-15 13:45:13,025 - ERROR - Visualization failed: name 'beliefs_history' is not defined
+2024-09-15 13:45:13,025 - DEBUG - Running simulation with mode: cost_sensitive, num_steps: 10
+2024-09-15 13:45:13,025 - DEBUG - Initializing sampler.
+2024-09-15 13:45:13,025 - DEBUG - Defined Phi_pi with shape: (2, 2, 3)
+2024-09-15 13:45:13,025 - DEBUG - Defined Sigma_y with shape: (2, 2)
+2024-09-15 13:45:13,025 - DEBUG - Defined Sigma_theta with shape: (2, 2)
+2024-09-15 13:45:13,025 - DEBUG - Defined eta_theta: [0. 0.]
+2024-09-15 13:45:13,025 - DEBUG - Defined C_costs: [1. 2. 5.]
+2024-09-15 13:45:13,025 - DEBUG - Initialized belief_mean: [0. 0.]
+2024-09-15 13:45:13,025 - DEBUG - Initialized belief_cov: 
+[[1. 0.]
+ [0. 1.]]
+2024-09-15 13:45:13,026 - DEBUG - Initialized ActiveDataSampler with parameters:
+2024-09-15 13:45:13,026 - DEBUG - Phi_pi shape: (2, 2, 3)
+2024-09-15 13:45:13,026 - DEBUG - Sigma_y shape: (2, 2)
+2024-09-15 13:45:13,026 - DEBUG - Sigma_theta shape: (2, 2)
+2024-09-15 13:45:13,026 - DEBUG - eta_theta: [0. 0.]
+2024-09-15 13:45:13,026 - DEBUG - policy_len: 1
+2024-09-15 13:45:13,026 - DEBUG - inference_horizon: 3
+2024-09-15 13:45:13,026 - DEBUG - Sampler initialized with C_costs.
+2024-09-15 13:45:13,026 - DEBUG - Sampler initialized in run_simulation.
+2024-09-15 13:45:13,026 - DEBUG - Initialized history lists.
+2024-09-15 13:45:13,026 - DEBUG - Set C_costs to [1.0, 2.0, 5.0] for 'cost_sensitive' mode.
+2024-09-15 13:45:13,026 - DEBUG - Initialized performance tracking variables.
+2024-09-15 13:45:13,026 - DEBUG - Simulation step 1/10
+2024-09-15 13:45:13,026 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,026 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,026 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,026 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,026 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,026 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,026 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,026 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,026 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,026 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,026 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,026 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,026 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,026 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,026 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,026 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,026 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,026 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,027 - DEBUG - Sampled observation y: [-1.56106891  0.09246454]
+2024-09-15 13:45:13,027 - DEBUG - Executed action 0, received observation y: [-1.56106891  0.09246454]
+2024-09-15 13:45:13,027 - DEBUG - Updating beliefs with observation y: [-1.56106891  0.09246454], pi: 0
+2024-09-15 13:45:13,027 - DEBUG - Updated belief_mean: [-0.58744175  0.        ]
+2024-09-15 13:45:13,027 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,027 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,027 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,027 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,027 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,027 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,027 - DEBUG - Updated total_info_gain: 0.8047189562170501, total_cost: 1.0
+2024-09-15 13:45:13,027 - DEBUG - Wrote step 1 details to simulation_log.txt
+2024-09-15 13:45:13,027 - DEBUG - Simulation step 2/10
+2024-09-15 13:45:13,027 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,027 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,027 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,028 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,028 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,028 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,028 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,028 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,028 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,028 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,028 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,028 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,028 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,028 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,028 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,028 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,028 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,028 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,028 - DEBUG - Sampled observation y: [-0.38058663 -0.42520685]
+2024-09-15 13:45:13,028 - DEBUG - Executed action 0, received observation y: [-0.38058663 -0.42520685]
+2024-09-15 13:45:13,028 - DEBUG - Updating beliefs with observation y: [-0.38058663 -0.42520685], pi: 0
+2024-09-15 13:45:13,029 - DEBUG - Updated belief_mean: [-0.32231739  0.        ]
+2024-09-15 13:45:13,029 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,029 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,029 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,029 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,029 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,029 - DEBUG - Updated total_info_gain: 1.6094379124341003, total_cost: 2.0
+2024-09-15 13:45:13,029 - DEBUG - Wrote step 2 details to simulation_log.txt
+2024-09-15 13:45:13,029 - DEBUG - Simulation step 3/10
+2024-09-15 13:45:13,029 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,029 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,029 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,029 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,029 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,029 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,029 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,029 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,029 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,029 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,029 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,029 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,029 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,030 - DEBUG - Sampled observation y: [-0.51482823 -0.36007908]
+2024-09-15 13:45:13,030 - DEBUG - Executed action 0, received observation y: [-0.51482823 -0.36007908]
+2024-09-15 13:45:13,030 - DEBUG - Updating beliefs with observation y: [-0.51482823 -0.36007908], pi: 0
+2024-09-15 13:45:13,030 - DEBUG - Updated belief_mean: [-0.34996292  0.        ]
+2024-09-15 13:45:13,030 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,030 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,030 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,030 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,030 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,030 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,030 - DEBUG - Updated total_info_gain: 2.4141568686511503, total_cost: 3.0
+2024-09-15 13:45:13,030 - DEBUG - Wrote step 3 details to simulation_log.txt
+2024-09-15 13:45:13,030 - DEBUG - Simulation step 4/10
+2024-09-15 13:45:13,030 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,030 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,030 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,031 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,031 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,031 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,031 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,031 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,031 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,031 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,031 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,031 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,031 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,031 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,031 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,031 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,031 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,031 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,031 - DEBUG - Sampled observation y: [-1.40490395  0.05550016]
+2024-09-15 13:45:13,031 - DEBUG - Executed action 0, received observation y: [-1.40490395  0.05550016]
+2024-09-15 13:45:13,031 - DEBUG - Updating beliefs with observation y: [-1.40490395  0.05550016], pi: 0
+2024-09-15 13:45:13,032 - DEBUG - Updated belief_mean: [-0.53976151  0.        ]
+2024-09-15 13:45:13,032 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,032 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,032 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,032 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,032 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,032 - DEBUG - Updated total_info_gain: 3.2188758248682006, total_cost: 4.0
+2024-09-15 13:45:13,032 - DEBUG - Wrote step 4 details to simulation_log.txt
+2024-09-15 13:45:13,032 - DEBUG - Simulation step 5/10
+2024-09-15 13:45:13,032 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,032 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,032 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,032 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,032 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,032 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,032 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,032 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,032 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,032 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,032 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,032 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,032 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,033 - DEBUG - Sampled observation y: [-0.7049368  -0.79743619]
+2024-09-15 13:45:13,033 - DEBUG - Executed action 0, received observation y: [-0.7049368  -0.79743619]
+2024-09-15 13:45:13,033 - DEBUG - Updating beliefs with observation y: [-0.7049368  -0.79743619], pi: 0
+2024-09-15 13:45:13,033 - DEBUG - Updated belief_mean: [-0.6009492  0.       ]
+2024-09-15 13:45:13,033 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,033 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,033 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,033 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,033 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,033 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,033 - DEBUG - Updated total_info_gain: 4.023594781085251, total_cost: 5.0
+2024-09-15 13:45:13,033 - DEBUG - Wrote step 5 details to simulation_log.txt
+2024-09-15 13:45:13,033 - DEBUG - Simulation step 6/10
+2024-09-15 13:45:13,033 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,034 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,034 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,034 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,034 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,034 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,034 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,034 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,034 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,034 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,034 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,034 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,034 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,034 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,034 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,034 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,034 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,034 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,034 - DEBUG - Sampled observation y: [ 0.62220966 -0.68140488]
+2024-09-15 13:45:13,035 - DEBUG - Executed action 0, received observation y: [ 0.62220966 -0.68140488]
+2024-09-15 13:45:13,035 - DEBUG - Updating beliefs with observation y: [ 0.62220966 -0.68140488], pi: 0
+2024-09-15 13:45:13,035 - DEBUG - Updated belief_mean: [-0.02367809  0.        ]
+2024-09-15 13:45:13,035 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,035 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,035 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,035 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,035 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,035 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,035 - DEBUG - Updated total_info_gain: 4.828313737302301, total_cost: 6.0
+2024-09-15 13:45:13,035 - DEBUG - Wrote step 6 details to simulation_log.txt
+2024-09-15 13:45:13,035 - DEBUG - Simulation step 7/10
+2024-09-15 13:45:13,035 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,035 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,035 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,035 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,036 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,036 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,036 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,036 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,036 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,036 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,036 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,036 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,036 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,036 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,036 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,036 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,036 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,036 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,036 - DEBUG - Sampled observation y: [-0.54310283 -0.38181738]
+2024-09-15 13:45:13,036 - DEBUG - Executed action 0, received observation y: [-0.54310283 -0.38181738]
+2024-09-15 13:45:13,037 - DEBUG - Updating beliefs with observation y: [-0.54310283 -0.38181738], pi: 0
+2024-09-15 13:45:13,037 - DEBUG - Updated belief_mean: [-0.36996809  0.        ]
+2024-09-15 13:45:13,037 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,037 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,037 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,037 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,037 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,037 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,037 - DEBUG - Updated total_info_gain: 5.63303269351935, total_cost: 7.0
+2024-09-15 13:45:13,037 - DEBUG - Wrote step 7 details to simulation_log.txt
+2024-09-15 13:45:13,037 - DEBUG - Simulation step 8/10
+2024-09-15 13:45:13,037 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,037 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,037 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,037 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,037 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,037 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,037 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,038 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,038 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,038 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,038 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,038 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,038 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,038 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,038 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,038 - DEBUG - Exploration: randomly selected action 2
+2024-09-15 13:45:13,038 - DEBUG - Selected LLM action: Costly (index 2)
+2024-09-15 13:45:13,038 - DEBUG - Executing action: 2
+2024-09-15 13:45:13,038 - DEBUG - Sampled observation y: [ 0.71554164 -0.3036007 ]
+2024-09-15 13:45:13,038 - DEBUG - Executed action 2, received observation y: [ 0.71554164 -0.3036007 ]
+2024-09-15 13:45:13,038 - DEBUG - Updating beliefs with observation y: [ 0.71554164 -0.3036007 ], pi: 2
+2024-09-15 13:45:13,039 - DEBUG - Updated belief_mean: [ 0.31801851 -0.13493365]
+2024-09-15 13:45:13,039 - DEBUG - Updated belief_cov: 
+[[0.11111111 0.        ]
+ [0.         0.11111111]]
+2024-09-15 13:45:13,039 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,039 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,039 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,039 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,039 - DEBUG - Calculated info_gain: 2.1972245773362196, cost: 5.0
+2024-09-15 13:45:13,039 - DEBUG - Updated total_info_gain: 7.83025727085557, total_cost: 12.0
+2024-09-15 13:45:13,039 - DEBUG - Wrote step 8 details to simulation_log.txt
+2024-09-15 13:45:13,039 - DEBUG - Simulation step 9/10
+2024-09-15 13:45:13,039 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,039 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,039 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,039 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,039 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,039 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,039 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,040 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,040 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,040 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,040 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,040 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,040 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,040 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,040 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,040 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,040 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,040 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,040 - DEBUG - Sampled observation y: [0.78841014 0.81742205]
+2024-09-15 13:45:13,040 - DEBUG - Executed action 0, received observation y: [0.78841014 0.81742205]
+2024-09-15 13:45:13,040 - DEBUG - Updating beliefs with observation y: [0.78841014 0.81742205], pi: 0
+2024-09-15 13:45:13,041 - DEBUG - Updated belief_mean: [0.64233287 0.        ]
+2024-09-15 13:45:13,041 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,041 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,041 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,041 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,041 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,041 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,041 - DEBUG - Updated total_info_gain: 8.63497622707262, total_cost: 13.0
+2024-09-15 13:45:13,041 - DEBUG - Wrote step 9 details to simulation_log.txt
+2024-09-15 13:45:13,041 - DEBUG - Simulation step 10/10
+2024-09-15 13:45:13,041 - DEBUG - Selecting optimal action.
+2024-09-15 13:45:13,041 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:45:13,041 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,041 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,041 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:45:13,041 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:45:13,041 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:45:13,042 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,042 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:45:13,042 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:45:13,042 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:45:13,042 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:45:13,042 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:45:13,042 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:45:13,042 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:45:13,042 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:45:13,042 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:45:13,042 - DEBUG - Executing action: 0
+2024-09-15 13:45:13,042 - DEBUG - Sampled observation y: [1.43827429 2.01701502]
+2024-09-15 13:45:13,042 - DEBUG - Executed action 0, received observation y: [1.43827429 2.01701502]
+2024-09-15 13:45:13,042 - DEBUG - Updating beliefs with observation y: [1.43827429 2.01701502], pi: 0
+2024-09-15 13:45:13,043 - DEBUG - Updated belief_mean: [1.38211573 0.        ]
+2024-09-15 13:45:13,043 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:45:13,043 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:45:13,043 - DEBUG - Appended current step data to history.
+2024-09-15 13:45:13,043 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:45:13,043 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:45:13,043 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:45:13,043 - DEBUG - Updated total_info_gain: 9.43969518328967, total_cost: 14.0
+2024-09-15 13:45:13,043 - DEBUG - Wrote step 10 details to simulation_log.txt
+2024-09-15 13:45:13,043 - DEBUG - Extracted sampled_points with shape: (10, 2)
+2024-09-15 13:45:13,043 - DEBUG - Extracted posterior_means with shape: (10, 2)
+2024-09-15 13:45:13,043 - DEBUG - Extracted posterior_covs with shape: (10, 2, 2)
+2024-09-15 13:45:13,043 - DEBUG - Visualize_sampling called with:
+2024-09-15 13:45:13,043 - DEBUG - posterior_estimates shape: (10, 2)
+2024-09-15 13:45:13,043 - DEBUG - sampled_points shape: (10, 2)
+2024-09-15 13:45:13,043 - DEBUG - posterior_covs shape: (10, 2, 2)
+2024-09-15 13:45:13,043 - DEBUG - actions length: 10
+2024-09-15 13:45:13,043 - DEBUG - data length: 10
+2024-09-15 13:45:13,043 - DEBUG - cost_history length: 10
+2024-09-15 13:45:13,043 - DEBUG - info_gain_list length: 10
+2024-09-15 13:45:13,043 - ERROR - Visualization failed: name 'beliefs_history' is not defined
+2024-09-15 13:57:05,953 - DEBUG - Running simulation with mode: free, num_steps: 10
+2024-09-15 13:57:05,953 - DEBUG - Initializing sampler.
+2024-09-15 13:57:05,953 - DEBUG - Defined Phi_pi with shape: (2, 2, 3)
+2024-09-15 13:57:05,953 - DEBUG - Defined Sigma_y with shape: (2, 2)
+2024-09-15 13:57:05,953 - DEBUG - Defined Sigma_theta with shape: (2, 2)
+2024-09-15 13:57:05,953 - DEBUG - Defined eta_theta: [0. 0.]
+2024-09-15 13:57:05,953 - DEBUG - Defined C_costs: [1. 2. 5.]
+2024-09-15 13:57:05,953 - DEBUG - Initialized belief_mean: [0. 0.]
+2024-09-15 13:57:05,953 - DEBUG - Initialized belief_cov: 
+[[1. 0.]
+ [0. 1.]]
+2024-09-15 13:57:05,953 - DEBUG - Initialized ActiveDataSampler with parameters:
+2024-09-15 13:57:05,953 - DEBUG - Phi_pi shape: (2, 2, 3)
+2024-09-15 13:57:05,953 - DEBUG - Sigma_y shape: (2, 2)
+2024-09-15 13:57:05,953 - DEBUG - Sigma_theta shape: (2, 2)
+2024-09-15 13:57:05,953 - DEBUG - eta_theta: [0. 0.]
+2024-09-15 13:57:05,953 - DEBUG - policy_len: 1
+2024-09-15 13:57:05,954 - DEBUG - inference_horizon: 3
+2024-09-15 13:57:05,954 - DEBUG - Sampler initialized with C_costs.
+2024-09-15 13:57:05,954 - DEBUG - Sampler initialized in run_simulation.
+2024-09-15 13:57:05,954 - DEBUG - Initialized history lists.
+2024-09-15 13:57:05,954 - DEBUG - Set C_costs to [1.0, 1.0, 1.0] for 'free' mode.
+2024-09-15 13:57:05,954 - DEBUG - Initialized performance tracking variables.
+2024-09-15 13:57:05,954 - DEBUG - Simulation step 1/10
+2024-09-15 13:57:05,954 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,954 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,954 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,954 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,954 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,954 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,954 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,954 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,954 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,954 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,954 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,954 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,954 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,954 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,954 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,954 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,954 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,955 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,955 - DEBUG - Sampled observation y: [ 0.59301191 -0.32199191]
+2024-09-15 13:57:05,955 - DEBUG - Executed action 0, received observation y: [ 0.59301191 -0.32199191]
+2024-09-15 13:57:05,955 - DEBUG - Updating beliefs with observation y: [ 0.59301191 -0.32199191], pi: 0
+2024-09-15 13:57:05,956 - DEBUG - Updated belief_mean: [0.108408 0.      ]
+2024-09-15 13:57:05,956 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,956 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,956 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,956 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,956 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,956 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,956 - DEBUG - Updated total_info_gain: 0.8047189562170501, total_cost: 1.0
+2024-09-15 13:57:05,956 - DEBUG - Wrote step 1 details to simulation_log.txt
+2024-09-15 13:57:05,956 - DEBUG - Simulation step 2/10
+2024-09-15 13:57:05,956 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,956 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,956 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,956 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,956 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,956 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,956 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,956 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,957 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,957 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,957 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,957 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,957 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,957 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,957 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,957 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,957 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,957 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,957 - DEBUG - Sampled observation y: [0.63958644 0.00508769]
+2024-09-15 13:57:05,957 - DEBUG - Executed action 0, received observation y: [0.63958644 0.00508769]
+2024-09-15 13:57:05,957 - DEBUG - Updating beliefs with observation y: [0.63958644 0.00508769], pi: 0
+2024-09-15 13:57:05,957 - DEBUG - Updated belief_mean: [0.25786965 0.        ]
+2024-09-15 13:57:05,957 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,957 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,957 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,958 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,958 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,958 - DEBUG - Updated total_info_gain: 1.6094379124341003, total_cost: 2.0
+2024-09-15 13:57:05,958 - DEBUG - Wrote step 2 details to simulation_log.txt
+2024-09-15 13:57:05,958 - DEBUG - Simulation step 3/10
+2024-09-15 13:57:05,958 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,958 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,958 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,958 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,958 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,958 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,958 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,958 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,958 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,958 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,958 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,958 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,958 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,958 - DEBUG - Sampled observation y: [0.13631708 0.45020389]
+2024-09-15 13:57:05,958 - DEBUG - Executed action 0, received observation y: [0.13631708 0.45020389]
+2024-09-15 13:57:05,959 - DEBUG - Updating beliefs with observation y: [0.13631708 0.45020389], pi: 0
+2024-09-15 13:57:05,959 - DEBUG - Updated belief_mean: [0.23460839 0.        ]
+2024-09-15 13:57:05,959 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,959 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,959 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,959 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,959 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,959 - DEBUG - Updated total_info_gain: 2.4141568686511503, total_cost: 3.0
+2024-09-15 13:57:05,959 - DEBUG - Wrote step 3 details to simulation_log.txt
+2024-09-15 13:57:05,959 - DEBUG - Simulation step 4/10
+2024-09-15 13:57:05,959 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,959 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,959 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,959 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,959 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,959 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,959 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,959 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,960 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,960 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,960 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,960 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,960 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,960 - DEBUG - Sampled observation y: [1.01101094 0.29101523]
+2024-09-15 13:57:05,960 - DEBUG - Executed action 0, received observation y: [1.01101094 0.29101523]
+2024-09-15 13:57:05,960 - DEBUG - Updating beliefs with observation y: [1.01101094 0.29101523], pi: 0
+2024-09-15 13:57:05,960 - DEBUG - Updated belief_mean: [0.52081047 0.        ]
+2024-09-15 13:57:05,960 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,960 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,960 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,960 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,960 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,960 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,960 - DEBUG - Updated total_info_gain: 3.2188758248682006, total_cost: 4.0
+2024-09-15 13:57:05,960 - DEBUG - Wrote step 4 details to simulation_log.txt
+2024-09-15 13:57:05,961 - DEBUG - Simulation step 5/10
+2024-09-15 13:57:05,961 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,961 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,961 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,961 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,961 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,961 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,961 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,961 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,961 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,961 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,961 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,961 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,961 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,961 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,961 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,961 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,961 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,961 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,961 - DEBUG - Sampled observation y: [0.04949571 1.24478804]
+2024-09-15 13:57:05,961 - DEBUG - Executed action 0, received observation y: [0.04949571 1.24478804]
+2024-09-15 13:57:05,961 - DEBUG - Updating beliefs with observation y: [0.04949571 1.24478804], pi: 0
+2024-09-15 13:57:05,962 - DEBUG - Updated belief_mean: [0.5177135 0.       ]
+2024-09-15 13:57:05,962 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,962 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,962 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,962 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,962 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,962 - DEBUG - Updated total_info_gain: 4.023594781085251, total_cost: 5.0
+2024-09-15 13:57:05,962 - DEBUG - Wrote step 5 details to simulation_log.txt
+2024-09-15 13:57:05,962 - DEBUG - Simulation step 6/10
+2024-09-15 13:57:05,962 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,962 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,962 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,962 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,962 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,962 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,962 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,962 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,962 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,962 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,962 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,962 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,963 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,963 - DEBUG - Sampled observation y: [0.23443962 0.96396725]
+2024-09-15 13:57:05,963 - DEBUG - Executed action 0, received observation y: [0.23443962 0.96396725]
+2024-09-15 13:57:05,963 - DEBUG - Updating beliefs with observation y: [0.23443962 0.96396725], pi: 0
+2024-09-15 13:57:05,963 - DEBUG - Updated belief_mean: [0.47936275 0.        ]
+2024-09-15 13:57:05,963 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,963 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,963 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,963 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,963 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,963 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,963 - DEBUG - Updated total_info_gain: 4.828313737302301, total_cost: 6.0
+2024-09-15 13:57:05,963 - DEBUG - Wrote step 6 details to simulation_log.txt
+2024-09-15 13:57:05,963 - DEBUG - Simulation step 7/10
+2024-09-15 13:57:05,963 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,963 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,963 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,964 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,964 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,964 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,964 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,964 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,964 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,964 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,964 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,964 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,964 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,964 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,964 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,964 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,964 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,964 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,964 - DEBUG - Sampled observation y: [-0.53771153  0.2338755 ]
+2024-09-15 13:57:05,964 - DEBUG - Executed action 0, received observation y: [-0.53771153  0.2338755 ]
+2024-09-15 13:57:05,964 - DEBUG - Updating beliefs with observation y: [-0.53771153  0.2338755 ], pi: 0
+2024-09-15 13:57:05,964 - DEBUG - Updated belief_mean: [-0.12153441  0.        ]
+2024-09-15 13:57:05,965 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,965 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,965 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,965 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,965 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,965 - DEBUG - Updated total_info_gain: 5.63303269351935, total_cost: 7.0
+2024-09-15 13:57:05,965 - DEBUG - Wrote step 7 details to simulation_log.txt
+2024-09-15 13:57:05,965 - DEBUG - Simulation step 8/10
+2024-09-15 13:57:05,965 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,965 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,965 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,965 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,965 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,965 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,965 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,965 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,965 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,965 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,965 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,965 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,965 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,966 - DEBUG - Sampled observation y: [-0.09293736  0.63644313]
+2024-09-15 13:57:05,966 - DEBUG - Executed action 0, received observation y: [-0.09293736  0.63644313]
+2024-09-15 13:57:05,966 - DEBUG - Updating beliefs with observation y: [-0.09293736  0.63644313], pi: 0
+2024-09-15 13:57:05,966 - DEBUG - Updated belief_mean: [0.21740231 0.        ]
+2024-09-15 13:57:05,966 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,966 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,966 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,966 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,966 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,966 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,966 - DEBUG - Updated total_info_gain: 6.4377516497364, total_cost: 8.0
+2024-09-15 13:57:05,966 - DEBUG - Wrote step 8 details to simulation_log.txt
+2024-09-15 13:57:05,966 - DEBUG - Simulation step 9/10
+2024-09-15 13:57:05,966 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,966 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,966 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,966 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,966 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,966 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,966 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,966 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,967 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,967 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,967 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,967 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,967 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,967 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,967 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,967 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,967 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,967 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,967 - DEBUG - Sampled observation y: [ 0.35361761 -0.41246113]
+2024-09-15 13:57:05,967 - DEBUG - Executed action 0, received observation y: [ 0.35361761 -0.41246113]
+2024-09-15 13:57:05,967 - DEBUG - Updating beliefs with observation y: [ 0.35361761 -0.41246113], pi: 0
+2024-09-15 13:57:05,967 - DEBUG - Updated belief_mean: [-0.02353741  0.        ]
+2024-09-15 13:57:05,967 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,967 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,967 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,967 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,968 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,968 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,968 - DEBUG - Updated total_info_gain: 7.24247060595345, total_cost: 9.0
+2024-09-15 13:57:05,968 - DEBUG - Wrote step 9 details to simulation_log.txt
+2024-09-15 13:57:05,968 - DEBUG - Simulation step 10/10
+2024-09-15 13:57:05,968 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,968 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 13:57:05,968 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,968 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,968 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,968 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 13:57:05,968 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,968 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,968 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 13:57:05,968 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 13:57:05,968 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,968 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,968 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 13:57:05,968 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 13:57:05,968 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,968 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,968 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,968 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,968 - DEBUG - Sampled observation y: [0.91383977 0.60440614]
+2024-09-15 13:57:05,968 - DEBUG - Executed action 0, received observation y: [0.91383977 0.60440614]
+2024-09-15 13:57:05,969 - DEBUG - Updating beliefs with observation y: [0.91383977 0.60440614], pi: 0
+2024-09-15 13:57:05,969 - DEBUG - Updated belief_mean: [0.60729837 0.        ]
+2024-09-15 13:57:05,969 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,969 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,969 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,969 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,969 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,969 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,969 - DEBUG - Updated total_info_gain: 8.0471895621705, total_cost: 10.0
+2024-09-15 13:57:05,969 - DEBUG - Wrote step 10 details to simulation_log.txt
+2024-09-15 13:57:05,969 - DEBUG - Extracted sampled_points with shape: (10, 2)
+2024-09-15 13:57:05,969 - DEBUG - Extracted posterior_means with shape: (10, 2)
+2024-09-15 13:57:05,969 - DEBUG - Extracted posterior_covs with shape: (10, 2, 2)
+2024-09-15 13:57:05,969 - DEBUG - Visualize_sampling called with:
+2024-09-15 13:57:05,969 - DEBUG - posterior_estimates shape: (10, 2)
+2024-09-15 13:57:05,969 - DEBUG - sampled_points shape: (10, 2)
+2024-09-15 13:57:05,969 - DEBUG - posterior_covs shape: (10, 2, 2)
+2024-09-15 13:57:05,969 - DEBUG - actions length: 10
+2024-09-15 13:57:05,969 - DEBUG - data length: 10
+2024-09-15 13:57:05,969 - DEBUG - cost_history length: 10
+2024-09-15 13:57:05,969 - DEBUG - info_gain_list length: 10
+2024-09-15 13:57:05,969 - ERROR - Visualization failed: cannot access local variable 'randomization_choices' where it is not associated with a value
+2024-09-15 13:57:05,969 - DEBUG - Running simulation with mode: cost_sensitive, num_steps: 10
+2024-09-15 13:57:05,969 - DEBUG - Initializing sampler.
+2024-09-15 13:57:05,969 - DEBUG - Defined Phi_pi with shape: (2, 2, 3)
+2024-09-15 13:57:05,969 - DEBUG - Defined Sigma_y with shape: (2, 2)
+2024-09-15 13:57:05,970 - DEBUG - Defined Sigma_theta with shape: (2, 2)
+2024-09-15 13:57:05,970 - DEBUG - Defined eta_theta: [0. 0.]
+2024-09-15 13:57:05,970 - DEBUG - Defined C_costs: [1. 2. 5.]
+2024-09-15 13:57:05,970 - DEBUG - Initialized belief_mean: [0. 0.]
+2024-09-15 13:57:05,970 - DEBUG - Initialized belief_cov: 
+[[1. 0.]
+ [0. 1.]]
+2024-09-15 13:57:05,970 - DEBUG - Initialized ActiveDataSampler with parameters:
+2024-09-15 13:57:05,970 - DEBUG - Phi_pi shape: (2, 2, 3)
+2024-09-15 13:57:05,970 - DEBUG - Sigma_y shape: (2, 2)
+2024-09-15 13:57:05,970 - DEBUG - Sigma_theta shape: (2, 2)
+2024-09-15 13:57:05,970 - DEBUG - eta_theta: [0. 0.]
+2024-09-15 13:57:05,970 - DEBUG - policy_len: 1
+2024-09-15 13:57:05,970 - DEBUG - inference_horizon: 3
+2024-09-15 13:57:05,970 - DEBUG - Sampler initialized with C_costs.
+2024-09-15 13:57:05,970 - DEBUG - Sampler initialized in run_simulation.
+2024-09-15 13:57:05,970 - DEBUG - Initialized history lists.
+2024-09-15 13:57:05,970 - DEBUG - Set C_costs to [1.0, 2.0, 5.0] for 'cost_sensitive' mode.
+2024-09-15 13:57:05,970 - DEBUG - Initialized performance tracking variables.
+2024-09-15 13:57:05,970 - DEBUG - Simulation step 1/10
+2024-09-15 13:57:05,970 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,970 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,970 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,970 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,970 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,970 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,970 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,971 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,971 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,971 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,971 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,971 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,971 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,971 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,971 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,971 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,971 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,971 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,971 - DEBUG - Sampled observation y: [0.75745486 0.67128532]
+2024-09-15 13:57:05,971 - DEBUG - Executed action 0, received observation y: [0.75745486 0.67128532]
+2024-09-15 13:57:05,971 - DEBUG - Updating beliefs with observation y: [0.75745486 0.67128532], pi: 0
+2024-09-15 13:57:05,972 - DEBUG - Updated belief_mean: [0.57149607 0.        ]
+2024-09-15 13:57:05,972 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,972 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,972 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,972 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,972 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,972 - DEBUG - Updated total_info_gain: 0.8047189562170501, total_cost: 1.0
+2024-09-15 13:57:05,972 - DEBUG - Wrote step 1 details to simulation_log.txt
+2024-09-15 13:57:05,972 - DEBUG - Simulation step 2/10
+2024-09-15 13:57:05,972 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,972 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,972 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,972 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,972 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,972 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,972 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,972 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,972 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,972 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,972 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,972 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,972 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,973 - DEBUG - Sampled observation y: [-0.27863507  0.32665106]
+2024-09-15 13:57:05,973 - DEBUG - Executed action 0, received observation y: [-0.27863507  0.32665106]
+2024-09-15 13:57:05,973 - DEBUG - Updating beliefs with observation y: [-0.27863507  0.32665106], pi: 0
+2024-09-15 13:57:05,973 - DEBUG - Updated belief_mean: [0.0192064 0.       ]
+2024-09-15 13:57:05,973 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,973 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,973 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,973 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,973 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,973 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,973 - DEBUG - Updated total_info_gain: 1.6094379124341003, total_cost: 2.0
+2024-09-15 13:57:05,973 - DEBUG - Wrote step 2 details to simulation_log.txt
+2024-09-15 13:57:05,974 - DEBUG - Simulation step 3/10
+2024-09-15 13:57:05,974 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,974 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,974 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,974 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,974 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,974 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,974 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,974 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,974 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,974 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,974 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,974 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,974 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,974 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,974 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,974 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,974 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,974 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,974 - DEBUG - Sampled observation y: [-1.31122012  0.14910548]
+2024-09-15 13:57:05,974 - DEBUG - Executed action 0, received observation y: [-1.31122012  0.14910548]
+2024-09-15 13:57:05,975 - DEBUG - Updating beliefs with observation y: [-1.31122012  0.14910548], pi: 0
+2024-09-15 13:57:05,975 - DEBUG - Updated belief_mean: [-0.46484586  0.        ]
+2024-09-15 13:57:05,975 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,975 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,975 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,975 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,975 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,975 - DEBUG - Updated total_info_gain: 2.4141568686511503, total_cost: 3.0
+2024-09-15 13:57:05,975 - DEBUG - Wrote step 3 details to simulation_log.txt
+2024-09-15 13:57:05,975 - DEBUG - Simulation step 4/10
+2024-09-15 13:57:05,975 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,975 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,975 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,975 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,975 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,975 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,975 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,975 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,975 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,975 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,976 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,976 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,976 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,976 - DEBUG - Sampled observation y: [-1.30667775 -0.03839711]
+2024-09-15 13:57:05,976 - DEBUG - Executed action 0, received observation y: [-1.30667775 -0.03839711]
+2024-09-15 13:57:05,976 - DEBUG - Updating beliefs with observation y: [-1.30667775 -0.03839711], pi: 0
+2024-09-15 13:57:05,976 - DEBUG - Updated belief_mean: [-0.53802995  0.        ]
+2024-09-15 13:57:05,976 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,976 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,976 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,976 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,976 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,976 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,976 - DEBUG - Updated total_info_gain: 3.2188758248682006, total_cost: 4.0
+2024-09-15 13:57:05,976 - DEBUG - Wrote step 4 details to simulation_log.txt
+2024-09-15 13:57:05,976 - DEBUG - Simulation step 5/10
+2024-09-15 13:57:05,976 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,976 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,976 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,977 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,977 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,977 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,977 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,977 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,977 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,977 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,977 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,977 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,977 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,977 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,977 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,977 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,977 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,977 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,977 - DEBUG - Sampled observation y: [-0.6367898  -0.31584443]
+2024-09-15 13:57:05,977 - DEBUG - Executed action 0, received observation y: [-0.6367898  -0.31584443]
+2024-09-15 13:57:05,977 - DEBUG - Updating beliefs with observation y: [-0.6367898  -0.31584443], pi: 0
+2024-09-15 13:57:05,977 - DEBUG - Updated belief_mean: [-0.38105369  0.        ]
+2024-09-15 13:57:05,978 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,978 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,978 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,978 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,978 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,978 - DEBUG - Updated total_info_gain: 4.023594781085251, total_cost: 5.0
+2024-09-15 13:57:05,978 - DEBUG - Wrote step 5 details to simulation_log.txt
+2024-09-15 13:57:05,978 - DEBUG - Simulation step 6/10
+2024-09-15 13:57:05,978 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,978 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,978 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,978 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,978 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,978 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,978 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,978 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,978 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,978 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,978 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,978 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,978 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,979 - DEBUG - Sampled observation y: [ 0.12949201 -0.59216214]
+2024-09-15 13:57:05,979 - DEBUG - Executed action 0, received observation y: [ 0.12949201 -0.59216214]
+2024-09-15 13:57:05,979 - DEBUG - Updating beliefs with observation y: [ 0.12949201 -0.59216214], pi: 0
+2024-09-15 13:57:05,979 - DEBUG - Updated belief_mean: [-0.18506805  0.        ]
+2024-09-15 13:57:05,979 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,979 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,979 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,979 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,979 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,979 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,979 - DEBUG - Updated total_info_gain: 4.828313737302301, total_cost: 6.0
+2024-09-15 13:57:05,979 - DEBUG - Wrote step 6 details to simulation_log.txt
+2024-09-15 13:57:05,979 - DEBUG - Simulation step 7/10
+2024-09-15 13:57:05,979 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,979 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,979 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,979 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,980 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,980 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,980 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,980 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,980 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,980 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,980 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,980 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,980 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,980 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,980 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,980 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,980 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,980 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,980 - DEBUG - Sampled observation y: [-0.56653083 -0.39773355]
+2024-09-15 13:57:05,980 - DEBUG - Executed action 0, received observation y: [-0.56653083 -0.39773355]
+2024-09-15 13:57:05,980 - DEBUG - Updating beliefs with observation y: [-0.56653083 -0.39773355], pi: 0
+2024-09-15 13:57:05,981 - DEBUG - Updated belief_mean: [-0.38570575  0.        ]
+2024-09-15 13:57:05,981 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,981 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,981 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,981 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,981 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,981 - DEBUG - Updated total_info_gain: 5.63303269351935, total_cost: 7.0
+2024-09-15 13:57:05,981 - DEBUG - Wrote step 7 details to simulation_log.txt
+2024-09-15 13:57:05,981 - DEBUG - Simulation step 8/10
+2024-09-15 13:57:05,981 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,981 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,981 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,981 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,981 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,981 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,981 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,981 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,981 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,981 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,981 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,981 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,982 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,982 - DEBUG - Sampled observation y: [-1.90778694  0.25296411]
+2024-09-15 13:57:05,982 - DEBUG - Executed action 0, received observation y: [-1.90778694  0.25296411]
+2024-09-15 13:57:05,982 - DEBUG - Updating beliefs with observation y: [-1.90778694  0.25296411], pi: 0
+2024-09-15 13:57:05,982 - DEBUG - Updated belief_mean: [-0.66192913  0.        ]
+2024-09-15 13:57:05,982 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,982 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,982 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,982 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,982 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,982 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,982 - DEBUG - Updated total_info_gain: 6.4377516497364, total_cost: 8.0
+2024-09-15 13:57:05,982 - DEBUG - Wrote step 8 details to simulation_log.txt
+2024-09-15 13:57:05,982 - DEBUG - Simulation step 9/10
+2024-09-15 13:57:05,982 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,982 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,983 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,983 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,983 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,983 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,983 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,983 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,983 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,983 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,983 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,983 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,983 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,983 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,983 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,983 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,983 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,983 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,983 - DEBUG - Sampled observation y: [-0.72837959 -1.44052512]
+2024-09-15 13:57:05,983 - DEBUG - Executed action 0, received observation y: [-0.72837959 -1.44052512]
+2024-09-15 13:57:05,983 - DEBUG - Updating beliefs with observation y: [-0.72837959 -1.44052512], pi: 0
+2024-09-15 13:57:05,983 - DEBUG - Updated belief_mean: [-0.86756188  0.        ]
+2024-09-15 13:57:05,984 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,984 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,984 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,984 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,984 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,984 - DEBUG - Updated total_info_gain: 7.24247060595345, total_cost: 9.0
+2024-09-15 13:57:05,984 - DEBUG - Wrote step 9 details to simulation_log.txt
+2024-09-15 13:57:05,984 - DEBUG - Simulation step 10/10
+2024-09-15 13:57:05,984 - DEBUG - Selecting optimal action.
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,984 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,984 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 13:57:05,984 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,984 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 13:57:05,984 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 13:57:05,984 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 13:57:05,984 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 13:57:05,984 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 13:57:05,984 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 13:57:05,984 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 13:57:05,984 - DEBUG - Selected LLM action: Cheap (index 0)
+2024-09-15 13:57:05,984 - DEBUG - Executing action: 0
+2024-09-15 13:57:05,985 - DEBUG - Sampled observation y: [-0.14017832 -1.10035777]
+2024-09-15 13:57:05,985 - DEBUG - Executed action 0, received observation y: [-0.14017832 -1.10035777]
+2024-09-15 13:57:05,985 - DEBUG - Updating beliefs with observation y: [-0.14017832 -1.10035777], pi: 0
+2024-09-15 13:57:05,985 - DEBUG - Updated belief_mean: [-0.49621444  0.        ]
+2024-09-15 13:57:05,985 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 13:57:05,985 - DEBUG - Updated beliefs with received observation.
+2024-09-15 13:57:05,985 - DEBUG - Appended current step data to history.
+2024-09-15 13:57:05,985 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 13:57:05,985 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 13:57:05,985 - DEBUG - Calculated info_gain: 0.8047189562170501, cost: 1.0
+2024-09-15 13:57:05,985 - DEBUG - Updated total_info_gain: 8.0471895621705, total_cost: 10.0
+2024-09-15 13:57:05,985 - DEBUG - Wrote step 10 details to simulation_log.txt
+2024-09-15 13:57:05,985 - DEBUG - Extracted sampled_points with shape: (10, 2)
+2024-09-15 13:57:05,986 - DEBUG - Extracted posterior_means with shape: (10, 2)
+2024-09-15 13:57:05,986 - DEBUG - Extracted posterior_covs with shape: (10, 2, 2)
+2024-09-15 13:57:05,986 - DEBUG - Visualize_sampling called with:
+2024-09-15 13:57:05,986 - DEBUG - posterior_estimates shape: (10, 2)
+2024-09-15 13:57:05,986 - DEBUG - sampled_points shape: (10, 2)
+2024-09-15 13:57:05,986 - DEBUG - posterior_covs shape: (10, 2, 2)
+2024-09-15 13:57:05,986 - DEBUG - actions length: 10
+2024-09-15 13:57:05,986 - DEBUG - data length: 10
+2024-09-15 13:57:05,986 - DEBUG - cost_history length: 10
+2024-09-15 13:57:05,986 - DEBUG - info_gain_list length: 10
+2024-09-15 13:57:05,986 - ERROR - Visualization failed: cannot access local variable 'randomization_choices' where it is not associated with a value
+2024-09-15 14:04:15,223 - DEBUG - Running simulation with mode: free, num_steps: 10
+2024-09-15 14:04:15,223 - DEBUG - Initializing sampler.
+2024-09-15 14:04:15,224 - DEBUG - Defined Phi_pi with shape: (2, 2, 3)
+2024-09-15 14:04:15,224 - DEBUG - Defined Sigma_y with shape: (2, 2)
+2024-09-15 14:04:15,224 - DEBUG - Defined Sigma_theta with shape: (2, 2)
+2024-09-15 14:04:15,224 - DEBUG - Defined eta_theta: [0. 0.]
+2024-09-15 14:04:15,224 - DEBUG - Defined C_costs: [1. 2. 5.]
+2024-09-15 14:04:15,224 - DEBUG - Initialized belief_mean: [0. 0.]
+2024-09-15 14:04:15,224 - DEBUG - Initialized belief_cov: 
+[[1. 0.]
+ [0. 1.]]
+2024-09-15 14:04:15,224 - DEBUG - Initialized ActiveDataSampler with parameters:
+2024-09-15 14:04:15,224 - DEBUG - Phi_pi shape: (2, 2, 3)
+2024-09-15 14:04:15,224 - DEBUG - Sigma_y shape: (2, 2)
+2024-09-15 14:04:15,224 - DEBUG - Sigma_theta shape: (2, 2)
+2024-09-15 14:04:15,224 - DEBUG - eta_theta: [0. 0.]
+2024-09-15 14:04:15,224 - DEBUG - policy_len: 1
+2024-09-15 14:04:15,224 - DEBUG - inference_horizon: 3
+2024-09-15 14:04:15,224 - DEBUG - Sampler initialized with C_costs.
+2024-09-15 14:04:15,224 - DEBUG - Sampler initialized in run_simulation.
+2024-09-15 14:04:15,224 - DEBUG - Initialized history lists.
+2024-09-15 14:04:15,224 - DEBUG - Set C_costs to [1.0, 1.0, 1.0] for 'free' mode.
+2024-09-15 14:04:15,224 - DEBUG - Initialized performance metrics.
+2024-09-15 14:04:15,224 - DEBUG - Simulation step 1/10
+2024-09-15 14:04:15,224 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,225 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,225 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,225 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,225 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,225 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,225 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,225 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,225 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,225 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,225 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,225 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,225 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,225 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,225 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,225 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,225 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,225 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,226 - DEBUG - Sampled observation y: [-0.54317506 -0.81637951]
+2024-09-15 14:04:15,226 - DEBUG - Received observation y: [-0.54317506 -0.81637951]
+2024-09-15 14:04:15,226 - DEBUG - Updating beliefs with observation y: [-0.54317506 -0.81637951], pi: 0
+2024-09-15 14:04:15,226 - DEBUG - Updated belief_mean: [-0.54382183  0.        ]
+2024-09-15 14:04:15,226 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,226 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,226 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,226 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,226 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,226 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,226 - DEBUG - Total Info Gain: 0.8047189562170501, Total Cost: 1.0
+2024-09-15 14:04:15,226 - DEBUG - Wrote step 1 details to simulation_log.txt
+2024-09-15 14:04:15,226 - DEBUG - Simulation step 2/10
+2024-09-15 14:04:15,226 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,227 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,227 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,227 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,227 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,227 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,227 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,227 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,227 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,227 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,227 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,227 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,227 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,227 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,227 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,227 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,227 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,227 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,227 - DEBUG - Sampled observation y: [-1.18860796  0.38150295]
+2024-09-15 14:04:15,227 - DEBUG - Received observation y: [-1.18860796  0.38150295]
+2024-09-15 14:04:15,227 - DEBUG - Updating beliefs with observation y: [-1.18860796  0.38150295], pi: 0
+2024-09-15 14:04:15,228 - DEBUG - Updated belief_mean: [-0.322842  0.      ]
+2024-09-15 14:04:15,228 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,228 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,228 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,228 - DEBUG - Total Info Gain: 1.6094379124341003, Total Cost: 2.0
+2024-09-15 14:04:15,228 - DEBUG - Wrote step 2 details to simulation_log.txt
+2024-09-15 14:04:15,228 - DEBUG - Simulation step 3/10
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,228 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,228 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,228 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,228 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,229 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,229 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,229 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,229 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,229 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,229 - DEBUG - Sampled observation y: [ 0.35452076 -0.51007232]
+2024-09-15 14:04:15,229 - DEBUG - Received observation y: [ 0.35452076 -0.51007232]
+2024-09-15 14:04:15,229 - DEBUG - Updating beliefs with observation y: [ 0.35452076 -0.51007232], pi: 0
+2024-09-15 14:04:15,229 - DEBUG - Updated belief_mean: [-0.06222063  0.        ]
+2024-09-15 14:04:15,229 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,229 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,229 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,229 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,229 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,229 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,229 - DEBUG - Total Info Gain: 2.4141568686511503, Total Cost: 3.0
+2024-09-15 14:04:15,229 - DEBUG - Wrote step 3 details to simulation_log.txt
+2024-09-15 14:04:15,229 - DEBUG - Simulation step 4/10
+2024-09-15 14:04:15,229 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,230 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,230 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,230 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,230 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,230 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,230 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,230 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,230 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,230 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,230 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,230 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,230 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,230 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,230 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,230 - DEBUG - Exploration: randomly selected action 0
+2024-09-15 14:04:15,230 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,230 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,230 - DEBUG - Sampled observation y: [0.04523499 0.33239589]
+2024-09-15 14:04:15,230 - DEBUG - Received observation y: [0.04523499 0.33239589]
+2024-09-15 14:04:15,230 - DEBUG - Updating beliefs with observation y: [0.04523499 0.33239589], pi: 0
+2024-09-15 14:04:15,231 - DEBUG - Updated belief_mean: [0.15105235 0.        ]
+2024-09-15 14:04:15,231 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,231 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,231 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,231 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,231 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,231 - DEBUG - Total Info Gain: 3.2188758248682006, Total Cost: 4.0
+2024-09-15 14:04:15,231 - DEBUG - Wrote step 4 details to simulation_log.txt
+2024-09-15 14:04:15,231 - DEBUG - Simulation step 5/10
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,231 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,231 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,231 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,231 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,231 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,231 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,231 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,231 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,232 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,232 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,232 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,232 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,232 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,232 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,232 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,232 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,232 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,232 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,232 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,232 - DEBUG - Sampled observation y: [0.14827249 0.40207574]
+2024-09-15 14:04:15,232 - DEBUG - Received observation y: [0.14827249 0.40207574]
+2024-09-15 14:04:15,232 - DEBUG - Updating beliefs with observation y: [0.14827249 0.40207574], pi: 0
+2024-09-15 14:04:15,232 - DEBUG - Updated belief_mean: [0.22013929 0.        ]
+2024-09-15 14:04:15,232 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,232 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,232 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,232 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,232 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,232 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,232 - DEBUG - Total Info Gain: 4.023594781085251, Total Cost: 5.0
+2024-09-15 14:04:15,233 - DEBUG - Wrote step 5 details to simulation_log.txt
+2024-09-15 14:04:15,233 - DEBUG - Simulation step 6/10
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,233 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,233 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,233 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,233 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,233 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,233 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,233 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,233 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,233 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,233 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,233 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,233 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,233 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,233 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,233 - DEBUG - Exploration: randomly selected action 0
+2024-09-15 14:04:15,233 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,233 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,234 - DEBUG - Sampled observation y: [ 1.59193667 -0.00214058]
+2024-09-15 14:04:15,234 - DEBUG - Received observation y: [ 1.59193667 -0.00214058]
+2024-09-15 14:04:15,234 - DEBUG - Updating beliefs with observation y: [ 1.59193667 -0.00214058], pi: 0
+2024-09-15 14:04:15,234 - DEBUG - Updated belief_mean: [0.63591844 0.        ]
+2024-09-15 14:04:15,234 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,234 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,234 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,234 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,234 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,234 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,234 - DEBUG - Total Info Gain: 4.828313737302301, Total Cost: 6.0
+2024-09-15 14:04:15,234 - DEBUG - Wrote step 6 details to simulation_log.txt
+2024-09-15 14:04:15,234 - DEBUG - Simulation step 7/10
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,235 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,235 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,235 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,235 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,235 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,235 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,235 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,235 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,235 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,235 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,235 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,235 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,235 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,235 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,235 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,235 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,235 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,235 - DEBUG - Sampled observation y: [1.02091231 0.21575454]
+2024-09-15 14:04:15,235 - DEBUG - Received observation y: [1.02091231 0.21575454]
+2024-09-15 14:04:15,236 - DEBUG - Updating beliefs with observation y: [1.02091231 0.21575454], pi: 0
+2024-09-15 14:04:15,236 - DEBUG - Updated belief_mean: [0.49466674 0.        ]
+2024-09-15 14:04:15,236 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,236 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,236 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,236 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,236 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,236 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,236 - DEBUG - Total Info Gain: 5.63303269351935, Total Cost: 7.0
+2024-09-15 14:04:15,236 - DEBUG - Wrote step 7 details to simulation_log.txt
+2024-09-15 14:04:15,236 - DEBUG - Simulation step 8/10
+2024-09-15 14:04:15,236 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,236 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,236 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,236 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,236 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,236 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,236 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,236 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,236 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,236 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,237 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,237 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,237 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,237 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,237 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,237 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,237 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,237 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,237 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,237 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,237 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,237 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,237 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,237 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,237 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,237 - DEBUG - Sampled observation y: [1.56462794 0.80469497]
+2024-09-15 14:04:15,237 - DEBUG - Received observation y: [1.56462794 0.80469497]
+2024-09-15 14:04:15,237 - DEBUG - Updating beliefs with observation y: [1.56462794 0.80469497], pi: 0
+2024-09-15 14:04:15,238 - DEBUG - Updated belief_mean: [0.94772917 0.        ]
+2024-09-15 14:04:15,238 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,238 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,238 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,238 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,238 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,238 - DEBUG - Total Info Gain: 6.4377516497364, Total Cost: 8.0
+2024-09-15 14:04:15,238 - DEBUG - Wrote step 8 details to simulation_log.txt
+2024-09-15 14:04:15,238 - DEBUG - Simulation step 9/10
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,238 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,238 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,238 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,238 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,238 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,238 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,238 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,238 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,238 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,238 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,239 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,239 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,239 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,239 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,239 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,239 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,239 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,239 - DEBUG - Sampled observation y: [-0.16042445  0.8091839 ]
+2024-09-15 14:04:15,239 - DEBUG - Received observation y: [-0.16042445  0.8091839 ]
+2024-09-15 14:04:15,239 - DEBUG - Updating beliefs with observation y: [-0.16042445  0.8091839 ], pi: 0
+2024-09-15 14:04:15,239 - DEBUG - Updated belief_mean: [0.25950378 0.        ]
+2024-09-15 14:04:15,240 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,240 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,240 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,240 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,240 - DEBUG - Total Info Gain: 7.24247060595345, Total Cost: 9.0
+2024-09-15 14:04:15,240 - DEBUG - Wrote step 9 details to simulation_log.txt
+2024-09-15 14:04:15,240 - DEBUG - Simulation step 10/10
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,240 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,240 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: False
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,240 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: False
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,240 - DEBUG - EIG: 0.8047189562170501, Expected Free Energy (G): 0.8047189562170501
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: False
+2024-09-15 14:04:15,240 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,240 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,241 - DEBUG - EIG: 2.1972245773362196, Expected Free Energy (G): 2.1972245773362196
+2024-09-15 14:04:15,241 - DEBUG - Expected Free Energies: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,241 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,241 - DEBUG - Exploration: randomly selected action 0
+2024-09-15 14:04:15,241 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,241 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,241 - DEBUG - Sampled observation y: [ 1.24311529 -0.8888472 ]
+2024-09-15 14:04:15,241 - DEBUG - Received observation y: [ 1.24311529 -0.8888472 ]
+2024-09-15 14:04:15,241 - DEBUG - Updating beliefs with observation y: [ 1.24311529 -0.8888472 ], pi: 0
+2024-09-15 14:04:15,241 - DEBUG - Updated belief_mean: [0.14170724 0.        ]
+2024-09-15 14:04:15,241 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,241 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,242 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,242 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,242 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,242 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,242 - DEBUG - Total Info Gain: 8.0471895621705, Total Cost: 10.0
+2024-09-15 14:04:15,242 - DEBUG - Wrote step 10 details to simulation_log.txt
+2024-09-15 14:04:15,242 - DEBUG - Compiled all simulation results.
+2024-09-15 14:04:15,242 - ERROR - Visualization failed: visualize_sampling() got an unexpected keyword argument 'expected_info_gain_history'
+2024-09-15 14:04:15,242 - DEBUG - Running simulation with mode: cost_sensitive, num_steps: 10
+2024-09-15 14:04:15,242 - DEBUG - Initializing sampler.
+2024-09-15 14:04:15,242 - DEBUG - Defined Phi_pi with shape: (2, 2, 3)
+2024-09-15 14:04:15,242 - DEBUG - Defined Sigma_y with shape: (2, 2)
+2024-09-15 14:04:15,242 - DEBUG - Defined Sigma_theta with shape: (2, 2)
+2024-09-15 14:04:15,242 - DEBUG - Defined eta_theta: [0. 0.]
+2024-09-15 14:04:15,242 - DEBUG - Defined C_costs: [1. 2. 5.]
+2024-09-15 14:04:15,242 - DEBUG - Initialized belief_mean: [0. 0.]
+2024-09-15 14:04:15,242 - DEBUG - Initialized belief_cov: 
+[[1. 0.]
+ [0. 1.]]
+2024-09-15 14:04:15,243 - DEBUG - Initialized ActiveDataSampler with parameters:
+2024-09-15 14:04:15,243 - DEBUG - Phi_pi shape: (2, 2, 3)
+2024-09-15 14:04:15,243 - DEBUG - Sigma_y shape: (2, 2)
+2024-09-15 14:04:15,243 - DEBUG - Sigma_theta shape: (2, 2)
+2024-09-15 14:04:15,243 - DEBUG - eta_theta: [0. 0.]
+2024-09-15 14:04:15,243 - DEBUG - policy_len: 1
+2024-09-15 14:04:15,243 - DEBUG - inference_horizon: 3
+2024-09-15 14:04:15,243 - DEBUG - Sampler initialized with C_costs.
+2024-09-15 14:04:15,243 - DEBUG - Sampler initialized in run_simulation.
+2024-09-15 14:04:15,243 - DEBUG - Initialized history lists.
+2024-09-15 14:04:15,243 - DEBUG - Set C_costs to [1.0, 2.0, 5.0] for 'cost_sensitive' mode.
+2024-09-15 14:04:15,243 - DEBUG - Initialized performance metrics.
+2024-09-15 14:04:15,243 - DEBUG - Simulation step 1/10
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,243 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,243 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,243 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,243 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,243 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,243 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,243 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,243 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,243 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,243 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,243 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,243 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,243 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,243 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,244 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,244 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,244 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,244 - DEBUG - Sampled observation y: [-0.14015891 -0.04326082]
+2024-09-15 14:04:15,244 - DEBUG - Received observation y: [-0.14015891 -0.04326082]
+2024-09-15 14:04:15,244 - DEBUG - Updating beliefs with observation y: [-0.14015891 -0.04326082], pi: 0
+2024-09-15 14:04:15,244 - DEBUG - Updated belief_mean: [-0.07336789  0.        ]
+2024-09-15 14:04:15,244 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,244 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,244 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,244 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,244 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,244 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,244 - DEBUG - Total Info Gain: 0.8047189562170501, Total Cost: 1.0
+2024-09-15 14:04:15,244 - DEBUG - Wrote step 1 details to simulation_log.txt
+2024-09-15 14:04:15,244 - DEBUG - Simulation step 2/10
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,245 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,245 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,245 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,245 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,245 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,245 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,245 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,245 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,245 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,245 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,245 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,245 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,245 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,245 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,245 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,245 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,245 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,245 - DEBUG - Sampled observation y: [-1.26484556  0.49211017]
+2024-09-15 14:04:15,246 - DEBUG - Received observation y: [-1.26484556  0.49211017]
+2024-09-15 14:04:15,246 - DEBUG - Updating beliefs with observation y: [-1.26484556  0.49211017], pi: 0
+2024-09-15 14:04:15,246 - DEBUG - Updated belief_mean: [-0.30909416  0.        ]
+2024-09-15 14:04:15,246 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,246 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,246 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,246 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,246 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,246 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,246 - DEBUG - Total Info Gain: 1.6094379124341003, Total Cost: 2.0
+2024-09-15 14:04:15,246 - DEBUG - Wrote step 2 details to simulation_log.txt
+2024-09-15 14:04:15,246 - DEBUG - Simulation step 3/10
+2024-09-15 14:04:15,246 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,246 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,246 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,246 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,247 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,247 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,247 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,247 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,247 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,247 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,247 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,247 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,247 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,247 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,247 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,247 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,247 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,247 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,247 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,247 - DEBUG - Sampled observation y: [-0.69216046 -1.49943853]
+2024-09-15 14:04:15,247 - DEBUG - Received observation y: [-0.69216046 -1.49943853]
+2024-09-15 14:04:15,247 - DEBUG - Updating beliefs with observation y: [-0.69216046 -1.49943853], pi: 0
+2024-09-15 14:04:15,248 - DEBUG - Updated belief_mean: [-0.8766396  0.       ]
+2024-09-15 14:04:15,248 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,248 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,248 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,248 - DEBUG - Total Info Gain: 2.4141568686511503, Total Cost: 3.0
+2024-09-15 14:04:15,248 - DEBUG - Wrote step 3 details to simulation_log.txt
+2024-09-15 14:04:15,248 - DEBUG - Simulation step 4/10
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,248 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,248 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,248 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,248 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,248 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,249 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,249 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,249 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,249 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,249 - DEBUG - Sampled observation y: [-1.64238745 -0.70117306]
+2024-09-15 14:04:15,249 - DEBUG - Received observation y: [-1.64238745 -0.70117306]
+2024-09-15 14:04:15,249 - DEBUG - Updating beliefs with observation y: [-1.64238745 -0.70117306], pi: 0
+2024-09-15 14:04:15,249 - DEBUG - Updated belief_mean: [-0.9374242  0.       ]
+2024-09-15 14:04:15,249 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,249 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,249 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,249 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,249 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,249 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,249 - DEBUG - Total Info Gain: 3.2188758248682006, Total Cost: 4.0
+2024-09-15 14:04:15,249 - DEBUG - Wrote step 4 details to simulation_log.txt
+2024-09-15 14:04:15,249 - DEBUG - Simulation step 5/10
+2024-09-15 14:04:15,249 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,249 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,250 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,250 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,250 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,250 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,250 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,250 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,250 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,250 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,250 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,250 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,250 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,250 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,250 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,250 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,250 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,250 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,250 - DEBUG - Sampled observation y: [-1.18709239 -1.26723011]
+2024-09-15 14:04:15,250 - DEBUG - Received observation y: [-1.18709239 -1.26723011]
+2024-09-15 14:04:15,250 - DEBUG - Updating beliefs with observation y: [-1.18709239 -1.26723011], pi: 0
+2024-09-15 14:04:15,251 - DEBUG - Updated belief_mean: [-0.981729  0.      ]
+2024-09-15 14:04:15,251 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,251 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,251 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,251 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,251 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,251 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,251 - DEBUG - Total Info Gain: 4.023594781085251, Total Cost: 5.0
+2024-09-15 14:04:15,251 - DEBUG - Wrote step 5 details to simulation_log.txt
+2024-09-15 14:04:15,251 - DEBUG - Simulation step 6/10
+2024-09-15 14:04:15,251 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,251 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,251 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,251 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,251 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,251 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,251 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,251 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,251 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,251 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,251 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,251 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,252 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,252 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,252 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,252 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,252 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,252 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,252 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,252 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,252 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,252 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,252 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,252 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,252 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,252 - DEBUG - Sampled observation y: [-0.73021927 -1.29062769]
+2024-09-15 14:04:15,252 - DEBUG - Received observation y: [-0.73021927 -1.29062769]
+2024-09-15 14:04:15,252 - DEBUG - Updating beliefs with observation y: [-0.73021927 -1.29062769], pi: 0
+2024-09-15 14:04:15,252 - DEBUG - Updated belief_mean: [-0.80833878  0.        ]
+2024-09-15 14:04:15,252 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,252 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,252 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,252 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,252 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,252 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,253 - DEBUG - Total Info Gain: 4.828313737302301, Total Cost: 6.0
+2024-09-15 14:04:15,253 - DEBUG - Wrote step 6 details to simulation_log.txt
+2024-09-15 14:04:15,253 - DEBUG - Simulation step 7/10
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,253 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,253 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,253 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,253 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,253 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,253 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,253 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,253 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,253 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,253 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,253 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,253 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,253 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,253 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,253 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,253 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,253 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,254 - DEBUG - Sampled observation y: [-1.1969618  -1.38092805]
+2024-09-15 14:04:15,254 - DEBUG - Received observation y: [-1.1969618  -1.38092805]
+2024-09-15 14:04:15,254 - DEBUG - Updating beliefs with observation y: [-1.1969618  -1.38092805], pi: 0
+2024-09-15 14:04:15,254 - DEBUG - Updated belief_mean: [-1.03115594  0.        ]
+2024-09-15 14:04:15,254 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,254 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,254 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,254 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,254 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,254 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,254 - DEBUG - Total Info Gain: 5.63303269351935, Total Cost: 7.0
+2024-09-15 14:04:15,254 - DEBUG - Wrote step 7 details to simulation_log.txt
+2024-09-15 14:04:15,255 - DEBUG - Simulation step 8/10
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,255 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,255 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,255 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,255 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,255 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,255 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,255 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,255 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,255 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,255 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,255 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,255 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,255 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,255 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,255 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,256 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,256 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,256 - DEBUG - Sampled observation y: [-1.11375778 -0.56584847]
+2024-09-15 14:04:15,256 - DEBUG - Received observation y: [-1.11375778 -0.56584847]
+2024-09-15 14:04:15,256 - DEBUG - Updating beliefs with observation y: [-1.11375778 -0.56584847], pi: 0
+2024-09-15 14:04:15,256 - DEBUG - Updated belief_mean: [-0.6718425  0.       ]
+2024-09-15 14:04:15,257 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,257 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,257 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,257 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,257 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,257 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,257 - DEBUG - Total Info Gain: 6.4377516497364, Total Cost: 8.0
+2024-09-15 14:04:15,257 - DEBUG - Wrote step 8 details to simulation_log.txt
+2024-09-15 14:04:15,257 - DEBUG - Simulation step 9/10
+2024-09-15 14:04:15,257 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,257 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,257 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,257 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,257 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,257 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,257 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,257 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,258 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,258 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,258 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,258 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,258 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,258 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,258 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,258 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,258 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,258 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,258 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,258 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,258 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,258 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,258 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,258 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,258 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,258 - DEBUG - Sampled observation y: [-0.83586122 -0.15410883]
+2024-09-15 14:04:15,259 - DEBUG - Received observation y: [-0.83586122 -0.15410883]
+2024-09-15 14:04:15,259 - DEBUG - Updating beliefs with observation y: [-0.83586122 -0.15410883], pi: 0
+2024-09-15 14:04:15,259 - DEBUG - Updated belief_mean: [-0.39598802  0.        ]
+2024-09-15 14:04:15,259 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,259 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,259 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,259 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,259 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,259 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,259 - DEBUG - Total Info Gain: 7.24247060595345, Total Cost: 9.0
+2024-09-15 14:04:15,259 - DEBUG - Wrote step 9 details to simulation_log.txt
+2024-09-15 14:04:15,259 - DEBUG - Simulation step 10/10
+2024-09-15 14:04:15,259 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,259 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,259 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,259 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,260 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,260 - DEBUG - Expected Information Gain per policy: [0.8047189562170501, 0.8047189562170501, 2.1972245773362196]
+2024-09-15 14:04:15,260 - DEBUG - Selecting optimal action.
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected free energy for pi: 0, cost_sensitive: True
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,260 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,260 - DEBUG - EIG: 0.8047189562170501, Cost: 1.0, Expected Free Energy (G): 1.8047189562170503
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected free energy for pi: 1, cost_sensitive: True
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected information gain for pi: 1
+2024-09-15 14:04:15,260 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,260 - DEBUG - EIG: 0.8047189562170501, Cost: 2.0, Expected Free Energy (G): 2.8047189562170503
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected free energy for pi: 2, cost_sensitive: True
+2024-09-15 14:04:15,260 - DEBUG - Calculating expected information gain for pi: 2
+2024-09-15 14:04:15,260 - DEBUG - Computed EIG: 2.1972245773362196 using determinant_term: 20.250000000000004, determinant_y: 0.25
+2024-09-15 14:04:15,260 - DEBUG - EIG: 2.1972245773362196, Cost: 5.0, Expected Free Energy (G): 7.19722457733622
+2024-09-15 14:04:15,260 - DEBUG - Expected Free Energies: [1.8047189562170503, 2.8047189562170503, 7.19722457733622]
+2024-09-15 14:04:15,260 - DEBUG - Optimal action based on free energy: 0
+2024-09-15 14:04:15,260 - DEBUG - Exploitation: selected action 0 with minimum expected free energy
+2024-09-15 14:04:15,260 - DEBUG - Selected action: Cheap (index 0)
+2024-09-15 14:04:15,260 - DEBUG - Executing action: 0
+2024-09-15 14:04:15,260 - DEBUG - Sampled observation y: [ 0.3199566  -1.09008045]
+2024-09-15 14:04:15,261 - DEBUG - Received observation y: [ 0.3199566  -1.09008045]
+2024-09-15 14:04:15,261 - DEBUG - Updating beliefs with observation y: [ 0.3199566  -1.09008045], pi: 0
+2024-09-15 14:04:15,261 - DEBUG - Updated belief_mean: [-0.30804954  0.        ]
+2024-09-15 14:04:15,261 - DEBUG - Updated belief_cov: 
+[[0.2 0. ]
+ [0.  1. ]]
+2024-09-15 14:04:15,261 - DEBUG - Updated beliefs with observation.
+2024-09-15 14:04:15,261 - DEBUG - Appended current step data to history.
+2024-09-15 14:04:15,261 - DEBUG - Calculating expected information gain for pi: 0
+2024-09-15 14:04:15,261 - DEBUG - Computed EIG: 0.8047189562170501 using determinant_term: 1.25, determinant_y: 0.25
+2024-09-15 14:04:15,261 - DEBUG - Actual Information Gain: 0.8047189562170501, Cost: 1.0
+2024-09-15 14:04:15,261 - DEBUG - Total Info Gain: 8.0471895621705, Total Cost: 10.0
+2024-09-15 14:04:15,261 - DEBUG - Wrote step 10 details to simulation_log.txt
+2024-09-15 14:04:15,261 - DEBUG - Compiled all simulation results.
+2024-09-15 14:04:15,262 - ERROR - Visualization failed: visualize_sampling() got an unexpected keyword argument 'expected_info_gain_history'

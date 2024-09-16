@@ -1,6 +1,6 @@
 # Active InferAnts
 
-Welcome to the Active InferAnts project! This README provides an overview of the package, its features, installation instructions, usage examples, and contribution guidelines.
+Welcome to the **Active InferAnts** project! This README provides a comprehensive overview of the package, its features, installation instructions, usage examples, and contribution guidelines.
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -11,39 +11,63 @@ Welcome to the Active InferAnts project! This README provides an overview of the
 6. [Contributing](#contributing)
 7. [License](#license)
 8. [Acknowledgments](#acknowledgments)
+9. [Contact](#contact)
 
 ## Overview
 
-Active InferAnts is a Python package designed to facilitate Active Inference in various applications, with a focus on ant colony optimization and related problems. It leverages advanced algorithms and data structures to provide efficient and accurate inference capabilities, combining the principles of active inference with the problem-solving strategies inspired by ant colonies.
+**Active InferAnts** is a Python package engineered to facilitate Active Inference across various applications, with a specialized focus on ant colony optimization and related optimization challenges. The package integrates advanced algorithms and robust data structures to deliver efficient and precise inference capabilities, merging the principles of active inference with problem-solving strategies inspired by ant colony behavior.
 
 ## Features
 
-- **Advanced Inference Algorithms**: Implementations of state-of-the-art active inference algorithms, including variational message passing and belief propagation.
-- **Ant Colony Optimization**: Specialized algorithms for solving complex optimization problems using ant colony metaphors.
-- **Modular Design**: Highly modular architecture allowing for easy integration and extension of new algorithms and problem domains.
-- **Comprehensive Documentation**: Detailed documentation, including API references, tutorials, and examples to help users understand and utilize the package effectively.
-- **Performance Optimization**: Optimized for high performance and scalability, with support for parallel processing and GPU acceleration where applicable.
-- **Visualization Tools**: Built-in tools for visualizing ant colony behavior, optimization processes, and inference results.
-- **Customizable Parameters**: Flexible parameter settings to adapt algorithms to various problem domains and specific use cases.
+- **Advanced Inference Algorithms**: Implements state-of-the-art active inference methods, including variational message passing and belief propagation.
+- **Ant Colony Optimization**: Offers specialized algorithms tailored for complex optimization problems using ant colony metaphors.
+- **Modular Design**: Features a highly modular architecture, enabling seamless integration and extension of new algorithms and problem domains.
+- **Comprehensive Documentation**: Provides detailed documentation, including API references, tutorials, and examples to assist users in effectively utilizing the package.
+- **Performance Optimization**: Optimized for high performance and scalability, supporting parallel processing and GPU acceleration where applicable.
+- **Visualization Tools**: Includes built-in tools for visualizing ant colony behavior, optimization processes, and inference results.
+- **Customizable Parameters**: Allows flexible parameter settings to adapt algorithms to diverse problem domains and specific use cases.
 
 ## Installation
 
-For development installation:
+To set up **Active InferAnts** for development:
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/ActiveInferenceInstitute/ActiveInferAnts.git
-   ```
-2. Navigate to the project directory:
-   ```
-   cd ActiveInferAnts
-   ```
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/ActiveInferenceInstitute/ActiveInferAnts.git
+    ```
+2. **Navigate to the project directory**:
+    ```bash
+    cd ActiveInferAnts
+    ```
+3. **Install the dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-A PyPI release is planned for the future to enable installation via pip.
+> **Note**: A PyPI release is planned for future updates, enabling installation via `pip install ActiveInferAnts`.
+
+## Usage
+
+After installation, you can start using **Active InferAnts** in your projects. Here's a basic example:
+
+```python
+from active_infer_ants import InferenceModel
+
+# Initialize the inference model
+model = InferenceModel(parameters)
+
+# Run the inference
+results = model.run()
+
+# Visualize the results
+model.visualize(results)
+```
+
+For more detailed examples and tutorials, refer to the [Documentation](https://github.com/ActiveInferenceInstitute/ActiveInferAnts/wiki).
 
 ## Project Structure
 
-The Active InferAnts repository is organized as follows:
+The **Active InferAnts** repository is organized as follows:
 
 - `0_CONTEXT`: Contains contextual information, project background, and high-level documentation.
 - `1_PREPARE`: Includes scripts and modules for data preparation and preprocessing.
@@ -54,28 +78,37 @@ The Active InferAnts repository is organized as follows:
 - `6_API`: API definitions and interface specifications.
 - `9_OTHER`: Miscellaneous files and utilities.
 
-Each directory contains relevant Python modules, documentation, and test files.
+Each directory encompasses relevant Python modules, documentation, and test files to support the development and deployment of the package.
 
 ## Contributing
 
-Contributions to Active InferAnts are welcome! To contribute:
+Contributions to **Active InferAnts** are highly encouraged! To contribute:
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with clear, descriptive messages.
-4. Push your changes to your fork.
-5. Submit a pull request to the main repository.
+1. **Fork the repository**.
+2. **Create a new branch** for your feature or bug fix:
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+3. **Implement your changes** and **commit** them with clear, descriptive messages:
+    ```bash
+    git commit -m "Add feature X"
+    ```
+4. **Push** your changes to your fork:
+    ```bash
+    git push origin feature/your-feature-name
+    ```
+5. **Submit a pull request** to the main repository.
 
-Please ensure your code adheres to the project's coding standards and includes appropriate tests and documentation.
-
-## Contact
-
-For questions or support, please email blanket@activeinference.institute
+Please ensure that your code adheres to the project's coding standards and includes appropriate tests and documentation.
 
 ## License
 
-Active InferAnts is open source software licensed under the terms of the original authors. Detailed license information will be provided in the future.
+**Active InferAnts** is open-source software licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software in accordance with the terms of the license.
 
 ## Acknowledgments
 
-We gratefully acknowledge the contributions of researchers and developers in the fields of ant colony optimization and active inference, whose work forms the foundation of this project.
+We gratefully acknowledge the contributions of researchers and developers in the fields of ant colony optimization and active inference. Their foundational work has been instrumental in the development of this project.
+
+## Contact
+
+For questions, support, or further information, please contact us at [blanket@activeinference.institute](mailto:blanket@activeinference.institute).

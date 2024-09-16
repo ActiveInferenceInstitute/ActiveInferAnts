@@ -256,3 +256,5 @@ ADVANCED_SIMULATION_CONFIG: Dict[str, Union[bool, Dict]] = {
     },
     'MULTI_LAYER_PHEROMONE_SYSTEM': {
         'ENABLED': True,  # Flag to enable/disable multi-layer pheromone system
+    }, 
+} 

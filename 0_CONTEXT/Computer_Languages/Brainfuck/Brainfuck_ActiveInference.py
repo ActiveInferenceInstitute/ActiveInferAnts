@@ -35,10 +35,12 @@ Memory cell allocation:
 The following Brainfuck code simulates an advanced active inference process:
 """
 
+# Initialize BrainFuck code as a string
+brainfuck_code = """
 # Initialize memory cells
 >++++++++++         # Cell 0 (Sensory input) = 10
 >++++++++++         # Cell 1 (Prediction) = 10
->>>>>               # Move to Cell 7
+>>>>>
 >+++                # Cell 7 (Learning rate) = 3
 >+++++              # Cell 8 (Precision) = 5
 >+                  # Cell 9 (Temporal integration) = 1
@@ -119,6 +121,7 @@ The following Brainfuck code simulates an advanced active inference process:
     # Check if simulation should continue (non-zero in Cell 9)
     >>>>>>>>>
 ]
+"""
 
 """
 This advanced active inference simulation in Brainfuck demonstrates a more

@@ -1,11 +1,13 @@
 import numpy as np
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Tuple, Union, Any
 
 class MetaMetaConfig:
-    def __init__(self):
+    def __init__(self) -> None:
+        """Initialize the MetaMetaConfig with default configurations."""
         self.config = self._initialize_config()
 
-    def _initialize_config(self):
+    def _initialize_config(self) -> Dict[str, Any]:
+        """Initialize the complete configuration dictionary."""
         return {
             'META_SIMULATION': self._meta_simulation_config(),
             'META_ACTIVE_INFERENCE': self._meta_active_inference_config(),
@@ -14,7 +16,8 @@ class MetaMetaConfig:
             'META_ADVANCED_SIMULATION': self._meta_advanced_simulation_config(),
         }
 
-    def _meta_simulation_config(self):
+    def _meta_simulation_config(self) -> Dict[str, Any]:
+        """Configuration settings for meta simulation."""
         return {
             'MAX_STEPS_RANGE': ((50, 500), (1000, 5000)),
             'AGENT_COUNT_RANGE': ((10, 100), (500, 2000)),
@@ -31,7 +34,8 @@ class MetaMetaConfig:
             },
         }
 
-    def _meta_active_inference_config(self):
+    def _meta_active_inference_config(self) -> Dict[str, Any]:
+        """Configuration settings for meta active inference."""
         return {
             'INFERENCE_MODEL_OPTIONS': ['variational', 'predictive_coding', 'bayesian_filtering', 'deep_active_inference', 'ensemble_methods', 'hierarchical_inference'],
             'PLANNING_HORIZON': {
@@ -64,7 +68,8 @@ class MetaMetaConfig:
             'EXPECTATION_FREE_ENERGY_OPTIONS': [True, False],
         }
 
-    def _meta_ant_and_colony_config(self):
+    def _meta_ant_and_colony_config(self) -> Dict[str, Any]:
+        """Configuration settings for meta ant and colony."""
         return {
             'MOVEMENT_OPTIONS': [
                 [(-1, -1), (0, -1), (1, -1), (-1, 0), (0, 0), (1, 0), (-1, 1), (0, 1), (1, 1)],
@@ -88,7 +93,8 @@ class MetaMetaConfig:
             'THREAT_RESPONSES': ['evacuation', 'defense', 'hide', 'counterattack', 'negotiation', 'adaptation'],
         }
 
-    def _meta_environment_config(self):
+    def _meta_environment_config(self) -> Dict[str, Any]:
+        """Configuration settings for the environment."""
         return {
             'GRID': {
                 'WIDTH_RANGE': ((50, 100), (500, 2000)),
@@ -117,7 +123,8 @@ class MetaMetaConfig:
             },
         }
 
-    def _meta_advanced_simulation_config(self):
+    def _meta_advanced_simulation_config(self) -> Dict[str, Any]:
+        """Configuration settings for advanced simulation."""
         return {
             'DYNAMIC_ENVIRONMENT': {
                 'ENABLED': [True, False],

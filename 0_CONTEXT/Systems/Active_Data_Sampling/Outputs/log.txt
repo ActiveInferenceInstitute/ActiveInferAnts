@@ -1,0 +1,12 @@
+2024-09-16 08:45:05,322 INFO:Starting active data sampling simulation.
+2024-09-16 08:45:05,323 INFO:Running simulation for setting: free_
+2024-09-16 08:45:05,387 INFO:Simulation for free_ completed successfully.
+2024-09-16 08:45:05,388 INFO:Full simulation results saved to Outputs/free_/full_simulation_results.txt.
+2024-09-16 08:45:05,388 INFO:Attempting to generate visualizations for setting: free_
+2024-09-16 08:45:05,738 INFO:Faceted visualization saved to Outputs/free_/visualization_facet.png.
+2024-09-16 08:45:05,739 INFO:Running simulation for setting: cost_sensitive_
+2024-09-16 08:45:05,807 INFO:Simulation for cost_sensitive_ completed successfully.
+2024-09-16 08:45:05,808 INFO:Full simulation results saved to Outputs/cost_sensitive_/full_simulation_results.txt.
+2024-09-16 08:45:05,808 INFO:Attempting to generate visualizations for setting: cost_sensitive_
+2024-09-16 08:45:06,185 INFO:Faceted visualization saved to Outputs/cost_sensitive_/visualization_facet.png.
+2024-09-16 08:45:06,185 INFO:All simulations completed.

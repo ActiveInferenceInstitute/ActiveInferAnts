@@ -1,0 +1,200 @@
+2024-09-16 08:45:05,323 INFO:Starting timestep 1.
+2024-09-16 08:45:05,324 INFO:Timestep 1 completed successfully.
+2024-09-16 08:45:05,324 INFO:Starting timestep 2.
+2024-09-16 08:45:05,325 INFO:Timestep 2 completed successfully.
+2024-09-16 08:45:05,325 INFO:Starting timestep 3.
+2024-09-16 08:45:05,326 INFO:Timestep 3 completed successfully.
+2024-09-16 08:45:05,326 INFO:Starting timestep 4.
+2024-09-16 08:45:05,328 INFO:Timestep 4 completed successfully.
+2024-09-16 08:45:05,328 INFO:Starting timestep 5.
+2024-09-16 08:45:05,329 INFO:Timestep 5 completed successfully.
+2024-09-16 08:45:05,329 INFO:Starting timestep 6.
+2024-09-16 08:45:05,330 INFO:Timestep 6 completed successfully.
+2024-09-16 08:45:05,330 INFO:Starting timestep 7.
+2024-09-16 08:45:05,331 INFO:Timestep 7 completed successfully.
+2024-09-16 08:45:05,331 INFO:Starting timestep 8.
+2024-09-16 08:45:05,332 INFO:Timestep 8 completed successfully.
+2024-09-16 08:45:05,332 INFO:Starting timestep 9.
+2024-09-16 08:45:05,334 INFO:Timestep 9 completed successfully.
+2024-09-16 08:45:05,334 INFO:Starting timestep 10.
+2024-09-16 08:45:05,335 INFO:Timestep 10 completed successfully.
+2024-09-16 08:45:05,335 INFO:Starting timestep 11.
+2024-09-16 08:45:05,336 INFO:Timestep 11 completed successfully.
+2024-09-16 08:45:05,336 INFO:Starting timestep 12.
+2024-09-16 08:45:05,337 INFO:Timestep 12 completed successfully.
+2024-09-16 08:45:05,337 INFO:Starting timestep 13.
+2024-09-16 08:45:05,338 INFO:Timestep 13 completed successfully.
+2024-09-16 08:45:05,338 INFO:Starting timestep 14.
+2024-09-16 08:45:05,340 INFO:Timestep 14 completed successfully.
+2024-09-16 08:45:05,340 INFO:Starting timestep 15.
+2024-09-16 08:45:05,341 INFO:Timestep 15 completed successfully.
+2024-09-16 08:45:05,341 INFO:Starting timestep 16.
+2024-09-16 08:45:05,342 INFO:Timestep 16 completed successfully.
+2024-09-16 08:45:05,342 INFO:Starting timestep 17.
+2024-09-16 08:45:05,343 INFO:Timestep 17 completed successfully.
+2024-09-16 08:45:05,343 INFO:Starting timestep 18.
+2024-09-16 08:45:05,344 INFO:Timestep 18 completed successfully.
+2024-09-16 08:45:05,344 INFO:Starting timestep 19.
+2024-09-16 08:45:05,346 INFO:Timestep 19 completed successfully.
+2024-09-16 08:45:05,346 INFO:Starting timestep 20.
+2024-09-16 08:45:05,347 INFO:Timestep 20 completed successfully.
+2024-09-16 08:45:05,347 INFO:Starting timestep 21.
+2024-09-16 08:45:05,348 INFO:Timestep 21 completed successfully.
+2024-09-16 08:45:05,348 INFO:Starting timestep 22.
+2024-09-16 08:45:05,349 INFO:Timestep 22 completed successfully.
+2024-09-16 08:45:05,349 INFO:Starting timestep 23.
+2024-09-16 08:45:05,351 INFO:Timestep 23 completed successfully.
+2024-09-16 08:45:05,351 INFO:Starting timestep 24.
+2024-09-16 08:45:05,352 INFO:Timestep 24 completed successfully.
+2024-09-16 08:45:05,352 INFO:Starting timestep 25.
+2024-09-16 08:45:05,353 INFO:Timestep 25 completed successfully.
+2024-09-16 08:45:05,353 INFO:Starting timestep 26.
+2024-09-16 08:45:05,354 INFO:Timestep 26 completed successfully.
+2024-09-16 08:45:05,354 INFO:Starting timestep 27.
+2024-09-16 08:45:05,355 INFO:Timestep 27 completed successfully.
+2024-09-16 08:45:05,356 INFO:Starting timestep 28.
+2024-09-16 08:45:05,357 INFO:Timestep 28 completed successfully.
+2024-09-16 08:45:05,357 INFO:Starting timestep 29.
+2024-09-16 08:45:05,358 INFO:Timestep 29 completed successfully.
+2024-09-16 08:45:05,358 INFO:Starting timestep 30.
+2024-09-16 08:45:05,359 INFO:Timestep 30 completed successfully.
+2024-09-16 08:45:05,359 INFO:Starting timestep 31.
+2024-09-16 08:45:05,361 INFO:Timestep 31 completed successfully.
+2024-09-16 08:45:05,361 INFO:Starting timestep 32.
+2024-09-16 08:45:05,362 INFO:Timestep 32 completed successfully.
+2024-09-16 08:45:05,362 INFO:Starting timestep 33.
+2024-09-16 08:45:05,363 INFO:Timestep 33 completed successfully.
+2024-09-16 08:45:05,363 INFO:Starting timestep 34.
+2024-09-16 08:45:05,364 INFO:Timestep 34 completed successfully.
+2024-09-16 08:45:05,364 INFO:Starting timestep 35.
+2024-09-16 08:45:05,366 INFO:Timestep 35 completed successfully.
+2024-09-16 08:45:05,366 INFO:Starting timestep 36.
+2024-09-16 08:45:05,367 INFO:Timestep 36 completed successfully.
+2024-09-16 08:45:05,367 INFO:Starting timestep 37.
+2024-09-16 08:45:05,368 INFO:Timestep 37 completed successfully.
+2024-09-16 08:45:05,368 INFO:Starting timestep 38.
+2024-09-16 08:45:05,370 INFO:Timestep 38 completed successfully.
+2024-09-16 08:45:05,370 INFO:Starting timestep 39.
+2024-09-16 08:45:05,371 INFO:Timestep 39 completed successfully.
+2024-09-16 08:45:05,371 INFO:Starting timestep 40.
+2024-09-16 08:45:05,372 INFO:Timestep 40 completed successfully.
+2024-09-16 08:45:05,372 INFO:Starting timestep 41.
+2024-09-16 08:45:05,373 INFO:Timestep 41 completed successfully.
+2024-09-16 08:45:05,373 INFO:Starting timestep 42.
+2024-09-16 08:45:05,375 INFO:Timestep 42 completed successfully.
+2024-09-16 08:45:05,375 INFO:Starting timestep 43.
+2024-09-16 08:45:05,376 INFO:Timestep 43 completed successfully.
+2024-09-16 08:45:05,376 INFO:Starting timestep 44.
+2024-09-16 08:45:05,377 INFO:Timestep 44 completed successfully.
+2024-09-16 08:45:05,377 INFO:Starting timestep 45.
+2024-09-16 08:45:05,378 INFO:Timestep 45 completed successfully.
+2024-09-16 08:45:05,378 INFO:Starting timestep 46.
+2024-09-16 08:45:05,380 INFO:Timestep 46 completed successfully.
+2024-09-16 08:45:05,380 INFO:Starting timestep 47.
+2024-09-16 08:45:05,381 INFO:Timestep 47 completed successfully.
+2024-09-16 08:45:05,381 INFO:Starting timestep 48.
+2024-09-16 08:45:05,382 INFO:Timestep 48 completed successfully.
+2024-09-16 08:45:05,382 INFO:Starting timestep 49.
+2024-09-16 08:45:05,384 INFO:Timestep 49 completed successfully.
+2024-09-16 08:45:05,384 INFO:Starting timestep 50.
+2024-09-16 08:45:05,385 INFO:Timestep 50 completed successfully.
+2024-09-16 08:45:05,739 INFO:Starting timestep 1.
+2024-09-16 08:45:05,740 INFO:Timestep 1 completed successfully.
+2024-09-16 08:45:05,740 INFO:Starting timestep 2.
+2024-09-16 08:45:05,741 INFO:Timestep 2 completed successfully.
+2024-09-16 08:45:05,741 INFO:Starting timestep 3.
+2024-09-16 08:45:05,742 INFO:Timestep 3 completed successfully.
+2024-09-16 08:45:05,742 INFO:Starting timestep 4.
+2024-09-16 08:45:05,744 INFO:Timestep 4 completed successfully.
+2024-09-16 08:45:05,744 INFO:Starting timestep 5.
+2024-09-16 08:45:05,745 INFO:Timestep 5 completed successfully.
+2024-09-16 08:45:05,745 INFO:Starting timestep 6.
+2024-09-16 08:45:05,746 INFO:Timestep 6 completed successfully.
+2024-09-16 08:45:05,746 INFO:Starting timestep 7.
+2024-09-16 08:45:05,748 INFO:Timestep 7 completed successfully.
+2024-09-16 08:45:05,748 INFO:Starting timestep 8.
+2024-09-16 08:45:05,749 INFO:Timestep 8 completed successfully.
+2024-09-16 08:45:05,749 INFO:Starting timestep 9.
+2024-09-16 08:45:05,750 INFO:Timestep 9 completed successfully.
+2024-09-16 08:45:05,750 INFO:Starting timestep 10.
+2024-09-16 08:45:05,752 INFO:Timestep 10 completed successfully.
+2024-09-16 08:45:05,752 INFO:Starting timestep 11.
+2024-09-16 08:45:05,753 INFO:Timestep 11 completed successfully.
+2024-09-16 08:45:05,753 INFO:Starting timestep 12.
+2024-09-16 08:45:05,755 INFO:Timestep 12 completed successfully.
+2024-09-16 08:45:05,755 INFO:Starting timestep 13.
+2024-09-16 08:45:05,756 INFO:Timestep 13 completed successfully.
+2024-09-16 08:45:05,756 INFO:Starting timestep 14.
+2024-09-16 08:45:05,757 INFO:Timestep 14 completed successfully.
+2024-09-16 08:45:05,757 INFO:Starting timestep 15.
+2024-09-16 08:45:05,758 INFO:Timestep 15 completed successfully.
+2024-09-16 08:45:05,758 INFO:Starting timestep 16.
+2024-09-16 08:45:05,759 INFO:Timestep 16 completed successfully.
+2024-09-16 08:45:05,760 INFO:Starting timestep 17.
+2024-09-16 08:45:05,761 INFO:Timestep 17 completed successfully.
+2024-09-16 08:45:05,761 INFO:Starting timestep 18.
+2024-09-16 08:45:05,762 INFO:Timestep 18 completed successfully.
+2024-09-16 08:45:05,762 INFO:Starting timestep 19.
+2024-09-16 08:45:05,763 INFO:Timestep 19 completed successfully.
+2024-09-16 08:45:05,764 INFO:Starting timestep 20.
+2024-09-16 08:45:05,765 INFO:Timestep 20 completed successfully.
+2024-09-16 08:45:05,765 INFO:Starting timestep 21.
+2024-09-16 08:45:05,766 INFO:Timestep 21 completed successfully.
+2024-09-16 08:45:05,766 INFO:Starting timestep 22.
+2024-09-16 08:45:05,767 INFO:Timestep 22 completed successfully.
+2024-09-16 08:45:05,767 INFO:Starting timestep 23.
+2024-09-16 08:45:05,769 INFO:Timestep 23 completed successfully.
+2024-09-16 08:45:05,769 INFO:Starting timestep 24.
+2024-09-16 08:45:05,770 INFO:Timestep 24 completed successfully.
+2024-09-16 08:45:05,770 INFO:Starting timestep 25.
+2024-09-16 08:45:05,772 INFO:Timestep 25 completed successfully.
+2024-09-16 08:45:05,772 INFO:Starting timestep 26.
+2024-09-16 08:45:05,773 INFO:Timestep 26 completed successfully.
+2024-09-16 08:45:05,773 INFO:Starting timestep 27.
+2024-09-16 08:45:05,774 INFO:Timestep 27 completed successfully.
+2024-09-16 08:45:05,774 INFO:Starting timestep 28.
+2024-09-16 08:45:05,775 INFO:Timestep 28 completed successfully.
+2024-09-16 08:45:05,775 INFO:Starting timestep 29.
+2024-09-16 08:45:05,777 INFO:Timestep 29 completed successfully.
+2024-09-16 08:45:05,777 INFO:Starting timestep 30.
+2024-09-16 08:45:05,778 INFO:Timestep 30 completed successfully.
+2024-09-16 08:45:05,778 INFO:Starting timestep 31.
+2024-09-16 08:45:05,779 INFO:Timestep 31 completed successfully.
+2024-09-16 08:45:05,779 INFO:Starting timestep 32.
+2024-09-16 08:45:05,781 INFO:Timestep 32 completed successfully.
+2024-09-16 08:45:05,781 INFO:Starting timestep 33.
+2024-09-16 08:45:05,782 INFO:Timestep 33 completed successfully.
+2024-09-16 08:45:05,782 INFO:Starting timestep 34.
+2024-09-16 08:45:05,783 INFO:Timestep 34 completed successfully.
+2024-09-16 08:45:05,783 INFO:Starting timestep 35.
+2024-09-16 08:45:05,785 INFO:Timestep 35 completed successfully.
+2024-09-16 08:45:05,785 INFO:Starting timestep 36.
+2024-09-16 08:45:05,786 INFO:Timestep 36 completed successfully.
+2024-09-16 08:45:05,786 INFO:Starting timestep 37.
+2024-09-16 08:45:05,788 INFO:Timestep 37 completed successfully.
+2024-09-16 08:45:05,788 INFO:Starting timestep 38.
+2024-09-16 08:45:05,789 INFO:Timestep 38 completed successfully.
+2024-09-16 08:45:05,789 INFO:Starting timestep 39.
+2024-09-16 08:45:05,790 INFO:Timestep 39 completed successfully.
+2024-09-16 08:45:05,790 INFO:Starting timestep 40.
+2024-09-16 08:45:05,792 INFO:Timestep 40 completed successfully.
+2024-09-16 08:45:05,792 INFO:Starting timestep 41.
+2024-09-16 08:45:05,793 INFO:Timestep 41 completed successfully.
+2024-09-16 08:45:05,793 INFO:Starting timestep 42.
+2024-09-16 08:45:05,794 INFO:Timestep 42 completed successfully.
+2024-09-16 08:45:05,794 INFO:Starting timestep 43.
+2024-09-16 08:45:05,795 INFO:Timestep 43 completed successfully.
+2024-09-16 08:45:05,795 INFO:Starting timestep 44.
+2024-09-16 08:45:05,797 INFO:Timestep 44 completed successfully.
+2024-09-16 08:45:05,797 INFO:Starting timestep 45.
+2024-09-16 08:45:05,798 INFO:Timestep 45 completed successfully.
+2024-09-16 08:45:05,798 INFO:Starting timestep 46.
+2024-09-16 08:45:05,799 INFO:Timestep 46 completed successfully.
+2024-09-16 08:45:05,799 INFO:Starting timestep 47.
+2024-09-16 08:45:05,801 INFO:Timestep 47 completed successfully.
+2024-09-16 08:45:05,801 INFO:Starting timestep 48.
+2024-09-16 08:45:05,802 INFO:Timestep 48 completed successfully.
+2024-09-16 08:45:05,802 INFO:Starting timestep 49.
+2024-09-16 08:45:05,804 INFO:Timestep 49 completed successfully.
+2024-09-16 08:45:05,804 INFO:Starting timestep 50.
+2024-09-16 08:45:05,805 INFO:Timestep 50 completed successfully.

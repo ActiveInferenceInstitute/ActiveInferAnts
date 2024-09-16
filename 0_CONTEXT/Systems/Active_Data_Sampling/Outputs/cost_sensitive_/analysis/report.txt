@@ -1,0 +1,12 @@
+Active Data Sampling Analysis Report
+========================================
+
+Inferred slopes mean: -0.2646
+Inferred slopes median: -0.3335
+Inferred slopes stdev: 3.9022
+Costs mean: -6.6053
+Costs median: 0.7054
+Costs stdev: 41.9047
+Precisions mean: 7.6053
+Precisions median: 0.2946
+Precisions stdev: 41.9047

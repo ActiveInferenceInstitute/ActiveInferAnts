@@ -1,0 +1,14 @@
+2024-09-16 08:45:09,565 [INFO] Starting analysis for Outputs/cost_sensitive_/full_simulation_results.txt
+2024-09-16 08:45:09,572 [INFO] Loaded 50 records from Outputs/cost_sensitive_/full_simulation_results.txt
+2024-09-16 08:45:09,572 [INFO] Calculated statistics for inferred_slopes
+2024-09-16 08:45:09,572 [INFO] Calculated statistics for costs
+2024-09-16 08:45:09,572 [INFO] Calculated statistics for precisions
+2024-09-16 08:45:09,572 [INFO] Creating plots in Outputs/cost_sensitive_/analysis
+2024-09-16 08:45:09,658 [INFO] Inferred Slopes statistics plot saved.
+2024-09-16 08:45:09,740 [INFO] Costs statistics plot saved.
+2024-09-16 08:45:09,830 [INFO] Precisions statistics plot saved.
+2024-09-16 08:45:09,837 [INFO] Loaded 50 records for costs vs. precisions plot.
+2024-09-16 08:45:09,952 [INFO] Costs vs. Precisions scatter plot saved.
+2024-09-16 08:45:09,952 [INFO] Report generated at Outputs/cost_sensitive_/analysis/report.txt
+2024-09-16 08:45:09,952 [INFO] Summary statistics saved to Outputs/cost_sensitive_/analysis/summary_statistics.json
+2024-09-16 08:45:09,953 [INFO] Analysis complete. Outputs saved to Outputs/cost_sensitive_/analysis

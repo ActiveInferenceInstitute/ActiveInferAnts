@@ -1,0 +1,11 @@
+{
+    "inferred_slopes_mean": -0.2645618546216417,
+    "inferred_slopes_median": -0.33348590667122535,
+    "inferred_slopes_stdev": 3.9021985157634766,
+    "costs_mean": -6.6053371616651875,
+    "costs_median": 0.7054296603214448,
+    "costs_stdev": 41.90469249757511,
+    "precisions_mean": 7.6053371616651875,
+    "precisions_median": 0.29457033967855517,
+    "precisions_stdev": 41.90469249757511
+}
