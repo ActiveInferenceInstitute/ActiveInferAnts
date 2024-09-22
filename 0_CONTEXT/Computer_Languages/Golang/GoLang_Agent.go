@@ -48,9 +48,9 @@ var probabilities = map[State]StateTransition{
 	},
 	StateForaging: {
 		Transitions: map[State]float64{
-			StateForaging:  State(0.5),
-			StateReturning: State(0.4),
-			StateSearching: State(0.1),
+			StateForaging:  0.5, // Corrected from State(0.5) to float64
+			StateReturning: 0.4, // Corrected from State(0.4) to float64
+			StateSearching: 0.1, // Corrected from State(0.1) to float64
 		},
 		Observations: map[Observation]float64{
 			ObservationFood: 0.6,
@@ -158,14 +158,15 @@ func toCumulative[T comparable](probs map[T]float64) []CumulativeProbability {
 	var runningTotal float64
 	for key, prob := range probs {
 		runningTotal += prob / sum
-		if any, ok := interface{}(key).(State); ok {
+		switch v := any(key).(type) {
+		case State:
 			cumulative = append(cumulative, CumulativeProbability{
-				State:          any,
+				State:          v,
 				CumulativeProb: runningTotal,
 			})
-		} else if any, ok := interface{}(key).(Observation); ok {
+		case Observation:
 			cumulative = append(cumulative, CumulativeProbability{
-				Observation:    any,
+				Observation:    v,
 				CumulativeProb: runningTotal,
 			})
 		}
