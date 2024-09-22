@@ -58,12 +58,14 @@ class NestmateAgent:
 
     @staticmethod
     def _normalize(arr: np.ndarray) -> np.ndarray:
-        """Normalize array so that each row sums to 1."""
-        return arr / arr.sum(axis=-1, keepdims=True)
+        """Normalize array so that each row sums to 1. Adds epsilon to prevent division by zero."""
+        row_sums = arr.sum(axis=-1, keepdims=True)
+        row_sums[row_sums == 0] = 1  # Prevent division by zero
+        return arr / row_sums
 
     def _generate_possible_policies(self, num_actions: List[int]) -> np.ndarray:
         """
-        Generates the set of feasible policies based on the agent's models.
+        Efficiently generates the set of feasible policies based on the agent's models.
 
         Args:
             num_actions (List[int]): Number of possible actions for each factor.
@@ -71,20 +73,19 @@ class NestmateAgent:
         Returns:
             np.ndarray: Array of all possible policies.
         """
-        num_policies = np.prod([action ** self.policy_length for action in num_actions])
-        possible_policies = np.zeros((num_policies, self.policy_length, len(num_actions)), dtype=int)
-        
-        for policy_index in range(num_policies):
-            policy = np.unravel_index(policy_index, [action for action in num_actions] * self.policy_length)
-            for time_step in range(self.policy_length):
-                for factor_index, action in enumerate(policy[time_step * len(num_actions): (time_step + 1) * len(num_actions)]):
-                    possible_policies[policy_index, time_step, factor_index] = action
+        from itertools import product
+
+        action_combinations = list(product(*[range(action) for action in num_actions]))
+        policy_combinations = list(product(action_combinations, repeat=self.policy_length))
+        possible_policies = np.array(policy_combinations).reshape(-1, self.policy_length, len(num_actions))
         
         return possible_policies
 
     def _setup_logging(self):
-        """Set up logging for the agent."""
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        """Set up logging for the agent with configurable log level."""
+        log_level = logging.INFO
+        logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s',
+                            handlers=[logging.StreamHandler()])
         self.logger = logging.getLogger(__name__)
 
     def _output_variable_shapes(self) -> None:

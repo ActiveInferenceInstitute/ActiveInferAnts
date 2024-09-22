@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import entropy
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Union
 import seaborn as sns
 from collections import Counter
 import logging
@@ -10,6 +10,16 @@ from dataclasses import dataclass, field
 
 @dataclass
 class SimulationEntity:
+    """
+    Represents a simulation entity with various attributes.
+
+    Attributes:
+        energy (float): The energy level of the entity.
+        type (str): The type of the entity.
+        lifespan (int): The lifespan of the entity.
+        distance_traveled (float): The distance traveled by the entity.
+        food_collected (int): The amount of food collected by the entity.
+    """
     energy: float = 0.0
     type: str = "default"
     lifespan: int = 0
@@ -18,13 +28,30 @@ class SimulationEntity:
 
 @dataclass
 class SimulationData:
+    """
+    Represents the simulation data containing agents, food sources, nests, and simulation steps.
+
+    Attributes:
+        agents (List[SimulationEntity]): List of simulation entities.
+        food_sources (List[Dict[str, int]]): List of food sources with their amounts.
+        nests (List[Dict[str, int]]): List of nests with their food collected and agent counts.
+        simulation_steps (int): The number of simulation steps.
+    """
     agents: List[SimulationEntity] = field(default_factory=list)
     food_sources: List[Dict[str, int]] = field(default_factory=list)
     nests: List[Dict[str, int]] = field(default_factory=list)
     simulation_steps: int = 0
 
 class EnhancedSimulationSummary:
+    """Class to generate a comprehensive summary of simulation results."""
+
     def __init__(self, simulation_results: Dict[str, Any]):
+        """
+        Initialize the EnhancedSimulationSummary with simulation results.
+
+        Args:
+            simulation_results (Dict[str, Any]): The raw simulation data.
+        """
         self.data = SimulationData(
             agents=[SimulationEntity(**agent) for agent in simulation_results.get('agents', [])],
             food_sources=simulation_results.get('food_sources', []),
@@ -34,6 +61,12 @@ class EnhancedSimulationSummary:
         self.logger = logging.getLogger(__name__)
 
     def generate_summary(self) -> Dict[str, Any]:
+        """
+        Generate a detailed summary of the simulation data.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing summary statistics.
+        """
         try:
             summary = {
                 'total_agents': self._total_agents(),
@@ -51,26 +84,68 @@ class EnhancedSimulationSummary:
                 'agent_movement': self._agent_movement()
             }
             return summary
+        except ValueError as e:
+            self.logger.error(f"Value error generating summary: {str(e)}")
+            return {}
+        except TypeError as e:
+            self.logger.error(f"Type error generating summary: {str(e)}")
+            return {}
         except Exception as e:
-            self.logger.error(f"Error generating summary: {str(e)}")
+            self.logger.error(f"Unexpected error generating summary: {str(e)}")
             return {}
 
     def _total_agents(self) -> int:
+        """
+        Calculate the total number of agents in the simulation.
+
+        Returns:
+            int: The total number of agents.
+        """
         return len(self.data.agents)
 
     def _total_food_sources(self) -> int:
+        """
+        Calculate the total number of food sources in the simulation.
+
+        Returns:
+            int: The total number of food sources.
+        """
         return len(self.data.food_sources)
 
     def _total_nests(self) -> int:
+        """
+        Calculate the total number of nests in the simulation.
+
+        Returns:
+            int: The total number of nests.
+        """
         return len(self.data.nests)
 
     def _average_agent_energy(self) -> float:
+        """
+        Calculate the average energy of all agents in the simulation.
+
+        Returns:
+            float: The average energy of agents.
+        """
         return np.mean([agent.energy for agent in self.data.agents]) if self.data.agents else 0.0
 
     def _total_food_collected(self) -> int:
+        """
+        Calculate the total amount of food collected by all nests in the simulation.
+
+        Returns:
+            int: The total amount of food collected.
+        """
         return sum(nest.get('food_collected', 0) for nest in self.data.nests)
 
     def _energy_statistics(self) -> Dict[str, float]:
+        """
+        Calculate various energy statistics for the agents in the simulation.
+
+        Returns:
+            Dict[str, float]: A dictionary containing energy statistics.
+        """
         energies = [agent.energy for agent in self.data.agents]
         return {
             "mean_energy": np.mean(energies),
@@ -81,6 +156,12 @@ class EnhancedSimulationSummary:
         } if energies else {k: 0.0 for k in ["mean_energy", "std_dev_energy", "median_energy", "min_energy", "max_energy"]}
 
     def _summary_by_agent_type(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Generate a summary of statistics for each agent type in the simulation.
+
+        Returns:
+            Dict[str, Dict[str, Any]]: A dictionary containing summary statistics by agent type.
+        """
         summary = {}
         for agent in self.data.agents:
             summary.setdefault(agent.type, {'energy': [], 'count': 0, 'food_collected': 0})
@@ -94,10 +175,22 @@ class EnhancedSimulationSummary:
         return summary
 
     def _agents_entropy(self) -> float:
+        """
+        Calculate the entropy of agent energies in the simulation.
+
+        Returns:
+            float: The entropy of agent energies.
+        """
         energies = [agent.energy for agent in self.data.agents]
         return entropy(energies) if energies else 0
 
     def _food_distribution(self) -> Dict[str, float]:
+        """
+        Calculate various food distribution statistics for the simulation.
+
+        Returns:
+            Dict[str, float]: A dictionary containing food distribution statistics.
+        """
         food_amounts = [source.get('amount', 0) for source in self.data.food_sources]
         return {
             'total_food': sum(food_amounts),
@@ -107,6 +200,12 @@ class EnhancedSimulationSummary:
         } if food_amounts else {k: 0.0 for k in ['total_food', 'average_food_per_source', 'max_food_in_source', 'min_food_in_source']}
 
     def _agent_lifespan(self) -> Dict[str, float]:
+        """
+        Calculate various lifespan statistics for the agents in the simulation.
+
+        Returns:
+            Dict[str, float]: A dictionary containing lifespan statistics.
+        """
         lifespans = [agent.lifespan for agent in self.data.agents]
         return {
             'average_lifespan': np.mean(lifespans),
@@ -115,6 +214,12 @@ class EnhancedSimulationSummary:
         } if lifespans else {k: 0.0 for k in ['average_lifespan', 'max_lifespan', 'min_lifespan']}
 
     def _nest_efficiency(self) -> Dict[str, float]:
+        """
+        Calculate various efficiency statistics for the nests in the simulation.
+
+        Returns:
+            Dict[str, float]: A dictionary containing efficiency statistics.
+        """
         efficiencies = [nest.get('food_collected', 0) / nest.get('agents', 1) for nest in self.data.nests]
         return {
             'average_efficiency': np.mean(efficiencies),
@@ -123,6 +228,12 @@ class EnhancedSimulationSummary:
         } if efficiencies else {k: 0.0 for k in ['average_efficiency', 'max_efficiency', 'min_efficiency']}
 
     def _agent_movement(self) -> Dict[str, float]:
+        """
+        Calculate various movement statistics for the agents in the simulation.
+
+        Returns:
+            Dict[str, float]: A dictionary containing movement statistics.
+        """
         movements = [agent.distance_traveled for agent in self.data.agents]
         return {
             'average_movement': np.mean(movements),
@@ -131,10 +242,26 @@ class EnhancedSimulationSummary:
         } if movements else {k: 0.0 for k in ['average_movement', 'max_movement', 'min_movement']}
 
 def summarize_simulation(simulation_results: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Generate a summary of the simulation results.
+
+    Args:
+        simulation_results (Dict[str, Any]): The raw simulation data.
+
+    Returns:
+        Dict[str, Any]: A dictionary containing summary statistics.
+    """
     summary = EnhancedSimulationSummary(simulation_results)
     return summary.generate_summary()
 
 def save_summary_to_file(summary: Dict[str, Any], file_path: str) -> None:
+    """
+    Save the summary to a text file.
+
+    Args:
+        summary (Dict[str, Any]): The summary data.
+        file_path (str): The path to the output file.
+    """
     try:
         with open(file_path, 'w') as file:
             for key, value in summary.items():
@@ -144,6 +271,13 @@ def save_summary_to_file(summary: Dict[str, Any], file_path: str) -> None:
         logging.error(f"Error saving summary to file: {str(e)}")
 
 def save_summary_to_csv(summary: Dict[str, Any], file_path: str) -> None:
+    """
+    Save the summary to a CSV file.
+
+    Args:
+        summary (Dict[str, Any]): The summary data.
+        file_path (str): The path to the output CSV file.
+    """
     try:
         pd.DataFrame.from_dict(summary, orient='index').to_csv(file_path, header=False)
         logging.info(f"Summary saved to CSV: {file_path}")
@@ -151,6 +285,13 @@ def save_summary_to_csv(summary: Dict[str, Any], file_path: str) -> None:
         logging.error(f"Error saving summary to CSV: {str(e)}")
 
 def plot_agent_energy_distribution(agents: List[SimulationEntity], file_path: str) -> None:
+    """
+    Plot the distribution of agent energies and save the plot to a file.
+
+    Args:
+        agents (List[SimulationEntity]): List of simulation entities.
+        file_path (str): The path to the output plot file.
+    """
     try:
         energies = [agent.energy for agent in agents]
         plt.figure(figsize=(10, 6))
@@ -166,6 +307,13 @@ def plot_agent_energy_distribution(agents: List[SimulationEntity], file_path: st
         logging.error(f"Error plotting agent energy distribution: {str(e)}")
 
 def plot_agent_types(agents: List[SimulationEntity], file_path: str) -> None:
+    """
+    Plot the distribution of agent types and save the plot to a file.
+
+    Args:
+        agents (List[SimulationEntity]): List of simulation entities.
+        file_path (str): The path to the output plot file.
+    """
     try:
         agent_types = [agent.type for agent in agents]
         type_counts = Counter(agent_types)
@@ -183,6 +331,13 @@ def plot_agent_types(agents: List[SimulationEntity], file_path: str) -> None:
         logging.error(f"Error plotting agent types: {str(e)}")
 
 def plot_food_distribution(food_sources: List[Dict[str, int]], file_path: str) -> None:
+    """
+    Plot the distribution of food sources and save the plot to a file.
+
+    Args:
+        food_sources (List[Dict[str, int]]): List of food sources with their amounts.
+        file_path (str): The path to the output plot file.
+    """
     try:
         food_amounts = [source.get('amount', 0) for source in food_sources]
         plt.figure(figsize=(10, 6))
@@ -195,9 +350,18 @@ def plot_food_distribution(food_sources: List[Dict[str, int]], file_path: str) -
     except Exception as e:
         logging.error(f"Error plotting food distribution: {str(e)}")
 
+def initialize_logging(log_level: Union[str, int] = logging.INFO):
+    """
+    Initialize logging with the specified level.
+
+    Args:
+        log_level (Union[str, int], optional): Logging level. Defaults to logging.INFO.
+    """
+    logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
+
 # Example usage
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    initialize_logging()
     
     simulation_results = {
         "agents": [

@@ -1,15 +1,23 @@
 from typing import List, Dict, Optional
+from dataclasses import dataclass
 
+@dataclass
 class ThreeMindsPerspective:
-    def __init__(self, perspective: str, unconscious: str, conscious: str, consciousness: Optional[str]):
-        self.perspective = perspective
-        self.unconscious = unconscious
-        self.conscious = conscious
-        self.consciousness = consciousness
+    """Represents a perspective with unconscious, conscious, and consciousness components."""
+    perspective: str
+    unconscious: str
+    conscious: str
+    consciousness: Optional[str]
 
 class ThreeMindsAnalyzer:
+    """Analyzes and compares different Three Minds perspectives."""
+
     def __init__(self):
-        self.perspectives: List[ThreeMindsPerspective] = [
+        self.perspectives: List[ThreeMindsPerspective] = self._initialize_perspectives()
+
+    def _initialize_perspectives(self) -> List[ThreeMindsPerspective]:
+        """Initializes the list of ThreeMindsPerspective instances."""
+        return [
             ThreeMindsPerspective("Ancient Greek Philosophy", "Appetite", "Spunk", "Reason"),
             ThreeMindsPerspective("Eastern Philosophy", "Yin", "Yang", "Balance/Harmony"),
             ThreeMindsPerspective("Religious (Saint Paul)", "Carnal", "Soulish", "Spiritual"),
@@ -36,15 +44,20 @@ class ThreeMindsAnalyzer:
         ]
 
     def get_perspective(self, perspective_name: str) -> Optional[ThreeMindsPerspective]:
+        """Retrieves a perspective by name, case-insensitive."""
         for perspective in self.perspectives:
             if perspective.perspective.lower() == perspective_name.lower():
                 return perspective
+        # Improved error message
+        print(f"Perspective '{perspective_name}' not found.")
         return None
 
     def compare_perspectives(self, perspective1: str, perspective2: str) -> Dict[str, List[str]]:
+        """Compares two perspectives and returns their components."""
         p1 = self.get_perspective(perspective1)
         p2 = self.get_perspective(perspective2)
         if not p1 or not p2:
+            print("One or both perspectives not found for comparison.")
             return {}
         return {
             "Unconscious": [p1.unconscious, p2.unconscious],
@@ -53,6 +66,7 @@ class ThreeMindsAnalyzer:
         }
 
     def analyze_common_themes(self) -> Dict[str, List[str]]:
+        """Analyzes and aggregates common themes across all perspectives."""
         themes = {"Unconscious": [], "Conscious": [], "Consciousness": []}
         for perspective in self.perspectives:
             themes["Unconscious"].append(perspective.unconscious)
@@ -62,17 +76,20 @@ class ThreeMindsAnalyzer:
         return themes
 
 # Example usage:
-analyzer = ThreeMindsAnalyzer()
-
-# Get a specific perspective
-freud_perspective = analyzer.get_perspective("Sigmund Freud")
-if freud_perspective:
-    print(f"Freud's perspective: Unconscious={freud_perspective.unconscious}, Conscious={freud_perspective.conscious}, Consciousness={freud_perspective.consciousness}")
-
-# Compare two perspectives
-comparison = analyzer.compare_perspectives("Ancient Greek Philosophy", "Sigmund Freud")
-print("Comparison:", comparison)
-
-# Analyze common themes
-themes = analyzer.analyze_common_themes()
-print("Common themes:", themes)
+if __name__ == "__main__":
+    analyzer = ThreeMindsAnalyzer()
+    
+    # Get a specific perspective
+    freud_perspective = analyzer.get_perspective("Sigmund Freud")
+    if freud_perspective:
+        print(f"Freud's perspective: Unconscious={freud_perspective.unconscious}, "
+              f"Conscious={freud_perspective.conscious}, Consciousness={freud_perspective.consciousness}")
+    
+    # Compare two perspectives
+    comparison = analyzer.compare_perspectives("Ancient Greek Philosophy", "Sigmund Freud")
+    if comparison:
+        print("Comparison:", comparison)
+    
+    # Analyze common themes
+    themes = analyzer.analyze_common_themes()
+    print("Common themes:", themes)

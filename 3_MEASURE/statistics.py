@@ -7,6 +7,10 @@ from scipy import stats
 from dataclasses import dataclass
 import os
 from abc import ABC, abstractmethod
+import logging  # Added for logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 @dataclass
 class SimulationSummary:
@@ -32,7 +36,7 @@ class StatisticalAnalysis(ABC):
     def visualize(self, file_path: str) -> None:
         pass
 
-class EnhancedSimulationStatistics:
+class EnhancedSimulationStatistics(StatisticalAnalysis):  # Inherit from StatisticalAnalysis
     def __init__(self, simulation_results: pd.DataFrame):
         """
         Initializes the EnhancedSimulationStatistics with simulation results.
@@ -42,6 +46,7 @@ class EnhancedSimulationStatistics:
         """
         self.results = simulation_results if isinstance(simulation_results, pd.DataFrame) else pd.DataFrame(simulation_results)
         self._validate_data()
+        logging.info("EnhancedSimulationStatistics initialized successfully.")
 
     def _validate_data(self) -> None:
         """
@@ -49,12 +54,36 @@ class EnhancedSimulationStatistics:
         Raises ValueError if the data is invalid.
         """
         required_columns = ['category', 'type', 'energy', 'food_collected', 'simulation_steps']
-        for col in required_columns:
-            if col not in self.results.columns:
-                raise ValueError(f"Missing required column: {col}")
+        missing_columns = [col for col in required_columns if col not in self.results.columns]
+        if missing_columns:
+            logging.error(f"Missing required columns: {missing_columns}")
+            raise ValueError(f"Missing required columns: {missing_columns}")
         
-        if not all(self.results['category'].isin(['agents', 'food_sources', 'nests'])):
+        valid_categories = {'agents', 'food_sources', 'nests'}
+        if not set(self.results['category']).issubset(valid_categories):
+            logging.error("Invalid categories found in the data.")
             raise ValueError("Invalid categories in the data")
+        logging.info("Data validation passed.")
+
+    def compute_summary(self) -> SimulationSummary:
+        """
+        Computes comprehensive summary statistics from the simulation results.
+
+        Returns:
+        - SimulationSummary: A dataclass containing summary statistics.
+        """
+        logging.info("Computing summary statistics.")
+        return self.compute_summary_statistics()
+
+    def visualize(self, file_path: str) -> None:
+        """
+        Generates and saves all relevant visualizations.
+
+        Parameters:
+        - file_path (str): The directory path to save the visualizations.
+        """
+        logging.info("Generating visualizations.")
+        self.generate_comprehensive_report(file_path)
 
     def compute_summary_statistics(self) -> SimulationSummary:
         """
@@ -66,7 +95,7 @@ class EnhancedSimulationStatistics:
         agents_data = self.results.query("category == 'agents'")
         nests_data = self.results.query("category == 'nests'")
 
-        return SimulationSummary(
+        summary = SimulationSummary(
             total_agents=len(agents_data),
             total_food_sources=len(self.results.query("category == 'food_sources'")),
             total_nests=len(nests_data),
@@ -80,6 +109,8 @@ class EnhancedSimulationStatistics:
             energy_skewness=stats.skew(agents_data['energy']),
             energy_kurtosis=stats.kurtosis(agents_data['energy'])
         )
+        logging.debug(f"Summary statistics: {summary}")
+        return summary
 
     def compute_agent_type_statistics(self) -> pd.DataFrame:
         """
@@ -221,33 +252,48 @@ class EnhancedSimulationStatistics:
         Parameters:
         - output_dir (str): The directory to save the report files.
         """
+        logging.info(f"Generating comprehensive report in {output_dir}.")
         os.makedirs(output_dir, exist_ok=True)
 
-        # Generate summary statistics
-        summary = self.compute_summary_statistics()
-        with open(os.path.join(output_dir, 'summary_statistics.txt'), 'w') as f:
-            for field, value in summary.__dict__.items():
-                f.write(f"{field}: {value}\n")
+        try:
+            # Generate summary statistics
+            summary = self.compute_summary_statistics()
+            summary_file = os.path.join(output_dir, 'summary_statistics.txt')
+            with open(summary_file, 'w') as f:
+                for field, value in summary.__dict__.items():
+                    f.write(f"{field}: {value}\n")
+            logging.info(f"Summary statistics saved to {summary_file}.")
 
-        # Generate agent type statistics
-        agent_stats = self.compute_agent_type_statistics()
-        agent_stats.to_csv(os.path.join(output_dir, 'agent_type_statistics.csv'))
+            # Generate agent type statistics
+            agent_stats = self.compute_agent_type_statistics()
+            agent_stats_file = os.path.join(output_dir, 'agent_type_statistics.csv')
+            agent_stats.to_csv(agent_stats_file)
+            logging.info(f"Agent type statistics saved to {agent_stats_file}.")
 
-        # Generate visualizations
-        self.visualize_agent_energy_distribution(os.path.join(output_dir, 'agent_energy_distribution.png'))
-        self.visualize_energy_trends(os.path.join(output_dir, 'energy_trends.png'))
-        self.visualize_food_collection(os.path.join(output_dir, 'food_collection_trends.png'))
+            # Generate visualizations
+            self.visualize_agent_energy_distribution(os.path.join(output_dir, 'agent_energy_distribution.png'))
+            self.visualize_energy_trends(os.path.join(output_dir, 'energy_trends.png'))
+            self.visualize_food_collection(os.path.join(output_dir, 'food_collection_trends.png'))
+            logging.info("Visualizations generated and saved.")
 
-        # Generate energy trends data
-        energy_trends = self.analyze_energy_trends()
-        energy_trends.to_csv(os.path.join(output_dir, 'energy_trends.csv'))
+            # Generate energy trends data
+            energy_trends = self.analyze_energy_trends()
+            energy_trends_file = os.path.join(output_dir, 'energy_trends.csv')
+            energy_trends.to_csv(energy_trends_file)
+            logging.info(f"Energy trends data saved to {energy_trends_file}.")
 
-        # Generate food collection data
-        food_trends, efficiency_stats = self.analyze_food_collection()
-        food_trends.to_csv(os.path.join(output_dir, 'food_collection_trends.csv'))
-        efficiency_stats.to_frame().to_csv(os.path.join(output_dir, 'food_collection_efficiency_stats.csv'))
+            # Generate food collection data
+            food_trends, efficiency_stats = self.analyze_food_collection()
+            food_trends_file = os.path.join(output_dir, 'food_collection_trends.csv')
+            food_trends.to_csv(food_trends_file)
+            efficiency_stats_file = os.path.join(output_dir, 'food_collection_efficiency_stats.csv')
+            efficiency_stats.to_frame().to_csv(efficiency_stats_file)
+            logging.info(f"Food collection data saved to {food_trends_file} and {efficiency_stats_file}.")
 
-        print(f"Comprehensive report generated in {output_dir}")
+            logging.info(f"Comprehensive report generated in {output_dir}")
+        except Exception as e:
+            logging.error(f"Failed to generate comprehensive report: {e}")
+            raise
 
 # Example usage
 # results = load_simulation_results(file_path)

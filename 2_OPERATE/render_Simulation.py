@@ -4,6 +4,10 @@ from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 from typing import List, Dict, Any, Optional, Tuple
 from dataclasses import dataclass
+import logging  # Added for logging purposes
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 @dataclass
 class Entity:
@@ -19,29 +23,57 @@ class SimulationRenderer:
         self.colormap = self._create_custom_colormap()
         self._configure_plot_environment()
         self.animation: Optional[animation.FuncAnimation] = None
+        logging.info("SimulationRenderer initialized successfully.")
     
     def _create_custom_colormap(self) -> LinearSegmentedColormap:
-        """Create a custom colormap for the simulation."""
+        """Create a custom colormap for the simulation.
+
+        Returns
+        -------
+        LinearSegmentedColormap
+            The custom colormap created from the defined color list.
+        """
         colors = ['#FFFFFF', '#E6F3FF', '#ADD8E6', '#4169E1', '#000080', '#191970']  # Enhanced gradient: White to midnight blue
+        logging.debug("Creating custom colormap.")
         return LinearSegmentedColormap.from_list("custom_blue", colors, N=256)
     
     def _configure_plot_environment(self) -> None:
         """Set up the plot environment for the simulation."""
-        self.ax.set_xlim(0, self.simulation_environment.width)
-        self.ax.set_ylim(0, self.simulation_environment.height)
-        self.ax.set_title('Advanced Ant Colony Optimization Simulation', fontsize=20, fontweight='bold')
-        self.ax.set_xlabel('X Coordinate', fontsize=16)
-        self.ax.set_ylabel('Y Coordinate', fontsize=16)
-        self.ax.grid(True, linestyle='--', alpha=0.7)
-        self.ax.set_facecolor('#F0F0F0')  # Light gray background
-        self.fig.set_facecolor('#E8E8E8')  # Slightly darker gray for figure background
+        try:
+            self.ax.set_xlim(0, self.simulation_environment.width)
+            self.ax.set_ylim(0, self.simulation_environment.height)
+            self.ax.set_title('Advanced Ant Colony Optimization Simulation', fontsize=20, fontweight='bold')
+            self.ax.set_xlabel('X Coordinate', fontsize=16)
+            self.ax.set_ylabel('Y Coordinate', fontsize=16)
+            self.ax.grid(True, linestyle='--', alpha=0.7)
+            self.ax.set_facecolor('#F0F0F0')  # Light gray background
+            self.fig.set_facecolor('#E8E8E8')  # Slightly darker gray for figure background
+            logging.info("Plot environment configured.")
+        except AttributeError as e:
+            logging.error(f"Error configuring plot environment: {e}")
+            raise
     
     def _plot_entities(self, entities: List[Entity], color: str, label: str, marker: str = 'o', size: int = 50) -> None:
-        """Plot entities on the simulation environment."""
+        """Plot entities on the simulation environment.
+
+        Parameters
+        ----------
+        entities : List[Entity]
+            The list of entities to plot.
+        color : str
+            Color of the entities.
+        label : str
+            Label for the entities.
+        marker : str, optional
+            Marker style, by default 'o'.
+        size : int, optional
+            Size of the markers, by default 50.
+        """
         positions = [(entity.x, entity.y) for entity in entities]
         if positions:
             x, y = zip(*positions)
             self.ax.scatter(x, y, c=color, label=label, alpha=0.8, edgecolors='w', marker=marker, s=size, zorder=3)
+            logging.debug(f"Plotted {label} with color {color}.")
     
     def _plot_pheromone_trails(self) -> None:
         """Plot pheromone trails as a heatmap with enhanced visualization."""
@@ -112,11 +144,26 @@ class SimulationRenderer:
                      verticalalignment='top', bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
     
     def save_animation(self, filename: str, fps: int = 30, dpi: int = 300) -> None:
-        """Save the animation to a file."""
-        if self.animation:
-            self.animation.save(filename, fps=fps, dpi=dpi, writer='ffmpeg')
-        else:
-            print("No animation to save. Run animate_simulation first.")
+        """Save the animation to a file.
+
+        Parameters
+        ----------
+        filename : str
+            The name of the file to save the animation.
+        fps : int, optional
+            Frames per second, by default 30.
+        dpi : int, optional
+            Dots per inch, by default 300.
+        """
+        try:
+            if self.animation:
+                self.animation.save(filename, fps=fps, dpi=dpi, writer='ffmpeg')
+                logging.info(f"Animation saved as {filename}.")
+            else:
+                logging.warning("No animation to save. Run animate_simulation first.")
+        except Exception as e:
+            logging.error(f"Failed to save animation: {e}")
+            raise
     
     def plot_performance_over_time(self, performance_data: Dict[str, List[float]]) -> None:
         """Plot various performance metrics over time."""

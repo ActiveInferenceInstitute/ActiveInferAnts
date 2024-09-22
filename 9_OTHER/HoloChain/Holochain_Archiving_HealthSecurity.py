@@ -2,7 +2,6 @@ from typing import List, Dict, Any, Optional, Union
 from dataclasses import dataclass, field
 from enum import Enum
 import time
-import hashlib
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -20,6 +19,9 @@ import zlib
 import json
 import logging
 from datetime import datetime, timedelta
+from utils.encryption import EncryptionService
+from utils.compression import CompressionService
+from utils.hashing import HashingService
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -68,41 +70,22 @@ class ArchivedEntry:
 # Zome Functions for Archiving
 class HealthSecurityArchiveZome:
     def __init__(self):
-        self.encryption_key = self._get_encryption_key()
-        self.compression_level = 9  # Highest compression level for zlib
-
-    def _get_encryption_key(self) -> bytes:
-        # In a real implementation, this would securely retrieve or generate an encryption key
-        # For demonstration purposes, we're using a static key derivation
-        password = b"this_is_a_secure_password"
-        salt = b"secure_salt"
-        kdf = PBKDF2HMAC(
-            algorithm=hashes.SHA256(),
-            length=32,
-            salt=salt,
-            iterations=100000,
-            backend=default_backend()
-        )
-        return base64.urlsafe_b64encode(kdf.derive(password))
-
-    def _compress_data(self, data: Dict[str, Any]) -> bytes:
-        return zlib.compress(json.dumps(data).encode(), level=self.compression_level)
-
-    def _decompress_data(self, compressed_data: bytes) -> Dict[str, Any]:
-        return json.loads(zlib.decompress(compressed_data).decode())
-
-    def _encrypt_data(self, data: bytes) -> bytes:
-        f = Fernet(self.encryption_key)
-        return f.encrypt(data)
-
-    def _decrypt_data(self, encrypted_data: bytes) -> bytes:
-        f = Fernet(self.encryption_key)
-        return f.decrypt(encrypted_data)
-
-    def _hash_data(self, data: bytes) -> str:
-        return hashlib.sha256(data).hexdigest()
+        self.encryption_service = EncryptionService()
+        self.compression_service = CompressionService(level=9)
+        self.hashing_service = HashingService()
 
     def _create_archive_entry(self, original_entry: Entry, entry_type: ArchiveEntryType, reason: str) -> EntryHash:
+        """
+        Create an archive entry for the given original entry.
+
+        Args:
+            original_entry (Entry): The original entry to be archived.
+            entry_type (ArchiveEntryType): The type of the archive entry.
+            reason (str): The reason for archiving the entry.
+
+        Returns:
+            EntryHash: The hash of the created archive entry.
+        """
         agent_info = get_agent_info()
         archive_metadata = ArchiveMetadata(
             original_entry_type=original_entry.entry_type,
@@ -110,7 +93,7 @@ class HealthSecurityArchiveZome:
             reason=reason,
             archiver_id=agent_info.agent_latest_pubkey,
             retention_period=365 * 24 * 60 * 60 * 1000,  # 1 year in milliseconds
-            encryption_key_id=self._hash_data(self.encryption_key),
+            encryption_key_id=self.hashing_service.compute_hash(self.encryption_service.key),
             compression_method="zlib",
             version="1.0",
             hash_algorithm="sha256",
@@ -120,9 +103,9 @@ class HealthSecurityArchiveZome:
             }
         )
 
-        compressed_data = self._compress_data(original_entry.content)
-        encrypted_data = self._encrypt_data(compressed_data)
-        content_hash = self._hash_data(encrypted_data)
+        compressed_data = self.compression_service.compress(original_entry.content)
+        encrypted_data = self.encryption_service.encrypt(compressed_data)
+        content_hash = self.hashing_service.compute_hash(encrypted_data)
 
         audit_trail_entry = ArchiveAuditTrail(
             action="ARCHIVE",
@@ -148,52 +131,137 @@ class HealthSecurityArchiveZome:
         return archive_hash
 
     def _sign_audit_trail(self, audit_trail: ArchiveAuditTrail) -> str:
+        """
+        Sign the audit trail entry using a simple hash function.
+
+        Args:
+            audit_trail (ArchiveAuditTrail): The audit trail entry to be signed.
+
+        Returns:
+            str: The signature of the audit trail entry.
+        """
         # In a real implementation, this would use a proper digital signature algorithm
         data = f"{audit_trail.action}{audit_trail.timestamp}{audit_trail.agent_id}{json.dumps(audit_trail.details)}"
         return hashlib.sha256(data.encode()).hexdigest()
 
     def archive_patient_record(self, record_hash: EntryHash, reason: str) -> EntryHash:
+        """
+        Archive a patient record.
+
+        Args:
+            record_hash (EntryHash): The hash of the patient record to be archived.
+            reason (str): The reason for archiving the patient record.
+
+        Returns:
+            EntryHash: The hash of the created archive entry.
+        """
         original_record = get_entry(record_hash)
         if not original_record:
             raise ValueError("Patient record not found")
         return self._create_archive_entry(original_record, ArchiveEntryType.ARCHIVED_PATIENT_RECORD, reason)
 
     def archive_medical_event(self, event_hash: EntryHash, reason: str) -> EntryHash:
+        """
+        Archive a medical event.
+
+        Args:
+            event_hash (EntryHash): The hash of the medical event to be archived.
+            reason (str): The reason for archiving the medical event.
+
+        Returns:
+            EntryHash: The hash of the created archive entry.
+        """
         original_event = get_entry(event_hash)
         if not original_event:
             raise ValueError("Medical event not found")
         return self._create_archive_entry(original_event, ArchiveEntryType.ARCHIVED_MEDICAL_EVENT, reason)
 
     def archive_access_log(self, log_hash: EntryHash, reason: str) -> EntryHash:
+        """
+        Archive an access log.
+
+        Args:
+            log_hash (EntryHash): The hash of the access log to be archived.
+            reason (str): The reason for archiving the access log.
+
+        Returns:
+            EntryHash: The hash of the created archive entry.
+        """
         original_log = get_entry(log_hash)
         if not original_log:
             raise ValueError("Access log not found")
         return self._create_archive_entry(original_log, ArchiveEntryType.ARCHIVED_ACCESS_LOG, reason)
 
     def archive_consent(self, consent_hash: EntryHash, reason: str) -> EntryHash:
+        """
+        Archive a consent.
+
+        Args:
+            consent_hash (EntryHash): The hash of the consent to be archived.
+            reason (str): The reason for archiving the consent.
+
+        Returns:
+            EntryHash: The hash of the created archive entry.
+        """
         original_consent = get_entry(consent_hash)
         if not original_consent:
             raise ValueError("Consent not found")
         return self._create_archive_entry(original_consent, ArchiveEntryType.ARCHIVED_CONSENT, reason)
 
     def get_archived_entry(self, archive_hash: EntryHash) -> Optional[ArchivedEntry]:
+        """
+        Retrieve an archived entry from the DHT.
+
+        Args:
+            archive_hash (EntryHash): The hash of the archive entry to retrieve.
+
+        Returns:
+            Optional[ArchivedEntry]: The archived entry if found, None otherwise.
+        """
         archived_entry = get_entry(archive_hash)
         if archived_entry:
-            decrypted_data = self._decrypt_data(archived_entry.content.original_content)
-            decompressed_data = self._decompress_data(decrypted_data)
+            decrypted_data = self.encryption_service.decrypt(archived_entry.content.original_content)
+            decompressed_data = self.compression_service.decompress(decrypted_data)
             archived_entry.content.original_content = decompressed_data
             return archived_entry.content
         return None
 
     def query_archived_entries(self, query_params: Dict[str, Any]) -> List[ArchivedEntry]:
+        """
+        Query archived entries based on the given parameters.
+
+        Args:
+            query_params (Dict[str, Any]): The query parameters.
+
+        Returns:
+            List[ArchivedEntry]: The list of archived entries matching the query.
+        """
         archived_entries = query(ArchiveEntryType.ARCHIVE_METADATA.value, query_params)
         return [self.get_archived_entry(entry_hash) for entry_hash in archived_entries]
 
     def get_archive_history(self, original_hash: EntryHash) -> List[ArchivedEntry]:
+        """
+        Retrieve the archive history for a given original entry.
+
+        Args:
+            original_hash (EntryHash): The hash of the original entry.
+
+        Returns:
+            List[ArchivedEntry]: The list of archived entries for the original entry.
+        """
         links = get_links(original_hash, "archived_version")
         return [self.get_archived_entry(link.target) for link in links]
 
     def restore_archived_entry(self, archive_hash: EntryHash) -> EntryHash:
+        """
+        Restore an archived entry.
+
+        Args:
+            archive_hash (EntryHash): The hash of the archive entry to restore.
+
+        Returns:
+            EntryHash: The hash of the restored entry.
+        """
         archived_entry = self.get_archived_entry(archive_hash)
         if not archived_entry:
             raise ValueError("Archived entry not found")
@@ -218,12 +286,40 @@ class HealthSecurityArchiveZome:
         return restored_hash
 
     def create_archive_capability_grant(self, grantee: AgentPubKey, functions: List[str]) -> ActionHash:
+        """
+        Create a capability grant for archive operations.
+
+        Args:
+            grantee (AgentPubKey): The agent to grant the capability to.
+            functions (List[str]): The list of functions to grant access to.
+
+        Returns:
+            ActionHash: The hash of the capability grant action.
+        """
         return create_cap_grant(grantee, functions, "archive_operations")
 
     def create_archive_capability_claim(self, grantor: AgentPubKey) -> ActionHash:
+        """
+        Create a capability claim for archive operations.
+
+        Args:
+            grantor (AgentPubKey): The agent granting the capability.
+
+        Returns:
+            ActionHash: The hash of the capability claim action.
+        """
         return create_cap_claim(grantor, "archive_operations")
 
     def check_retention_period(self, archive_hash: EntryHash) -> bool:
+        """
+        Check if an archive entry has exceeded its retention period.
+
+        Args:
+            archive_hash (EntryHash): The hash of the archive entry to check.
+
+        Returns:
+            bool: True if the retention period has not been exceeded, False otherwise.
+        """
         archived_entry = self.get_archived_entry(archive_hash)
         if not archived_entry:
             raise ValueError("Archived entry not found")
@@ -235,6 +331,12 @@ class HealthSecurityArchiveZome:
         return True  # If no retention period is set, consider it valid indefinitely
 
     def purge_expired_archives(self) -> List[EntryHash]:
+        """
+        Purge expired archive entries based on their retention periods.
+
+        Returns:
+            List[EntryHash]: The list of hashes of the purged archive entries.
+        """
         all_archives = self.query_archived_entries({})
         purged_archives = []
 
@@ -247,15 +349,36 @@ class HealthSecurityArchiveZome:
         return purged_archives
 
     def verify_archive_integrity(self, archive_hash: EntryHash) -> bool:
+        """
+        Verify the integrity of an archive entry.
+
+        Args:
+            archive_hash (EntryHash): The hash of the archive entry to verify.
+
+        Returns:
+            bool: True if the integrity check passes, False otherwise.
+        """
         archived_entry = self.get_archived_entry(archive_hash)
         if not archived_entry:
             raise ValueError("Archived entry not found")
-
-        computed_hash = self._hash_data(archived_entry.original_content)
-        return computed_hash == archived_entry.content_hash
+        
+        computed_hash = self.hashing_service.compute_hash(archived_entry.original_content)
+        is_valid = computed_hash == archived_entry.content_hash
+        logger.debug(f"Integrity check for {archive_hash}: {is_valid}")
+        return is_valid
 
 # Validation functions for archived entries
 def validate_archived_entry_create(action: Action, archived_entry: ArchivedEntry) -> ExternIO:
+    """
+    Validate the creation of an archived entry.
+
+    Args:
+        action (Action): The action associated with the validation.
+        archived_entry (ArchivedEntry): The archived entry to validate.
+
+    Returns:
+        ExternIO: The validation result.
+    """
     if not all(hasattr(archived_entry.metadata, attr) for attr in ["original_entry_type", "archive_date", "reason", "archiver_id"]):
         return ExternIO.encode({"valid": False, "message": "Invalid archive metadata"})
     if not archived_entry.audit_trail:
@@ -265,6 +388,16 @@ def validate_archived_entry_create(action: Action, archived_entry: ArchivedEntry
     return ExternIO.encode({"valid": True})
 
 def validate_archive_restoration(action: Action, archived_entry: ArchivedEntry) -> ExternIO:
+    """
+    Validate the restoration of an archived entry.
+
+    Args:
+        action (Action): The action associated with the validation.
+        archived_entry (ArchivedEntry): The archived entry to validate.
+
+    Returns:
+        ExternIO: The validation result.
+    """
     agent_info = get_agent_info()
     if agent_info.agent_latest_pubkey != archived_entry.metadata.archiver_id:
         return ExternIO.encode({"valid": False, "message": "Agent does not have permission to restore this archive"})

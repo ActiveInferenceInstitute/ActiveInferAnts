@@ -67,12 +67,13 @@ class Thing:
         Returns:
             logging.Logger: Configured logger object.
         """
-        logger = logging.getLogger(f"{__name__}.{id(self)}")
+        logger = logging.getLogger(f"{self.__class__.__name__}.{id(self)}")
         logger.setLevel(logging.INFO)
         handler = logging.StreamHandler()
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
-        logger.addHandler(handler)
+        if not logger.handlers:
+            logger.addHandler(handler)
         return logger
 
     def _construct_generative_model(self) -> Dict[str, Any]:
@@ -198,14 +199,14 @@ class Thing:
             float: Calculated VFE.
         """
         qs = self.posterior_states
-        obs_index = np_auto.argmax(observation)
-        
+        obs_index = np.argmax(observation)
+
         likelihood = self.observation_model[obs_index, :]
         prior = self.initial_state_distribution
-        
+
         joint = likelihood * prior
-        vfe = qs.dot(np_auto.log(qs) - np_auto.log(joint))
-        
+        vfe = np.dot(qs, np.log(qs) - np.log(joint))
+
         self.logger.debug(f"Calculated VFE: {vfe}")
         return vfe
 
@@ -220,19 +221,13 @@ class Thing:
             float: Calculated EFE.
         """
         future_states, future_observations = self.simulate_future(policy)
-        
         preferences = self.preference_model
-        
-        efe = 0.0
-        for obs in future_observations:
-            for state in future_states:
-                q_state = self.posterior_states[state]
-                q_obs = future_observations[obs]
-                p_desired = preferences[obs]
-                
-                efe_component = q_state * q_obs * (np_auto.log(q_state) - np_auto.log(p_desired))
-                efe += efe_component
-        
+
+        efe = np.sum([
+            qs * qo * (np.log(qs) - np.log(pd))
+            for qs, qo, pd in zip(self.posterior_states, future_observations, preferences)
+        ])
+
         self.logger.debug(f"Calculated EFE for policy: {efe}")
         return efe
 
@@ -246,19 +241,15 @@ class Thing:
         Returns:
             Tuple[np.ndarray, np.ndarray]: Predicted future states and observations.
         """
-        future_states = np.zeros(self.model_dimensions['num_states'])
-        future_observations = np.zeros(self.model_dimensions['num_observations'])
-        
-        current_state = self.posterior_states
+        future_states = np.zeros_like(self.posterior_states)
+        future_observations = np.zeros_like(self.preference_model)
+
+        current_state = self.posterior_states.copy()
         for action in policy:
-            next_state = np.dot(self.transition_model[action], current_state)
-            future_states += next_state
-            
-            predicted_obs = np.dot(self.observation_model, next_state)
-            future_observations += predicted_obs
-            
-            current_state = next_state
-        
+            current_state = np.dot(self.transition_model[action], current_state)
+            future_states += current_state
+            future_observations += np.dot(self.observation_model, current_state)
+
         return future_states, future_observations
 
     def _update_models(self) -> None:
@@ -269,11 +260,15 @@ class Thing:
             prev_obs = self.observation_history[-2]
             curr_obs = self.observation_history[-1]
             action = self.action_history[-1]
-            
-            self.transition_model[action] += self.learning_rate * (np.outer(curr_obs, prev_obs) - self.transition_model[action])
-            self.observation_model += self.learning_rate * (np.outer(curr_obs, self.posterior_states) - self.observation_model)
-            
+
+            # Update transition model for the taken action
+            transition_update = np.outer(curr_obs, prev_obs)
+            self.transition_model[action] += self.learning_rate * (transition_update - self.transition_model[action])
             self.transition_model[action] /= np.sum(self.transition_model[action], axis=1, keepdims=True)
+
+            # Update observation model
+            observation_update = np.outer(curr_obs, self.posterior_states)
+            self.observation_model += self.learning_rate * (observation_update - self.observation_model)
             self.observation_model /= np.sum(self.observation_model, axis=1, keepdims=True)
 
             self.logger.info("Updated internal models based on recent experiences")
@@ -311,10 +306,9 @@ class Thing:
         Adapts the learning rate based on recent performance.
         """
         recent_vfe = [self.calculate_vfe(obs) for obs in self.observation_history[-10:]]
-        if np.mean(recent_vfe) < 0.1:
-            self.learning_rate *= 0.9
-        else:
-            self.learning_rate *= 1.1
+        average_vfe = np.mean(recent_vfe)
+        adjustment_factor = 0.9 if average_vfe < 0.1 else 1.1
+        self.learning_rate *= adjustment_factor
         self.learning_rate = np.clip(self.learning_rate, 0.01, 1.0)
         self.logger.info(f"Adapted learning rate to: {self.learning_rate}")
 

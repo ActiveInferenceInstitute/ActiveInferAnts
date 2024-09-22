@@ -2,7 +2,7 @@ import numpy as np
 import logging
 import config
 import metaconfig
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Union
 from MetaInformAnt_Simulation import MetaInformAntSimulation
 from computational_resources import estimate_computational_resources
 from initialize_Nestmate_Colony import initialize_colony
@@ -20,11 +20,14 @@ logger = logging.getLogger(__name__)
 
 class SimulationSetup:
     def __init__(self):
+        self.initialize_components()
+
+    def initialize_components(self) -> None:
+        """Initialize all components of the simulation setup."""
         self.simulation_environment = self.initialize_environment()
-        self.agent_params = metaconfig.META_CONFIG['ANT_AND_COLONY']['AGENT_PARAMS']
-        self.niche_params = metaconfig.META_CONFIG['ANT_AND_COLONY']['NICHE_PARAMS']
-        self.parallel_execution = config.SIMULATION_SETTINGS['PARALLEL_EXECUTION']
-        self.validate_parallel_execution_settings()
+        self.agent_params = self.get_agent_params()
+        self.niche_params = self.get_niche_params()
+        self.parallel_execution = self.get_parallel_execution_settings()
         self.colony = self.initialize_colony()
         self.computational_load = self.estimate_computational_load()
         self.data_logger = DataLogger()
@@ -32,29 +35,48 @@ class SimulationSetup:
         self.performance_tracker = PerformanceTracker()
         self.exception_handler = SimulationExceptionHandler()
 
+    def get_agent_params(self) -> Dict[str, Any]:
+        """Retrieve agent parameters from meta configuration."""
+        return metaconfig.META_CONFIG['ANT_AND_COLONY']['AGENT_PARAMS']
+
+    def get_niche_params(self) -> Dict[str, Any]:
+        """Retrieve niche parameters from meta configuration."""
+        return metaconfig.META_CONFIG['ANT_AND_COLONY']['NICHE_PARAMS']
+
+    def get_parallel_execution_settings(self) -> Dict[str, Union[bool, int]]:
+        """Retrieve and validate parallel execution settings."""
+        settings = config.SIMULATION_SETTINGS['PARALLEL_EXECUTION']
+        self.validate_parallel_execution_settings(settings)
+        return settings
+
+    def handle_exception(self, context: str, e: Exception) -> None:
+        """Centralized exception handling."""
+        logger.error(f"Error during {context}: {e}", exc_info=True)
+        raise
+
     def initialize_environment(self) -> Environment:
         """Initialize and return the simulation environment."""
         try:
-            env_config = config.ENVIRONMENT_CONFIG
-            env_config['random_seed'] = np.random.randint(0, 1000000)  # Add randomness for each run
+            env_config = config.ENVIRONMENT_CONFIG.copy()
+            env_config['random_seed'] = np.random.randint(0, 1000000)  # Ensure immutability of config
             return Environment(**env_config)
         except Exception as e:
-            logger.error(f"Failed to initialize environment: {e}", exc_info=True)
-            raise
+            self.handle_exception("environment initialization", e)
 
-    def validate_parallel_execution_settings(self) -> None:
+    def validate_parallel_execution_settings(self, settings: Dict[str, Any]) -> None:
         """Validate parallel execution settings."""
         try:
-            if not isinstance(self.parallel_execution['ENABLED'], bool):
+            if not isinstance(settings.get('ENABLED'), bool):
                 raise ValueError("Parallel execution 'ENABLED' setting must be a boolean.")
-            if not isinstance(self.parallel_execution['WORKER_COUNT'], int) or self.parallel_execution['WORKER_COUNT'] <= 0:
+            worker_count = settings.get('WORKER_COUNT')
+            if not isinstance(worker_count, int) or worker_count <= 0:
                 raise ValueError("Parallel execution 'WORKER_COUNT' must be a positive integer.")
-            if self.parallel_execution['ENABLED'] and self.parallel_execution['WORKER_COUNT'] > config.SIMULATION_SETTINGS['AGENT_COUNT']:
-                logger.warning("Worker count exceeds agent count. Adjusting worker count.")
-                self.parallel_execution['WORKER_COUNT'] = config.SIMULATION_SETTINGS['AGENT_COUNT']
+            agent_count = config.SIMULATION_SETTINGS.get('AGENT_COUNT', 1)
+            if settings['ENABLED'] and worker_count > agent_count:
+                logger.warning("Worker count exceeds agent count. Adjusting worker count to match agent count.")
+                settings['WORKER_COUNT'] = agent_count
         except Exception as e:
-            logger.error(f"Invalid parallel execution settings: {e}", exc_info=True)
-            raise
+            self.handle_exception("parallel execution settings validation", e)
 
     def initialize_colony(self) -> Any:
         """Initialize the colony with the given configuration."""
@@ -67,8 +89,7 @@ class SimulationSetup:
                 meta_config=metaconfig.META_CONFIG
             )
         except Exception as e:
-            logger.error(f"Failed to initialize colony: {e}", exc_info=True)
-            raise
+            self.handle_exception("colony initialization", e)
 
     def estimate_computational_load(self) -> Dict[str, Any]:
         """Estimate the computational resources required for the simulation."""
@@ -81,8 +102,7 @@ class SimulationSetup:
                 parallel_execution=self.parallel_execution
             )
         except Exception as e:
-            logger.error(f"Failed to estimate computational load: {e}", exc_info=True)
-            raise
+            self.handle_exception("computational load estimation", e)
 
     def prepare_simulation(self) -> MetaInformAntSimulation:
         """Prepare the simulation environment and log the estimated computational load."""
@@ -109,7 +129,7 @@ class SimulationSetup:
     def run_simulation(self, max_steps: Optional[int] = None) -> Dict[str, Any]:
         """Run the simulation and return the results."""
         simulation = self.prepare_simulation()
-        max_steps = max_steps or config.SIMULATION_SETTINGS['MAX_STEPS']
+        max_steps = max_steps or config.SIMULATION_SETTINGS.get('MAX_STEPS', 1000)
         
         logger.info(f"Starting simulation for {max_steps} steps.")
         try:

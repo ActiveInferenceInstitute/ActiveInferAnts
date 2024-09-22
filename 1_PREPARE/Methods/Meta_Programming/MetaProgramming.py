@@ -1,18 +1,30 @@
-import inspect
-import types
 import ast
-import sys
-import importlib
 import functools
-from typing import Any, Callable, Dict, List, Type, Union, Optional, TypeVar
+import importlib
+import inspect
+import sys
+import types
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+)
 
 T = TypeVar('T')
 
+
 class MetaProgramming:
+    """A utility class providing various meta-programming functionalities."""
+
     @staticmethod
     def get_class_methods(cls: Type[T]) -> List[str]:
         """
-        Return a list of method names for a given class.
+        Retrieve a list of callable method names for a given class, excluding special methods.
 
         Args:
             cls (Type[T]): The class to inspect.
@@ -20,25 +32,29 @@ class MetaProgramming:
         Returns:
             List[str]: A list of method names.
         """
-        return [method for method in dir(cls) if callable(getattr(cls, method)) and not method.startswith("__")]
+        return [
+            method
+            for method in dir(cls)
+            if callable(getattr(cls, method)) and not method.startswith("__")
+        ]
 
     @staticmethod
     def get_function_signature(func: Callable[..., Any]) -> str:
         """
-        Return the signature of a function as a string.
+        Obtain the signature of a function as a string.
 
         Args:
             func (Callable[..., Any]): The function to inspect.
 
         Returns:
-            str: The function signature as a string.
+            str: The function's signature.
         """
         return str(inspect.signature(func))
 
     @staticmethod
     def get_source_code(obj: Union[Callable[..., Any], Type[Any]]) -> str:
         """
-        Return the source code of a function or class.
+        Retrieve the source code of a function or class.
 
         Args:
             obj (Union[Callable[..., Any], Type[Any]]): The object to inspect.
@@ -47,7 +63,7 @@ class MetaProgramming:
             str: The source code of the object.
 
         Raises:
-            TypeError: If the object is not a function or class.
+            TypeError: If the object is neither a function nor a class.
         """
         if not (inspect.isfunction(obj) or inspect.isclass(obj)):
             raise TypeError("Object must be a function or class")
@@ -56,11 +72,11 @@ class MetaProgramming:
     @staticmethod
     def create_dynamic_class(class_name: str, attributes: Dict[str, Any]) -> Type[Any]:
         """
-        Create a new class dynamically with given attributes.
+        Dynamically create a new class with the specified attributes.
 
         Args:
             class_name (str): The name of the class to create.
-            attributes (Dict[str, Any]): A dictionary of attributes to add to the class.
+            attributes (Dict[str, Any]): A dictionary of attribute names and their values.
 
         Returns:
             Type[Any]: The newly created class.
@@ -81,13 +97,13 @@ class MetaProgramming:
             AttributeError: If the method already exists in the class.
         """
         if hasattr(cls, method_name):
-            raise AttributeError(f"Method '{method_name}' already exists in class {cls.__name__}")
+            raise AttributeError(f"Method '{method_name}' already exists in class '{cls.__name__}'")
         setattr(cls, method_name, method)
 
     @staticmethod
     def modify_function(func: Callable[..., T], new_code: str) -> Callable[..., T]:
         """
-        Modify the code of an existing function.
+        Replace the implementation of an existing function with new code.
 
         Args:
             func (Callable[..., T]): The function to modify.
@@ -97,21 +113,27 @@ class MetaProgramming:
             Callable[..., T]: The modified function.
 
         Raises:
-            SyntaxError: If the new code is not valid Python syntax.
+            SyntaxError: If the new code contains invalid Python syntax.
         """
         try:
-            code = compile(new_code, "<string>", "exec")
+            compiled_code = compile(new_code, "<string>", "exec")
         except SyntaxError as e:
             raise SyntaxError(f"Invalid syntax in new code: {e}")
-        
-        new_func = types.FunctionType(code.co_consts[0], func.__globals__, func.__name__, func.__defaults__, func.__closure__)
+
+        new_func = types.FunctionType(
+            compiled_code.co_consts[0],
+            func.__globals__,
+            func.__name__,
+            func.__defaults__,
+            func.__closure__
+        )
         functools.update_wrapper(new_func, func)
         return new_func
 
     @staticmethod
     def create_decorator(decorator_func: Callable[..., Callable[..., T]]) -> Callable[..., Callable[..., T]]:
         """
-        Create a decorator function.
+        Create a decorator from a decorator function.
 
         Args:
             decorator_func (Callable[..., Callable[..., T]]): The function to use as a decorator.
@@ -130,13 +152,13 @@ class MetaProgramming:
     @staticmethod
     def parse_ast(code: str) -> ast.AST:
         """
-        Parse a string of Python code into an AST.
+        Parse a string of Python code into an Abstract Syntax Tree (AST).
 
         Args:
             code (str): The Python code to parse.
 
         Returns:
-            ast.AST: The parsed Abstract Syntax Tree.
+            ast.AST: The parsed AST.
 
         Raises:
             SyntaxError: If the code contains invalid Python syntax.
@@ -149,7 +171,7 @@ class MetaProgramming:
     @staticmethod
     def modify_ast(tree: ast.AST, transformer: Type[ast.NodeTransformer]) -> ast.AST:
         """
-        Modify an AST using a custom transformer.
+        Apply a transformer to modify an AST.
 
         Args:
             tree (ast.AST): The AST to modify.
@@ -158,7 +180,8 @@ class MetaProgramming:
         Returns:
             ast.AST: The modified AST.
         """
-        return transformer().visit(tree)
+        transformer_instance = transformer()
+        return transformer_instance.visit(tree)
 
     @staticmethod
     def compile_ast(tree: ast.AST, filename: str = "<ast>") -> types.CodeType:
@@ -200,8 +223,8 @@ class MetaProgramming:
 
         Args:
             name (str): The name of the metaclass.
-            bases (tuple): The base classes for the metaclass.
-            attrs (Dict[str, Any]): The attributes for the metaclass.
+            bases (tuple): Base classes for the metaclass.
+            attrs (Dict[str, Any]): Attributes for the metaclass.
 
         Returns:
             Type[Any]: The created metaclass.
@@ -211,7 +234,7 @@ class MetaProgramming:
     @staticmethod
     def introspect_object(obj: Any) -> Dict[str, Any]:
         """
-        Introspect an object and return its attributes and methods.
+        Introspect an object to retrieve its type, attributes, and methods.
 
         Args:
             obj (Any): The object to introspect.
@@ -221,8 +244,16 @@ class MetaProgramming:
         """
         return {
             "type": type(obj),
-            "attributes": {attr: getattr(obj, attr) for attr in dir(obj) if not callable(getattr(obj, attr)) and not attr.startswith("__")},
-            "methods": {method: getattr(obj, method) for method in dir(obj) if callable(getattr(obj, method)) and not method.startswith("__")}
+            "attributes": {
+                attr: getattr(obj, attr)
+                for attr in dir(obj)
+                if not callable(getattr(obj, attr)) and not attr.startswith("__")
+            },
+            "methods": {
+                method: getattr(obj, method)
+                for method in dir(obj)
+                if callable(getattr(obj, method)) and not method.startswith("__")
+            }
         }
 
     @staticmethod
@@ -234,8 +265,15 @@ class MetaProgramming:
             Callable[..., Any]: The custom property decorator.
         """
         class CustomProperty:
-            def __init__(self, fget: Optional[Callable[[Any], Any]] = None, fset: Optional[Callable[[Any, Any], None]] = None,
-                         fdel: Optional[Callable[[Any], None]] = None, doc: Optional[str] = None):
+            """A custom property descriptor."""
+
+            def __init__(
+                self,
+                fget: Optional[Callable[[Any], Any]] = None,
+                fset: Optional[Callable[[Any, Any], None]] = None,
+                fdel: Optional[Callable[[Any], None]] = None,
+                doc: Optional[str] = None
+            ):
                 self.fget = fget
                 self.fset = fset
                 self.fdel = fdel
@@ -259,12 +297,15 @@ class MetaProgramming:
                 self.fdel(obj)
 
             def getter(self, fget: Callable[[Any], Any]) -> 'CustomProperty':
+                """Define a getter for the property."""
                 return type(self)(fget, self.fset, self.fdel, self.__doc__)
 
             def setter(self, fset: Callable[[Any, Any], None]) -> 'CustomProperty':
+                """Define a setter for the property."""
                 return type(self)(self.fget, fset, self.fdel, self.__doc__)
 
             def deleter(self, fdel: Callable[[Any], None]) -> 'CustomProperty':
+                """Define a deleter for the property."""
                 return type(self)(self.fget, self.fset, fdel, self.__doc__)
 
         return CustomProperty
@@ -272,12 +313,14 @@ class MetaProgramming:
     @staticmethod
     def create_singleton_metaclass() -> Type[Any]:
         """
-        Create a singleton metaclass.
+        Create a singleton metaclass to ensure a class only has one instance.
 
         Returns:
             Type[Any]: The singleton metaclass.
         """
         class Singleton(type):
+            """A metaclass that creates a Singleton base class."""
+
             _instances: Dict[Type[Any], Any] = {}
 
             def __call__(cls: Type[T], *args: Any, **kwargs: Any) -> T:
@@ -299,22 +342,27 @@ class MetaProgramming:
             Type[Any]: The created abstract base class.
         """
         class AbstractBaseClass:
+            """An abstract base class enforcing the implementation of specified methods."""
+
             def __init_subclass__(cls: Type[Any], **kwargs: Any) -> None:
                 super().__init_subclass__(**kwargs)
                 for method in abstract_methods:
                     if not hasattr(cls, method) or not callable(getattr(cls, method)):
-                        raise NotImplementedError(f"Subclass must implement abstract method '{method}'")
+                        raise NotImplementedError(
+                            f"Subclass must implement abstract method '{method}'"
+                        )
 
         return AbstractBaseClass
 
-# Example usage:
+
+# Example usage
 if __name__ == "__main__":
     # Create a dynamic class
     DynamicClass = MetaProgramming.create_dynamic_class("DynamicClass", {"x": 1, "y": 2})
-    
+
     # Add a method to the dynamic class
     MetaProgramming.add_method_to_class(DynamicClass, "sum", lambda self: self.x + self.y)
-    
+
     # Create an instance and use the added method
     instance = DynamicClass()
     print(instance.sum())  # Output: 3
@@ -328,10 +376,12 @@ if __name__ == "__main__":
 
         @custom_property
         def value(self):
+            """Get the value."""
             return self._value
 
         @value.setter
         def value(self, new_value):
+            """Set the value."""
             self._value = new_value
 
     test = TestClass()
@@ -354,6 +404,7 @@ if __name__ == "__main__":
 
     class ConcreteClass(AbstractBase):
         def abstract_method(self):
+            """Implementation of the abstract method."""
             print("Implemented abstract method")
 
     concrete = ConcreteClass()

@@ -10,7 +10,7 @@ from collections import defaultdict
 class AgentVisualizer(ABC):
     """
     Enhances situational awareness by visualizing the internal state of ActiveInferenceAgent or its subclasses.
-    It integrates simulation, execution, and rendering contexts for a comprehensive overview, adhering to Active Inference best practices.
+    Integrates simulation, execution, and rendering contexts for a comprehensive overview, adhering to Active Inference best practices.
     """
     def __init__(self, agent: Any) -> None:
         self.agent = agent
@@ -104,8 +104,9 @@ class AgentVisualizer(ABC):
         pass
 
     def visualize(self) -> None:
-        logging.info("Enhanced Situational Awareness: Visualizing Agent Internals and Context")
+        logging.info("Starting visualization of agent internals and context.")
         if not self.check_agent_attributes():
+            logging.error("Visualization aborted due to missing agent attributes.")
             return
         self.log_basic_info()
         self.log_matrices_info()
@@ -116,6 +117,7 @@ class AgentVisualizer(ABC):
         self.integrate_situational_awareness()
         self._generate_summary_report()
         self._visualize_agent_state_evolution()
+        logging.info("Visualization process completed successfully.")
 
     def _generate_summary_report(self) -> None:
         report = f"""
@@ -144,6 +146,7 @@ class AgentVisualizer(ABC):
         return "  No specific information available for this agent type."
 
     def _visualize_agent_state_evolution(self) -> None:
+        """Visualizes the evolution of the agent's state over time."""
         if hasattr(self.agent, 'get_state_history'):
             state_history = self.agent.get_state_history()
             plt.figure(figsize=(14, 10))
@@ -153,8 +156,11 @@ class AgentVisualizer(ABC):
             plt.xlabel("Time Steps")
             plt.ylabel("State Values")
             plt.legend()
+            plt.grid(True)  # Added grid for better readability
             plt.savefig(f"{self.visualization_dir}/agent_state_evolution.png")
             plt.close()
+        else:
+            logging.warning("Agent does not have a 'get_state_history' method. Skipping state evolution visualization.")
 
 class ConcreteAgentVisualizer(AgentVisualizer):
     def integrate_situational_awareness(self) -> None:
@@ -208,4 +214,19 @@ class ConcreteAgentVisualizer(AgentVisualizer):
         plt.close()
 
 def create_agent_visualizer(agent: Any) -> AgentVisualizer:
-    return ConcreteAgentVisualizer(agent)
+    """
+    Factory method to create an instance of ConcreteAgentVisualizer.
+
+    Args:
+        agent (Any): The agent instance to visualize.
+
+    Returns:
+        AgentVisualizer: An instance of ConcreteAgentVisualizer.
+    """
+    try:
+        visualizer = ConcreteAgentVisualizer(agent)
+        logging.info("ConcreteAgentVisualizer instance created successfully.")
+        return visualizer
+    except Exception as e:
+        logging.error(f"Failed to create AgentVisualizer: {e}")
+        raise

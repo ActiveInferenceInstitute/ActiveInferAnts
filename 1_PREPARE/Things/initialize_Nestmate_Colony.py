@@ -1,14 +1,46 @@
 import numpy as np
 from InferAnts import ActiveNestmate
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Optional
 from .configs.config import config
 from .configs.metaconfig import metaconfig
+import logging
+from dataclasses import dataclass
+
+@dataclass
+class DevelopmentalParameters:
+    growth_rate: float
+    exploration_tendency: str
+    learning_rate: float
+    adaptation_speed: float
+
+    @staticmethod
+    def generate() -> 'DevelopmentalParameters':
+        return DevelopmentalParameters(
+            growth_rate=np.random.uniform(0.1, 1.0),
+            exploration_tendency=np.random.choice(['low', 'medium', 'high']),
+            learning_rate=np.random.uniform(0.01, 0.1),
+            adaptation_speed=np.random.uniform(0.5, 2.0),
+        )
+
+class InsufficientNestPositionsError(Exception):
+    """Exception raised when there are not enough nest positions available."""
+    pass
 
 class ColonyInitializer:
-    def __init__(self, env_config: Dict[str, Any], ant_config: Dict[str, Any], meta_config: Dict[str, Any]):
+    def __init__(self, env_config: Dict[str, Any], ant_config: Dict[str, Any], meta_config: Dict[str, Any], logger: Optional[logging.Logger] = None):
         self.env_config = env_config
         self.ant_config = ant_config
         self.meta_config = meta_config
+        self.logger = logger or logging.getLogger(__name__)
+        self._configure_logger()
+
+    def _configure_logger(self):
+        if not self.logger.hasHandlers():
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            handler.setFormatter(formatter)
+            self.logger.addHandler(handler)
+            self.logger.setLevel(logging.DEBUG)
 
     def initialize_colony(self, nest_count: int, agent_count_per_nest: int) -> List[List[ActiveNestmate]]:
         """
@@ -50,23 +82,28 @@ class ColonyInitializer:
         Returns:
             np.ndarray: Array of unique positions for agents.
         """
-        return np.random.choice(self.env_config['NEST_POSITIONS'], size=agent_count, replace=False)
+        available_positions = self.env_config.get('NEST_POSITIONS', [])
+        if len(available_positions) < agent_count:
+            self.logger.error("Not enough nest positions available.")
+            raise InsufficientNestPositionsError("Insufficient nest positions for the number of agents.")
+        return np.random.choice(available_positions, size=agent_count, replace=False)
 
-    def _initialize_single_nestmate(self, nest_id: int, nestmate_id: int, developmental_parameters: Dict[str, Any], position: Tuple[int, int]) -> ActiveNestmate:
+    def _initialize_single_nestmate(self, nest_id: int, nestmate_id: int, developmental_parameters: DevelopmentalParameters, position: Tuple[int, int]) -> ActiveNestmate:
         """
         Initialize a single ActiveNestmate agent.
 
         Args:
             nest_id (int): Identifier of the nest the agent belongs to.
             nestmate_id (int): Unique identifier for the agent within the nest.
-            developmental_parameters (Dict[str, Any]): Parameters for agent development.
+            developmental_parameters (DevelopmentalParameters): Parameters for agent development.
             position (Tuple[int, int]): Initial position of the agent.
 
         Returns:
             ActiveNestmate: An initialized ActiveNestmate agent.
         """
         influence_factor = self._select_influence_factor()
-        agent_params = self._merge_parameters(developmental_parameters)
+        agent_params = self._merge_parameters(vars(developmental_parameters))
+        self.logger.debug(f"Initializing nestmate {nestmate_id} in nest {nest_id} at position {position} with params {agent_params}")
         return ActiveNestmate(
             nest_id=nest_id,
             nestmate_id=nestmate_id,
@@ -96,16 +133,6 @@ class ColonyInitializer:
         """
         return {**self.meta_config['ACTIVE_INFERENCE'], **developmental_parameters}
 
-    def _generate_developmental_parameters(self) -> Dict[str, Any]:
-        """
-        Generate developmental parameters for an agent.
-
-        Returns:
-            Dict[str, Any]: A dictionary of developmental parameters.
-        """
-        return {
-            'growth_rate': np.random.uniform(0.1, 1.0),
-            'exploration_tendency': np.random.choice(['low', 'medium', 'high']),
-            'learning_rate': np.random.uniform(0.01, 0.1),
-            'adaptation_speed': np.random.uniform(0.5, 2.0),
-        }
+    def _generate_developmental_parameters(self) -> DevelopmentalParameters:
+        self.logger.debug("Generating developmental parameters.")
+        return DevelopmentalParameters.generate()

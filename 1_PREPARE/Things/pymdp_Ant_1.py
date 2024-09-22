@@ -98,8 +98,11 @@ class AntAgent:
     def _validate_and_process_policy_prior(self, prior: Optional[np.ndarray]) -> np.ndarray:
         """Validates and processes the policy prior."""
         if prior is None:
-            num_policies = np.prod([len(factor) for factor in self.controllable_factors])
-            return np.ones(num_policies) / num_policies
+            # Calculate the number of policies based on controllable factors
+            # Assuming each controllable factor has a predefined number of actions
+            actions_per_factor = 2  # Example: each factor can have 2 actions
+            num_policies = actions_per_factor ** len(self.controllable_factors)
+            return np.ones(num_policies) / num_policies  # Initialize uniform prior
         return self._validate_and_process_distribution(prior, "Policy prior")
 
     def _calculate_model_dimensions(self) -> Dict[str, Any]:
@@ -176,13 +179,13 @@ class AntAgent:
         self.update_beliefs_about_policies()
         return self.choose_action()
 
-    def update_models(self, observation: np.ndarray, action: np.ndarray, next_observation: np.ndarray) -> None:
+    def update_models(self, observation: np.ndarray, action: int, next_observation: np.ndarray) -> None:
         """
         Updates the agent's internal models based on observed transitions.
         
         Args:
             observation (np.ndarray): The initial observation.
-            action (np.ndarray): The action taken.
+            action (int): The action taken.
             next_observation (np.ndarray): The resulting observation after the action.
         """
         # Update transition model
@@ -191,7 +194,8 @@ class AntAgent:
         self.transition_model[action] += self.learning_rate * np.outer(state_prediction_error, self.posterior_states)
         
         # Update observation model
-        observation_prediction_error = observation - np.dot(self.observation_model, self.posterior_states)
+        observation_prediction = np.dot(self.observation_model, self.posterior_states)
+        observation_prediction_error = observation - observation_prediction
         self.observation_model += self.learning_rate * np.outer(observation_prediction_error, self.posterior_states)
         
         self.logger.info("Updated internal models based on observed transition.")
