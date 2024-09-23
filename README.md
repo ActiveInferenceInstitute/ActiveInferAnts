@@ -1,21 +1,37 @@
 # Active InferAnts
 
-Welcome to the **Active InferAnts** project! This README provides a comprehensive overview of the package, its features, installation instructions, usage examples, and contribution guidelines.
+Welcome to the **Active InferAnts** project! This README provides a comprehensive overview of the package, its features, installation instructions, usage examples, contribution guidelines, and detailed insights into the project's structure and key components.
 
 ## Table of Contents
+
 1. [Overview](#overview)
 2. [Features](#features)
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Project Structure](#project-structure)
-6. [Contributing](#contributing)
-7. [License](#license)
-8. [Acknowledgments](#acknowledgments)
-9. [Contact](#contact)
+    - [0_CONTEXT](#0_context)
+    - [1_PREPARE](#1_prepare)
+    - [2_OPERATE](#2_operate)
+    - [3_MEASURE](#3_measure)
+    - [4_REPORT](#4_report)
+    - [5_FOLLOWUP](#5_followup)
+    - [6_API](#6_api)
+    - [9_OTHER](#9_other)
+6. [Detailed Components](#detailed-components)
+    - [Active_BPMNferAnts](#active_bpmnferants)
+    - [Coda Modules](#coda-modules)
+    - [TheoryTranslator](#theorytranslator)
+    - [Utilities](#utilities)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Acknowledgments](#acknowledgments)
+10. [Contact](#contact)
 
 ## Overview
 
 **Active InferAnts** is a Python package engineered to facilitate Active Inference across various applications, with a specialized focus on ant colony optimization and related optimization challenges. The package integrates advanced algorithms and robust data structures to deliver efficient and precise inference capabilities, merging the principles of active inference with problem-solving strategies inspired by ant colony behavior.
+
+Leveraging modular design and comprehensive documentation, **Active InferAnts** serves as both a research tool and a foundation for developing sophisticated optimization solutions.
 
 ## Features
 
@@ -26,6 +42,7 @@ Welcome to the **Active InferAnts** project! This README provides a comprehensiv
 - **Performance Optimization**: Optimized for high performance and scalability, supporting parallel processing and GPU acceleration where applicable.
 - **Visualization Tools**: Includes built-in tools for visualizing ant colony behavior, optimization processes, and inference results.
 - **Customizable Parameters**: Allows flexible parameter settings to adapt algorithms to diverse problem domains and specific use cases.
+- **Secure Utilities**: Incorporates utility modules for encryption and hashing to ensure data security.
 
 ## Installation
 
@@ -65,20 +82,34 @@ model.visualize(results)
 
 For more detailed examples and tutorials, refer to the [Documentation](https://github.com/ActiveInferenceInstitute/ActiveInferAnts/wiki).
 
-## Project Structure
+## Project Structure (Example)
 
-The **Active InferAnts** repository is organized as follows:
-
-- `0_CONTEXT`: Contains contextual information, project background, and high-level documentation.
-- `1_PREPARE`: Includes scripts and modules for data preparation and preprocessing.
-- `2_OPERATE`: Core operational code, including main algorithms and inference models.
-- `3_MEASURE`: Tools and scripts for performance measurement and evaluation.
-- `4_REPORT`: Reporting utilities and templates for generating insights and visualizations.
-- `5_FOLLOWUP`: Post-processing scripts and analysis tools.
-- `6_API`: API definitions and interface specifications.
+- `0_CONTEXT`: Contains contextual information and high-level documentation.
+    - `Computer_Languages`: Implementations in various programming languages.
+- `1_PREPARE`: Scripts and modules for data preparation and preprocessing.
+    - `Methods`: Processing methods.
+    - `Utils`: Utility functions.
 - `9_OTHER`: Miscellaneous files and utilities.
+    - `BPMN`: BPMN-related files.
+    - `Coda`: Integration modules with Coda applications.
 
-Each directory encompasses relevant Python modules, documentation, and test files to support the development and deployment of the package.
+## Detailed Components
+
+### Active_BPMNferAnts
+
+Located in `9_OTHER/BPMN/`, **Active_BPMNferAnts.py** is responsible for interfacing with BPMN models, enabling the application of active inference methods to optimize business processes. The accompanying `.bpmn` files provide the necessary templates for visualizing and simulating these processes.
+
+### Coda Modules
+
+The `9_OTHER/Coda/` directory contains modules that integrate **Active InferAnts** with Coda applications. **Coda_ActiveInferAnts.py** facilitates data exchange and processing, while the markdown files document the API summaries and detailed specifications essential for developers looking to extend or utilize the Coda integrations.
+
+### TheoryTranslator
+
+The `1_PREPARE/Methods/TheoryTranslator/` directory houses **TheoryTranslator.py**, which serves as a pivotal tool in converting theoretical models of active inference into practical algorithms. This module ensures that the mathematical foundations are accurately represented in the codebase, maintaining the integrity of the optimization processes.
+
+### Utilities
+
+Under `1_PREPARE/Utils/`, the `encryption.py` and `hashing.py` scripts provide essential security features. **encryption.py** includes functions for data encryption, ensuring that sensitive information remains protected, while **hashing.py** offers hashing mechanisms for data integrity and secure storage, critical for maintaining the reliability of the inference models.
 
 ## Contributing
 

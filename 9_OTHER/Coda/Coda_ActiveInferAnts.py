@@ -11,6 +11,8 @@ from abc import ABC, abstractmethod
 import asyncio
 import aiohttp
 from tenacity import retry, stop_after_attempt, wait_exponential
+import os
+import argparse
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,13 +24,14 @@ class CodaAPIError(Exception):
 
 class CodaAPI:
     def __init__(self, api_token: str):
+        """Initialize the CodaAPI client with the provided API token."""
         self.base_url = "https://coda.io/apis/v1"
         self.headers = {
             "Authorization": f"Bearer {api_token}",
             "Content-Type": "application/json"
         }
         self.session = aiohttp.ClientSession(headers=self.headers)
-
+    
     async def __aenter__(self):
         return self
 
@@ -47,6 +50,7 @@ class CodaAPI:
             raise CodaAPIError(f"API request failed: {e}")
 
     async def create_doc(self, title: str, source_doc: Optional[str] = None, timezone: Optional[str] = None) -> Dict:
+        """Create a new Coda document."""
         payload = {"title": title, "sourceDoc": source_doc, "timezone": timezone}
         return await self._make_request("POST", "docs", payload=payload)
 
@@ -104,6 +108,7 @@ class ActiveInferenceModel(ABC):
 
 class ActiveInferenceAnt(ActiveInferenceModel):
     def __init__(self, name: str, species: AntSpecies, position: np.ndarray):
+        """Initialize an Active Inference Ant with given attributes."""
         self.name = name
         self.species = species
         self.position = position
@@ -130,6 +135,7 @@ class ActiveInferenceAnt(ActiveInferenceModel):
         )
 
     def perceive(self, observation: np.ndarray) -> None:
+        """Update the ant's beliefs based on the observation."""
         prediction = np.dot(self.A_matrix, self.position)
         prediction_error = observation - prediction
         self.position -= self.attributes.perception * self.learning_rate * prediction_error
@@ -140,11 +146,13 @@ class ActiveInferenceAnt(ActiveInferenceModel):
         self.C_matrix += self.learning_rate * (observation - self.C_matrix)
 
     def act(self) -> np.ndarray:
+        """Determine the next action based on expected free energy."""
         possible_actions = np.eye(3)
         efe_scores = [self.calculate_efe(action) for action in possible_actions]
         return possible_actions[np.argmin(efe_scores)]
 
     def calculate_efe(self, action: np.ndarray) -> float:
+        """Calculate the expected free energy for a given action."""
         future_state = np.dot(self.B_matrix, action)
         expected_observation = np.dot(self.A_matrix, future_state)
         pragmatic_value = np.dot(self.C_matrix, expected_observation)
@@ -153,6 +161,7 @@ class ActiveInferenceAnt(ActiveInferenceModel):
 
 @dataclass
 class SimulationConfig:
+    """Configuration for the ant simulation."""
     num_ants: int
     num_steps: int
     environment_size: Tuple[int, int] = (100, 100)
@@ -277,13 +286,25 @@ async def run_simulation(api_token: str, config: SimulationConfig) -> Tuple[str,
 
         return doc_id, table_id
 
+def parse_arguments() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(description="Run Active Inference Ants Simulation.")
+    parser.add_argument('--api_token', type=str, help='Coda API token', default=os.getenv('CODA_API_TOKEN'))
+    parser.add_argument('--num_ants', type=int, help='Number of ants in the simulation', default=10)
+    parser.add_argument('--num_steps', type=int, help='Number of simulation steps', default=20)
+    return parser.parse_args()
+
 async def main():
-    api_token = "your_api_token_here"
-    config = SimulationConfig(num_ants=10, num_steps=20)
-    doc_id, table_id = await run_simulation(api_token, config)
+    args = parse_arguments()
+    if not args.api_token:
+        logger.error("API token must be provided via --api_token or CODA_API_TOKEN environment variable.")
+        return
+    
+    config = SimulationConfig(num_ants=args.num_ants, num_steps=args.num_steps)
+    doc_id, table_id = await run_simulation(args.api_token, config)
 
     # Get final state of the simulation
-    async with CodaAPI(api_token) as coda_api:
+    async with CodaAPI(args.api_token) as coda_api:
         final_state = await coda_api.get_rows(doc_id, table_id)
         logger.info(f"Final state of simulation: {final_state}")
 

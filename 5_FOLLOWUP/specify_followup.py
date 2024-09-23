@@ -60,13 +60,105 @@ class ReportGenerator(ABC):
 
 class TextReportGenerator(ReportGenerator):
     def generate(self, data: Dict[str, Any]) -> str:
-        # Implementation for text report generation
-        pass
+        """
+        Generates a plain text report from the data.
+
+        Args:
+            data (Dict[str, Any]): The follow-up specification data.
+
+        Returns:
+            str: The generated plain text report.
+        """
+        report_lines = []
+        report_lines.append(f"Follow-Up Specification: {data['name']}\n")
+        report_lines.append("Updates:")
+        for update in data['updates']:
+            report_lines.append(f" - {update['area']} (Priority: {update['priority']})")
+        
+        report_lines.append("\nSessions:")
+        for session in data['sessions']:
+            report_lines.append(f" - {session['type']} on {session['date']} for {session['duration']} minutes")
+        
+        report_lines.append("\nDebrief Details:")
+        for key, value in data['debrief'].items():
+            report_lines.append(f" {key}: {value}")
+        
+        report_lines.append("\nPlan Details:")
+        for key, value in data['plan'].items():
+            report_lines.append(f" {key}: {value}")
+        
+        report_lines.append("\nStakeholders:")
+        for stakeholder in data['stakeholders']:
+            report_lines.append(f" - {stakeholder['name']} ({stakeholder['role']})")
+        
+        report_lines.append("\nMetrics:")
+        for key, value in data['metrics'].items():
+            report_lines.append(f" {key}: {value}")
+        
+        report_lines.append("\nTimeline:")
+        for key, value in data['timeline'].items():
+            report_lines.append(f" {key}: {value}")
+        
+        report_lines.append("\nResources:")
+        for resource in data['resources']:
+            report_lines.append(f" - {resource['name']} ({resource['type']}): {resource['allocation']}%")
+        
+        return "\n".join(report_lines)
 
 class HTMLReportGenerator(ReportGenerator):
     def generate(self, data: Dict[str, Any]) -> str:
-        # Implementation for HTML report generation
-        pass
+        """
+        Generates an HTML report from the data.
+
+        Args:
+            data (Dict[str, Any]): The follow-up specification data.
+
+        Returns:
+            str: The generated HTML report.
+        """
+        html_content = f"<h1>Follow-Up Specification: {data['name']}</h1>"
+        
+        html_content += "<h2>Updates</h2><ul>"
+        for update in data['updates']:
+            html_content += f"<li>{update['area']} (Priority: {update['priority']})</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Sessions</h2><ul>"
+        for session in data['sessions']:
+            html_content += f"<li>{session['type']} on {session['date']} for {session['duration']} minutes</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Debrief Details</h2><ul>"
+        for key, value in data['debrief'].items():
+            html_content += f"<li><strong>{key}:</strong> {value}</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Plan Details</h2><ul>"
+        for key, value in data['plan'].items():
+            html_content += f"<li><strong>{key}:</strong> {value}</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Stakeholders</h2><ul>"
+        for stakeholder in data['stakeholders']:
+            html_content += f"<li>{stakeholder['name']} ({stakeholder['role']})</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Metrics</h2><ul>"
+        for key, value in data['metrics'].items():
+            html_content += f"<li><strong>{key}:</strong> {value}</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Timeline</h2><ul>"
+        for key, value in data['timeline'].items():
+            html_content += f"<li><strong>{key}:</strong> {value}</li>"
+        html_content += "</ul>"
+        
+        html_content += "<h2>Resources</h2><ul>"
+        for resource in data['resources']:
+            html_content += f"<li>{resource['name']} ({resource['type']}): {resource['allocation']}%</li>"
+        html_content += "</ul>"
+        
+        return html_content
 
 class FollowUpSpecification:
     # A comprehensive class designed to encapsulate and manage the necessary follow-up actions
@@ -251,11 +343,25 @@ class FollowUpSpecification:
         else:
             self.logger.warning(f"Resource '{name}' already exists.")
 
+    def validate_metrics(self) -> None:
+        """
+        Validates that all required metrics are set.
+
+        Raises:
+            ValueError: If any of the required metrics are missing.
+        """
+        required_metrics = ['success_criteria', 'kpis', 'measurement_frequency']
+        for metric in required_metrics:
+            if metric not in self.metrics:
+                self.logger.error(f"Missing required metric: {metric}")
+                raise ValueError(f"Missing required metric: {metric}")
+
     def generate_followup_specification(self) -> Dict[str, Any]:
         # Generates a comprehensive and structured follow-up specification, encapsulating all aspects of post-completion activities.
         # 
         # Returns:
         # Dict[str, Any]: A dictionary containing the detailed follow-up specification.
+        self.validate_metrics()
         specification = {
             "name": self.name,
             "type": self.follow_up_type.name,
@@ -281,25 +387,42 @@ class FollowUpSpecification:
         self.logger.info(f"Exported follow-up specification to {filename}")
 
     def import_from_json(self, filename: str) -> None:
-        # Imports a follow-up specification from a JSON file.
-        # 
-        # Parameters:
-        # - filename (str): The name of the file to import from.
-        with open(filename, 'r') as f:
-            data = json.load(f)
-        
-        self.name = data['name']
-        self.follow_up_type = FollowUpType[data['type']]
-        self.update_areas = [UpdateArea(**update) for update in data['updates']]
-        self.sessions = [Session(**{**session, 'type': SessionType[session['type']], 'date': datetime.fromisoformat(session['date']), 'duration': timedelta(seconds=session['duration'])}) for session in data['sessions']]
-        self.debrief_details = {**data['debrief'], 'date': datetime.fromisoformat(data['debrief']['date'])}
-        self.plan_details = data['plan']
-        self.stakeholders = [Stakeholder(**stakeholder) for stakeholder in data['stakeholders']]
-        self.metrics = data['metrics']
-        self.timeline = {k: datetime.fromisoformat(v) if k in ['start_date', 'end_date'] else {mk: datetime.fromisoformat(mv) for mk, mv in v.items()} if k == 'milestones' else v for k, v in data['timeline'].items()}
-        self.resources = [Resource(**{**resource, 'start_date': datetime.fromisoformat(resource['start_date']) if resource['start_date'] else None, 'end_date': datetime.fromisoformat(resource['end_date']) if resource['end_date'] else None}) for resource in data['resources']]
-        
-        self.logger.info(f"Imported follow-up specification from {filename}")
+        """
+        Imports a follow-up specification from a JSON file.
+
+        Parameters:
+            filename (str): The name of the file to import from.
+
+        Raises:
+            FileNotFoundError: If the specified file does not exist.
+            json.JSONDecodeError: If the file content is not valid JSON.
+            KeyError: If required keys are missing in the JSON data.
+        """
+        try:
+            with open(filename, 'r') as f:
+                data = json.load(f)
+            
+            self.name = data['name']
+            self.follow_up_type = FollowUpType[data['type']]
+            self.update_areas = [UpdateArea(**update) for update in data['updates']]
+            self.sessions = [Session(**{**session, 'type': SessionType[session['type']], 'date': datetime.fromisoformat(session['date']), 'duration': timedelta(seconds=session['duration'])}) for session in data['sessions']]
+            self.debrief_details = {**data['debrief'], 'date': datetime.fromisoformat(data['debrief']['date'])}
+            self.plan_details = data['plan']
+            self.stakeholders = [Stakeholder(**stakeholder) for stakeholder in data['stakeholders']]
+            self.metrics = data['metrics']
+            self.timeline = {k: datetime.fromisoformat(v) if k in ['start_date', 'end_date'] else {mk: datetime.fromisoformat(mv) for mk, mv in v.items()} if k == 'milestones' else v for k, v in data['timeline'].items()}
+            self.resources = [Resource(**{**resource, 'start_date': datetime.fromisoformat(resource['start_date']) if resource['start_date'] else None, 'end_date': datetime.fromisoformat(resource['end_date']) if resource['end_date'] else None}) for resource in data['resources']]
+            
+            self.logger.info(f"Imported follow-up specification from {filename}")
+        except FileNotFoundError as fnf_error:
+            self.logger.error(f"File not found: {filename}")
+            raise fnf_error
+        except json.JSONDecodeError as json_error:
+            self.logger.error(f"Invalid JSON format in file: {filename}")
+            raise json_error
+        except KeyError as key_error:
+            self.logger.error(f"Missing key in JSON data: {key_error}")
+            raise key_error
 
     def generate_report(self, report_generator: ReportGenerator) -> str:
         # Generates a formatted report of the follow-up specification using the provided report generator.

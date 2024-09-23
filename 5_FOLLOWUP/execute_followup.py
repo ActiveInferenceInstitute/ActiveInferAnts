@@ -278,15 +278,15 @@ class FollowUpExecutor:
         Args:
             stakeholder (Stakeholder): The stakeholder to engage with.
         """
-        if stakeholder.engagement_method == "Email":
+        if stakeholder.engagement_strategy == "Email":
             self.email_service.send_stakeholder_update(stakeholder)
-        elif stakeholder.engagement_method == "Meeting":
+        elif stakeholder.engagement_strategy == "Meeting":
             self.project_manager.schedule_stakeholder_meeting(stakeholder)
-        elif stakeholder.engagement_method == "Report":
+        elif stakeholder.engagement_strategy == "Report":
             report = self.project_manager.generate_stakeholder_report(stakeholder)
             self.email_service.send_stakeholder_report(stakeholder, report)
         else:
-            raise ValueError(f"Unsupported engagement method: {stakeholder.engagement_method}")
+            raise ValueError(f"Unsupported engagement strategy: {stakeholder.engagement_strategy}")
 
     def _track_metrics(self):
         """
@@ -334,8 +334,12 @@ class FollowUpExecutor:
                 self.resource_allocator.allocate(resource)
                 self.logger.info(f"Allocated resource: {resource.name}")
                 self.database_service.update_resource_allocation(resource)
+            except ValueError as ve:
+                self.logger.error(f"Value error allocating resource {resource.name}: {str(ve)}")
+                self.error_handler.handle_resource_allocation_error(ve, resource)
+                self.notification_service.send_alert(f"Resource Allocation Failed: {resource.name}", str(ve))
             except Exception as e:
-                self.logger.error(f"Error allocating resource {resource.name}: {str(e)}")
+                self.logger.error(f"Unexpected error allocating resource {resource.name}: {str(e)}")
                 self.error_handler.handle_resource_allocation_error(e, resource)
                 self.notification_service.send_alert(f"Resource Allocation Failed: {resource.name}", str(e))
 
@@ -410,12 +414,18 @@ class FollowUpExecutor:
 
     def _cleanup(self):
         """
-        Performs any necessary cleanup operations after the follow-up process.
-        This method is called in the finally block to ensure it runs even if exceptions occur.
+        Performs necessary cleanup operations after the follow-up process.
+        This includes closing database connections, releasing resources, and logging the cleanup.
         """
-        # TODO: Implement cleanup logic
-        # This could involve closing connections, releasing resources, etc.
         self.logger.info("Performing follow-up cleanup operations")
+        try:
+            self.database_service.close_connections()
+            self.resource_allocator.release_allocation()
+            self.logger.info("Successfully performed cleanup operations")
+        except Exception as e:
+            self.logger.error(f"Error during cleanup operations: {str(e)}")
+            self.error_handler.handle_cleanup_error(e)
+            self.notification_service.send_alert("Cleanup Failed", str(e))
 
 # Usage example:
 if __name__ == "__main__":
