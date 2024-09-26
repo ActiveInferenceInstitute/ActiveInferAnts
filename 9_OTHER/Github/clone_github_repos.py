@@ -23,6 +23,7 @@ CLONE_SUMO = False
 CLONE_STRUCTURED_OUTPUTS = False
 CLONE_DESCI = False  
 CLONE_CIVIC = False
+CLONE_URBIT = False
 
 def execute_command(command: List[str]) -> None:
     """
@@ -250,6 +251,38 @@ repos_to_clone = {
         "https://github.com/GSA/punchcard",
         "https://github.com/GSA/code-gov",
         "https://github.com/GSA/federal-website-index"
+    ],
+    "Urbit": [
+        "https://github.com/urbit/urbit",
+        "https://github.com/urbit/vere",
+        "https://github.com/urbit/urbit.org",
+        "https://github.com/urbit/docs.urbit.org",
+        "https://github.com/urbit/shrub",
+        "https://github.com/urbit/the-urbit-book",
+        "https://github.com/urbit/numerics",
+        "https://github.com/urbit/ustj.urbit.org",
+        "https://github.com/urbit/vite-plugin-urbit",
+        "https://github.com/urbit/proposals",
+        "https://github.com/urbit/docs-examples",
+        "https://github.com/urbit/arvo",
+        "https://github.com/urbit/azimuth",
+        "https://github.com/urbit/bridge",
+        "https://github.com/urbit/urbit-key-generation",
+        "https://github.com/urbit/urbit-ob",
+        "https://github.com/urbit/urbit-hob",
+        "https://github.com/urbit/urcrypt",
+        "https://github.com/urbit/developers.urbit.org",
+        "https://github.com/urbit/urbit-webrtc",
+        "https://github.com/urbit/urbit-chat-api",
+        "https://github.com/urbit/urbit-chat-hook",
+        "https://github.com/urbit/urbit-king",
+        "https://github.com/urbit/awesome-urbit",
+        "https://github.com/urbit/foundation-design-system",
+        "https://github.com/urbit/urbit-rfcs",
+        "https://github.com/urbit/fnd-design-system",
+        "https://github.com/urbit/urbit-static-site",
+        "https://github.com/urbit/examples",
+        "https://github.com/urbit/urbit-eth-event-viewer"
     ]
 }
 
@@ -332,3 +365,7 @@ if __name__ == "__main__":
     if CLONE_CIVIC:
         print("Cloning Civic repositories...")
         clone_repos(repos_to_clone["Civic"], os.path.join(target_dir, "Civic"))
+    
+    if CLONE_URBIT:
+        print("Cloning Urbit repositories...")
+        clone_repos(repos_to_clone["Urbit"], os.path.join(target_dir, "Urbit"))
