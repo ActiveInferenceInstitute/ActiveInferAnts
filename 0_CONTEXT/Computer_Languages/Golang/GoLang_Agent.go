@@ -1,9 +1,9 @@
-// Start of Selection
 package main
 
 import (
-	"errors"
+	"context"
 	"fmt"
+	"log"
 	"math/rand"
 	"sync"
 	"time"
@@ -17,13 +17,17 @@ type Observation string
 
 // Constants defining agent states for type safety and clarity.
 const (
-	StateSearching State = "searching"
-	StateForaging  State = "foraging"
-	StateReturning State = "returning"
+	StateSearching  State = "searching"
+	StateForaging   State = "foraging"
+	StateReturning  State = "returning"
+	StateResting    State = "resting"
+	StateRecruiting State = "recruiting"
 
-	ObservationFood Observation = "food_found"
-	ObservationNest Observation = "nest_sighted"
-	ObservationNone Observation = "nothing"
+	ObservationFood      Observation = "food_found"
+	ObservationNest      Observation = "nest_sighted"
+	ObservationNone      Observation = "nothing"
+	ObservationDanger    Observation = "danger"
+	ObservationPheromone Observation = "pheromone"
 )
 
 // StateTransition encapsulates the transition and observation probabilities for a state.
@@ -70,150 +74,162 @@ var probabilities = map[State]StateTransition{
 			ObservationNone: 0.1,
 		},
 	},
+	StateResting: {
+		Transitions: map[State]float64{
+			StateRecruiting: 0.5,
+			StateResting:    0.5,
+		},
+		Observations: map[Observation]float64{
+			ObservationNone: 1.0,
+		},
+	},
+	StateRecruiting: {
+		Transitions: map[State]float64{
+			StateResting:    0.5,
+			StateRecruiting: 0.5,
+		},
+		Observations: map[Observation]float64{
+			ObservationNone: 1.0,
+		},
+	},
 }
 
-// ActiveInferenceAgent represents an agent with a current state.
+// AgentConfig holds configuration parameters for the agent
+type AgentConfig struct {
+	InitialState    State
+	SimulationSteps int
+	TransitionNoise float64
+	RestProbability float64
+}
+
+// DefaultConfig returns default configuration values
+func DefaultConfig() AgentConfig {
+	return AgentConfig{
+		InitialState:    StateSearching,
+		SimulationSteps: 10,
+		TransitionNoise: 0.1,
+		RestProbability: 0.2,
+	}
+}
+
+// Metrics tracks agent behavior statistics
+type Metrics struct {
+	StateTransitions  map[State]int
+	ObservationCounts map[Observation]int
+	TimeInStates      map[State]time.Duration
+	mu                sync.Mutex
+}
+
+// ActiveInferenceAgent represents an agent with a current state and metrics
 type ActiveInferenceAgent struct {
 	currentState State
+	config       AgentConfig
+	metrics      *Metrics
+	startTime    time.Time
+	logger       *log.Logger
 }
 
-// NewActiveInferenceAgent initializes an ActiveInferenceAgent with a valid initial state.
-func NewActiveInferenceAgent(initialState State) (*ActiveInferenceAgent, error) {
-	if _, exists := probabilities[initialState]; !exists {
-		return nil, fmt.Errorf("invalid initial state: %s", initialState)
+// NewActiveInferenceAgent initializes an agent with the given configuration
+func NewActiveInferenceAgent(config AgentConfig, logger *log.Logger) (*ActiveInferenceAgent, error) {
+	if _, exists := probabilities[config.InitialState]; !exists {
+		return nil, fmt.Errorf("invalid initial state: %s", config.InitialState)
 	}
-	return &ActiveInferenceAgent{currentState: initialState}, nil
+
+	metrics := &Metrics{
+		StateTransitions:  make(map[State]int),
+		ObservationCounts: make(map[Observation]int),
+		TimeInStates:      make(map[State]time.Duration),
+	}
+
+	return &ActiveInferenceAgent{
+		currentState: config.InitialState,
+		config:       config,
+		metrics:      metrics,
+		startTime:    time.Now(),
+		logger:       logger,
+	}, nil
 }
 
-// UpdateState transitions the agent to a new state based on transition probabilities.
-func (a *ActiveInferenceAgent) UpdateState() error {
-	transitionProbs, exists := probabilities[a.currentState]
-	if !exists {
-		return errors.New("current state not found in probabilities map")
-	}
+// SimulationResult contains the final metrics from a simulation run
+type SimulationResult struct {
+	FinalState     State
+	Metrics        Metrics
+	TotalDuration  time.Duration
+	CompletedSteps int
+	Errors         []error
+}
 
-	nextState, err := weightedChoiceState(transitionProbs.Transitions)
+// simulateAntBehavior now returns results and accepts context for cancellation
+func simulateAntBehavior(ctx context.Context, config AgentConfig, resultChan chan<- SimulationResult) {
+	logger := log.New(log.Writer(), "[ANT-AGENT] ", log.LstdFlags)
+
+	agent, err := NewActiveInferenceAgent(config, logger)
 	if err != nil {
-		return fmt.Errorf("failed to update state: %w", err)
-	}
-
-	a.currentState = nextState
-	return nil
-}
-
-// Observe generates an observation based on the current state's observation probabilities.
-func (a *ActiveInferenceAgent) Observe() (Observation, error) {
-	observationProbs, exists := probabilities[a.currentState].Observations
-	if !exists {
-		return ObservationNone, errors.New("current state not found in observations map")
-	}
-
-	observation, err := weightedChoiceObservation(observationProbs)
-	if err != nil {
-		return ObservationNone, fmt.Errorf("failed to generate observation: %w", err)
-	}
-
-	return observation, nil
-}
-
-// weightedChoiceState selects a state based on provided probabilities using a cumulative distribution.
-func weightedChoiceState(probs map[State]float64) (State, error) {
-	cumulative := toCumulative(probs)
-	r := rand.Float64()
-	for _, entry := range cumulative {
-		if r <= entry.CumulativeProb {
-			return entry.State, nil
-		}
-	}
-	return "", errors.New("invalid transition probabilities")
-}
-
-// weightedChoiceObservation selects an observation based on provided probabilities using a cumulative distribution.
-func weightedChoiceObservation(probs map[Observation]float64) (Observation, error) {
-	cumulative := toCumulative(probs)
-	r := rand.Float64()
-	for _, entry := range cumulative {
-		if r <= entry.CumulativeProb {
-			return entry.Observation, nil
-		}
-	}
-	return ObservationNone, nil
-}
-
-// CumulativeProbability represents a state or observation with its cumulative probability.
-type CumulativeProbability struct {
-	State          State
-	Observation    Observation
-	CumulativeProb float64
-}
-
-// toCumulative converts a probability map to a slice of CumulativeProbability, sorted for selection.
-func toCumulative[T comparable](probs map[T]float64) []CumulativeProbability {
-	var cumulative []CumulativeProbability
-	var sum float64
-	for _, prob := range probs {
-		sum += prob
-	}
-
-	var runningTotal float64
-	for key, prob := range probs {
-		runningTotal += prob / sum
-		switch v := any(key).(type) {
-		case State:
-			cumulative = append(cumulative, CumulativeProbability{
-				State:          v,
-				CumulativeProb: runningTotal,
-			})
-		case Observation:
-			cumulative = append(cumulative, CumulativeProbability{
-				Observation:    v,
-				CumulativeProb: runningTotal,
-			})
-		}
-	}
-	return cumulative
-}
-
-// simulateAntBehavior simulates the ant's behavior by observing and updating its state in a loop.
-func simulateAntBehavior(behaviorChannel chan<- string, wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	agent, err := NewActiveInferenceAgent(StateSearching)
-	if err != nil {
-		fmt.Println("Error initializing agent:", err)
+		logger.Printf("Failed to initialize agent: %v", err)
+		resultChan <- SimulationResult{Errors: []error{err}}
 		return
 	}
 
-	for i := 0; i < 10; i++ {
-		behavior, err := agent.Observe()
-		if err != nil {
-			fmt.Println("Error observing environment:", err)
-			return
-		}
-		behaviorChannel <- string(behavior)
+	result := SimulationResult{
+		CompletedSteps: 0,
+		Errors:         make([]error, 0),
+	}
 
-		if err := agent.UpdateState(); err != nil {
-			fmt.Println("Error updating agent state:", err)
+	for i := 0; i < config.SimulationSteps; i++ {
+		select {
+		case <-ctx.Done():
+			logger.Println("Simulation cancelled")
+			result.Errors = append(result.Errors, ctx.Err())
+			resultChan <- result
 			return
+		default:
+			if err := agent.simulateStep(&result); err != nil {
+				logger.Printf("Error in simulation step %d: %v", i, err)
+				result.Errors = append(result.Errors, err)
+				resultChan <- result
+				return
+			}
+			result.CompletedSteps++
 		}
 	}
+
+	result.FinalState = agent.currentState
+	result.TotalDuration = time.Since(agent.startTime)
+	agent.metrics.mu.Lock()
+	result.Metrics = *agent.metrics
+	agent.metrics.mu.Unlock()
+
+	resultChan <- result
 }
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	behaviorChannel := make(chan string, 10)
-	var wg sync.WaitGroup
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
 
-	wg.Add(1)
-	go simulateAntBehavior(behaviorChannel, &wg)
+	config := DefaultConfig()
+	resultChan := make(chan SimulationResult, 1)
 
-	go func() {
-		for behavior := range behaviorChannel {
-			fmt.Printf("Ant behavior: %s\n", behavior)
-		}
-	}()
+	go simulateAntBehavior(ctx, config, resultChan)
 
-	wg.Wait()
-	close(behaviorChannel)
+	result := <-resultChan
+	if len(result.Errors) > 0 {
+		log.Printf("Simulation completed with errors: %v", result.Errors)
+	}
+
+	// Print simulation results
+	fmt.Printf("Simulation completed:\n")
+	fmt.Printf("Steps completed: %d\n", result.CompletedSteps)
+	fmt.Printf("Final state: %s\n", result.FinalState)
+	fmt.Printf("Total duration: %v\n", result.TotalDuration)
+
+	// Print metrics
+	fmt.Println("\nMetrics:")
+	for state, count := range result.Metrics.StateTransitions {
+		fmt.Printf("State %s transitions: %d\n", state, count)
+	}
+	for obs, count := range result.Metrics.ObservationCounts {
+		fmt.Printf("Observation %s count: %d\n", obs, count)
+	}
 }

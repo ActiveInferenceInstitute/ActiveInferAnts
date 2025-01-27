@@ -1,6 +1,7 @@
 use ndarray::{Array2, Array3};
 use std::collections::HashMap;
 use std::f32::consts::E;
+use thiserror::Error;
 
 struct MatrixInitializer;
 
@@ -41,23 +42,50 @@ impl ActiveInferenceAgent {
     }
 
     fn perceive(&mut self, observations: Array2<f32>) {
-        let prediction_error = &observations - &self.predict_sensory_outcomes();
-        self.update_beliefs(prediction_error);
+        let prediction_error = &observations - &self.predict_sensory_outcomes().expect("Failed to predict sensory outcomes");
+        self.update_beliefs(&prediction_error).expect("Failed to update beliefs");
     }
 
-    fn predict_sensory_outcomes(&self) -> Array2<f32> {
-        self.matrices.get("A_matrix_config").expect("A_matrix_config not found").dot(&self.position)
+    fn predict_sensory_outcomes(&self) -> AgentResult<Array2<f32>> {
+        let a_matrix = self.matrices.get("A_matrix_config")
+            .ok_or(AgentError::InvalidConfiguration)?;
+        
+        if a_matrix.shape() != self.position.shape() {
+            return Err(AgentError::DimensionMismatch);
+        }
+        
+        Ok(a_matrix.dot(&self.position))
     }
 
-    fn update_beliefs(&mut self, prediction_error: Array2<f32>) {
-        self.position -= &(self.influence_factor * prediction_error);
+    fn update_beliefs(&mut self, prediction_error: &Array2<f32>) -> AgentResult<()> {
+        let adjusted_error = prediction_error
+            .mapv(|e| e.clamp(-1.0, 1.0)) * self.influence_factor;
+        
+        self.position = (&self.position - &adjusted_error)
+            .mapv(|x| x.max(0.0).min(1.0));
+        
+        Ok(())
     }
 
-    fn calculate_vfe(&self, observation: Array2<f32>) -> f32 {
-        let qs = self.approximate_posterior(&observation);
-        let expected_log_likelihood = qs.dot(&self.matrices.get("A_matrix_config").expect("A_matrix_config not found").mapv(|a| a.ln()));
-        let kl_divergence = qs * (qs.mapv(|q| q.ln()) - self.position.mapv(|p| p.ln()));
-        -(expected_log_likelihood - kl_divergence.sum())
+    /// Calculates variational free energy (VFE) using the formula:
+    /// VFE = -E[log p(o|s)] + D_KL[q(s) || p(s)]
+    /// Where:
+    /// - p(o|s) is the likelihood (A matrix)
+    /// - q(s) is the approximate posterior
+    /// - p(s) is the prior beliefs
+    fn calculate_vfe(&self, observation: &Array2<f32>) -> AgentResult<f32> {
+        let qs = ProbabilityVector::new(self.approximate_posterior(observation)?)?;
+        let a_matrix = self.matrices.get("A_matrix_config")
+            .ok_or(AgentError::InvalidConfiguration)?;
+        
+        // Validate matrix dimensions
+        if a_matrix.dim() != (qs.0.dim().0, observation.dim().0) {
+            return Err(AgentError::DimensionMismatch);
+        }
+        
+        let expected_log_likelihood = qs.0.dot(a_matrix.mapv(|a| a.ln()));
+        let kl_divergence = &qs.0 * (&qs.0.mapv(|q| q.ln()) - &self.position.mapv(|p| p.ln()));
+        Ok(-(expected_log_likelihood - kl_divergence.sum()))
     }
 
     fn calculate_efe(&self, action: Array2<f32>, future_states: Array2<f32>, preferences: Array2<f32>, uncertainty: f32) -> f32 {
@@ -108,3 +136,73 @@ impl ActiveNestmate {
         ActiveNestmate(ActiveInferenceAgent::new(position, influence_factor, agent_params))
     }
 }
+
+// New type aliases for semantic validation
+#[derive(Debug, Clone)]
+struct ProbabilityVector(Array2<f32>);
+
+impl ProbabilityVector {
+    fn new(data: Array2<f32>) -> Result<Self, AgentError> {
+        if data.iter().any(|&x| x < 0.0 || x > 1.0) || (data.sum() - 1.0).abs() > 1e-6 {
+            Err(AgentError::InvalidProbability)
+        } else {
+            Ok(Self(data))
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+struct TransitionMatrix(Array3<f32>);
+
+impl TransitionMatrix {
+    fn new(data: Array3<f32>) -> Result<Self, AgentError> {
+        for mut matrix in data.axis_iter(Axis(0)) {
+            let row_sums = matrix.sum_axis(Axis(1));
+            if row_sums.iter().any(|&x| (x - 1.0).abs() > 1e-6) {
+                return Err(AgentError::InvalidTransitionMatrix);
+            }
+        }
+        Ok(Self(data))
+    }
+}
+
+trait AgentMorphism {
+    type Domain;
+    type Codomain;
+    
+    fn compose(&self, other: &impl AgentMorphism) -> Result<Self, AgentError>;
+    fn product(&self, other: &impl AgentMorphism) -> Result<Self, AgentError>;
+}
+
+impl AgentMorphism for ActiveInferenceAgent {
+    type Domain = Array2<f32>;
+    type Codomain = Array2<f32>;
+    
+    fn compose(&self, other: &impl AgentMorphism) -> Result<Self, AgentError> {
+        let new_position = self.position.dot(&other.position());
+        let new_params = self.agent_params.combine(&other.params())?;
+        Ok(Self::new(new_position, self.influence_factor, new_params))
+    }
+    
+    fn product(&self, other: &impl AgentMorphism) -> Result<Self, AgentError> {
+        let combined_position = stack![Axis(0), self.position.view(), other.position().view()];
+        let combined_params = self.agent_params.product(&other.params())?;
+        Ok(Self::new(combined_position, self.influence_factor, combined_params))
+    }
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum AgentError {
+    #[error("Invalid probability distribution")]
+    InvalidProbability,
+    #[error("Invalid transition matrix")]
+    InvalidTransitionMatrix,
+    #[error("Dimension mismatch in matrix operation")]
+    DimensionMismatch,
+    #[error("Invalid parameter configuration")]
+    InvalidConfiguration,
+    #[error("IO error: {0}")]
+    Io(#[from] std::io::Error),
+}
+
+type AgentResult<T> = Result<T, AgentError>;

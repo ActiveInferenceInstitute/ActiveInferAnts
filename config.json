@@ -1,0 +1,17 @@
+{
+    "initial_values": {
+        "sensory_input": 10,
+        "prediction": 10,
+        "learning_rate": 3,
+        "precision": 5,
+        "temporal_integration": 1,
+        "exploration_factor": 2,
+        "model_complexity": 3,
+        "goal_directed_behavior": 4,
+        "uncertainty": 2
+    },
+    "max_iterations": 1000,
+    "visualization_enabled": true,
+    "output_directory": "./simulation_output",
+    "logging_level": "INFO"
+} 

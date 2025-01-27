@@ -12,6 +12,23 @@ class MetaConfig:
             'SIMULATION': self._simulation_config(),
             'ACTIVE_INFERENCE': self._active_inference_config(),
             'ANT_AND_COLONY': self._ant_and_colony_config(),
+            'ENVIRONMENT': self._environment_config(),
+            'CROSS_VALIDATION_RULES': [
+                {
+                    'rule': 'GPU_ACCELERATION_REQUIRES_PARALLEL_STRATEGY',
+                    'condition': {
+                        'if': ['COMPUTATION.GPU_ACCELERATION', '==', True],
+                        'then': ['PARALLEL_EXECUTION.STRATEGY', 'in', ['distributed', 'hybrid']]
+                    }
+                },
+                {
+                    'rule': 'ADAPTIVE_LEARNING_REQUIRES_META_COGNITION',
+                    'condition': {
+                        'if': ['ACTIVE_INFERENCE.ADAPTIVE_LEARNING.ENABLED', '==', True],
+                        'then': ['ANT_AND_COLONY.INTERNAL_STATES.META_COGNITIVE.ADAPTABILITY', '==', True]
+                    }
+                }
+            ]
         }
 
     def _simulation_config(self) -> Dict[str, Any]:
@@ -24,16 +41,39 @@ class MetaConfig:
             'WORKER_COUNT_RANGE': (1, 8),
             'PARALLELIZATION_STRATEGIES': ['distributed', 'multithreading'],
             'COMPUTATION': self._computation_config(),
+            'VALIDATION': {
+                'AGENT_TO_NEST_RATIO': (10, 100),  # Min/max agents per nest
+                'MAX_WORKER_UTILIZATION': 0.8,  # Maximum parallel worker utilization
+                'RESOURCE_BALANCE': {  # Resource allocation constraints
+                    'MIN_CPU_PER_WORKER': 1.0,
+                    'MIN_MEMORY_PER_WORKER': 2.0  # In GB
+                }
+            }
         }
 
     def _computation_config(self) -> Dict[str, Any]:
-        """Configuration settings for computation."""
+        """Enhanced computation configuration"""
         return {
             'GPU_ACCELERATION_OPTIONS': [True, False],
             'GPU_PREFERENCE_OPTIONS': ['high_performance', 'energy_saving'],
             'DISTRIBUTED_COMPUTING_OPTIONS': [True, False],
             'CLUSTER_NODE_COUNT_RANGE': (2, 16),
             'COMMUNICATION_PROTOCOLS': ['MPI', 'TCP/IP'],
+            'ACCELERATION_DEPENDENCIES': {
+                'GPU_ACCELERATION': {
+                    'cuda': (10.2, 11.7),
+                    'cudnn': (8.0, 8.5),
+                    'driver_version': (450, 470)
+                },
+                'DISTRIBUTED_COMPUTING': {
+                    'mpi': (3.0, 4.1),
+                    'nccl': (2.8, 2.12)
+                }
+            },
+            'FALLBACK_STRATEGIES': {
+                'GPU_FAILOVER': ['cpu_parallel', 'reduced_precision'],
+                'NETWORK_FAILOVER': ['local_cache', 'degraded_performance']
+            }
         }
 
     def _active_inference_config(self) -> Dict[str, Any]:
@@ -95,7 +135,7 @@ class MetaConfig:
         }
 
     def _ant_and_colony_config(self) -> Dict[str, Any]:
-        """Configuration settings for ant and colony."""
+        """Enhanced ant and colony configuration"""
         return {
             'MOVEMENT_OPTIONS': [
                 [(-1, -1), (0, -1), (1, -1), (-1, 0), (0, 0), (1, 0), (-1, 1), (0, 1), (1, 1)],
@@ -119,6 +159,55 @@ class MetaConfig:
             'DEFENSE_MECHANISMS': ['chemical', 'physical', 'camouflage'],
             'EXPANSION_STRATEGY_OPTIONS': ['gradual', 'rapid', 'steady'],
             'THREAT_RESPONSES': ['evacuation', 'defense', 'hide', 'counterattack'],
+            'COLONY_DEMOGRAPHIC_RATIOS': {
+                'WORKER_TO_QUEEN_RANGE': (50, 200),
+                'LARVAE_TO_WORKER_RANGE': (1.5, 3.0)
+            },
+            'RESOURCE_DEPENDENCIES': {
+                'FOOD_PER_ANT': (0.1, 0.5),
+                'WATER_PER_FOOD_UNIT': (0.2, 0.8)
+            },
+            'EVOLUTIONARY_CONSTRAINTS': {
+                'MAX_MUTATION_IMPACT': 0.2,
+                'ADAPTATION_RATE_RANGE': (0.01, 0.1)
+            },
+            'COGNITIVE_ARCHITECTURE': {
+                'DECISION_LAYERS': ['reactive', 'proactive', 'meta-cognitive'],
+                'NEUROTRANSMITTER_BALANCE_RANGES': {
+                    'dopamine': (0.1, 0.9),
+                    'serotonin': (0.2, 0.8),
+                    'octopamine': (0.05, 0.95)
+                },
+                'COGNITIVE_LOAD_THRESHOLDS': (0.3, 0.7)
+            },
+            'ENERGY_METABOLISM': {
+                'BASAL_METABOLIC_RATE_RANGE': (0.01, 0.1),
+                'ACTIVITY_COST_MULTIPLIER_RANGE': (1.0, 3.0)
+            }
+        }
+
+    def _environment_config(self) -> Dict[str, Any]:
+        """Enhanced environment configuration"""
+        return {
+            'GRID_DIMENSION_RANGE': (50, 200),
+            'TERRAIN_GENERATION': {
+                'ROUGHNESS_RANGE': (0.1, 0.9),
+                'MOISTURE_LEVELS': (0.0, 1.0),
+                'ELEVATION_VARIANCE': (0.0, 2.0)
+            },
+            'RESOURCE_ZONE_TYPES': ['food', 'water', 'minerals'],
+            'OBSTACLE_TYPES': ['rock', 'tree', 'cliff'],
+            'PHEROMONE_DECAY_RATES': {
+                'MIN': 0.001,
+                'MAX': 0.1,
+                'STEP': 0.005
+            },
+            'DYNAMIC_ENVIRONMENT_RULES': {
+                'WEATHER_CHANGE_INTERVAL': (100, 1000),
+                'SEASONAL_EFFECTS': [True, False],
+                'DISASTER_TYPES': ['earthquake', 'flood', 'drought'],
+                'DISASTER_PROBABILITY_RANGE': (0.001, 0.01)
+            }
         }
 
 META_CONFIG = MetaConfig().config

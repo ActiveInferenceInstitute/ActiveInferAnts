@@ -135,6 +135,11 @@ import argparse
 import logging
 import sys
 import json
+from visualization import ActiveInferenceVisualizer
+from config_schema import SimulationConfig
+from pathlib import Path
+from typing import Optional, Dict, List
+import numpy as np
 
 # Added parse_arguments function
 def parse_arguments() -> argparse.Namespace:
@@ -188,7 +193,7 @@ class BrainfuckInterpreter:
         pointer (int): Data pointer for the Brainfuck tape.
     """
 
-    def __init__(self, code: str, config: dict):
+    def __init__(self, code: str, config: SimulationConfig):
         """
         Initialize the Brainfuck interpreter.
 
@@ -201,6 +206,24 @@ class BrainfuckInterpreter:
         self.tape = [0] * 30000
         self.pointer = 0
         self.bracket_map = self.build_bracket_map()
+        self.visualizer = ActiveInferenceVisualizer() if config.visualization_enabled else None
+        self.cell_mapping = {
+            'sensory_input': 0,
+            'prediction': 1,
+            'action': 2,
+            'free_energy': 3,
+            'attention': 4,
+            'memory': 5,
+            'anticipation': 6,
+            'learning_rate': 7,
+            'precision': 8,
+            'temporal_integration': 9,
+            'exploration_factor': 10,
+            'model_complexity': 11,
+            'goal_directed_behavior': 12,
+            'uncertainty': 13
+        }
+        self.initialize_tape()
 
     def build_bracket_map(self) -> dict:
         """
@@ -220,59 +243,94 @@ class BrainfuckInterpreter:
                 bracket_map[position] = start
         return bracket_map
 
-    def run(self) -> None:
-        """
-        Execute the Brainfuck code.
-        """
-        code_ptr = 0
-        while code_ptr < len(self.code):
-            command = self.code[code_ptr]
+    def initialize_tape(self) -> None:
+        """Initialize tape with configuration values."""
+        for cell_name, value in self.config.initial_values.items():
+            if cell_name in self.cell_mapping:
+                self.tape[self.cell_mapping[cell_name]] = value
 
-            if command == '>':
-                self.pointer += 1
-                if self.pointer >= len(self.tape):
-                    self.tape.append(0)
-            elif command == '<':
-                if self.pointer > 0:
-                    self.pointer -= 1
-                else:
-                    logging.warning("Pointer moved to negative index. Resetting to 0.")
-                    self.pointer = 0
-            elif command == '+':
-                self.tape[self.pointer] = (self.tape[self.pointer] + 1) % 256
-            elif command == '-':
-                self.tape[self.pointer] = (self.tape[self.pointer] - 1) % 256
-            elif command == '.':
-                print(chr(self.tape[self.pointer]), end='')
-            elif command == ',':
-                try:
-                    self.tape[self.pointer] = ord(sys.stdin.read(1))
-                except Exception:
-                    self.tape[self.pointer] = 0
-            elif command == '[':
-                if self.tape[self.pointer] == 0:
-                    code_ptr = self.bracket_map[code_ptr]
-            elif command == ']':
-                if self.tape[self.pointer] != 0:
-                    code_ptr = self.bracket_map[code_ptr]
-            code_ptr += 1
+    def run(self) -> Dict[str, List[float]]:
+        """Execute Brainfuck code with monitoring and visualization."""
+        code_ptr = 0
+        iteration = 0
+        
+        while code_ptr < len(self.code) and iteration < self.config.max_iterations:
+            command = self.code[code_ptr]
+            self._execute_command(command)
+            
+            # Update visualization if enabled
+            if self.visualizer and iteration % 10 == 0:  # Update every 10 iterations
+                self.visualizer.update(self.tape, self.cell_mapping)
+            
+            # Advance code pointer
+            if command == '[' and self.tape[self.pointer] == 0:
+                code_ptr = self.bracket_map[code_ptr]
+            elif command == ']' and self.tape[self.pointer] != 0:
+                code_ptr = self.bracket_map[code_ptr]
+            else:
+                code_ptr += 1
+                
+            iteration += 1
+        
+        return self._generate_simulation_results()
+
+    def _execute_command(self, command: str) -> None:
+        """Execute a single Brainfuck command with bounds checking."""
+        if command == '>':
+            self.pointer = min(self.pointer + 1, len(self.tape) - 1)
+        elif command == '<':
+            self.pointer = max(0, self.pointer - 1)
+        elif command == '+':
+            self.tape[self.pointer] = (self.tape[self.pointer] + 1) % 256
+        elif command == '-':
+            self.tape[self.pointer] = (self.tape[self.pointer] - 1) % 256
+        elif command == '.':
+            self._handle_output()
+        elif command == ',':
+            self._handle_input()
+
+    def _generate_simulation_results(self) -> Dict[str, List[float]]:
+        """Generate final simulation results."""
+        results = {
+            'final_state': {name: self.tape[idx] for name, idx in self.cell_mapping.items()},
+            'history': self.visualizer.history if self.visualizer else None
+        }
+        
+        if self.config.visualization_enabled:
+            output_dir = Path(self.config.output_directory)
+            output_dir.mkdir(parents=True, exist_ok=True)
+            self.visualizer.plot_simulation_results(
+                save_path=str(output_dir / 'simulation_results.png')
+            )
+            
+        return results
 
 # Improved main function
 def main() -> None:
-    """
-    Execute the Brainfuck active inference simulation.
-    """
+    """Enhanced main function with proper configuration and visualization."""
+    configure_logging()
     args = parse_arguments()
-    config = load_configuration(args.config)
     
     try:
+        # Load and validate configuration
+        config_dict = load_configuration(args.config)
+        config = SimulationConfig(**config_dict)
+        
+        # Initialize and run simulation
         brainfuck_code = load_brainfuck_code()
-        # Initialize Brainfuck interpreter with the code and configuration
         interpreter = BrainfuckInterpreter(brainfuck_code, config)
+        
         logging.info("Starting the Brainfuck active inference simulation.")
-        # Run the simulation
-        interpreter.run()
+        results = interpreter.run()
+        
+        # Save results
+        output_dir = Path(config.output_directory)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        with open(output_dir / 'simulation_results.json', 'w') as f:
+            json.dump(results['final_state'], f, indent=2)
+            
         logging.info("Simulation completed successfully.")
+        
     except Exception as e:
         logging.exception("An error occurred during the simulation.")
         sys.exit(1)
