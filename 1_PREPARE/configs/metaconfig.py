@@ -5,6 +5,7 @@ class MetaConfig:
     def __init__(self) -> None:
         """Initialize the MetaConfig with default configurations."""
         self.config = self._initialize_config()
+        self.validate_config()
 
     def _initialize_config(self) -> Dict[str, Any]:
         """Initialize the complete configuration dictionary."""
@@ -209,5 +210,42 @@ class MetaConfig:
                 'DISASTER_PROBABILITY_RANGE': (0.001, 0.01)
             }
         }
+
+    def merge_overrides(self, overrides: Dict[str, Any]) -> None:
+        """
+        Merges an external override into the current meta configuration.
+
+        Args:
+            overrides (Dict[str, Any]): The override dictionary.
+        """
+        self.config = self._merge_dicts(self.config, overrides)
+
+    def _merge_dicts(self, base: Dict[str, Any], overrides: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Recursively merges two dictionaries.
+        """
+        for key, value in overrides.items():
+            if key in base and isinstance(base[key], dict) and isinstance(value, dict):
+                base[key] = self._merge_dicts(base[key], value)
+            else:
+                base[key] = value
+        return base
+
+    def validate_config(self) -> bool:
+        """
+        Validates the meta configuration settings.
+
+        Returns:
+            bool: True if valid.
+        Raises:
+            ValueError: If a configuration error is detected.
+        """
+        # Example: Ensure that SIMULATION configuration contains required keys.
+        sim_conf = self.config.get('SIMULATION', {})
+        required_keys = ['MAX_STEPS_RANGE', 'AGENT_COUNT_RANGE']
+        for key in required_keys:
+            if key not in sim_conf:
+                raise ValueError(f"Missing required simulation configuration key: {key}")
+        return True
 
 META_CONFIG = MetaConfig().config

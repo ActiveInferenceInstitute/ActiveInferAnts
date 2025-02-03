@@ -3,89 +3,89 @@ from typing import Dict, List, Tuple, Union
 
 # General simulation parameters
 SIMULATION_SETTINGS: Dict[str, Union[int, Dict]] = {
-    'MAX_STEPS': 500,  # Maximum number of steps per simulation
-    'AGENT_COUNT': 100,  # Total number of agents participating in the simulation
-    'NEST_COUNT': 5,  # Total number of nests within the simulation environment
+    'MAX_STEPS': 500,  # Maximum number of simulation steps.
+    'AGENT_COUNT': 100,  # Total number of agents.
+    'NEST_COUNT': 5,  # Number of nests.
     'PARALLEL_EXECUTION': {
-        'ENABLED': True,  # Flag to enable/disable parallel execution
-        'WORKER_COUNT': 4,  # Specifies the number of workers for parallel execution
-        'STRATEGY': 'distributed',  # Defines the strategy for parallelization: 'distributed' or 'multithreading'
+        'ENABLED': True,
+        'WORKER_COUNT': 4,
+        'STRATEGY': 'distributed',  # Options: 'distributed', 'multithreading'
     },
     'COMPUTATION_SETTINGS': {
-        'GPU_ACCELERATION': True,  # Flag to enable/disable GPU acceleration
-        'GPU_PREFERENCE': 'high_performance',  # Preferred GPU mode: 'high_performance' or 'energy_saving'
+        'GPU_ACCELERATION': True,
+        'GPU_PREFERENCE': 'high_performance',  # Options: 'high_performance', 'energy_saving'
         'DISTRIBUTED_COMPUTING': {
-            'ENABLED': True,  # Flag to enable/disable distributed computing
-            'CLUSTER_NODE_COUNT': 4,  # Specifies the number of nodes in the computing cluster
-            'COMMUNICATION_PROTOCOL': 'MPI',  # Protocol used for communication in distributed computing: 'MPI', 'TCP/IP', etc.
+            'ENABLED': True,
+            'CLUSTER_NODE_COUNT': 4,
+            'COMMUNICATION_PROTOCOL': 'MPI',  # Options: 'MPI', 'TCP/IP', etc.
         },
     },
 }
 
 # Enhanced Active Inference configuration parameters for advanced pre-rendering and contextualization in shared intelligence ecosystems
 ACTIVE_INFERENCE_CONFIG: Dict[str, Union[bool, List, Dict]] = {
-    'ENABLED': True,  # Flag to enable/disable active inference mechanisms
+    'ENABLED': True,
     'INFERENCE_MODELS': ['variational', 'predictive_coding', 'bayesian_filtering', 'deep_active_inference', 'ensemble_methods'],
-    'EXPECTATION_FREE_ENERGY': True,  # Enables calculation of expected free energy for decision making
+    'EXPECTATION_FREE_ENERGY': True,
     'PLANNING_HORIZON': {
-        'TYPE': 'adaptive',  # Type of planning horizon: 'fixed' or 'adaptive'
-        'BASE_VALUE': 15,  # Base value for planning horizon
-        'ADAPTATION_STRATEGY': 'contextual_complexity',  # Strategy for adapting planning horizon
+        'TYPE': 'adaptive',
+        'BASE_VALUE': 15,
+        'ADAPTATION_STRATEGY': 'contextual_complexity',
     },
-    'TIME_RESOLUTION': 'continuous',  # Temporal resolution: 'discrete' or 'continuous'
+    'TIME_RESOLUTION': 'continuous',
     'PRECISION_WEIGHTING': {
-        'PERCEPTION': {'BASE': 0.8, 'ADAPTIVE': True},  # Precision weighting for perception
-        'ACTION': {'BASE': 0.2, 'ADAPTIVE': True},  # Precision weighting for action
+        'PERCEPTION': {'BASE': 0.8, 'ADAPTIVE': True},
+        'ACTION': {'BASE': 0.2, 'ADAPTIVE': True},
     },
-    'GENERALIZATION_DEPTH': 5,  # Depth of abstraction layers for inference generalization
-    'ITERATION_LIMIT': 20,  # Cap on the number of iterations in the active inference cycle
+    'GENERALIZATION_DEPTH': 5,
+    'ITERATION_LIMIT': 20,
     'ADAPTIVE_LEARNING': {
-        'ENABLED': True,  # Flag to enable/disable adaptive learning
-        'LEARNING_RATE': 0.1,  # Rate of adaptation based on feedback
-        'FEEDBACK_SENSITIVITY': 'adaptive',  # Sensitivity to feedback: 'fixed' or 'adaptive'
-        'MODEL_UPDATING': 'online',  # Model updating strategy: 'online' or 'batch'
+        'ENABLED': True,
+        'LEARNING_RATE': 0.1,
+        'FEEDBACK_SENSITIVITY': 'adaptive',
+        'MODEL_UPDATING': 'online',
     },
     'CONTEXT_AWARENESS': {
-        'ENABLED': True,  # Flag to enable/disable context awareness
+        'ENABLED': True,
         'CONTEXT_TYPES': ['environmental', 'social', 'temporal', 'emotional', 'predictive'],
-        'DYNAMIC_ADJUSTMENT': True,  # Flag to enable/disable dynamic context adjustment
-        'PREDICTION': True,  # Flag to enable/disable context prediction
+        'DYNAMIC_ADJUSTMENT': True,
+        'PREDICTION': True,
     },
     'COGNITIVE_COMPLEXITY': {
-        'ENABLED': True,  # Flag to enable/disable cognitive complexity in inference
-        'TYPES': ['simple', 'complex', 'hierarchical', 'emergent', 'adaptive'],  # Types of cognitive complexities
-        'STRATEGY_ADAPTATION': True,  # Flag to enable/disable adaptation of strategies based on cognitive complexity
-        'COMPLEXITY_MANAGEMENT': 'dynamic',  # Management strategy for cognitive complexity: 'static' or 'dynamic'
+        'ENABLED': True,
+        'TYPES': ['simple', 'complex', 'hierarchical', 'emergent', 'adaptive'],
+        'STRATEGY_ADAPTATION': True,
+        'COMPLEXITY_MANAGEMENT': 'dynamic',
     },
-    'SURPRISE_MINIMIZATION': True,  # Flag to enable/disable surprise minimization mechanisms
+    'SURPRISE_MINIMIZATION': True,
     'GOAL_ORIENTED_BEHAVIOR': {
-        'ENABLED': True,  # Flag to enable/disable goal-oriented behavior
-        'GOALS': ['survival', 'exploration', 'social_interaction'],  # Types of goals for agents
-        'GOAL_PRIORITIZATION': 'adaptive',  # Strategy for goal prioritization: 'fixed' or 'adaptive'
+        'ENABLED': True,
+        'GOALS': ['survival', 'exploration', 'social_interaction'],
+        'GOAL_PRIORITIZATION': 'adaptive',
     },
-    'LEARNING_RATE': 0.1,  # Global learning rate for active inference processes
+    'LEARNING_RATE': 0.1,
     'EFE_CALCULATION_PARAMS': {
-        'DEFAULT': 0.5,  # Default parameter for Expected Free Energy calculation
+        'DEFAULT': 0.5,
     },
     'META_LEARNING': {
-        'ENABLED': True,  # Flag to enable/disable meta-learning capabilities
-        'STRATEGIES': ['experience_replay', 'strategy_optimization'],  # Meta-learning strategies
+        'ENABLED': True,
+        'STRATEGIES': ['experience_replay', 'strategy_optimization'],
     },
     'MULTI_OBJECTIVE_DECISION_MAKING': {
-        'ENABLED': True,  # Flag to enable/disable multi-objective decision making
-        'INTEGRATION_STRATEGY': 'weighted_sum',  # Strategy for integrating multiple objectives
+        'ENABLED': True,
+        'INTEGRATION_STRATEGY': 'weighted_sum',
     },
     'UNCERTAINTY_MANAGEMENT': {
-        'ENABLED': True,  # Flag to enable/disable uncertainty management
-        'STRATEGIES': ['risk_averse', 'risk_neutral', 'risk_seeking'],  # Uncertainty management strategies
+        'ENABLED': True,
+        'STRATEGIES': ['risk_averse', 'risk_neutral', 'risk_seeking'],
     },
     'COMMUNICATION': {
-        'ENABLED': True,  # Flag to enable/disable communication capabilities
-        'MODES': ['direct', 'indirect', 'environmental_signaling'],  # Communication modes
+        'ENABLED': True,
+        'MODES': ['direct', 'indirect', 'environmental_signaling'],
     },
     'LEARNING_MECHANISMS': {
-        'ENABLED': True,  # Flag to enable/disable various learning mechanisms
-        'TYPES': ['reinforcement_learning', 'supervised_learning', 'unsupervised_learning'],  # Types of learning mechanisms
+        'ENABLED': True,
+        'TYPES': ['reinforcement_learning', 'supervised_learning', 'unsupervised_learning'],
     },
 }
 
@@ -257,4 +257,21 @@ ADVANCED_SIMULATION_CONFIG: Dict[str, Union[bool, Dict]] = {
     'MULTI_LAYER_PHEROMONE_SYSTEM': {
         'ENABLED': True,  # Flag to enable/disable multi-layer pheromone system
     }, 
-} 
+}
+
+def get_full_config() -> Dict[str, Union[int, Dict]]:
+    """
+    Returns a consolidated configuration dictionary for the whole simulation.
+
+    This can later be extended to incorporate runtime overrides.
+
+    Returns:
+        Dict[str, Union[int, Dict]]: Consolidated configuration.
+    """
+    return {
+        'SIMULATION_SETTINGS': SIMULATION_SETTINGS,
+        'ACTIVE_INFERENCE_CONFIG': ACTIVE_INFERENCE_CONFIG,
+        'ANT_AND_COLONY_CONFIG': ANT_AND_COLONY_CONFIG,
+        'ENVIRONMENT_CONFIG': ENVIRONMENT_CONFIG,
+        'ADVANCED_SIMULATION_CONFIG': ADVANCED_SIMULATION_CONFIG,
+    } 

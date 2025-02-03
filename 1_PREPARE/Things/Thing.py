@@ -58,6 +58,10 @@ class Thing:
         self.action_history = []
         self.observation_history = []
 
+        # New: Initialize hierarchy attributes
+        self.children: List[Thing] = []  # To store nested child Things
+        self.parent: Optional[Thing] = None  # Reference to a parent Thing (if any)
+
         self.logger = self._setup_logger()
 
     def _setup_logger(self) -> logging.Logger:
@@ -348,3 +352,105 @@ class Thing:
         self.observation_history = state['observation_history']
         self.learning_rate = state['learning_rate']
         self.logger.info("Set internal state from provided dictionary")
+
+    # New: Methods to support nesting, interaction, and hierarchical processing
+
+    def add_child(self, child: "Thing") -> None:
+        """
+        Adds a child Thing to the current Thing.
+        Ensures that the child is not already added and that it is not self.
+        
+        Args:
+            child (Thing): The child Thing to add.
+        """
+        if child is self:
+            self.logger.warning("Attempted to add self as a child, operation ignored.")
+            return
+        if child in self.children:
+            self.logger.warning(f"Child Thing with id: {id(child)} is already added.")
+            return
+        child.parent = self
+        self.children.append(child)
+        self.logger.info(f"Added child Thing with id: {id(child)}")
+
+    def remove_child(self, child: "Thing") -> None:
+        """
+        Removes a child Thing from the current Thing.
+        
+        Args:
+            child (Thing): The child Thing to remove.
+        """
+        if child in self.children:
+            self.children.remove(child)
+            child.parent = None
+            self.logger.info(f"Removed child Thing with id: {id(child)}")
+        else:
+            self.logger.warning(f"Attempted to remove a non-child Thing with id: {id(child)}")
+
+    def get_children(self) -> List["Thing"]:
+        """
+        Returns a list of child Things.
+
+        Returns:
+            List[Thing]: List of nested child Things.
+        """
+        return self.children
+
+    def get_parent(self) -> Optional["Thing"]:
+        """
+        Returns the parent of this Thing, if any.
+
+        Returns:
+            Optional[Thing]: The parent Thing, or None if there is no parent.
+        """
+        return self.parent
+
+    def interact_with(self, other: "Thing") -> None:
+        """
+        Demonstrates an interaction between this Thing and another Thing.
+        This might include exchanging observations, aligning beliefs, or sharing policies.
+        
+        Args:
+            other (Thing): The other Thing to interact with.
+        """
+        self.logger.info(f"Interacting with Thing id: {id(other)}")
+        # As an example, exchange a summary of each other's states
+        my_state = self.get_state()
+        other_state = other.get_state()
+        self.logger.info(f"State exchange: self learning_rate={self.learning_rate}, other learning_rate={other.learning_rate}")
+        # Add additional interactive logic as needed
+        # For instance, you could choose to integrate some observations or update preferences based on exchange
+
+    def describe(self, depth: int = 0) -> str:
+        """
+        Provides a textual description of the Thing, including its hierarchy.
+
+        Args:
+            depth (int): Current depth level for indentation.
+
+        Returns:
+            str: Hierarchical description of the Thing.
+        """
+        indent = "  " * depth
+        parent_info = f", parent_id={id(self.parent)}" if self.parent else ""
+        description = f"{indent}Thing(id={id(self)}, learning_rate={self.learning_rate}{parent_info})\n"
+        for child in self.children:
+            description += child.describe(depth + 1)
+        return description
+
+    def propagate_step(self, observation: np.ndarray) -> np.ndarray:
+        """
+        Applies the step method recursively to self and all nested children.
+        This allows hierarchical processing of observations.
+
+        Args:
+            observation (np.ndarray): New sensory observation to process.
+
+        Returns:
+            np.ndarray: The selected action from this Thing's step.
+        """
+        self.logger.info("Propagating step in hierarchical structure.")
+        action = self.step(observation)
+        for child in self.children:
+            child.propagate_step(observation)
+        return action

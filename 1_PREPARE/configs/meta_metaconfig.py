@@ -5,6 +5,7 @@ class MetaMetaConfig:
     def __init__(self) -> None:
         """Initialize the MetaMetaConfig with default configurations."""
         self.config = self._initialize_config()
+        self.validate_config()  # Validate configuration on initialization
 
     def _initialize_config(self) -> Dict[str, Any]:
         """Initialize the complete configuration dictionary."""
@@ -154,5 +155,51 @@ class MetaMetaConfig:
                 'INTERACTION_TYPES': ['additive', 'multiplicative', 'inhibitory', 'synergistic'],
             },
         }
+
+    def merge_overrides(self, overrides: Dict[str, Any]) -> None:
+        """
+        Recursively merges an override dictionary into the current configuration.
+
+        Args:
+            overrides (Dict[str, Any]): Configuration overrides to merge.
+        """
+        self.config = self._merge_dicts(self.config, overrides)
+
+    def _merge_dicts(self, base: Dict[str, Any], overrides: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Helper method to recursively merge two dictionaries.
+
+        Args:
+            base (Dict[str, Any]): The original configuration dictionary.
+            overrides (Dict[str, Any]): The overriding values.
+
+        Returns:
+            Dict[str, Any]: The merged dictionary.
+        """
+        for key, value in overrides.items():
+            if key in base and isinstance(base[key], dict) and isinstance(value, dict):
+                base[key] = self._merge_dicts(base[key], value)
+            else:
+                base[key] = value
+        return base
+
+    def validate_config(self) -> bool:
+        """
+        Validates the overall configuration dictionary.
+
+        Raises:
+            ValueError: If any configuration setting is invalid.
+
+        Returns:
+            bool: True if configuration is valid.
+        """
+        # Example validation: Ensure that META_SIMULATION has expected range tuples.
+        meta_sim = self.config.get('META_SIMULATION', {})
+        if 'MAX_STEPS_RANGE' in meta_sim:
+            for item in meta_sim['MAX_STEPS_RANGE']:
+                if not (isinstance(item, tuple) and len(item) == 2):
+                    raise ValueError("Invalid MAX_STEPS_RANGE format")
+        # Additional validations can be implemented here.
+        return True
 
 META_META_CONFIG = MetaMetaConfig().config
