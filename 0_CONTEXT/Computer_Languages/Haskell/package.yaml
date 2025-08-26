@@ -1,0 +1,97 @@
+name: active-inference-haskell
+version: 1.0.0.0
+github: "your-repo/ActiveInferAnts"
+license: MIT
+author: "ActiveInferAnts"
+maintainer: "ActiveInferAnts"
+copyright: "2024 ActiveInferAnts"
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+synopsis: Active Inference implementation in Haskell
+description: |
+  A functional programming implementation of the Active Inference framework
+  using Haskell's strong type system and mathematical elegance.
+
+category: AI, Mathematics, Machine Learning
+
+default-extensions:
+  - OverloadedStrings
+  - ScopedTypeVariables
+  - TypeApplications
+  - DataKinds
+  - KindSignatures
+  - GADTs
+  - TypeOperators
+  - MultiParamTypeClasses
+  - FlexibleContexts
+  - FlexibleInstances
+  - UndecidableInstances
+  - RankNTypes
+  - PolyKinds
+  - ConstraintKinds
+  - FunctionalDependencies
+  - TypeFamilies
+  - ExistentialQuantification
+  - StandaloneDeriving
+  - DeriveGeneric
+  - DeriveAnyClass
+  - DerivingStrategies
+  - GeneralizedNewtypeDeriving
+
+dependencies:
+  - base >= 4.14 && < 5
+  - containers >= 0.6
+  - vector >= 0.12
+  - matrix >= 0.3
+  - statistics >= 0.15
+  - random >= 1.2
+  - mtl >= 2.2
+  - transformers >= 0.5
+  - lens >= 5.0
+  - aeson >= 2.0
+  - bytestring >= 0.10
+  - text >= 1.2
+  - time >= 1.9
+  - directory >= 1.3
+  - filepath >= 1.4
+  - process >= 1.6
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - ActiveInference.Core
+    - ActiveInference.Agent
+    - ActiveInference.Environment
+    - ActiveInference.Statistics
+    - ActiveInference.IO
+
+executables:
+  active-inference-demo:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+      - active-inference-haskell
+
+  single-agent-demo:
+    main: SingleAgentDemo.hs
+    source-dirs: demos
+    dependencies:
+      - active-inference-haskell
+
+  ant-colony-demo:
+    main: AntColonyDemo.hs
+    source-dirs: demos
+    dependencies:
+      - active-inference-haskell
+
+tests:
+  active-inference-haskell-test:
+    main: Spec.hs
+    source-dirs: test
+    dependencies:
+      - active-inference-haskell
+      - hspec >= 2.8
+      - QuickCheck >= 2.14

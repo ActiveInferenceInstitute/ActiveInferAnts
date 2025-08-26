@@ -1,0 +1,30 @@
+{
+  "name": "active-inference-js",
+  "version": "1.0.0",
+  "description": "Active Inference implementation in JavaScript",
+  "main": "active_inference.js",
+  "type": "module",
+  "scripts": {
+    "start": "node active_inference.js",
+    "test": "node test_active_inference.js",
+    "demo": "node ant_colony_demo.js"
+  },
+  "keywords": [
+    "active-inference",
+    "free-energy-principle",
+    "bayesian-inference",
+    "artificial-intelligence"
+  ],
+  "author": "ActiveInferAnts",
+  "license": "MIT",
+  "dependencies": {
+    "mathjs": "^11.9.1",
+    "plotly.js": "^2.25.2"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
