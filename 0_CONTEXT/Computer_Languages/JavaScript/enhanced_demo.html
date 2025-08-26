@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Inference JavaScript Enhanced Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.9.1/lib/browser/math.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+        .stats-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .stats-panel h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .control-group {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .control-group h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .control-group input, .control-group select, .control-group button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .control-group button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .control-group button:hover {
+            transform: translateY(-2px);
+        }
+        .log-panel {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .log-debug { background: rgba(52, 152, 219, 0.2); }
+        .log-info { background: rgba(46, 204, 113, 0.2); }
+        .log-warn { background: rgba(241, 196, 15, 0.2); }
+        .log-error { background: rgba(231, 76, 60, 0.2); }
+        .feature-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .feature-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Enhanced Active Inference Demo</h1>
+            <p>Real-time visualization with advanced features</p>
+        </div>
+
+        <div class="feature-showcase">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>Real-time Visualization</h4>
+                <p>Live belief evolution and free energy tracking</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h4>Dynamic Configuration</h4>
+                <p>Adjust parameters in real-time</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h4>Serialization</h4>
+                <p>Save and load agent states</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h4>Advanced Logging</h4>
+                <p>Comprehensive debugging and monitoring</p>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="control-group">
+                <h4>Agent Configuration</h4>
+                <label for="nStates">States:</label>
+                <input type="number" id="nStates" value="4" min="2" max="10">
+                <label for="nObservations">Observations:</label>
+                <input type="number" id="nObservations" value="3" min="2" max="10">
+                <label for="nActions">Actions:</label>
+                <input type="number" id="nActions" value="2" min="2" max="10">
+                <label for="precision">Precision:</label>
+                <input type="number" id="precision" value="1.0" min="0.1" max="10.0" step="0.1">
+                <button onclick="reinitializeAgent()">Reinitialize Agent</button>
+            </div>
+
+            <div class="control-group">
+                <h4>Visualization</h4>
+                <label for="updateInterval">Update Interval (ms):</label>
+                <input type="number" id="updateInterval" value="100" min="50" max="1000" step="50">
+                <label for="enableRealTime">Real-time Updates:</label>
+                <input type="checkbox" id="enableRealTime" checked>
+                <button onclick="toggleRealTime()">Toggle Real-time</button>
+                <button onclick="exportVisualization()">Export Charts</button>
+            </div>
+
+            <div class="control-group">
+                <h4>Serialization</h4>
+                <label for="format">Format:</label>
+                <select id="format">
+                    <option value="json">JSON</option>
+                    <option value="binary">Binary</option>
+                    <option value="compressed">Compressed</option>
+                </select>
+                <button onclick="saveAgentState()">Save State</button>
+                <button onclick="loadAgentState()">Load State</button>
+                <button onclick="exportForSharing()">Share Agent</button>
+            </div>
+
+            <div class="control-group">
+                <h4>Logging</h4>
+                <label for="logLevel">Log Level:</label>
+                <select id="logLevel">
+                    <option value="debug">Debug</option>
+                    <option value="info" selected>Info</option>
+                    <option value="warn">Warning</option>
+                    <option value="error">Error</option>
+                </select>
+                <label for="enableLogging">Enable Logging:</label>
+                <input type="checkbox" id="enableLogging" checked>
+                <button onclick="clearLogs()">Clear Logs</button>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="chart-container">
+                <canvas id="beliefChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="freeEnergyChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="actionChart"></canvas>
+            </div>
+            <div class="stats-panel">
+                <h3>Agent Statistics</h3>
+                <div id="stats-content">
+                    <p>Initializing...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="log-panel">
+            <h4>Activity Log</h4>
+            <div id="log-content"></div>
+        </div>
+    </div>
+
+    <!-- Import our modules -->
+    <script type="module">
+        import { ActiveInferenceAgent } from './active_inference.js';
+        import { ConfigManager, configManager } from './config.js';
+        import { Logger, logger } from './logger.js';
+        import { Serializer, serializer } from './serializer.js';
+        import { Visualizer, visualizer } from './visualizer.js';
+
+        // Global variables
+        let agent = null;
+        let dashboard = null;
+        let isRunning = false;
+        let updateInterval = 100;
+
+        // Initialize the demo
+        async function initializeDemo() {
+            try {
+                // Load configuration
+                await configManager.loadFromFile('./config/default_config.json');
+
+                // Create agent
+                reinitializeAgent();
+
+                // Setup logging
+                setupLogging();
+
+                // Create dashboard
+                createDashboard();
+
+                log('info', 'Demo initialized successfully');
+            } catch (error) {
+                log('error', `Failed to initialize demo: ${error.message}`);
+            }
+        }
+
+        // Create agent with current configuration
+        function reinitializeAgent() {
+            const config = {
+                nStates: parseInt(document.getElementById('nStates').value),
+                nObservations: parseInt(document.getElementById('nObservations').value),
+                nActions: parseInt(document.getElementById('nActions').value),
+                precision: parseFloat(document.getElementById('precision').value)
+            };
+
+            agent = new ActiveInferenceAgent(config);
+            log('info', `Agent reinitialized with ${config.nStates} states, ${config.nObservations} observations, ${config.nActions} actions`);
+        }
+
+        // Setup logging
+        function setupLogging() {
+            logger.setLogLevel(document.getElementById('logLevel').value);
+            logger.setProfilingEnabled(true);
+
+            // Override logger methods to update UI
+            const originalLog = logger.log.bind(logger);
+            logger.log = function(level, message, data = null) {
+                originalLog(level, message, data);
+                updateLogDisplay(level, message, data);
+            };
+        }
+
+        // Update log display
+        function updateLogDisplay(level, message, data) {
+            const logContent = document.getElementById('log-content');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${level}`;
+            logEntry.textContent = `${new Date().toLocaleTimeString()} [${level.toUpperCase()}] ${message}`;
+            logContent.appendChild(logEntry);
+
+            // Keep only last 50 entries
+            while (logContent.children.length > 50) {
+                logContent.removeChild(logContent.firstChild);
+            }
+
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+
+        // Create visualization dashboard
+        function createDashboard() {
+            dashboard = visualizer.createDashboard('container', agent);
+            log('info', 'Visualization dashboard created');
+        }
+
+        // Toggle real-time updates
+        function toggleRealTime() {
+            isRunning = !isRunning;
+            const button = event.target;
+            button.textContent = isRunning ? 'Stop Real-time' : 'Start Real-time';
+
+            if (isRunning) {
+                startRealTimeLoop();
+            }
+
+            log('info', `Real-time updates ${isRunning ? 'started' : 'stopped'}`);
+        }
+
+        // Real-time update loop
+        function startRealTimeLoop() {
+            if (!isRunning) return;
+
+            const profile = logger.startProfile('real_time_step');
+
+            try {
+                // Generate random observation
+                const observation = Math.floor(Math.random() * agent.config.nObservations);
+
+                // Step agent
+                const (action, freeEnergy) = agent.step(observation);
+                const beliefs = agent.getBeliefs();
+
+                // Update dashboard
+                if (dashboard && dashboard.update) {
+                    dashboard.update(beliefs, freeEnergy, action, agent);
+                }
+
+                // Update stats
+                updateStatsPanel();
+
+                // Track operation
+                logger.trackOperation('beliefUpdate');
+                logger.trackOperation('actionSelection');
+                logger.trackOperation('freeEnergyCalculation');
+
+            } catch (error) {
+                log('error', `Real-time step failed: ${error.message}`);
+                isRunning = false;
+            }
+
+            profile.stop();
+
+            // Schedule next update
+            if (isRunning) {
+                updateInterval = parseInt(document.getElementById('updateInterval').value);
+                setTimeout(startRealTimeLoop, updateInterval);
+            }
+        }
+
+        // Update statistics panel
+        function updateStatsPanel() {
+            const stats = agent.getStatistics ? agent.getStatistics() : {};
+            const performance = logger.getPerformanceSummary();
+
+            document.getElementById('stats-content').innerHTML = `
+                <p><strong>Steps:</strong> ${stats.totalSteps || 0}</p>
+                <p><strong>Belief Entropy:</strong> ${stats.beliefEntropy?.toFixed(4) || 'N/A'}</p>
+                <p><strong>Avg Free Energy:</strong> ${stats.averageFreeEnergy?.toFixed(4) || 'N/A'}</p>
+                <p><strong>Performance:</strong></p>
+                <p>• Uptime: ${performance.uptime}</p>
+                <p>• Operations/sec: ${performance.operationsPerSecond}</p>
+                <p>• Memory Usage: ${performance.averageMemoryUsage}</p>
+                <hr>
+                <p><strong>Current Beliefs:</strong></p>
+                <ul>
+                    ${agent.getBeliefs().map((belief, i) => `<li>State ${i}: ${(belief * 100).toFixed(1)}%</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // Save agent state
+        async function saveAgentState() {
+            try {
+                const filename = `agent_state_${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+                const filePath = serializer.saveToFile(agent, filename);
+                log('info', `Agent state saved to ${filePath}`);
+                alert(`Agent state saved to ${filePath}`);
+            } catch (error) {
+                log('error', `Failed to save agent state: ${error.message}`);
+                alert(`Error saving agent state: ${error.message}`);
+            }
+        }
+
+        // Load agent state
+        async function loadAgentState() {
+            try {
+                const checkpoints = serializer.listCheckpoints();
+                if (checkpoints.length === 0) {
+                    alert('No saved checkpoints found');
+                    return;
+                }
+
+                const checkpoint = checkpoints[0]; // Load most recent
+                const loadedState = serializer.loadFromFile(checkpoint.path, ActiveInferenceAgent);
+
+                if (loadedState) {
+                    agent = loadedState;
+                    log('info', `Agent state loaded from ${checkpoint.path}`);
+                    alert(`Agent state loaded from ${checkpoint.filename}`);
+                    updateStatsPanel();
+                }
+            } catch (error) {
+                log('error', `Failed to load agent state: ${error.message}`);
+                alert(`Error loading agent state: ${error.message}`);
+            }
+        }
+
+        // Export for sharing
+        function exportForSharing() {
+            try {
+                const sharedData = serializer.exportForSharing(agent);
+                navigator.clipboard.writeText(sharedData).then(() => {
+                    alert('Agent state copied to clipboard! You can share this data to reproduce the exact agent state.');
+                    log('info', 'Agent state exported for sharing');
+                });
+            } catch (error) {
+                log('error', `Failed to export agent state: ${error.message}`);
+                alert(`Error exporting agent state: ${error.message}`);
+            }
+        }
+
+        // Export visualization
+        function exportVisualization() {
+            try {
+                visualizer.exportAsImage('container', 'active_inference_demo.png');
+                log('info', 'Visualization exported as image');
+            } catch (error) {
+                log('error', `Failed to export visualization: ${error.message}`);
+            }
+        }
+
+        // Clear logs
+        function clearLogs() {
+            logger.clearLogs();
+            document.getElementById('log-content').innerHTML = '';
+            log('info', 'Logs cleared');
+        }
+
+        // Utility logging function
+        function log(level, message, data = null) {
+            logger.log(level, message, data);
+        }
+
+        // Event listeners
+        document.getElementById('logLevel').addEventListener('change', function() {
+            logger.setLogLevel(this.value);
+        });
+
+        document.getElementById('enableLogging').addEventListener('change', function() {
+            // This would toggle logging in a more sophisticated implementation
+            log('info', `Logging ${this.checked ? 'enabled' : 'disabled'}`);
+        });
+
+        // Initialize demo when page loads
+        document.addEventListener('DOMContentLoaded', initializeDemo);
+
+        // Make functions globally available
+        window.reinitializeAgent = reinitializeAgent;
+        window.toggleRealTime = toggleRealTime;
+        window.saveAgentState = saveAgentState;
+        window.loadAgentState = loadAgentState;
+        window.exportForSharing = exportForSharing;
+        window.exportVisualization = exportVisualization;
+        window.clearLogs = clearLogs;
+    </script>
+</body>
+</html>

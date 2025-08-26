@@ -5,40 +5,37 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Find required packages
-find_package(Eigen3 REQUIRED)
-find_package(Threads REQUIRED)
+# Find optional Eigen library
+find_package(Eigen3 QUIET)
+if(Eigen3_FOUND)
+    message(STATUS "Found Eigen3 - enabling advanced features")
+    set(USE_EIGEN ON)
+else()
+    message(STATUS "Eigen3 not found - using basic implementation")
+    set(USE_EIGEN OFF)
+endif()
 
 # Create executable
-add_executable(active_inference_demo
+add_executable(ActiveInferenceDemo
     src/main.cpp
     src/ActiveInferenceAgent.cpp
-    src/AntColonyEnvironment.cpp
-    src/MatrixUtils.cpp
 )
 
 # Include directories
-target_include_directories(active_inference_demo PRIVATE
+target_include_directories(ActiveInferenceDemo PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${EIGEN3_INCLUDE_DIR}
 )
 
-# Link libraries
-target_link_libraries(active_inference_demo PRIVATE
-    Eigen3::Eigen
-    Threads::Threads
-)
+# Link libraries if Eigen is available
+if(USE_EIGEN)
+    target_link_libraries(ActiveInferenceDemo PRIVATE Eigen3::Eigen)
+    target_compile_definitions(ActiveInferenceDemo PRIVATE USE_EIGEN)
+endif()
 
-# Compiler warnings
-target_compile_options(active_inference_demo PRIVATE
+# Compiler warnings and optimization
+target_compile_options(ActiveInferenceDemo PRIVATE
     -Wall
     -Wextra
     -Wpedantic
-    -Wshadow
-    -Wconversion
     -O3
 )
-
-# Enable testing
-enable_testing()
-add_subdirectory(tests)

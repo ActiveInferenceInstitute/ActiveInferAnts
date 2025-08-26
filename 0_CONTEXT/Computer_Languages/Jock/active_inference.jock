@@ -1,0 +1,138 @@
+#!/usr/bin/env jock
+
+-- Active Inference Implementation in Jock
+-- A functional programming approach to active inference using category theory
+
+-- Core data types
+data State = S1 | S2 | S3 | S4
+data Observation = O1 | O2 | O3
+data Action = A1 | A2 | A3
+
+-- Probability distributions as functors
+data ProbDist a = ProbDist { values :: Map a Float, total :: Float }
+
+-- Generative model
+data GenerativeModel = GenerativeModel {
+    a_matrix :: Map (State, Observation) Float,  -- P(o|s)
+    b_matrix :: Map (State, Action, State) Float, -- P(s'|s,a)
+    c_vector :: Map Observation Float,           -- Preferences P(o)
+    d_vector :: Map State Float                  -- Prior P(s)
+}
+
+-- Active Inference Agent
+data Agent = Agent {
+    model :: GenerativeModel,
+    beliefs :: Map State Float,
+    precision :: Float,
+    history :: [Map State Float]
+}
+
+-- Initialize uniform probability distribution
+uniform_dist :: Int -> Map State Float
+uniform_dist n = fromList [(S1, 1.0/n'), (S2, 1.0/n'), (S3, 1.0/n'), (S4, 1.0/n')]
+    where n' = fromIntegral n
+
+-- Initialize generative model with reasonable defaults
+init_model :: GenerativeModel
+init_model = GenerativeModel {
+    a_matrix = fromList [
+        ((S1, O1), 0.8), ((S1, O2), 0.1), ((S1, O3), 0.1),
+        ((S2, O1), 0.1), ((S2, O2), 0.8), ((S2, O3), 0.1),
+        ((S3, O1), 0.1), ((S3, O2), 0.1), ((S3, O3), 0.8),
+        ((S4, O1), 0.1), ((S4, O2), 0.1), ((S4, O3), 0.8)
+    ],
+    b_matrix = fromList [
+        ((S1, A1, S2), 0.7), ((S1, A1, S1), 0.2), ((S1, A1, S3), 0.1),
+        ((S2, A1, S3), 0.7), ((S2, A1, S2), 0.2), ((S2, A1, S4), 0.1),
+        ((S3, A1, S4), 0.7), ((S3, A1, S3), 0.2), ((S3, A1, S1), 0.1),
+        ((S4, A1, S1), 0.7), ((S4, A1, S4), 0.2), ((S4, A1, S2), 0.1),
+        ((S1, A2, S3), 0.8), ((S1, A2, S1), 0.1), ((S1, A2, S2), 0.1),
+        ((S2, A2, S4), 0.8), ((S2, A2, S2), 0.1), ((S2, A2, S3), 0.1),
+        ((S3, A2, S1), 0.8), ((S3, A2, S3), 0.1), ((S3, A2, S4), 0.1),
+        ((S4, A2, S2), 0.8), ((S4, A2, S4), 0.1), ((S4, A2, S1), 0.1),
+        ((S1, A3, S1), 0.4), ((S1, A3, S2), 0.3), ((S1, A3, S3), 0.3),
+        ((S2, A3, S2), 0.4), ((S2, A3, S3), 0.3), ((S2, A3, S4), 0.3),
+        ((S3, A3, S3), 0.4), ((S3, A3, S4), 0.3), ((S3, A3, S1), 0.3),
+        ((S4, A3, S4), 0.4), ((S4, A3, S1), 0.3), ((S4, A3, S2), 0.3)
+    ],
+    c_vector = fromList [(O1, 0.0), (O2, 0.5), (O3, 0.5)],
+    d_vector = uniform_dist 4
+}
+
+-- Create new agent
+create_agent :: Agent
+create_agent = Agent {
+    model = init_model,
+    beliefs = d_vector init_model,
+    precision = 1.0,
+    history = []
+}
+
+-- Update beliefs based on observation
+update_beliefs :: Agent -> Observation -> Agent
+update_beliefs agent obs = agent {
+    beliefs = normalize posterior,
+    history = beliefs agent : history agent
+}
+    where
+        likelihood s = fromMaybe 0.1 $ lookup (s, obs) (a_matrix $ model agent)
+        posterior = mapWithKey (\s b -> likelihood s * b) (beliefs agent)
+        normalize dist = let total = sum $ map snd $ toList dist
+                         in mapWithKey (\s v -> v / total) dist
+
+-- Calculate variational free energy
+free_energy :: Agent -> Float
+free_energy agent = sum $ map (\(s, b) ->
+    if b > 0 then b * log (b / fromMaybe 0.25 (lookup s (d_vector $ model agent)))
+             else 0) $ toList $ beliefs agent
+
+-- Select action by minimizing expected free energy
+select_action :: Agent -> Action
+select_action agent = minimumBy (comparing expected_fe) [A1, A2, A3]
+    where
+        expected_fe action = free_energy $ predict_beliefs agent action
+        predict_beliefs ag act = ag {
+            beliefs = normalize $ mapWithKey (\s b ->
+                sum [b * fromMaybe 0.1 (lookup (s, act, s') (b_matrix $ model ag))
+                    | s' <- [S1, S2, S3, S4]]) (beliefs ag)
+        }
+        normalize dist = let total = sum $ map snd $ toList dist
+                         in mapWithKey (\s v -> v / total) dist
+
+-- Run simulation step
+step :: Agent -> Observation -> (Agent, Action)
+step agent obs = (updated_agent, action)
+    where
+        updated_agent = update_beliefs agent obs
+        action = select_action updated_agent
+
+-- Main simulation
+main :: IO ()
+main = do
+    putStrLn "🧠 Active Inference Jock Implementation"
+    putStrLn "====================================="
+
+    let agent = create_agent
+    putStrLn $ "Initial beliefs: " ++ show (beliefs agent)
+
+    let observations = [O1, O2, O3, O1, O2, O3, O1, O2, O3, O1]
+    let (final_agent, actions) = foldl (\(ag, acts) obs ->
+        let (new_ag, act) = step ag obs
+        in (new_ag, acts ++ [act])) (agent, []) observations
+
+    putStrLn $ "Final beliefs: " ++ show (beliefs final_agent)
+    putStrLn $ "Actions taken: " ++ show actions
+    putStrLn $ "Final free energy: " ++ show (free_energy final_agent)
+
+    putStrLn "\n✅ Jock Active Inference simulation completed successfully!"
+
+-- Helper functions
+fromMaybe :: a -> Maybe a -> a
+fromMaybe def Nothing = def
+fromMaybe _ (Just x) = x
+
+minimumBy :: (a -> a -> Ordering) -> [a] -> a
+minimumBy cmp xs = foldl1 (\x y -> if cmp x y == LT then x else y) xs
+
+comparing :: Ord b => (a -> b) -> a -> a -> Ordering
+comparing f x y = compare (f x) (f y)

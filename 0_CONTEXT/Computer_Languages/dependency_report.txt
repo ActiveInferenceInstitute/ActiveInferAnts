@@ -1,0 +1,99 @@
+🧪 Active Inference Dependencies Report
+==================================================
+
+📊 Summary:
+   Total Languages: 29
+   Fully Available: 8
+   Missing Some: 21
+
+🔍 Detailed Results:
+------------------------------
+✅ Python:
+   ✅ Available: numpy, scipy, matplotlib, seaborn, pandas
+
+❌ Java:
+   ❌ Missing: java, javac
+
+✅ Javascript:
+   ✅ Available: node, npm
+
+✅ Cpp:
+   ✅ Available: gcc, cmake
+
+✅ Rust:
+   ✅ Available: cargo, rustc
+
+❌ Go:
+   ❌ Missing: go
+
+❌ Haskell:
+   ❌ Missing: stack, ghc
+
+❌ Clojure:
+   ❌ Missing: lein
+
+❌ Elixir:
+   ❌ Missing: elixir
+
+❌ Erlang:
+   ❌ Missing: erl
+
+❌ Lua:
+   ❌ Missing: lua
+
+✅ Perl:
+   ✅ Available: perl
+
+❌ R:
+   ❌ Missing: R
+
+❌ Racket:
+   ❌ Missing: racket
+
+❌ Fortran:
+   ❌ Missing: gfortran
+
+❌ Ada:
+   ❌ Missing: gnat
+
+❌ Assembly:
+   ✅ Available: ld
+   ❌ Missing: nasm
+
+✅ Brainfuck:
+   ✅ Available: numpy, scipy, matplotlib, seaborn, pandas
+
+❌ Crystal:
+   ❌ Missing: crystal
+
+❌ Nim:
+   ❌ Missing: nim
+
+❌ Ocaml:
+   ❌ Missing: ocaml
+
+❌ Pascal:
+   ❌ Missing: fpc
+
+❌ Prolog:
+   ❌ Missing: swipl
+
+✅ Shell:
+   ✅ Available: bash, bc, awk
+
+✅ Sql:
+   ✅ Available: sqlite3
+
+❌ Typescript:
+   ✅ Available: node, npm
+   ❌ Missing: tsc
+
+❌ Zig:
+   ❌ Missing: zig
+
+❌ V:
+   ❌ Missing: v
+
+❌ Odin:
+   ❌ Missing: odin
+

@@ -29,33 +29,33 @@ Active Inference is a framework for understanding perception, action, and learni
 | **Jock** | ✅ Complete | Functional language for distributed systems | Category theory, Urbit integration | Urbit runtime |
 | **Julia** | ✅ Complete | Scientific computing implementation | High-performance, RxInfer integration | Julia ecosystem |
 | **Kotlin** | ✅ Complete | Modern JVM language implementation | Concise syntax, coroutines, type safety | Kotlin/JVM, Gradle |
-| **MATLAB/Octave** | ⏳ Planned | Matrix-based implementation | Signal processing, control systems | MATLAB/Octave |
+| **MATLAB/Octave** | ✅ Complete | Matrix-based implementation | Signal processing, visualization, control systems | MATLAB/Octave |
 | **Perl** | ✅ Complete | Dynamic language implementation | Text processing, CPAN modules | Standard library |
-| **PHP** | ⏳ Planned | Web-oriented implementation | Web integration, Composer | PHP 8.0+ |
+| **PHP** | ✅ Complete | Web-oriented implementation | Web integration, Composer, modern PHP features | PHP 8.0+ |
 | **Python** | ✅ Complete | Scientific implementation with numpy | Rich ecosystem, Student-Teacher POMDP | numpy, scipy, matplotlib |
 | **R** | ✅ Complete | Statistical programming implementation | Statistical analysis, visualization, data export | R ecosystem |
-| **Ruby** | ⏳ Planned | Dynamic object-oriented implementation | Elegant syntax, gems | Ruby 3.0+ |
+| **Ruby** | ✅ Complete | Dynamic object-oriented implementation | Elegant syntax, gems, metaprogramming | Ruby 2.5+ |
 | **Rust** | ✅ Complete | Systems programming implementation | Memory safety, performance | ndarray, thiserror |
-| **Scala** | ⏳ Planned | Functional JVM language | Type system, functional programming | Scala ecosystem |
+| **Scala** | ✅ Complete | Functional JVM language | Type system, functional programming | Scala ecosystem |
 | **Shell** | ✅ Complete | Command-line implementation | System integration, pipes | POSIX shell |
 | **SQL** | ✅ Complete | Database-driven implementation | Declarative programming, queries | SQLite/PostgreSQL |
-| **Swift** | ⏳ Planned | Modern systems programming | Type safety, performance | Swift ecosystem |
+| **Swift** | ✅ Complete | Modern systems programming | Type safety, performance, Apple ecosystem | Swift ecosystem |
 | **TypeScript** | ✅ Complete | Typed JavaScript implementation | Static typing, comprehensive error handling | Node.js, TypeScript, mathjs |
-| **Ada** | ⏳ Planned | Safety-critical systems implementation | Strong typing, concurrency, reliability | GNAT, Ada standard library |
-| **Assembly** | ⏳ Planned | Low-level hardware implementation | Direct hardware control, optimization | NASM/GAS assembler |
-| **Clojure** | ⏳ Planned | Functional Lisp implementation | Immutable data, JVM ecosystem | Leiningen, Clojure standard library |
-| **Crystal** | ⏳ Planned | Ruby-like compiled implementation | Performance, type safety, macros | Crystal standard library |
-| **Elixir** | ⏳ Planned | Distributed functional implementation | Erlang VM, fault-tolerance, OTP | Mix, Erlang ecosystem |
-| **Erlang** | ⏳ Planned | Concurrent distributed implementation | Actor model, fault-tolerance | Erlang/OTP standard library |
-| **F#** | ⏳ Planned | Functional .NET implementation | Type providers, async workflows | .NET Core, F# ecosystem |
-| **Fortran** | ⏳ Planned | Scientific computing implementation | Numerical computing, performance | Fortran standard library |
-| **Lua** | ⏳ Planned | Lightweight embeddable implementation | Fast, simple, extensible | Lua standard library |
-| **Nim** | ⏳ Planned | Python-like systems implementation | Performance, expressiveness, macros | Nim standard library |
-| **OCaml** | ⏳ Planned | Functional systems implementation | Type inference, performance | OCaml standard library |
-| **Pascal** | ⏳ Planned | Educational structured implementation | Clear syntax, teaching focused | Free Pascal, Lazarus |
-| **Prolog** | ⏳ Planned | Logic programming implementation | Declarative, constraint solving | SWI-Prolog, constraint libraries |
-| **Racket** | ⏳ Planned | Lisp dialect educational implementation | Language-oriented programming | Racket standard library |
-| **Zig** | ⏳ Planned | Modern systems implementation | Safety, performance, C replacement | Zig standard library |
+| **Ada** | ✅ Complete | Safety-critical systems implementation | Strong typing, concurrency, reliability | GNAT, Ada standard library |
+| **Assembly** | ✅ Complete | Low-level hardware implementation | Direct hardware control, optimization | NASM/GAS assembler |
+| **Clojure** | ✅ Complete | Functional Lisp implementation | Immutable data, JVM ecosystem | Leiningen, Clojure standard library |
+| **Crystal** | ✅ Complete | Ruby-like compiled implementation | Performance, type safety, macros | Crystal standard library |
+| **Elixir** | ✅ Complete | Distributed functional implementation | Erlang VM, fault-tolerance, OTP | Mix, Erlang ecosystem |
+| **Erlang** | ✅ Complete | Concurrent distributed implementation | Actor model, fault-tolerance | Erlang/OTP standard library |
+| **F#** | ✅ Complete | Functional .NET implementation | Type providers, async workflows | .NET Core, F# ecosystem |
+| **Fortran** | ✅ Complete | Scientific computing implementation | Numerical computing, performance | Fortran standard library |
+| **Lua** | ✅ Complete | Lightweight embeddable implementation | Fast, simple, extensible | Lua standard library |
+| **Nim** | ✅ Complete | Python-like systems implementation | Performance, expressiveness, macros | Nim standard library |
+| **OCaml** | ✅ Complete | Functional systems implementation | Type inference, performance | OCaml standard library |
+| **Pascal** | ✅ Complete | Educational structured implementation | Clear syntax, teaching focused | Free Pascal, Lazarus |
+| **Prolog** | ✅ Complete | Logic programming implementation | Declarative, constraint solving | SWI-Prolog, constraint libraries |
+| **Racket** | ✅ Complete | Lisp dialect educational implementation | Language-oriented programming | Racket standard library |
+| **Zig** | ✅ Complete | Modern systems implementation | Safety, performance, C replacement | Zig standard library |
 
 ## Implementation Patterns
 

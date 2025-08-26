@@ -8,7 +8,7 @@
  * - Perception-action loops
  */
 
-import { Matrix, math } from 'mathjs';
+import * as math from 'mathjs';
 
 /**
  * Active Inference Agent class
@@ -24,7 +24,7 @@ export class ActiveInferenceAgent {
         // Initialize generative model matrices
         this.A = this.initializeMatrix(this.nObservations, this.nStates); // Likelihood
         this.B = this.initializeTransitionMatrix(); // Transition model
-        this.C = new Matrix([0, 0.5, 0]); // Preferences over observations
+        this.C = math.matrix([0, 0.5, 0]); // Preferences over observations
         this.D = this.initializeVector(this.nStates); // Prior beliefs
 
         // Current beliefs
@@ -53,7 +53,7 @@ export class ActiveInferenceAgent {
             const sum = row.reduce((a, b) => a + b, 0);
             data.push(row.map(x => x / sum));
         }
-        return new Matrix(data);
+        return math.matrix(data);
     }
 
     /**
@@ -76,7 +76,7 @@ export class ActiveInferenceAgent {
                 const sum = row.reduce((a, b) => a + b, 0);
                 matrix.push(row.map(x => x / sum));
             }
-            matrices.push(new Matrix(matrix));
+            matrices.push(math.matrix(matrix));
         }
         return matrices;
     }
@@ -90,7 +90,7 @@ export class ActiveInferenceAgent {
             data.push(Math.random());
         }
         const sum = data.reduce((a, b) => a + b, 0);
-        return new Matrix([data.map(x => x / sum)]);
+        return math.matrix([data.map(x => x / sum)]);
     }
 
     /**

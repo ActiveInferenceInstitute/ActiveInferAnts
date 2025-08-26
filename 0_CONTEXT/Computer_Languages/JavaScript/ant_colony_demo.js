@@ -36,7 +36,7 @@ function runSingleAgentDemo() {
 
         const action = agent.step(observation);
         console.log(`  Action: ${action}`);
-        console.log(`  Beliefs: [${agent.getBeliefs().toArray()[0].map(b => b.toFixed(3)).join(', ')}]`);
+        console.log(`  Beliefs: [${agent.getBeliefs().toArray().map(b => b.toFixed(3)).join(', ')}]`);
 
         const freeEnergy = agent.history.freeEnergy[agent.history.freeEnergy.length - 1];
         console.log(`  Free Energy: ${freeEnergy.toFixed(3)}`);

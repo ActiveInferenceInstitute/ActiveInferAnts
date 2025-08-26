@@ -1,10 +1,17 @@
 #pragma once
 
-#include <Eigen/Dense>
 #include <vector>
 #include <memory>
 #include <random>
 #include <chrono>
+#include <cmath>
+#include <iostream>
+#include <algorithm>
+
+// Optional Eigen support
+#ifdef USE_EIGEN
+#include <Eigen/Dense>
+#endif
 
 /**
  * @brief Configuration structure for Active Inference Agent
@@ -22,7 +29,14 @@ struct AgentConfig {
      * @brief Validate configuration parameters
      * @throws std::invalid_argument if parameters are invalid
      */
-    void validate() const;
+    void validate() const {
+        if (nStates <= 0) throw std::invalid_argument("Number of states must be positive");
+        if (nObservations <= 0) throw std::invalid_argument("Number of observations must be positive");
+        if (nActions <= 0) throw std::invalid_argument("Number of actions must be positive");
+        if (learningRate <= 0 || learningRate > 1) throw std::invalid_argument("Learning rate must be in (0, 1]");
+        if (uncertaintyWeight < 0) throw std::invalid_argument("Uncertainty weight must be non-negative");
+        if (precision <= 0) throw std::invalid_argument("Precision must be positive");
+    }
 };
 
 /**
@@ -43,10 +57,70 @@ struct FreeEnergy {
 };
 
 /**
+ * @brief Simple matrix class using std::vector
+ */
+class SimpleMatrix {
+private:
+    std::vector<double> data;
+    size_t rows, cols;
+
+public:
+    SimpleMatrix(size_t r = 0, size_t c = 0, double init = 0.0)
+        : rows(r), cols(c), data(r * c, init) {}
+
+    double& operator()(size_t i, size_t j) { return data[i * cols + j]; }
+    double operator()(size_t i, size_t j) const { return data[i * cols + j]; }
+
+    size_t numRows() const { return rows; }
+    size_t numCols() const { return cols; }
+
+    void fill(double value) {
+        std::fill(data.begin(), data.end(), value);
+    }
+};
+
+/**
+ * @brief Simple vector class using std::vector
+ */
+class SimpleVector {
+private:
+    std::vector<double> data;
+
+public:
+    SimpleVector(size_t n = 0, double init = 0.0) : data(n, init) {}
+
+    double& operator()(size_t i) { return data[i]; }
+    double operator()(size_t i) const { return data[i]; }
+    size_t size() const { return data.size(); }
+
+    void normalize() {
+        double sum = 0.0;
+        for (double val : data) sum += val;
+        if (sum > 0.0) {
+            for (double& val : data) val /= sum;
+        }
+    }
+
+    double sum() const {
+        double total = 0.0;
+        for (double val : data) total += val;
+        return total;
+    }
+
+    double dot(const SimpleVector& other) const {
+        double result = 0.0;
+        for (size_t i = 0; i < std::min(size(), other.size()); ++i) {
+            result += data[i] * other.data[i];
+        }
+        return result;
+    }
+};
+
+/**
  * @brief Agent history for analysis
  */
 struct AgentHistory {
-    std::vector<Eigen::VectorXd> beliefs;      ///< Belief history
+    std::vector<SimpleVector> beliefs;         ///< Belief history
     std::vector<int> actions;                  ///< Action history
     std::vector<int> observations;             ///< Observation history
     std::vector<double> freeEnergy;            ///< Free energy history
@@ -122,7 +196,7 @@ public:
      * @return Updated belief vector
      * @throws BeliefUpdateError if update fails
      */
-    Eigen::VectorXd updateBeliefs(int observation);
+    SimpleVector updateBeliefs(int observation);
 
     /**
      * @brief Calculate variational free energy
@@ -155,7 +229,7 @@ public:
     /**
      * @brief Get current belief state
      */
-    Eigen::VectorXd getBeliefs() const { return currentBeliefs; }
+    SimpleVector getBeliefs() const { return currentBeliefs; }
 
     /**
      * @brief Get agent configuration
@@ -165,10 +239,10 @@ public:
     /**
      * @brief Get generative model matrices
      */
-    const Eigen::MatrixXd& getA() const { return A; }  // Likelihood
-    const std::vector<Eigen::MatrixXd>& getB() const { return B; }  // Transition
-    const Eigen::VectorXd& getC() const { return C; }  // Preferences
-    const Eigen::VectorXd& getD() const { return D; }  // Prior
+    const SimpleMatrix& getA() const { return A; }  // Likelihood
+    const std::vector<SimpleMatrix>& getB() const { return B; }  // Transition
+    const SimpleVector& getC() const { return C; }  // Preferences
+    const SimpleVector& getD() const { return D; }  // Prior
 
     /**
      * @brief Get agent history
@@ -176,9 +250,9 @@ public:
     const AgentHistory& getHistory() const { return history; }
 
     /**
-     * @brief Get statistics about agent behavior
+     * @brief Get comprehensive statistics as string
      */
-    std::unordered_map<std::string, double> getStatistics() const;
+    std::string getStatisticsString() const;
 
     /**
      * @brief Reset agent to initial state
@@ -192,12 +266,12 @@ public:
 
 private:
     AgentConfig config;                    ///< Agent configuration
-    Eigen::MatrixXd A;                     ///< Likelihood matrix p(o|s)
-    std::vector<Eigen::MatrixXd> B;        ///< Transition matrices p(s'|s,a)
-    Eigen::VectorXd C;                     ///< Preferences p(o)
-    Eigen::VectorXd D;                     ///< Prior beliefs p(s)
+    SimpleMatrix A;                        ///< Likelihood matrix p(o|s)
+    std::vector<SimpleMatrix> B;           ///< Transition matrices p(s'|s,a)
+    SimpleVector C;                        ///< Preferences p(o)
+    SimpleVector D;                        ///< Prior beliefs p(s)
 
-    Eigen::VectorXd currentBeliefs;        ///< Current belief state
+    SimpleVector currentBeliefs;           ///< Current belief state
     AgentHistory history;                  ///< Agent behavior history
     std::mt19937 rng;                      ///< Random number generator
 
@@ -234,27 +308,27 @@ private:
     /**
      * @brief Get likelihood vector for an observation
      */
-    Eigen::VectorXd getObservationLikelihood(int observation) const;
+    SimpleVector getObservationLikelihood(int observation) const;
 
     /**
      * @brief Predict beliefs after taking an action
      */
-    Eigen::VectorXd predictBeliefs(int action) const;
+    SimpleVector predictBeliefs(int action) const;
 
     /**
      * @brief Calculate pragmatic value
      */
-    double calculatePragmaticValue(const Eigen::VectorXd& predictedBeliefs) const;
+    double calculatePragmaticValue(const SimpleVector& predictedBeliefs) const;
 
     /**
      * @brief Calculate epistemic value
      */
-    double calculateEpistemicValue(const Eigen::VectorXd& predictedBeliefs) const;
+    double calculateEpistemicValue(const SimpleVector& predictedBeliefs) const;
 
     /**
      * @brief Calculate Shannon entropy of belief distribution
      */
-    double calculateEntropy(const Eigen::VectorXd& beliefs) const;
+    double calculateEntropy(const SimpleVector& beliefs) const;
 
     /**
      * @brief Calculate expected likelihood
@@ -272,16 +346,21 @@ private:
     void recordHistory(int action, int observation);
 };
 
-// Template specializations for common operations
-template<typename Derived>
-bool isProbabilityVector(const Eigen::DenseBase<Derived>& vec, double tolerance = 1e-6) {
-    if (vec.minCoeff() < -tolerance) return false;
+// Utility functions for SimpleVector operations
+inline bool isProbabilityVector(const SimpleVector& vec, double tolerance = 1e-6) {
+    for (size_t i = 0; i < vec.size(); ++i) {
+        if (vec(i) < -tolerance) return false;
+    }
     return std::abs(vec.sum() - 1.0) < tolerance;
 }
 
-template<typename Derived>
-Eigen::Matrix<typename Derived::Scalar, Derived::RowsAtCompileTime, 1>
-normalizeVector(const Eigen::DenseBase<Derived>& vec) {
-    auto normalized = vec;
-    return normalized / normalized.sum();
+inline SimpleVector normalizeVector(const SimpleVector& vec) {
+    SimpleVector normalized = vec;
+    double sum = vec.sum();
+    if (sum > 0.0) {
+        for (size_t i = 0; i < normalized.size(); ++i) {
+            normalized(i) /= sum;
+        }
+    }
+    return normalized;
 }

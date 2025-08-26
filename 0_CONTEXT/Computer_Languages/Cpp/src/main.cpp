@@ -269,8 +269,8 @@ void runSingleAgentDemo() {
     ActiveInferenceAgent agent(config);
 
     std::cout << "Initial beliefs: [";
-    Eigen::VectorXd beliefs = agent.getBeliefs();
-    for (int i = 0; i < beliefs.size(); ++i) {
+    SimpleVector beliefs = agent.getBeliefs();
+    for (size_t i = 0; i < beliefs.size(); ++i) {
         std::cout << std::fixed << std::setprecision(3) << beliefs(i);
         if (i < beliefs.size() - 1) std::cout << ", ";
     }
@@ -292,7 +292,7 @@ void runSingleAgentDemo() {
 
         beliefs = agent.getBeliefs();
         std::cout << "  Beliefs: [";
-        for (int i = 0; i < beliefs.size(); ++i) {
+        for (size_t i = 0; i < beliefs.size(); ++i) {
             std::cout << std::fixed << std::setprecision(3) << beliefs(i);
             if (i < beliefs.size() - 1) std::cout << ", ";
         }
@@ -303,15 +303,9 @@ void runSingleAgentDemo() {
     }
 
     // Show statistics
-    auto statistics = agent.getStatistics();
+    auto statistics = agent.getStatisticsString();
     std::cout << "\nFinal Statistics:" << std::endl;
-    std::cout << "  Total Steps: " << statistics["totalSteps"] << std::endl;
-    std::cout << "  Average Free Energy: " << std::fixed << std::setprecision(4) << statistics["averageFreeEnergy"] << std::endl;
-    std::cout << "  Action Distribution:" << std::endl;
-    for (int i = 0; i < config.nActions; ++i) {
-        std::cout << "    Action " << i << ": " << statistics["action" + std::to_string(i) + "Count"]
-                 << " (" << std::fixed << std::setprecision(2) << statistics["action" + std::to_string(i) + "Frequency"] * 100 << "%)" << std::endl;
-    }
+    std::cout << statistics << std::endl;
 }
 
 /**
@@ -367,8 +361,8 @@ void runErrorHandlingDemo() {
             std::cout << "Caught belief update error: " << e.what() << std::endl;
         }
 
-        auto statistics = agent.getStatistics();
-        std::cout << "Agent statistics: Total steps = " << statistics["totalSteps"] << std::endl;
+        auto statistics = agent.getStatisticsString();
+        std::cout << "Agent statistics:" << std::endl << statistics << std::endl;
 
     } catch (const std::exception& e) {
         std::cout << "Unexpected error: " << e.what() << std::endl;
@@ -378,7 +372,7 @@ void runErrorHandlingDemo() {
 /**
  * Main demonstration function
  */
-void main() {
+int main() {
     std::cout << "🧠 Active Inference C++ Implementation" << std::endl;
     std::cout << "=====================================" << std::endl;
 
@@ -389,20 +383,16 @@ void main() {
 
         std::cout << "\n✅ All demos completed successfully!" << std::endl;
         std::cout << "\n💡 C++ Benefits Demonstrated:" << std::endl;
-        std::cout << "   • High performance with Eigen matrix operations" << std::endl;
+        std::cout << "   • High performance with custom matrix operations" << std::endl;
         std::cout << "   • Strong type safety and compile-time error checking" << std::endl;
         std::cout << "   • Comprehensive error handling with custom exceptions" << std::endl;
         std::cout << "   • Memory efficiency and RAII resource management" << std::endl;
-        std::cout << "   • Template metaprogramming for generic operations" << std::endl;
+        std::cout << "   • Standard library usage for portability" << std::endl;
+
+        return EXIT_SUCCESS;
 
     } catch (const std::exception& e) {
         std::cerr << "❌ Demo failed: " << e.what() << std::endl;
         return EXIT_FAILURE;
     }
-
-    return EXIT_SUCCESS;
-}
-
-int main() {
-    return main();
 }

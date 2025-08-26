@@ -1,8 +1,33 @@
 import numpy as np
 from scipy.special import softmax
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend
 import matplotlib.pyplot as plt
 import os
-from teacher_wrapper import TeacherModel
+
+# Standalone Teacher Model Implementation
+class TeacherModel:
+    def __init__(self, n_states, growth_rate=0.1, max_knowledge=1.0):
+        self.n_states = n_states
+        self.growth_rate = growth_rate
+        self.max_knowledge = max_knowledge
+        self.knowledge = np.zeros(n_states)
+
+    def update_knowledge(self, state):
+        """Update teacher knowledge using logistic growth model."""
+        current = self.knowledge[state]
+        exp_gr = np.exp(self.growth_rate)
+        self.knowledge[state] = (self.max_knowledge * current * exp_gr) / \
+                               (self.max_knowledge + current * (exp_gr - 1))
+
+    def get_knowledge(self):
+        """Get current knowledge state."""
+        return self.knowledge.copy()
+
+    def suggest_resource(self, student_beliefs):
+        """Suggest resource based on student beliefs and teacher knowledge."""
+        gaps = (self.max_knowledge - self.knowledge) * student_beliefs
+        return np.argmax(gaps)
 
 class StudentTeacherPOMDP:
     def __init__(self, n_states, n_observations, n_actions):

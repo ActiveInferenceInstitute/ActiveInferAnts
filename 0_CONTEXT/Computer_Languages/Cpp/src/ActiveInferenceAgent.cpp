@@ -3,28 +3,11 @@
 #include <iomanip>
 #include <algorithm>
 #include <numeric>
+#include <random>
+#include <cmath>
+#include <sstream>
 
-// AgentConfig validation
-void AgentConfig::validate() const {
-    if (nStates <= 0) {
-        throw std::invalid_argument("Number of states must be positive");
-    }
-    if (nObservations <= 0) {
-        throw std::invalid_argument("Number of observations must be positive");
-    }
-    if (nActions <= 0) {
-        throw std::invalid_argument("Number of actions must be positive");
-    }
-    if (learningRate <= 0.0 || learningRate > 1.0) {
-        throw std::invalid_argument("Learning rate must be in (0, 1]");
-    }
-    if (uncertaintyWeight < 0.0) {
-        throw std::invalid_argument("Uncertainty weight must be non-negative");
-    }
-    if (precision <= 0.0) {
-        throw std::invalid_argument("Precision must be positive");
-    }
-}
+// Implementation starts here
 
 // ActiveInferenceAgent implementation
 ActiveInferenceAgent::ActiveInferenceAgent(const AgentConfig& config)
@@ -50,306 +33,227 @@ void ActiveInferenceAgent::initializeGenerativeModel() {
 }
 
 void ActiveInferenceAgent::initializeLikelihoodMatrix() {
-    A = Eigen::MatrixXd(config.nObservations, config.nStates);
+    // Initialize A matrix (observation likelihood p(o|s))
+    A = SimpleMatrix(config.nObservations, config.nStates);
 
-    // Initialize with diagonal structure plus noise
-    std::uniform_real_distribution<double> dist(-0.1, 0.1);
-
-    for (int obs = 0; obs < config.nObservations; ++obs) {
-        for (int state = 0; state < config.nStates; ++state) {
-            double baseProb = (obs == state % config.nObservations) ? 0.7 : 0.1;
-            double noise = dist(rng);
-            A(obs, state) = std::max(0.0, std::min(1.0, baseProb + noise));
+    // Simple diagonal structure with some noise
+    for (size_t o = 0; o < static_cast<size_t>(config.nObservations); ++o) {
+        for (size_t s = 0; s < static_cast<size_t>(config.nStates); ++s) {
+            if (o == s % static_cast<size_t>(config.nObservations)) {
+                A(o, s) = 0.8;  // High probability for matching observation
+            } else {
+                A(o, s) = 0.2 / (static_cast<size_t>(config.nObservations) - 1);  // Low probability for others
+            }
         }
-        // Normalize row
-        double sum = A.row(obs).sum();
-        A.row(obs) /= sum;
     }
-
-    log("Likelihood matrix A initialized");
 }
 
 void ActiveInferenceAgent::initializeTransitionMatrices() {
+    // Initialize B matrices (state transition p(s'|s,a))
     B.resize(config.nActions);
 
-    std::uniform_real_distribution<double> dist(0.05, 0.15);
+    for (int a = 0; a < config.nActions; ++a) {
+        B[a] = SimpleMatrix(config.nStates, config.nStates);
 
-    for (int action = 0; action < config.nActions; ++action) {
-        B[action] = Eigen::MatrixXd(config.nStates, config.nStates);
-
-        for (int fromState = 0; fromState < config.nStates; ++fromState) {
-            Eigen::VectorXd row = Eigen::VectorXd::Constant(config.nStates, 0.1);
-
-            // Action-specific transition patterns
-            if (action == 0) {
-                // Stay/move left
-                row(fromState) = 0.6; // Stay
-                if (fromState > 0) {
-                    row(fromState - 1) = 0.3; // Move left
-                }
-            } else if (action == 1) {
-                // Move right
-                if (fromState < config.nStates - 1) {
-                    row(fromState + 1) = 0.6; // Move right
+        // Simple transition model with action bias
+        for (size_t s = 0; s < static_cast<size_t>(config.nStates); ++s) {
+            for (size_t s_next = 0; s_next < static_cast<size_t>(config.nStates); ++s_next) {
+                if (s_next == (s + a + 1) % config.nStates) {
+                    B[a](s_next, s) = 0.7;  // Likely to move forward by action amount
+                } else if (s_next == s) {
+                    B[a](s_next, s) = 0.2;  // Some probability of staying
                 } else {
-                    row(fromState) = 0.6; // Stay if at boundary
+                    B[a](s_next, s) = 0.1 / (config.nStates - 2);  // Low probability for others
                 }
-            } else {
-                // Random exploration
-                row = Eigen::VectorXd::Constant(config.nStates, 1.0 / config.nStates);
             }
-
-            // Normalize row
-            double sum = row.sum();
-            row /= sum;
-
-            B[action].row(fromState) = row.transpose();
         }
     }
-
-    log("Transition matrices B initialized");
 }
 
 void ActiveInferenceAgent::initializePreferenceVector() {
-    C = Eigen::VectorXd(config.nObservations);
+    // Initialize C vector (observation preferences)
+    C = SimpleVector(config.nObservations);
 
-    // Prefer certain observations (e.g., food, safety)
-    for (int obs = 0; obs < config.nObservations; ++obs) {
-        C(obs) = (obs < config.nObservations / 2) ? 1.0 : 0.1;
+    // Prefer first observation type
+    for (size_t i = 0; i < static_cast<size_t>(config.nObservations); ++i) {
+        C(i) = (i == 0) ? 0.0 : 0.5;  // Lower energy for preferred observations
     }
-
-    log("Preference vector C initialized");
 }
 
 void ActiveInferenceAgent::initializePriorVector() {
-    D = Eigen::VectorXd::Constant(config.nStates, 1.0 / config.nStates);
-    log("Prior vector D initialized");
+    // Initialize D vector (prior beliefs p(s))
+    D = SimpleVector(config.nStates);
+
+    // Uniform prior
+    double uniform_prob = 1.0 / config.nStates;
+    for (size_t i = 0; i < static_cast<size_t>(config.nStates); ++i) {
+        D(i) = uniform_prob;
+    }
 }
 
 void ActiveInferenceAgent::initializeBeliefState() {
-    currentBeliefs = D;
-    history.clear();
-    log("Belief state initialized");
-}
-
-Eigen::VectorXd ActiveInferenceAgent::updateBeliefs(int observation) {
-    try {
-        if (observation < 0 || observation >= config.nObservations) {
-            throw BeliefUpdateError("Invalid observation index: " + std::to_string(observation));
-        }
-
-        // Get likelihood for this observation
-        Eigen::VectorXd likelihood = getObservationLikelihood(observation);
-
-        // Bayesian update: posterior = prior * likelihood
-        Eigen::VectorXd posterior = currentBeliefs.cwiseProduct(likelihood);
-
-        // Normalize
-        double sum = posterior.sum();
-        if (sum == 0.0) {
-            throw BeliefUpdateError("Invalid likelihood - posterior sums to zero");
-        }
-
-        currentBeliefs = posterior / sum;
-
-        // Record in history
-        history.beliefs.push_back(currentBeliefs);
-        history.timestamps.push_back(std::chrono::system_clock::now());
-
-        log("Beliefs updated successfully for observation " + std::to_string(observation));
-        return currentBeliefs;
-
-    } catch (const std::exception& e) {
-        throw BeliefUpdateError(std::string("Failed to update beliefs: ") + e.what());
+    // Initialize current beliefs to prior
+    currentBeliefs = SimpleVector(config.nStates);
+    for (size_t i = 0; i < static_cast<size_t>(config.nStates); ++i) {
+        currentBeliefs(i) = D(i);
     }
 }
 
-double ActiveInferenceAgent::calculateVariationalFreeEnergy() const {
-    // F = E_q[ln q(s) - ln p(o|s)] = -E_q[ln p(o|s)] + E_q[ln q(s)]
-    double expectedLikelihood = calculateExpectedLikelihood();
-    double entropy = calculateEntropy(currentBeliefs);
+SimpleVector ActiveInferenceAgent::updateBeliefs(int observation) {
+    // Bayesian belief update: P(s|o) ∝ P(o|s) * P(s)
+    SimpleVector likelihood = getObservationLikelihood(observation);
+    SimpleVector posterior(config.nStates);
 
-    return -expectedLikelihood - entropy;
+    for (size_t i = 0; i < config.nStates; ++i) {
+        posterior(i) = likelihood(i) * currentBeliefs(i);
+    }
+
+    // Normalize
+    currentBeliefs = normalizeVector(posterior);
+    return currentBeliefs;
 }
 
 FreeEnergy ActiveInferenceAgent::calculateExpectedFreeEnergy(int action) const {
-    try {
-        if (action < 0 || action >= config.nActions) {
-            throw PolicySelectionError("Invalid action index: " + std::to_string(action));
-        }
+    FreeEnergy fe;
+    SimpleVector predictedBeliefs = predictBeliefs(action);
 
-        // Predict next beliefs
-        Eigen::VectorXd predictedBeliefs = predictBeliefs(action);
+    // Calculate pragmatic value (expected utility)
+    fe.pragmatic = calculatePragmaticValue(predictedBeliefs);
 
-        // Calculate pragmatic value (surprise about preferred observations)
-        double pragmaticValue = calculatePragmaticValue(predictedBeliefs);
+    // Calculate epistemic value (information gain)
+    fe.epistemic = calculateEpistemicValue(predictedBeliefs);
 
-        // Calculate epistemic value (information gain)
-        double epistemicValue = calculateEpistemicValue(predictedBeliefs);
+    // Expected free energy is negative pragmatic + epistemic terms
+    fe.expected = -fe.pragmatic + fe.epistemic;
 
-        // Total EFE
-        double expectedFE = pragmaticValue - config.uncertaintyWeight * epistemicValue;
-
-        FreeEnergy fe;
-        fe.variational = calculateVariationalFreeEnergy();
-        fe.expected = expectedFE;
-        fe.pragmatic = pragmaticValue;
-        fe.epistemic = epistemicValue;
-
-        return fe;
-
-    } catch (const std::exception& e) {
-        throw PolicySelectionError(std::string("Failed to calculate expected free energy: ") + e.what());
-    }
+    return fe;
 }
 
 int ActiveInferenceAgent::selectAction() {
-    try {
-        std::vector<FreeEnergy> efes(config.nActions);
+    int bestAction = 0;
+    double minEFE = std::numeric_limits<double>::max();
 
-        // Calculate EFE for each action
-        for (int action = 0; action < config.nActions; ++action) {
-            efes[action] = calculateExpectedFreeEnergy(action);
+    for (int action = 0; action < config.nActions; ++action) {
+        FreeEnergy fe = calculateExpectedFreeEnergy(action);
+        if (fe.expected < minEFE) {
+            minEFE = fe.expected;
+            bestAction = action;
         }
-
-        // Select action with minimum expected free energy
-        auto minElement = std::min_element(efes.begin(), efes.end(),
-            [](const FreeEnergy& a, const FreeEnergy& b) {
-                return a.expected < b.expected;
-            });
-
-        int bestAction = std::distance(efes.begin(), minElement);
-
-        log("Action " + std::to_string(bestAction) + " selected");
-        return bestAction;
-
-    } catch (const std::exception& e) {
-        throw PolicySelectionError(std::string("Failed to select action: ") + e.what());
     }
+
+    return bestAction;
 }
 
 int ActiveInferenceAgent::step(int observation) {
-    // Update beliefs based on observation
     updateBeliefs(observation);
-
-    // Calculate free energy
-    double fe = calculateVariationalFreeEnergy();
-    history.freeEnergy.push_back(fe);
-
-    // Select and return action
     int action = selectAction();
     recordHistory(action, observation);
-
     return action;
 }
 
-Eigen::VectorXd ActiveInferenceAgent::getObservationLikelihood(int observation) const {
-    return A.row(observation).transpose();
+SimpleVector ActiveInferenceAgent::getObservationLikelihood(int observation) const {
+    SimpleVector likelihood(config.nStates);
+    for (size_t i = 0; i < config.nStates; ++i) {
+        likelihood(i) = A(observation, i);
+    }
+    return likelihood;
 }
 
-Eigen::VectorXd ActiveInferenceAgent::predictBeliefs(int action) const {
-    return currentBeliefs.transpose() * B[action];
-}
+SimpleVector ActiveInferenceAgent::predictBeliefs(int action) const {
+    SimpleVector predicted(config.nStates, 0.0);
 
-double ActiveInferenceAgent::calculatePragmaticValue(const Eigen::VectorXd& predictedBeliefs) const {
-    double pragmaticValue = 0.0;
-
-    for (int state = 0; state < config.nStates; ++state) {
-        double stateProb = predictedBeliefs(state);
-        if (stateProb > 0.0) {
-            // Expected surprise about preferred observations
-            for (int obs = 0; obs < config.nObservations; ++obs) {
-                double obsProb = A(obs, state);
-                double preference = C(obs);
-                pragmaticValue += stateProb * obsProb * preference;
-            }
+    for (size_t s_next = 0; s_next < config.nStates; ++s_next) {
+        for (size_t s = 0; s < config.nStates; ++s) {
+            predicted(s_next) += B[action](s_next, s) * currentBeliefs(s);
         }
     }
 
-    return pragmaticValue;
+    return predicted;
 }
 
-double ActiveInferenceAgent::calculateEpistemicValue(const Eigen::VectorXd& predictedBeliefs) const {
-    return calculateEntropy(predictedBeliefs);
+double ActiveInferenceAgent::calculatePragmaticValue(const SimpleVector& predictedBeliefs) const {
+    double pragmatic = 0.0;
+    for (size_t i = 0; i < config.nObservations; ++i) {
+        double expectedObs = 0.0;
+        for (size_t j = 0; j < config.nStates; ++j) {
+            expectedObs += A(i, j) * predictedBeliefs(j);
+        }
+        pragmatic += expectedObs * C(i);
+    }
+    return pragmatic;
 }
 
-double ActiveInferenceAgent::calculateEntropy(const Eigen::VectorXd& beliefs) const {
+double ActiveInferenceAgent::calculateEpistemicValue(const SimpleVector& predictedBeliefs) const {
+    double epistemic = 0.0;
+    for (size_t i = 0; i < config.nStates; ++i) {
+        if (predictedBeliefs(i) > 0.0) {
+            epistemic -= predictedBeliefs(i) * std::log(predictedBeliefs(i));
+        }
+    }
+    return config.uncertaintyWeight * epistemic;
+}
+
+double ActiveInferenceAgent::calculateEntropy(const SimpleVector& beliefs) const {
     double entropy = 0.0;
-
-    for (int i = 0; i < beliefs.size(); ++i) {
-        double prob = beliefs(i);
-        if (prob > 0.0) {
-            entropy -= prob * std::log2(prob);
+    for (size_t i = 0; i < beliefs.size(); ++i) {
+        if (beliefs(i) > 0.0) {
+            entropy -= beliefs(i) * std::log(beliefs(i));
         }
     }
-
     return entropy;
 }
 
-double ActiveInferenceAgent::calculateExpectedLikelihood() const {
-    double expectedLikelihood = 0.0;
+double ActiveInferenceAgent::calculateVariationalFreeEnergy() const {
+    double fe = 0.0;
 
-    for (int obs = 0; obs < config.nObservations; ++obs) {
-        Eigen::VectorXd likelihood = getObservationLikelihood(obs);
-        double expectedObsProb = currentBeliefs.dot(likelihood);
-        if (expectedObsProb > 0.0) {
-            expectedLikelihood += expectedObsProb * std::log(expectedObsProb);
-        }
+    // Calculate expected free energy under current beliefs
+    for (int action = 0; action < config.nActions; ++action) {
+        FreeEnergy action_fe = calculateExpectedFreeEnergy(action);
+        fe += action_fe.expected;
     }
 
-    return expectedLikelihood;
-}
-
-std::unordered_map<std::string, double> ActiveInferenceAgent::getStatistics() const {
-    std::unordered_map<std::string, double> stats;
-
-    if (history.actions.empty()) {
-        stats["message"] = std::numeric_limits<double>::quiet_NaN();
-        return stats;
-    }
-
-    stats["totalSteps"] = static_cast<double>(history.size());
-
-    // Average free energy
-    double avgFE = std::accumulate(history.freeEnergy.begin(), history.freeEnergy.end(), 0.0)
-                   / history.freeEnergy.size();
-    stats["averageFreeEnergy"] = avgFE;
-
-    // Action distribution
-    std::vector<int> actionCounts(config.nActions, 0);
-    for (int action : history.actions) {
-        if (action >= 0 && action < config.nActions) {
-            actionCounts[action]++;
-        }
-    }
-
-    for (int i = 0; i < config.nActions; ++i) {
-        stats["action" + std::to_string(i) + "Count"] = static_cast<double>(actionCounts[i]);
-        stats["action" + std::to_string(i) + "Frequency"] =
-            static_cast<double>(actionCounts[i]) / history.actions.size();
-    }
-
-    // Final beliefs
-    for (int i = 0; i < config.nStates; ++i) {
-        stats["finalBelief" + std::to_string(i)] = currentBeliefs(i);
-    }
-
-    return stats;
+    fe /= config.nActions;
+    return fe;
 }
 
 void ActiveInferenceAgent::reset() {
-    currentBeliefs = D;
+    initializeGenerativeModel();
+    initializeBeliefState();
     history.clear();
-    log("Agent reset to initial state");
 }
 
 void ActiveInferenceAgent::log(const std::string& message) const {
     if (config.verbose) {
-        std::cout << "[ActiveInferenceAgent] " << message << std::endl;
+        std::cout << "[LOG] " << message << std::endl;
     }
 }
 
 void ActiveInferenceAgent::recordHistory(int action, int observation) {
+    history.beliefs.push_back(currentBeliefs);
     history.actions.push_back(action);
     history.observations.push_back(observation);
+    history.freeEnergy.push_back(calculateVariationalFreeEnergy());
+    history.timestamps.push_back(std::chrono::system_clock::now());
 }
+
+std::string ActiveInferenceAgent::getStatisticsString() const {
+    std::stringstream ss;
+    ss << "Active Inference Agent Statistics:\n";
+    ss << "States: " << config.nStates << "\n";
+    ss << "Observations: " << config.nObservations << "\n";
+    ss << "Actions: " << config.nActions << "\n";
+    ss << "Total steps: " << history.size() << "\n";
+
+    if (!history.beliefs.empty()) {
+        ss << "Final beliefs: [";
+        for (size_t i = 0; i < currentBeliefs.size(); ++i) {
+            ss << std::fixed << std::setprecision(3) << currentBeliefs(i);
+            if (i < currentBeliefs.size() - 1) ss << ", ";
+        }
+        ss << "]\n";
+    }
+
+    return ss.str();
+}
+
+// End of implementation
